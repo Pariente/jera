@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20170121163342) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "entries", force: :cascade do |t|
     t.integer  "source_id"
     t.string   "title"
@@ -24,7 +27,7 @@ ActiveRecord::Schema.define(version: 20170121163342) do
     t.datetime "updated_at"
   end
 
-  add_index "entries", ["source_id"], name: "index_entries_on_source_id"
+  add_index "entries", ["source_id"], name: "index_entries_on_source_id", using: :btree
 
   create_table "pickings", force: :cascade do |t|
     t.integer "user_id"
@@ -50,8 +53,8 @@ ActiveRecord::Schema.define(version: 20170121163342) do
     t.integer  "last_entry_seen"
   end
 
-  add_index "subscriptions", ["source_id"], name: "index_subscriptions_on_source_id"
-  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
+  add_index "subscriptions", ["source_id"], name: "index_subscriptions_on_source_id", using: :btree
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -69,8 +72,8 @@ ActiveRecord::Schema.define(version: 20170121163342) do
     t.string   "username"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end
