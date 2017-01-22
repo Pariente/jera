@@ -1,0 +1,30 @@
+<div class="garden-flex">
+  <div class="tree">
+    <%= link_to sources_path do %>
+      <%= image_tag "new_tree", class: 'tree-pic' %>
+      <%= image_tag "treebase0" %>
+      <p>Plant a new tree</p>
+      <% end %>
+  </div>
+  <% @subscriptions.each do |sub| %>
+    <div class="tree">
+      <%= link_to source_path(sub.source) do %>
+      <div class="tree-head">
+        <%= image_tag sub.source.picture, class: 'tree-pic' %>
+        <% unless sub.new_entries == 0 %>
+          <div class="new-entries">
+            <%= sub.new_entries %>
+          </div>
+        <% end %>
+        <% if sub.auto_harvest %>
+          <%= image_tag "treebase_auto_harvest" %>
+        <% else %>
+          <%= image_tag "treebase0" %>
+        <% end %>
+        <p><%= sub.source.name %></p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= render partial: 'shared/footer' %>

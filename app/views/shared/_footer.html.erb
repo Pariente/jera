@@ -1,0 +1,74 @@
+<div class="footer">
+  <%= link_to root_path do %>
+    <% if current_page?(root_path) %>
+      <p class="active-tab">Harvest</p>
+    <% else %>
+      <p>Harvest</p>
+    <% end %>
+  <% end %>
+  <%= link_to garden_path do %>
+    <% if current_page?(garden_path) %>
+      <p class="active-tab">Garden</p>
+    <% else %>
+      <p>Garden</p>
+    <% end %>
+  <% end %>
+  <%= link_to pickings_path do %>
+    <% if current_page?(pickings_path) %>
+      <p class="active-tab">Pickings</p>
+    <% else %>
+      <p>Pickings</p>
+    <% end %>
+  <% end %>
+  <%= link_to root_path do %>
+    <p>Offerings</p>
+  <% end %>
+</div>
+
+<script>
+  // PICK
+  $(".picked-entry").mouseover(function() {
+    $(this).find("img").addClass("hidden");
+    $(this).find("span").text("Unpick");
+  });
+  $(".picked-entry").mouseout(function() {
+    $(this).find("img").removeClass("hidden");
+    $(this).find("span").text("Picked");
+  });
+  $(".pick-entry").click(function() {
+    location.reload();
+  });
+  $(".picked-entry").click(function() {
+    location.reload();
+  });
+
+  // SUBSCRIBE
+  $(".unsubscribe-button").mouseover(function() {
+    $(this).find("img").addClass("hidden");
+    $(this).find("span").text("Remove tree");
+  });
+  $(".unsubscribe-button").mouseout(function() {
+    $(this).find("img").removeClass("hidden");
+    $(this).find("span").text("In your garden");
+  });
+  $(".subscribe-button").click(function() {
+    location.reload();
+  });
+  $(".unsubscribe-button").click(function() {
+    location.reload();
+  });
+
+  // AUTO-HARVEST
+  $(".manual-harvest-button").mouseover(function() {
+    $(this).text("Auto-harvest");
+  });
+  $(".manual-harvest-button").mouseout(function() {
+    $(this).text("Manual harvest");
+  });
+  $(".auto-harvest-button").mouseover(function() {
+    $(this).text("Manual harvest");
+  });
+  $(".auto-harvest-button").mouseout(function() {
+    $(this).text("Auto-harvesting");
+  });
+</script>

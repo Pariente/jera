@@ -1,0 +1,50 @@
+.garden-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  max-width: 600px;
+}
+
+.tree {
+  margin: 10px;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tree a {
+  text-align: center;
+}
+
+.tree img {
+  display: block;
+  margin: auto
+}
+
+.tree-pic {
+  border-radius: 5px;
+  height: 75px;
+  width: 75px;
+}
+
+.tree-head {
+  position: relative
+}
+
+.new-entries {
+  background-color: $red;
+  border-radius: 100%;
+  color: $white;
+  padding: 5px;
+  position: absolute;
+  right: 20px;
+  top: -10px;
+  width: 23px;
+  z-index: 100
+}

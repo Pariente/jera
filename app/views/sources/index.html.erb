@@ -1,0 +1,51 @@
+<div class="content-flex">
+  <h1>The world is full of trees</h1>
+  <%= link_to new_source_path do %>
+    <div class="source">
+      <div class="content-left-column">
+          <%= image_tag 'new_tree', class: 'source-pic' %>
+      </div>
+      <div class="content-right-column">
+        <div class="content-top">
+          <div class="plant-tree">
+            Plant a tree from the wild
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <% @sources.each do |s| %>
+    <div class="content">
+      <div class="content-left-column">
+        <%= link_to source_path(s) do %>
+          <%= image_tag s.picture, class: 'source-pic' %>
+        <% end %>
+      </div>
+      <div class="content-right-column">
+        <div class="content-top">
+          <div class="source-title alone">
+            <%= link_to source_path(s) do %>
+              <%= s.name %>
+            <% end %>
+            <br>
+            <% if s.subscriptions.where(user: current_user) == [] %>
+              <%= link_to new_source_subscription_path(s), remote: :true do %>
+                <button class="subscribe-button">
+                  <span>Add to garden</span>
+                </button>
+              <% end %>
+            <% else %>
+              <%= link_to source_subscription_path(s, s.subscriptions.where(user: current_user).first), method: :delete, remote: :true do %>
+                <button class="unsubscribe-button">
+                  <%= image_tag 'check', class: "check" %>
+                  <span>In your garden</span>
+                </button>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= render partial: 'shared/footer' %>
