@@ -1,4 +1,11 @@
-<h1>Plant a tree from the wild</h1>
+<div class="content-flex">
+<div class="back">
+  <%= link_to sources_path do %>
+    <%= image_tag 'chevron_left', class: 'chevron' %> Back
+  <% end %>
+</div>
+
+<h1>Plant a new tree</h1>
 
 <%= simple_form_for @source do |f| %>
   <div class="form-inputs">
@@ -16,5 +23,6 @@
     <%= f.button :submit, "Plant a tree" %>
   </div>
 <% end %>
+</div>
 
-<%= link_to 'Back', sources_path %>
+<%= render partial: 'shared/footer' %>

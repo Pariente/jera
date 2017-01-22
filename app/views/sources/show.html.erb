@@ -1,4 +1,9 @@
 <div class="content-flex">
+  <div class="back">
+    <%= link_to request.referer.present? ? request.referer : root_path do %>
+      <%= image_tag 'chevron_left', class: 'chevron' %> Back
+    <% end %>
+  </div>
   <div class="source show">
     <div class="source-left-column">
       <%= image_tag @source.picture, class: 'source-pic' %>

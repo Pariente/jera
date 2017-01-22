@@ -48,3 +48,18 @@
   width: 23px;
   z-index: 100
 }
+
+@media screen and (max-width: 400px) {
+  .tree {
+    display: flex;
+    width: 90%;
+    margin-left: 20px;
+  }
+  .tree a {
+    display: flex
+  }
+  .tree-name {
+    padding-left: 10px;
+    text-align: left;
+  }
+}

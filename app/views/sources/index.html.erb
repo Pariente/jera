@@ -1,5 +1,9 @@
 <div class="content-flex">
-  <h1>The world is full of trees</h1>
+  <div class="back">
+    <%= link_to garden_path do %>
+      <%= image_tag 'chevron_left', class: 'chevron' %> Back
+    <% end %>
+  </div>
   <%= link_to new_source_path do %>
     <div class="source">
       <div class="content-left-column">

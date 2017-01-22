@@ -70,6 +70,8 @@ header > h1 {
 .footer a p {
   line-height: 55px;
   border-bottom: 5px solid transparent;
+  padding-left: 0px;
+  padding-right: 0px;
   text-align: center;
   width: 100%
 }
@@ -78,9 +80,20 @@ header > h1 {
   border-color: $white
 }
 
-@media screen and (max-width: 350px) {
-  .footer p {
+@media screen and (max-width: 400px) {
+  .footer a p {
     font-size: 12px;
+    line-height: 45px
+  }
+}
+
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : portrait) {
+  .footer a p {
+    font-size: 12px;
+    line-height: 45px
   }
 }
 
@@ -104,6 +117,26 @@ p {
   margin: auto;
   margin-bottom: 20px;
   max-width: 500px
+}
+
+/* --- BACK --- */
+
+.back {
+  margin-bottom: 10px;
+  margin-top: 20px;
+  max-width: 500px;
+}
+
+.back img {
+  vertical-align: baseline
+}
+
+.back a {
+  color: $green
+}
+
+.chevron {
+  height: 16px
 }
 
 /* --- DRY CLASSES --- */

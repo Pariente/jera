@@ -1,10 +1,12 @@
 <div class="garden-flex">
   <div class="tree">
     <%= link_to sources_path do %>
-      <%= image_tag "new_tree", class: 'tree-pic' %>
-      <%= image_tag "treebase0" %>
-      <p>Plant a new tree</p>
-      <% end %>
+      <div class="tree-head">
+        <%= image_tag "new_tree", class: 'tree-pic' %>
+        <%= image_tag "treebase0" %>
+      </div>
+      <div class="tree-name">Plant a new tree</div>
+    <% end %>
   </div>
   <% @subscriptions.each do |sub| %>
     <div class="tree">
@@ -21,9 +23,9 @@
         <% else %>
           <%= image_tag "treebase0" %>
         <% end %>
-        <p><%= sub.source.name %></p>
-        <% end %>
       </div>
+      <div class="tree-name"><%= sub.source.name %></div>
+      <% end %>
     </div>
   <% end %>
 </div>
