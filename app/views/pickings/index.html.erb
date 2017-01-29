@@ -1,4 +1,8 @@
 <div class="content-flex">
+  <% if @pickings == [] %>
+    <br><br>
+    <h1>You don't have any pickings :(</h1>
+  <% end %>
   <% @pickings.each do |p| %>
     <div class="content">
       <div class="content-left-column">

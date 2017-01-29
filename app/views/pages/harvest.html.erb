@@ -1,12 +1,16 @@
 <div class="content-flex">
-  <%= link_to destroy_user_session_path, method: :delete do %>
-    Sign Out
+  <% if @harvest == [] %>
+    <br><br>
+    <h1>Your harvest is empty :(</h1>
+    <%= link_to sources_path do %>
+      <p class="center green underlined">Plant some trees to get a good harvest</p>
+    <% end %>
   <% end %>
   <% @harvest.each do |e| %>
     <div class="content">
       <div class="content-left-column">
         <%= link_to source_path(e.source) do %>
-          <%= image_tag e.source.picture, class: 'source-pic' %>
+          <%= image_tag(e.source.picture, class: 'source-pic') %>
         <% end %>
       </div>
       <div class="content-right-column">
@@ -20,7 +24,7 @@
         </div>
         <div class="content-box">
           <%= link_to e.media_url, target: :blank, class: 'content-anchor' do %>
-            <%= image_tag e.thumbnail_url, class: 'content-thumbnail' %>
+            <%= image_tag(e.thumbnail_url, class: 'content-thumbnail') %>
             <p class="content-title"><%= e.title %></p>
           <% end %>
           <p class="content-desc"><%= truncate(e.content, length: 200) %><p>
@@ -33,7 +37,7 @@
           <% else %>
             <%= link_to entry_picking_path(e, id: e.pickings.where(user: current_user).first.id), remote: :true, method: :delete do %>
               <button class="picked-entry">
-                <%= image_tag 'check', class: "check" %>
+                <%= image_tag('check.svg', class: "check") %>
                 <span>Picked</span>
               </button>
             <% end %>
@@ -43,6 +47,4 @@
     </div>
   <% end %>
 </div>
-
-<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
 <%= render partial: 'shared/footer' %>

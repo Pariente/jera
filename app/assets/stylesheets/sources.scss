@@ -30,7 +30,6 @@
 
 .source-options {
   margin-bottom: 0px;
-  margin-left: 65px;
   text-align: center
 }
 
@@ -67,8 +66,9 @@
   cursor: pointer;
   display: inline-block;
   font-size: $small_size;
+  height: 35px;
   margin: auto;
-  margin-top: 5px;
+  margin-top: -5px;
   padding: 5px 10px;
   width: 140px
 }
@@ -103,8 +103,17 @@
   height: 10px
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 350px) {
   .source-options {
-    margin: auto
+    margin: auto;
+    padding: 0px
   }
+  .source-options button {
+    height: 50px;
+    margin: 0px;
+    width: 120px !important
+  }
+  // .source-options span {
+  //   font-size: 12px !important
+  // }
 }

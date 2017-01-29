@@ -13,7 +13,7 @@ class SourcesController < ApplicationController
     feed.entries.each do |e|
       if (Entry.where(media_url: e.media_url) == [])
         Entry.create(
-          source_id: s.id, 
+          source_id: @source.id, 
           title: e.title,
           content: e.content,
           published_date: e.published, 
@@ -29,9 +29,11 @@ class SourcesController < ApplicationController
     # SORTING HARVEST BY REVERSE CHRONOLOGICAL ORDER
     @harvest = @harvest.sort_by {|entry| entry.published_date}.reverse
     @sub = @source.subscriptions.where(user: current_user).first
-    @sub.new_entries = 0
-    @sub.last_entry_seen = @source.entries.last.id
-    @sub.save
+    if @sub != nil
+      @sub.new_entries = 0
+      @sub.last_entry_seen = @source.entries.last.id
+      @sub.save
+    end
   end
 
   def new
@@ -43,7 +45,7 @@ class SourcesController < ApplicationController
 
   def create
     @source = Source.new(source_params)
-    @source.users << current_user
+    # @source.subscriptions.new() << current_user
 
     respond_to do |format|
       if @source.save
@@ -84,6 +86,6 @@ class SourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def source_params
-      params.require(:source).permit(:name, :url)
+      params.require(:source).permit(:name, :url, :rss_url, :picture)
     end
 end
