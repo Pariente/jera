@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
 
   require 'feedjira'
+  require 'open-uri'
 
   def harvest
 
@@ -17,33 +18,17 @@ class PagesController < ApplicationController
     end
 
     sources.each do |s|
-      # FETCHING FEED
-      feed = Feedjira::Feed.fetch_and_parse s.rss_url
-
-      # CREATING ENTRIES IF THEY ARE NOT YET IN DATABASE
-      feed.entries.each do |e|
-        if (Entry.where(media_url: e.media_url) == [])
-          Entry.create(
-            source_id: s.id, 
-            title: e.title,
-            content: e.content,
-            published_date: e.published, 
-            media_url: e.media_url,
-            thumbnail_url: e.media_thumbnail_url)
-        end
-      end
-
-      # SETTING NEW ENTRIES TO ZERO FOR AUTO-HARVESTED SOURCES
-      sub = s.subscriptions.where(user: current_user).first
-      sub.new_entries = 0
-      sub.last_entry_seen = s.entries.last.id
-      sub.save
-
       # ADDING ENTRIES FROM LAST MONTH
       Source.entries_since(s, 1.month.ago).each do |e|
         @harvest.push(e)
       end
 
+      # SETTING NEW ENTRIES TO ZERO FOR AUTO-HARVESTED SOURCES
+      # sub = s.subscriptions.where(user: current_user).first
+      # sub.new_entries = 0
+      # sub.last_entry_seen = s.entries.last.id
+      # sub.save
+      
     end
 
     # SORTING HARVEST BY REVERSE CHRONOLOGICAL ORDER
@@ -53,13 +38,13 @@ class PagesController < ApplicationController
 
   def garden
     @subscriptions = current_user.subscriptions
-    @subscriptions.each do |s|
-      all_entries = s.source.entries
-      last_seen = Entry.find(s.last_entry_seen)
-      last_seen_index = all_entries.index(last_seen)
-      s.new_entries = all_entries.count - last_seen_index - 1
-    end
-    @subscriptions = @subscriptions.sort_by {|sub| sub.new_entries}.reverse
+    # @subscriptions.each do |s|
+    #   all_entries = s.source.entries
+    #   last_seen = Entry.find(s.last_entry_seen)
+    #   last_seen_index = all_entries.index(last_seen)
+    #   s.new_entries = all_entries.count - last_seen_index - 1
+    # end
+    # @subscriptions = @subscriptions.sort_by {|sub| sub.new_entries}.reverse
   end
 
 end

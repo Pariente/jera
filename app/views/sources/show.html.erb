@@ -1,9 +1,4 @@
 <div class="content-flex">
-  <div class="back">
-    <%= link_to request.referer.present? ? request.referer : root_path do %>
-      <%= image_tag('chevron_left.svg', class: 'chevron') %> Back
-    <% end %>
-  </div>
   <div class="source show">
     <div class="source-left-column">
       <%= image_tag(@source.picture, class: 'source-pic') %>
@@ -11,6 +6,9 @@
     <div class="source-right-column">
       <p class="source-title">
         <%= @source.name %>
+      </p>
+      <p class="source-stats">
+        In <b class="green"><%= @source.subscriptions.count %></b> <%= "garden".pluralize(@source.subscriptions.count) %>
       </p>
     </div>
   </div>
@@ -49,9 +47,25 @@
         </div>
         <%= link_to e.media_url, target: :blank, class: 'content-anchor' do %>
           <div class="content-box">
-            <%= image_tag(e.thumbnail_url, class: 'content-thumbnail source-show') %>
+            <% unless e.thumbnail_url == "" %>
+              <%= image_tag(e.thumbnail_url, class: 'content-thumbnail source-show') %>
+            <% end %>
             <p class="content-title source-show"><%= e.title %></p>
             <p class="content-desc"><%= truncate(e.content, length: 200) %><p>
+            <% if e.pickings.where(user: current_user) == [] %>
+              <%= link_to new_entry_picking_path(e), remote: :true do %>
+                <button class="pick-entry">
+                  <span>Pick</span>
+                </button>
+              <% end %>
+            <% else %>
+              <%= link_to entry_picking_path(e, id: e.pickings.where(user: current_user).first.id), remote: :true, method: :delete do %>
+                <button class="picked-entry">
+                  <%= image_tag('check.svg', class: "check") %>
+                  <span>Picked</span>
+                </button>
+              <% end %>
+            <% end %>
           </div>
         <% end %>
       </div>

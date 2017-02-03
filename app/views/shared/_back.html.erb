@@ -1,0 +1,5 @@
+<div class="back">
+  <%= link_to request.referer.present? ? request.referer : root_path do %>
+    <%= image_tag('chevron_left.svg', class: 'chevron') %> Back
+  <% end %>
+</div>

@@ -20,8 +20,12 @@
       <p>Pickings</p>
     <% end %>
   <% end %>
-  <%= link_to root_path do %>
-    <p>Offerings</p>
+  <%= link_to edit_user_registration_path do %>
+    <% if current_page?(edit_user_registration_path) %>
+      <p class="active-tab">Profile</p>
+    <% else %>
+      <p>Profile</p>
+    <% end %>
   <% end %>
 </div>
 

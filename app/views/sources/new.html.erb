@@ -1,22 +1,12 @@
 <div class="content-flex">
-<div class="back">
-  <%= link_to sources_path do %>
-    <%= image_tag 'chevron_left', class: 'chevron' %> Back
-  <% end %>
-</div>
+<%= render partial: 'shared/back' %>
 
 <h1>Plant a new tree</h1>
 
 <%= simple_form_for @source do |f| %>
   <div class="form-inputs">
-    <%= f.label 'Name' %>
-    <%= f.input :name, required: true, autofocus: true, label: false %>
-    <%= f.label 'Source url' %>
-    <%= f.input :url, required: true, label: false %>
     <%= f.label 'RSS URL' %>
     <%= f.input :rss_url, required: true, label: false %>
-    <%= f.label 'Source picture url' %>
-    <%= f.input :picture, required: true, label: false %>
   </div>
 
   <div class="form-actions">

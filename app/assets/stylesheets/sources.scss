@@ -28,7 +28,13 @@
   line-height: 50px;
 }
 
+.source-stats {
+  font-size: $small_size;
+  padding-left: 15px;
+}
+
 .source-options {
+  margin-top: 10px;
   margin-bottom: 0px;
   text-align: center
 }
@@ -113,7 +119,4 @@
     margin: 0px;
     width: 120px !important
   }
-  // .source-options span {
-  //   font-size: 12px !important
-  // }
 }

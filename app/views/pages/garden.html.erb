@@ -12,7 +12,7 @@
     <div class="tree">
       <%= link_to source_path(sub.source) do %>
       <div class="tree-head">
-        <%= image_tag sub.source.picture, class: 'tree-pic' %>
+        <%= image_tag(sub.source.picture, class: 'tree-pic') %>
         <% unless sub.new_entries == 0 %>
           <div class="new-entries">
             <%= sub.new_entries %>

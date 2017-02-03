@@ -1,8 +1,9 @@
-<header>
-  <%= image_tag "logo.png" %>
-  <h1>Jera</h1>
-</header>
-
+<div class="content-flex">
+  <%= render partial: 'shared/back' %>
+  <%= link_to destroy_user_session_path, method: :delete, class: "sign-out" do %>
+    Sign Out
+  <% end %>
+</div>
 <h2>Edit your profile</h2>
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
