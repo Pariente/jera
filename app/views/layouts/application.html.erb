@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Jera</title>
+  <title>
+    <% if content_for?(:title) %>
+      <%= yield(:title) %>
+    <% else %>
+      Jera
+    <% end %>
+  </title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= favicon_link_tag 'favicons/favicon.ico' %>
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
