@@ -7,7 +7,7 @@
 <%= simple_form_for @source do |f| %>
   <div class="form-inputs">
     <%= f.label 'RSS URL' %>
-    <%= f.input :rss_url, required: true, label: false %>
+    <%= f.input :rss_url, required: true, label: false, autofocus: true %>
   </div>
 
   <div class="form-actions">
