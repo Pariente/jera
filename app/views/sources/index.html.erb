@@ -30,7 +30,7 @@
         <div class="content-top">
           <div class="source-title alone">
             <%= link_to source_path(s) do %>
-              <%= s.name %>
+              <%= truncate(s.name, length: 30) %>
             <% end %>
           </div>
         </div>

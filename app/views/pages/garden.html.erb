@@ -25,7 +25,7 @@
           <%= image_tag("treebase0.svg") %>
         <% end %>
       </div>
-      <div class="tree-name"><%= sub.source.name %></div>
+      <div class="tree-name"><%= truncate(sub.source.name, length: 30) %></div>
       <% end %>
     </div>
   <% end %>

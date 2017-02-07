@@ -18,7 +18,7 @@
         <div class="content-top">
           <div class="source-title">
               <%= link_to source_path(e.source) do %>
-                <%= e.source.name %>
+                <%= truncate(e.source.name, length: 30) %>
               <% end %>
           </div>
           <div class="time-published"><%= distance_of_time_in_words(e.published_date.to_time, Time.now) %> ago</div>
