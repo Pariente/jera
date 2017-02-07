@@ -1,5 +1,9 @@
 <div class="back">
-  <%= link_to request.referer.present? ? request.referer : root_path do %>
+  <% @path = root_path %>
+  <% if request.referer.present? && not(current_page?(request.referer)) %>
+    <% @path = request.referer %>
+  <% end %>
+  <%= link_to @path do %>
     <%= image_tag('chevron_left.svg', class: 'chevron') %> Back
   <% end %>
 </div>
