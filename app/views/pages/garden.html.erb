@@ -10,24 +10,26 @@
     <% end %>
   </div>
   <% @subscriptions.each do |sub| %>
-    <div class="tree">
-      <%= link_to source_path(sub.source) do %>
-      <div class="tree-head">
-        <%= image_tag(sub.source.picture, class: 'tree-pic') %>
-        <% unless sub.new_entries == 0 %>
-          <div class="new-entries">
-            <%= sub.new_entries %>
-          </div>
-        <% end %>
-        <% if sub.auto_harvest %>
-          <%= image_tag("treebase_auto_harvest.svg") %>
-        <% else %>
-          <%= image_tag("treebase0.svg") %>
+    <% cache sub do %>
+      <div class="tree">
+        <%= link_to source_path(sub.source) do %>
+        <div class="tree-head">
+          <%= image_tag(sub.source.picture, class: 'tree-pic') %>
+          <% unless sub.new_entries == 0 %>
+            <div class="new-entries">
+              <%= sub.new_entries %>
+            </div>
+          <% end %>
+          <% if sub.auto_harvest %>
+            <%= image_tag("treebase_auto_harvest.svg") %>
+          <% else %>
+            <%= image_tag("treebase0.svg") %>
+          <% end %>
+        </div>
+        <div class="tree-name"><%= truncate(sub.source.name, length: 30) %></div>
         <% end %>
       </div>
-      <div class="tree-name"><%= truncate(sub.source.name, length: 30) %></div>
-      <% end %>
-    </div>
+    <% end %>
   <% end %>
 </div>
 <%= render partial: 'shared/footer' %>
