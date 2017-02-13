@@ -2,8 +2,14 @@ class SourcesController < ApplicationController
   before_action :set_source, only: [:show, :edit, :update, :destroy]
   require 'open-uri'
 
-  def index
+  def top
     @sources = Source.all
+    @sources = @sources.sort_by {|source| source.subscriptions.count}.reverse
+  end
+
+  def latest
+    @sources = Source.all
+    @sources = @sources.sort_by {|source| source.created_at}.reverse
   end
 
   def show

@@ -19,6 +19,18 @@
       </div>
     </div>
   <% end %>
+  <div class="sub-menu">
+    <div class="sub-menu-item">
+      <%= link_to trees_top_path do %>
+        Top
+      <% end %>
+    </div>
+    <div class="sub-menu-item active">
+      <%= link_to trees_latest_path do %>
+        Latest
+      <% end %>
+    </div>
+  </div>
   <% @sources.each do |s| %>
     <div class="content">
       <div class="content-left-column">

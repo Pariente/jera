@@ -146,6 +146,29 @@ p {
   height: 16px
 }
 
+/* --- SUB MENU --- */
+
+.sub-menu {
+  display: flex;
+  margin-bottom: 20px
+}
+
+.sub-menu-item {
+  flex-grow: 1;
+  text-align: center
+}
+
+.sub-menu-item.active a {
+  border-bottom: 2px solid $green;
+  font-weight: bold;
+}
+
+.sub-menu-item a {
+  color: $green;
+  font-weight: 300;
+  padding: 0px 35px 5px
+}
+
 /* --- DRY CLASSES --- */
 
 .center {
