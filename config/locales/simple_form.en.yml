@@ -10,6 +10,42 @@ en:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Please review the problems below:"
+    datetime:
+    distance_in_words:
+      half_a_minute: "half a minute"
+      less_than_x_seconds:
+        one:   "1s" # default was: "less than 1 second"
+        other: "%{count}s" # default was: "less than %{count} seconds"
+      x_seconds:
+        one:   "1s"
+        other: "%{count}s"
+      less_than_x_minutes:
+        one:   "1min" # default was: "less than a minute"
+        other: "%{count}min" # default was: "less than %{count} minutes"
+      x_minutes:
+        one:   "1min"
+        other: "%{count}min"
+      about_x_hours:
+        one:   "1h" # default was: "about 1 hour"
+        other: "%{count}h" # default was: "about %{count} hours"
+      x_days:
+        one:   "1d"
+        other: "%{count}d"
+      about_x_months:
+        one:   "1 month" # default was: "about 1 month"
+        other: "%{count} months" # default was: "about %{count} months"
+      x_months:
+        one:   "1 month"
+        other: "%{count} months"
+      about_x_years:
+        one:   "1 year" # default was: "about 1 year"
+        other: "%{count} years" # default was: "about %{count} years"
+      over_x_years:
+        one:   "1 year" # default was: "over 1 year"
+        other: "%{count} years" # default was: "over %{count} years"
+      almost_x_years:
+        one:   "1 year" # default was: "almost 1 year"
+        other: "%{count} years" # default was: "almost %{count} years"
     # Examples
     # labels:
     #   defaults:
