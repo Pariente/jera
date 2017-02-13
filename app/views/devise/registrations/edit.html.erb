@@ -1,6 +1,5 @@
 <% title "Profile" %>
 <div class="content-flex">
-  <%= render partial: 'shared/back' %>
   <%= link_to destroy_user_session_path, method: :delete, class: "sign-out" do %>
     Sign Out
   <% end %>
@@ -14,8 +13,6 @@
     <%= f.input :email %>
     <label>New password</label>
     <%= f.input :password, autocomplete: "off", label: false %>
-    <label>New password confirmation</label>
-    <%= f.input :password_confirmation, autocomplete: "off", label: false %>
     <%= f.input :current_password, autocomplete: "off" %>
   </div>
 
@@ -28,6 +25,10 @@
   </div>
 <% end %>
 
-<p>We believe that your most precious treasure is your time, and we will never do anything that disrespects it.</p>
-<p>If we have failed you and our principles, we are deeply sorry. Here's the link to delete your account:</p>
-<p class="center"><%= link_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "red" %></p>
+<div class="content-flex">
+  <p>We believe that your most precious treasure is your time, and we will never do anything that disrespects it.</p>
+  <p>If we have failed you and our principles, we are deeply sorry. Here's the link to delete your account:</p>
+  <p class="center"><%= link_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "red" %></p>
+</div>
+
+<%= render "shared/footer" %>
