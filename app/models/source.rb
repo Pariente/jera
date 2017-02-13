@@ -1,7 +1,7 @@
 class Source < ActiveRecord::Base
   has_many :subscriptions
   has_many :entries
-  validates :rss_url, uniqueness: true
+  validates :url, uniqueness: true
 
   def refresh
 

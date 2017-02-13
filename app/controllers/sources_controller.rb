@@ -41,38 +41,59 @@ class SourcesController < ApplicationController
   end
 
   def create
-    rss_url = source_params["rss_url"]
+    url = source_params["url"]
+
+    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.854.0 Safari/535.2"
+    begin 
+      doc = Nokogiri::HTML(open(url, 'proxy' => 'http://(ip_address):(port)', 'User-Agent' => user_agent, 'read_timeout' => '10' ), nil, "UTF-8")
+    rescue
+      resp = HTTParty.get(url)
+      doc = Nokogiri::HTML(resp.body)
+    end
+
+    picture = doc.at('meta[property="og:image"]')['content']
+
+    name = doc.at('meta[property="og:title"]')['content']
+
+    rss_url = doc.at('link[type="application/rss+xml"]')['href']
+    if rss_url == nil
+      rss_url = doc.at('link[type="application/atom+xml"]')['href']
+    end
+
     feed = Feedjira::Feed.fetch_and_parse rss_url
-    name = feed.title
 
-    if feed.url == nil
-      url = feed.link
-    else
-      url = feed.url
-    end
+    # rss_url = source_params["rss_url"]
+    # feed = Feedjira::Feed.fetch_and_parse rss_url
+    # name = feed.title
 
-    @picture = ""
-    if feed.try(:image) != nil
-      if feed.image.try(:url) != nil
-        @picture = feed.image.url
-      end
-    end
+    # if feed.url == nil
+    #   url = feed.link
+    # else
+    #   url = feed.url
+    # end
 
-    if @picture == ""
-      user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.854.0 Safari/535.2"
-      begin 
-        doc = Nokogiri::HTML(open(url, 'proxy' => 'http://(ip_address):(port)', 'User-Agent' => user_agent, 'read_timeout' => '10' ), nil, "UTF-8")
-        if doc.at('meta[property="og:image"]') != nil
-          @picture = doc.at('meta[property="og:image"]')['content']
-        end
-      rescue
-        resp = HTTParty.get(url)
-        doc = Nokogiri::HTML(resp.body)
-        @picture = doc.at('meta[property="og:image"]')['content']
-      end
-    end
+    # @picture = ""
+    # if feed.try(:image) != nil
+    #   if feed.image.try(:url) != nil
+    #     @picture = feed.image.url
+    #   end
+    # end
 
-    @source = Source.new(name: name, url: url, rss_url: rss_url, picture: @picture)
+    # if @picture == ""
+    #   user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.854.0 Safari/535.2"
+    #   begin 
+    #     doc = Nokogiri::HTML(open(url, 'proxy' => 'http://(ip_address):(port)', 'User-Agent' => user_agent, 'read_timeout' => '10' ), nil, "UTF-8")
+    #     if doc.at('meta[property="og:image"]') != nil
+    #       @picture = doc.at('meta[property="og:image"]')['content']
+    #     end
+    #   rescue
+    #     resp = HTTParty.get(url)
+    #     doc = Nokogiri::HTML(resp.body)
+    #     @picture = doc.at('meta[property="og:image"]')['content']
+    #   end
+    # end
+
+    @source = Source.new(name: name, url: url, rss_url: rss_url, picture: picture)
 
     respond_to do |format|
       if @source.save
