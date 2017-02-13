@@ -9,7 +9,7 @@
   <%= devise_error_messages! %>
 
   <div class="form-inputs">
-    <%= f.input :username, autofocus: true %>
+    <%= f.input :username, autofocus: false %>
     <%= f.input :email %>
     <label>New password</label>
     <%= f.input :password, autocomplete: "off", label: false %>
