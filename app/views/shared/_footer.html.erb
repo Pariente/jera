@@ -1,6 +1,6 @@
 <div class="footer">
   <%= link_to root_path do %>
-    <% if current_page?(root_path) %>
+    <% if current_page?(root_path) || current_page?(pickings_path) %>
       <p class="active-tab">Harvest</p>
     <% else %>
       <p>Harvest</p>
@@ -11,13 +11,6 @@
       <p class="active-tab">Garden</p>
     <% else %>
       <p>Garden</p>
-    <% end %>
-  <% end %>
-  <%= link_to pickings_path do %>
-    <% if current_page?(pickings_path) %>
-      <p class="active-tab">Pickings</p>
-    <% else %>
-      <p>Pickings</p>
     <% end %>
   <% end %>
   <%= link_to edit_user_registration_path do %>
