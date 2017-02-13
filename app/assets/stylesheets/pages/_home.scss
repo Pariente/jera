@@ -153,6 +153,10 @@ p {
   margin-bottom: 20px
 }
 
+.sub-menu.harvest {
+  margin-top: 20px
+}
+
 .sub-menu-item {
   flex-grow: 1;
   text-align: center
@@ -160,7 +164,7 @@ p {
 
 .sub-menu-item.active a {
   border-bottom: 2px solid $green;
-  font-weight: bold;
+  font-weight: bold
 }
 
 .sub-menu-item a {

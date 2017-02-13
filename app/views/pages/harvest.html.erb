@@ -1,5 +1,17 @@
 <% title "Harvest" %>
 <div class="content-flex">
+  <div class="sub-menu harvest">
+    <div class="sub-menu-item active">
+      <%= link_to root_path do %>
+        Last 7 days
+      <% end %>
+    </div>
+    <div class="sub-menu-item">
+      <%= link_to pickings_path do %>
+        Pickings
+      <% end %>
+    </div>
+  </div>
   <% if @harvest == [] %>
     <br><br>
     <h1>This is where the freshest fruits are delivered to you. :)</h1>

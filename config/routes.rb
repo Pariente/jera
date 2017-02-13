@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   }
 
   root to: 'pages#harvest'
-  # get '*unmatched_route', to: 'application#raise_not_found'
   get 'garden' => 'pages#garden'
   get 'pickings' => 'pickings#index'
   get 'trees/top' => 'sources#top'

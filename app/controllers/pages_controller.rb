@@ -19,7 +19,7 @@ class PagesController < ApplicationController
 
     sources.each do |s|
       # ADDING ENTRIES FROM LAST MONTH
-      Source.entries_since(s, 1.month.ago).each do |e|
+      Source.entries_since(s, 1.week.ago).each do |e|
         @harvest.push(e)
       end
 
