@@ -103,8 +103,13 @@ class SourcesController < ApplicationController
         format.html { redirect_to @source, notice: 'Source was successfully created.' }
         format.json { render :show, status: :created, location: @source }
       else
-        format.html { render :new }
-        format.json { render json: @source.errors, status: :unprocessable_entity }
+        if @source.errors.full_messages.first == "Url has already been taken"
+          original_source = Source.find_by(url: @source.url)
+          format.html { redirect_to source_path(original_source), notice: 'Source already existing. Redirecting to it.' }
+        else
+          format.html { render :new }
+          format.json { render json: @source.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
