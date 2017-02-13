@@ -5,11 +5,13 @@ class SourcesController < ApplicationController
   def top
     @sources = Source.all
     @sources = @sources.sort_by {|source| source.subscriptions.count}.reverse
+    @sources = @sources.first(100)
   end
 
   def latest
     @sources = Source.all
     @sources = @sources.sort_by {|source| source.created_at}.reverse
+    @sources = @sources.first(100)
   end
 
   def show
