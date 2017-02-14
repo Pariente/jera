@@ -9,9 +9,6 @@ class PickingsController < ApplicationController
       # CLEARING CACHE, BUT NEED TO FIND OUT HOW TO ONLY EXPIRE THE CONCERNED FRAGMENT
       e = Entry.find(params[:entry_id])
       ActionController::Base.new.expire_fragment(%r{entry-#{e.id}/*})
-    else
-      existing_picking.first.destroy
-      raise
     end
   end
 
