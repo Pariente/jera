@@ -14,7 +14,7 @@
   </div>
   <% if @pickings == [] %>
     <br><br>
-    <h1>Pick awesome fruits from your garden, and eat them later.</h1>
+    <h1>Pick some delicious fruits to eat them later. They'll stay pretty fresh here.</h1>
   <% else %>
     <% @pickings.each do |p| %>
       <div class="content">
@@ -37,21 +37,8 @@
               <%= image_tag(p.entry.thumbnail_url, class: 'content-thumbnail') %>
               <p class="content-title"><%= p.entry.title %></p>
             <% end %>
-            <p class="content-desc"><%= truncate(p.entry.content, length: 200) %><p>
-            <% if p.entry.pickings.where(user: current_user) == [] %>
-              <%= link_to new_entry_picking_path(p.entry), remote: :true do %>
-                <button class="pick-entry">
-                  <span>Pick</span>
-                </button>
-              <% end %>
-            <% else %>
-              <%= link_to entry_picking_path(p.entry, id: p.id), remote: :true, method: :delete do %>
-                <button class="picked-entry">
-                  <%= image_tag('check.svg', class: "check") %>
-                  <span>Picked</span>
-                </button>
-              <% end %>
-            <% end %>
+            <p class="content-desc"><%= truncate(p.entry.content, length: 200) %></p>
+            <%= render partial: 'shared/fruit_footer', locals: {entry: p.entry} %>
           </div>
         </div>
       </div>

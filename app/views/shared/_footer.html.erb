@@ -24,14 +24,6 @@
 
 <script>
   // PICK
-  $(".picked-entry").mouseover(function() {
-    $(this).find("img").addClass("hidden");
-    $(this).find("span").text("Unpick");
-  });
-  $(".picked-entry").mouseout(function() {
-    $(this).find("img").removeClass("hidden");
-    $(this).find("span").text("Picked");
-  });
   $(".pick-entry").click(function() {
     location.reload();
   });

@@ -53,21 +53,8 @@
               <%= image_tag(e.thumbnail_url, class: 'content-thumbnail source-show') %>
             <% end %>
             <p class="content-title source-show"><%= e.title %></p>
-            <p class="content-desc"><%= truncate(e.content, length: 200) %><p>
-            <% if e.pickings.where(user: current_user) == [] %>
-              <%= link_to new_entry_picking_path(e), remote: :true do %>
-                <button class="pick-entry">
-                  <span>Pick</span>
-                </button>
-              <% end %>
-            <% else %>
-              <%= link_to entry_picking_path(e, id: e.pickings.where(user: current_user).first.id), remote: :true, method: :delete do %>
-                <button class="picked-entry">
-                  <%= image_tag('check.svg', class: "check") %>
-                  <span>Picked</span>
-                </button>
-              <% end %>
-            <% end %>
+            <p class="content-desc"><%= truncate(e.content, length: 200) %></p>
+            <%= render partial: 'shared/fruit_footer', locals: {entry: e} %>
           </div>
         <% end %>
       </div>

@@ -91,6 +91,7 @@
 .content-desc {
   font-size: 14px;
   padding: 0px 10px 0px 15px;
+  margin-bottom: 11px;
   word-wrap: break-word
 }
 
@@ -106,36 +107,39 @@
 //   text-align: center
 // }
 
+.fruit-footer {
+  display: flex;
+  justify-content: flex-end
+}
+
+.apple {
+  height: 12px
+}
+
 .pick-entry,
 .picked-entry {
-  background-color: $green;
-  border: 1px solid $green;
-  border-radius: 5px;
-  color: $white;
+  background-color: $white;
+  border: 0px;
   cursor: pointer;
-  font-size: 16px;
-  margin: 0px 15px;
-  width: 100px;
-  padding: 5px 10px;
-  text-align: center
+  font-size: $smaller_size;
+  font-weight: 900;
+  margin: 0px 20px 15px 0px;
+  text-align: center;
+  width: 120px;
+}
+
+.pick-entry {
+  color: $grey;
 }
 
 .picked-entry {
-  background-color: $white;
-  border-color: $green;
-  color: $green
+  color: $red;
 }
 
-.pick-entry:hover {
-  background-color: $green;
-  border-color: $green;
-  color: $white
-}
-
+.pick-entry:hover,
 .picked-entry:hover {
-  background-color: $red;
-  border-color: $red;
-  color: $white
+  color: $red;
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 400px) {
