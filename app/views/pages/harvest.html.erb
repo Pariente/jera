@@ -20,7 +20,7 @@
     <% end %>
   <% end %>
   <% @harvest.each do |e| %>
-    <% cache e do %>
+    <% cache("entry-#{e.id}") do %>
       <div class="content">
         <div class="content-left-column">
           <%= link_to source_path(e.source) do %>
@@ -42,17 +42,17 @@
               <p class="content-title"><%= e.title %></p>
             <% end %>
             <p class="content-desc"><%= truncate(e.content, length: 200) %><p>
-            <% if e.pickings.where(user: current_user) == [] %>
-              <%= link_to new_entry_picking_path(e), remote: :true do %>
-                <button class="pick-entry">
-                  <span>Pick</span>
-                </button>
-              <% end %>
-            <% else %>
-              <%= link_to entry_picking_path(e, id: e.pickings.where(user: current_user).first.id), remote: :true, method: :delete do %>
+            <% if e.is_picked_by_user?(current_user) %>
+              <%= link_to entry_picking_path(e, id: e.picked_by_user(current_user).id), remote: :true, method: :delete do %>
                 <button class="picked-entry">
                   <%= image_tag('check.svg', class: "check") %>
                   <span>Picked</span>
+                </button>
+              <% end %>
+            <% else %>
+              <%= link_to new_entry_picking_path(e), remote: :true do %>
+                <button class="pick-entry">
+                  <span>Pick</span>
                 </button>
               <% end %>
             <% end %>
