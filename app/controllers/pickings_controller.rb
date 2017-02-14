@@ -1,7 +1,10 @@
 class PickingsController < ApplicationController
   def new
-    pick = Picking.create(user_id: current_user.id, entry_id: params[:entry_id])
-    pick.save
+    existing_picking = Picking.where(user_id: current_user.id, entry_id: params[:entry_id])
+    if existing_picking == []
+      pick = Picking.create(user_id: current_user.id, entry_id: params[:entry_id])
+      pick.save
+    end
   end
 
   def destroy
