@@ -9,6 +9,6 @@ class PickingsController < ApplicationController
   end
 
   def index
-    @pickings = current_user.pickings
+    @pickings = current_user.pickings.sort_by {|picking| picking.created_at}.reverse
   end
 end

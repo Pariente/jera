@@ -42,6 +42,7 @@
               <p class="content-title"><%= e.title %></p>
             <% end %>
             <p class="content-desc"><%= truncate(e.content, length: 200) %><p>
+              <%= e.pickings %>
             <% if e.pickings.where(user: current_user) == [] %>
               <%= link_to new_entry_picking_path(e), remote: :true do %>
                 <button class="pick-entry">
