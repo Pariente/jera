@@ -20,7 +20,7 @@
     <% end %>
   <% end %>
   <% @harvest.each do |e| %>
-    <% cache("entry-#{e.id}") do %>
+    <% cache "entry-#{e.id}" do %>
       <div class="content">
         <div class="content-left-column">
           <%= link_to source_path(e.source) do %>

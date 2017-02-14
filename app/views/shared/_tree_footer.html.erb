@@ -1,0 +1,17 @@
+<div class="tree-footer">
+<% if entry.is_picked_by_user?(current_user) %>
+  <%= link_to entry_picking_path(entry, id: entry.picked_by_user(current_user).id), remote: :true, method: :delete do %>
+    <button class="picked-entry">
+      <%= image_tag('apple_coloured.svg', class: "apple") %>
+      <span><%= entry.pickings.count %> <%= "picking".pluralize(entry.pickings.count) %></span>
+    </button>
+  <% end %>
+<% else %>
+  <%= link_to new_entry_picking_path(entry), remote: :true do %>
+    <button class="pick-entry">
+      <%= image_tag('apple_greyed.svg', class: "apple") %>
+      <span><%= entry.pickings.count %> <%= "picking".pluralize(entry.pickings.count) %></span>
+    </button>
+  <% end %>
+<% end %>
+</div>

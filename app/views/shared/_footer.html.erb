@@ -24,10 +24,44 @@
 
 <script>
   // PICK
-  $(".pick-entry").click(function() {
+  $(document).on("click", ".pick-entry", function() {
+    // $(this).find("img.coloured").removeClass("hidden");
+    // $(this).addClass("clicked");
+    // $(this).find("img.greyed").addClass("hidden");
+    // $(this).find("span.count").html(parseInt($(this).find('span.count').html(), 10)+1);
+    // if ($(this).find('span.count').html() == "1") {
+    //   $(this).find('span.picking-word').html("picking");
+    // } else {
+    //   $(this).find('span.picking-word').html("pickings");
+    // }
+    // $(this).removeClass("pick-entry");
+    // $(this).addClass("picked-entry");
     location.reload();
   });
-  $(".picked-entry").click(function() {
+  $(document).on("mouseenter", ".pick-entry", function() {
+    $(this).find("img.coloured").removeClass("hidden");
+    $(this).find("img.greyed").addClass("hidden");
+  });
+  $(document).on("mouseleave", ".pick-entry", function() {
+    // if ($(this).hasClass("clicked") == false) {
+      $(this).find("img.coloured").addClass("hidden");
+      $(this).find("img.greyed").removeClass("hidden");
+    // }
+  });
+
+  $(document).on("click", ".picked-entry", function() {
+    // $(this).removeClass("clicked");
+    $(this).find("img.coloured").addClass("hidden");
+    $(this).find("img.greyed").removeClass("hidden");
+
+    // $(this).find("span.count").html(parseInt($(this).find('span.count').html(), 10)-1);
+    // if ($(this).find('span.count').html() == "1") {
+    //   $(this).find('span.picking-word').html("picking");
+    // } else {
+    //   $(this).find('span.picking-word').html("pickings");
+    // }
+    // $(this).removeClass("picked-entry");
+    // $(this).addClass("pick-entry");
     location.reload();
   });
 

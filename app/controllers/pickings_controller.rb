@@ -7,14 +7,19 @@ class PickingsController < ApplicationController
       pick = Picking.create(user_id: current_user.id, entry_id: params[:entry_id])
       pick.save
       # CLEARING CACHE, BUT NEED TO FIND OUT HOW TO ONLY EXPIRE THE CONCERNED FRAGMENT
-      Rails.cache.clear
+      e = Entry.find(params[:entry_id])
+      ActionController::Base.new.expire_fragment(%r{entry-#{e.id}/*})
+    else
+      existing_picking.first.destroy
+      raise
     end
   end
 
   def destroy
     Picking.find(params[:id]).destroy
     # CLEARING CACHE, BUT NEED TO FIND OUT HOW TO ONLY EXPIRE THE CONCERNED FRAGMENT
-    Rails.cache.clear
+    e = Entry.find(params[:entry_id])
+    ActionController::Base.new.expire_fragment(%r{entry-#{e.id}/*})
   end
 
   def index

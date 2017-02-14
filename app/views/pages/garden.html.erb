@@ -26,7 +26,12 @@
             <%= image_tag("treebase0.svg") %>
           <% end %>
         </div>
-        <div class="tree-name"><%= truncate(sub.source.name, length: 30) %></div>
+        <div class="tree-name">
+          <%= truncate(sub.source.name, length: 30) %>
+          <p class="source-stats">
+            In <b class="green"><%= sub.source.subscriptions.count %></b> <%= "garden".pluralize(sub.source.subscriptions.count) %>
+          </p>
+        </div>
         <% end %>
       </div>
     <% end %>
