@@ -31,6 +31,7 @@
 .source-stats {
   font-size: $small_size;
   font-weight: 400;
+  margin-bottom: 12px;
   margin-top: 6px;
   padding-top: 0px;
   padding-left: 15px;
@@ -63,53 +64,6 @@
 .time-published.source-show {
   float: none;
   margin-bottom: 7px
-}
-
-.subscribe-button,
-.unsubscribe-button,
-.auto-harvest-button,
-.manual-harvest-button {
-  background-color: $white;
-  border-radius: 5px;
-  border: 2px solid;
-  cursor: pointer;
-  display: inline-block;
-  font-size: $small_size;
-  height: 35px;
-  margin: auto;
-  margin-top: -5px;
-  padding: 5px 10px;
-  width: 140px
-}
-
-.subscribe-button,
-.manual-harvest-button:hover {
-  background-color: $green;
-  border-color: $green;
-  color: $white
-}
-
-.manual-harvest-button {
-  background-color: $light_grey;
-  border-color: $light_grey;
-  color: $white
-}
-
-.unsubscribe-button,
-.auto-harvest-button {
-  border-color: $green;
-  color: $green
-}
-
-.unsubscribe-button:hover,
-.auto-harvest-button:hover {
-  background-color: $red;
-  border-color: $red;
-  color: $white
-}
-
-.check {
-  height: 10px
 }
 
 @media screen and (max-width: 350px) {

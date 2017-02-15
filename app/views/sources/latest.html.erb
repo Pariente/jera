@@ -46,20 +46,7 @@
             <% end %>
           </div>
         </div>
-        <% if s.subscriptions.where(user: current_user) == [] %>
-          <%= link_to new_source_subscription_path(s), remote: :true do %>
-            <button class="subscribe-button right">
-              <span>Add to garden</span>
-            </button>
-          <% end %>
-        <% else %>
-          <%= link_to source_subscription_path(s, s.subscriptions.where(user: current_user).first), method: :delete, remote: :true do %>
-            <button class="unsubscribe-button right">
-              <%= image_tag('check.svg', class: "check") %>
-              <span>In your garden</span>
-            </button>
-          <% end %>
-        <% end %>
+        <%= render partial: 'shared/tree_footer', locals: {sub: nil, source: s} %>
       </div>
     </div>
   <% end %>

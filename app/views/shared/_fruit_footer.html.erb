@@ -1,19 +1,15 @@
 <div class="fruit-footer">
-<% if entry.is_picked_by_user?(current_user) %>
-  <%= link_to entry_picking_path(entry, id: entry.picked_by_user(current_user).id), remote: :true, method: :delete do %>
-    <button class="picked-entry">
+<%= link_to new_entry_picking_path(entry), remote: :true do %>
+  <%= content_tag :button, class: "pick-entry", data: {count: entry.pickings.count} do %>
+    <% if entry.is_picked_by_user?(current_user) %>
       <%= image_tag('apple_coloured.svg', class: "apple coloured") %>
       <%= image_tag('apple_greyed.svg', class: "apple greyed hidden") %>
-      <span class="count"><%= entry.pickings.count %></span> <span class="picking-word"><%= "picking".pluralize(entry.pickings.count) %></span>
-    </button>
-  <% end %>
-<% else %>
-  <%= link_to new_entry_picking_path(entry), remote: :true do %>
-    <button class="pick-entry">
+      <span class="count red"><%= entry.pickings.count %></span> <span class="picking-word red"><%= "picking".pluralize(entry.pickings.count) %></span>
+    <% else %>
       <%= image_tag('apple_coloured.svg', class: "apple coloured hidden") %>
       <%= image_tag('apple_greyed.svg', class: "apple greyed") %>
       <span class="count"><%= entry.pickings.count %></span> <span class="picking-word"><%= "picking".pluralize(entry.pickings.count) %></span>
-    </button>
+    <% end %>
   <% end %>
 <% end %>
 </div>

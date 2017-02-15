@@ -1,40 +1,45 @@
 <% title "Garden" %>
 <div class="garden-flex">
-  <div class="tree">
+  <div class="plant-tree">
     <%= link_to trees_latest_path do %>
       <div class="tree-head">
-        <%= image_tag("new_tree.svg", class: 'tree-pic') %>
-        <%= image_tag("treebase0.svg") %>
+        <%= image_tag("add_tree.svg", class: 'tree-pic') %>
       </div>
-      <div class="tree-name">Plant a new tree</div>
+      <div class="tree-name">
+        <p class="plant-tree-title">Plant a new tree</p>
+        <p class="plant-tree-subtitle">Find more interesting stuff to harvest from the wild world.</p>
+      </div>
     <% end %>
   </div>
   <% @subscriptions.each do |sub| %>
     <% cache sub do %>
       <div class="tree">
         <%= link_to source_path(sub.source) do %>
-        <div class="tree-head">
-          <%= image_tag(sub.source.picture, class: 'tree-pic') %>
-          <% unless sub.new_entries == 0 %>
-            <div class="new-entries">
-              <%= sub.new_entries %>
-            </div>
-          <% end %>
-          <% if sub.auto_harvest %>
-            <%= image_tag("treebase_auto_harvest.svg") %>
-          <% else %>
-            <%= image_tag("treebase0.svg") %>
-          <% end %>
-        </div>
+          <div class="tree-head">
+            <%= image_tag(sub.source.picture, class: 'tree-pic') %>
+            <% unless sub.new_entries == 0 %>
+              <div class="new-entries">
+                <%= sub.new_entries %>
+              </div>
+            <% end %>
+            <% if sub.auto_harvest %>
+              <%= image_tag("treebase_auto_harvest.svg") %>
+            <% else %>
+              <%= image_tag("treebase0.svg") %>
+            <% end %>
+          </div>
+        <% end %>
         <div class="tree-name">
-          <%= truncate(sub.source.name, length: 30) %>
+          <%= link_to source_path(sub.source) do %>
+            <%= truncate(sub.source.name, length: 30) %>
+          <% end %>
           <p class="source-stats">
             In <b class="green"><%= sub.source.subscriptions.count %></b> <%= "garden".pluralize(sub.source.subscriptions.count) %>
           </p>
+          <%= render partial: 'shared/tree_footer', locals: {sub: sub, source: sub.source} %>
         </div>
         <% end %>
       </div>
     <% end %>
-  <% end %>
 </div>
 <%= render partial: 'shared/footer' %>

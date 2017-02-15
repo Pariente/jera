@@ -1,30 +1,51 @@
 .garden-flex {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   margin: auto;
   margin-top: 30px;
   margin-bottom: 60px;
   max-width: 600px;
 }
 
-.tree {
+.tree,
+.plant-tree {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   margin: 10px;
-  padding-left: 50px;
-  width: 100%;
+  margin-bottom: 15px;
 }
 
-.tree a {
+.plant-tree {
+  border: 2px solid $green;
+  border-radius: 5px;
+  padding: 15px
+}
+
+.plant-tree-title {
+  font-weight: 700;
+  line-height: 20px;
+  margin-bottom: 5px
+}
+
+.plant-tree-subtitle {
+  font-size: $small_size;
+  line-height: 20px;
+  margin-bottom: 0px;
+  max-width: 280px
+}
+
+.tree a,
+.plant-tree a {
   display: flex;
   text-align: center
 }
 
-.tree img {
+.tree img,
+.plant-tree img {
   display: block;
   margin: auto
 }
@@ -39,8 +60,65 @@
 }
 
 .tree-name {
+  font-size: $normal_size;
   padding-left: 10px;
   text-align: left;
+}
+
+.tree-footer {
+  display: flex
+}
+
+.subscribe-button,
+.unsubscribe-button,
+.auto-harvest-button,
+.manual-harvest-button {
+  background-color: $white;
+  border-radius: 5px;
+  border: 1px solid $green;
+  color: $green;
+  cursor: pointer;
+  display: inline-block;
+  font-size: $smaller_size;
+  height: 30px;
+  margin: 0px 0px 0px 10px;
+  padding: 0px 15px;
+  width: 140px
+}
+
+.auto-harvest-button,
+.manual-harvest-button {
+  width: 120px
+}
+
+.auto-harvest-button {
+  border-color: $grey;
+  color: $grey
+}
+
+.auto-harvest-button:hover {
+  border-color: $green;
+  color: $green
+}
+
+.unsubscribe-button:hover,
+.manual-harvest-button:hover {
+  border-color: $red;
+  color: $red
+}
+
+.subscribe-button {
+  background-color: $green;
+  color: $white
+}
+
+.subscribe-button img,
+.unsubscribe-button img,
+.auto-harvest-button img,
+.manual-harvest-button img {
+  display: inline-block;
+  height: 14px;
+  vertical-align: bottom
 }
 
 .new-entries {
@@ -61,11 +139,24 @@
     width: 90%;
     padding-left: 10px;
   }
+  .subscribe-button,
+  .unsubscribe-button,
+  .auto-harvest-button,
+  .manual-harvest-button {
+    width: auto
+  }
 }
 
 @media screen and (max-width: 375px) {
   .tree-name {
     font-size: 16px;
+  }
+  .plant-tree-title,
+  .plant-tree-subtitle {
+    padding: 0px;
+  }
+  .plant-tree-subtitle {
+    font-weight: 300
   }
 }
 
@@ -73,5 +164,13 @@
   .tree-name {
     font-size: $small_size;
     font-weight: 700
+  }
+  .subscribe-button,
+  .unsubscribe-button,
+  .auto-harvest-button,
+  .manual-harvest-button {
+    font-size: $smallest_size;
+    margin: 0px 5px 0px 0px;
+    padding: 0px 10px;
   }
 }

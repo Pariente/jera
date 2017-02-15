@@ -132,12 +132,7 @@
   color: $grey;
 }
 
-.picked-entry {
-  color: $red;
-}
-
-.pick-entry:hover,
-.picked-entry:hover {
+.pick-entry:hover {
   color: $red;
   text-decoration: underline;
 }
@@ -182,7 +177,7 @@
   .content-thumbnail {
     top: -18px
   }
-  .video-length {
-    margin-top: -60px
-  }
+  // .video-length {
+  //   margin-top: -60px
+  // }
 }

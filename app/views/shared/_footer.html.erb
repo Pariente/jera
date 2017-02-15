@@ -24,80 +24,81 @@
 
 <script>
   // PICK
-  $(document).on("click", ".pick-entry", function() {
-    // $(this).find("img.coloured").removeClass("hidden");
-    // $(this).addClass("clicked");
-    // $(this).find("img.greyed").addClass("hidden");
-    // $(this).find("span.count").html(parseInt($(this).find('span.count').html(), 10)+1);
-    // if ($(this).find('span.count').html() == "1") {
-    //   $(this).find('span.picking-word').html("picking");
-    // } else {
-    //   $(this).find('span.picking-word').html("pickings");
-    // }
-    // $(this).removeClass("pick-entry");
-    // $(this).addClass("picked-entry");
-    location.reload();
-  });
-  $(document).on("mouseenter", ".pick-entry", function() {
-    $(this).find("img.coloured").removeClass("hidden");
-    $(this).find("img.greyed").addClass("hidden");
-  });
-  $(document).on("mouseleave", ".pick-entry", function() {
-    // if ($(this).hasClass("clicked") == false) {
+  $(".pick-entry").unbind('click').bind('click', function(evt) {
+
+    var old_count = $(this).attr("data-count");
+
+    if ($(this).find("img.coloured").hasClass("hidden")) {
+      $(this).find("img.coloured").removeClass("hidden");
+      $(this).find("img.greyed").addClass("hidden");
+      $(this).find("span.picking-word").addClass("red");
+      $(this).find("span.count").addClass("red");
+      var new_count = parseInt(old_count, 10) + 1;
+    } else {
       $(this).find("img.coloured").addClass("hidden");
       $(this).find("img.greyed").removeClass("hidden");
-    // }
-  });
+      $(this).find("span.picking-word").removeClass("red");
+      $(this).find("span.count").removeClass("red");
+      var new_count = parseInt(old_count, 10) - 1;
+    }
 
-  $(document).on("click", ".picked-entry", function() {
-    // $(this).removeClass("clicked");
-    $(this).find("img.coloured").addClass("hidden");
-    $(this).find("img.greyed").removeClass("hidden");
+    $(this).attr("data-count", new_count);
+    $(this).find("span.count").html(new_count);
 
-    // $(this).find("span.count").html(parseInt($(this).find('span.count').html(), 10)-1);
-    // if ($(this).find('span.count').html() == "1") {
-    //   $(this).find('span.picking-word').html("picking");
-    // } else {
-    //   $(this).find('span.picking-word').html("pickings");
-    // }
-    // $(this).removeClass("picked-entry");
-    // $(this).addClass("pick-entry");
-    location.reload();
+
+    if (new_count == "1") {
+      $(this).find('span.picking-word').html("picking");
+    } else {
+      $(this).find('span.picking-word').html("pickings");
+    }
   });
 
   // SUBSCRIBE
   $(".unsubscribe-button").mouseover(function() {
-    $(this).find("img").addClass("hidden");
     $(this).find("span").text("Remove tree");
   });
+
   $(".unsubscribe-button").mouseout(function() {
-    $(this).find("img").removeClass("hidden");
     $(this).find("span").text("In your garden");
   });
+
+  $(".manual-harvest-button").mouseover(function() {
+    $(this).find("span").text("Disable");
+  });
+
+  $(".manual-harvest-button").mouseout(function() {
+    $(this).find("span").text("Harvesting");
+  });
+
   $(".subscribe-button").click(function() {
     location.reload();
   });
+
   $(".subscribe-button").children().click(function() {
     location.reload();
   });
+
   $(".unsubscribe-button").click(function() {
     location.reload();
   });
+
   $(".unsubscribe-button").children().click(function() {
     location.reload();
   });
 
-  // AUTO-HARVEST
-  $(".manual-harvest-button").mouseover(function() {
-    $(this).text("Auto-harvest");
+  $(".auto-harvest-button").click(function() {
+    location.reload();
   });
-  $(".manual-harvest-button").mouseout(function() {
-    $(this).text("Manual harvest");
+  
+  $(".auto-harvest-button").children().click(function() {
+    location.reload();
   });
-  $(".auto-harvest-button").mouseover(function() {
-    $(this).text("Manual harvest");
+
+  $(".manual-harvest-button").click(function() {
+    location.reload();
   });
-  $(".auto-harvest-button").mouseout(function() {
-    $(this).text("Auto-harvesting");
+  
+  $(".manual-harvest-button").children().click(function() {
+    location.reload();
   });
 </script>

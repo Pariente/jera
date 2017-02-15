@@ -1,17 +1,30 @@
 <div class="tree-footer">
-<% if entry.is_picked_by_user?(current_user) %>
-  <%= link_to entry_picking_path(entry, id: entry.picked_by_user(current_user).id), remote: :true, method: :delete do %>
-    <button class="picked-entry">
-      <%= image_tag('apple_coloured.svg', class: "apple") %>
-      <span><%= entry.pickings.count %> <%= "picking".pluralize(entry.pickings.count) %></span>
-    </button>
+  <% if sub == nil %>
+    <%= link_to new_source_subscription_path(source), remote: :true do %>
+      <button class="subscribe-button">
+        <%= image_tag('garden_white.svg') %>
+        <span>Add to garden</span>
+      </button>
+    <% end %>
+  <% else %>
+    <%= link_to source_subscription_toggle_auto_harvest_path(source, sub), method: :put, remote: :true do %>
+      <% if sub.auto_harvest %>
+        <button class="manual-harvest-button">
+          <%= image_tag('harvest_basket_coloured.svg') %>
+          <span>Harvesting</span>
+        </button>
+      <% else %>
+        <button class="auto-harvest-button">
+          <%= image_tag('harvest_basket_greyed.svg') %>
+          <span>Harvest</span>
+        </button>
+      <% end %>
+    <% end %>
+    <%= link_to source_subscription_path(source, sub), method: :delete, remote: :true do %>
+      <button class="unsubscribe-button">
+        <%= image_tag('garden_coloured.svg') %>
+        <span>In your garden</span>
+      </button>
+    <% end %>
   <% end %>
-<% else %>
-  <%= link_to new_entry_picking_path(entry), remote: :true do %>
-    <button class="pick-entry">
-      <%= image_tag('apple_greyed.svg', class: "apple") %>
-      <span><%= entry.pickings.count %> <%= "picking".pluralize(entry.pickings.count) %></span>
-    </button>
-  <% end %>
-<% end %>
 </div>
