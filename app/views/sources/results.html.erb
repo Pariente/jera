@@ -15,15 +15,20 @@
         Top
       <% end %>
     </div>
-    <div class="sub-menu-item active">
+    <div class="sub-menu-item">
       <%= link_to trees_latest_path do %>
         Latest
       <% end %>
     </div>
   </div>
-  <% @latest.each do |source| %>
-    <% sub = source.in_garden_of_user(current_user) %>
-    <%= render partial: 'shared/tree', locals: {sub: sub, source: source} %>
+  <% if params[:search] %>
+    <p>This species of tree is unknown to the people of Jera.</p>
+    <p>Be the first to bring it on Jera!</p>
+  <% else %>
+    <% @results.each do |source| %>
+      <% sub = source.in_garden_of_user(current_user) %>
+      <%= render partial: 'shared/tree', locals: {sub: sub, source: source} %>
+    <% end %>
   <% end %>
 </div>
 <%= render partial: 'shared/footer' %>

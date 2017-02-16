@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'pickings' => 'pickings#index'
   get 'trees/top' => 'sources#top'
   get 'trees/latest' => 'sources#latest'
+  get 'search_sources' => "sources#results"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

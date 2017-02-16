@@ -6,16 +6,19 @@ class SourcesController < ApplicationController
     sources = Source.all
     @top = sources.sort_by {|source| source.subscriptions.count}.reverse
     @top = @top.first(100)
-    @q = Source.ransack(params[:q])
-    @results = @q.result(distinct: true)
+    @search = ransack_params
   end
 
   def latest
     sources = Source.all
     @latest = sources.sort_by {|source| source.created_at}.reverse
     @latest = @latest.first(100)
-    @q = Source.ransack(params[:q])
-    @results = @q.result(distinct: true)
+    @search = ransack_params
+  end
+
+  def results
+    @search = ransack_params
+    @results  = ransack_result
   end
 
   def show
@@ -66,37 +69,6 @@ class SourcesController < ApplicationController
 
     feed = Feedjira::Feed.fetch_and_parse rss_url
 
-    # rss_url = source_params["rss_url"]
-    # feed = Feedjira::Feed.fetch_and_parse rss_url
-    # name = feed.title
-
-    # if feed.url == nil
-    #   url = feed.link
-    # else
-    #   url = feed.url
-    # end
-
-    # @picture = ""
-    # if feed.try(:image) != nil
-    #   if feed.image.try(:url) != nil
-    #     @picture = feed.image.url
-    #   end
-    # end
-
-    # if @picture == ""
-    #   user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.854.0 Safari/535.2"
-    #   begin 
-    #     doc = Nokogiri::HTML(open(url, 'proxy' => 'http://(ip_address):(port)', 'User-Agent' => user_agent, 'read_timeout' => '10' ), nil, "UTF-8")
-    #     if doc.at('meta[property="og:image"]') != nil
-    #       @picture = doc.at('meta[property="og:image"]')['content']
-    #     end
-    #   rescue
-    #     resp = HTTParty.get(url)
-    #     doc = Nokogiri::HTML(resp.body)
-    #     @picture = doc.at('meta[property="og:image"]')['content']
-    #   end
-    # end
-
     @source = Source.new(name: name, url: url, rss_url: rss_url, picture: picture)
 
     respond_to do |format|
@@ -140,13 +112,14 @@ class SourcesController < ApplicationController
 
   private
 
-    # def search
-    #   if params[:q]
-    #     search_params = CGI::escapeHTML(params[:q]) 
-    #     redirect_to (url --> see below how to get the url)
-    #   end
-    # end
-    
+    def ransack_params
+      Source.ransack(params[:q])
+    end
+
+    def ransack_result
+      @search.result(distinct: true)
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_source
       @source = Source.find(params[:id])
