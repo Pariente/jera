@@ -1,28 +1,8 @@
 <% title @source.name %>
 <div class="content-flex">
   <%= render 'shared/back' %>
-  <div class="tree">
-    <% sub = @source.in_garden_of_user(current_user) %>
-    <%= link_to source_path(@source) do %>
-      <div>
-        <%= image_tag(@source.picture, class: 'tree-pic') %>
-        <% if sub != nil && sub.auto_harvest %>
-          <%= image_tag("treebase_auto_harvest.svg") %>
-        <% else %>
-          <%= image_tag("treebase0.svg") %>
-        <% end %>
-      </div>
-    <% end %>
-    <div class="tree-name">
-      <%= link_to source_path(@source) do %>
-        <%= truncate(@source.name, length: 30) %>
-      <% end %>
-      <p class="source-stats">
-        In <b class="green"><%= @source.subscriptions.count %></b> <%= "garden".pluralize(@source.subscriptions.count) %>
-      </p>
-      <%= render partial: 'shared/tree_footer', locals: {sub: sub, source: @source} %>
-    </div>
-  </div>
+  <% sub = @source.in_garden_of_user(current_user) %>
+  <%= render partial: 'shared/tree', locals: {sub: sub, source: @source} %>
   <% @harvest.each do |e| %>
     <div class="content show">
       <div class="content-right-column">

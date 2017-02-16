@@ -13,32 +13,8 @@
   </div>
   <% @subscriptions.each do |sub| %>
     <% cache sub do %>
-      <div class="tree">
-        <%= link_to source_path(sub.source) do %>
-          <div>
-            <%= image_tag(sub.source.picture, class: 'tree-pic') %>
-            <% unless sub.new_entries == 0 %>
-              <div class="new-entries">
-                <%= sub.new_entries %>
-              </div>
-            <% end %>
-            <% if sub.auto_harvest %>
-              <%= image_tag("treebase_auto_harvest.svg") %>
-            <% else %>
-              <%= image_tag("treebase0.svg") %>
-            <% end %>
-          </div>
-        <% end %>
-        <div class="tree-name">
-          <%= link_to source_path(sub.source) do %>
-            <%= truncate(sub.source.name, length: 30) %>
-          <% end %>
-          <p class="source-stats">
-            In <b class="green"><%= sub.source.subscriptions.count %></b> <%= "garden".pluralize(sub.source.subscriptions.count) %>
-          </p>
-          <%= render partial: 'shared/tree_footer', locals: {sub: sub, source: sub.source} %>
-        </div>
-      </div>
+      <% source = sub.source %>
+      <%= render partial: 'shared/tree', locals: {sub: sub, source: source} %>
     <% end %>
   <% end %>
 </div>

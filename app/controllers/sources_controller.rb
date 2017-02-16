@@ -3,15 +3,19 @@ class SourcesController < ApplicationController
   require 'open-uri'
 
   def top
-    @sources = Source.all
-    @sources = @sources.sort_by {|source| source.subscriptions.count}.reverse
-    @sources = @sources.first(100)
+    sources = Source.all
+    @top = sources.sort_by {|source| source.subscriptions.count}.reverse
+    @top = @top.first(100)
+    @q = Source.ransack(params[:q])
+    @results = @q.result(distinct: true)
   end
 
   def latest
-    @sources = Source.all
-    @sources = @sources.sort_by {|source| source.created_at}.reverse
-    @sources = @sources.first(100)
+    sources = Source.all
+    @latest = sources.sort_by {|source| source.created_at}.reverse
+    @latest = @latest.first(100)
+    @q = Source.ransack(params[:q])
+    @results = @q.result(distinct: true)
   end
 
   def show
@@ -135,6 +139,14 @@ class SourcesController < ApplicationController
   end
 
   private
+
+    # def search
+    #   if params[:q]
+    #     search_params = CGI::escapeHTML(params[:q]) 
+    #     redirect_to (url --> see below how to get the url)
+    #   end
+    # end
+    
     # Use callbacks to share common setup or constraints between actions.
     def set_source
       @source = Source.find(params[:id])

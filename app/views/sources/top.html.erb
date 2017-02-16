@@ -5,20 +5,7 @@
       <%= image_tag('chevron_left.svg', class: 'chevron') %> Back
     <% end %>
   </div>
-  <%= link_to new_source_path do %>
-    <div class="source">
-      <div class="content-left-column">
-          <%= image_tag('new_tree.svg', class: 'source-pic') %>
-      </div>
-      <div class="content-right-column">
-        <div class="content-top">
-          <div class="plant-tree">
-            Plant a tree from the wild
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
+  
   <div class="sub-menu">
     <div class="sub-menu-item active">
       <%= link_to trees_top_path do %>
@@ -31,29 +18,9 @@
       <% end %>
     </div>
   </div>
-  <% @sources.each do |s| %>
-    <div class="tree">
-      <% sub = s.in_garden_of_user(current_user) %>
-      <%= link_to source_path(s) do %>
-        <div>
-          <%= image_tag(s.picture, class: 'tree-pic') %>
-          <% if sub != nil && sub.auto_harvest %>
-            <%= image_tag("treebase_auto_harvest.svg") %>
-          <% else %>
-            <%= image_tag("treebase0.svg") %>
-          <% end %>
-        </div>
-      <% end %>
-      <div class="tree-name">
-        <%= link_to source_path(s) do %>
-          <%= truncate(s.name, length: 30) %>
-        <% end %>
-        <p class="source-stats">
-          In <b class="green"><%= s.subscriptions.count %></b> <%= "garden".pluralize(s.subscriptions.count) %>
-        </p>
-        <%= render partial: 'shared/tree_footer', locals: {sub: sub, source: s} %>
-      </div>
-    </div>
+  <% @top.each do |source| %>
+    <% sub = source.in_garden_of_user(current_user) %>
+    <%= render partial: 'shared/tree', locals: {sub: sub, source: source} %>
   <% end %>
 </div>
 <%= render partial: 'shared/footer' %>
