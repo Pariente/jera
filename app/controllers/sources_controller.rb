@@ -19,6 +19,7 @@ class SourcesController < ApplicationController
   def results
     @search = ransack_params
     @results  = ransack_result
+    @source = Source.new
   end
 
   def show
@@ -58,13 +59,25 @@ class SourcesController < ApplicationController
       doc = Nokogiri::HTML(resp.body)
     end
 
-    picture = doc.at('meta[property="og:image"]')['content']
+    og_image = doc.at('meta[property="og:image"]')
+    picture = ""
+    unless og_image == nil
+      picture = og_image['content']
+    end
 
-    name = doc.at('meta[property="og:title"]')['content']
+    og_title = doc.at('meta[property="og:title"]')
+    if og_title == nil
+      name = doc.at('title').text
+    else
+      name = og_title['content']
+    end
 
-    rss_url = doc.at('link[type="application/rss+xml"]')['href']
-    if rss_url == nil
-      rss_url = doc.at('link[type="application/atom+xml"]')['href']
+    rss_xml = doc.at('link[type="application/rss+xml"]')
+    if rss_xml == nil
+      rss_xml = doc.at('link[type="application/atom+xml"]')
+    end 
+    unless rss_xml == nil
+      rss_url = rss_xml['href']
     end
 
     feed = Feedjira::Feed.fetch_and_parse rss_url

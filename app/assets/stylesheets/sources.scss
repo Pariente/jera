@@ -76,17 +76,20 @@
 }
 
 .source_search_input {
-  flex-grow: 2;
   min-width: inherit;
   margin-right: 10px
 }
 
 .source_search_submit {
-  // flex-grow: 1;
   height: 50px !important;
   margin-top: 0px !important;
   min-width: inherit;
   width: auto
+}
+
+.no_results {
+  max-width: 300px;
+  text-align: center;
 }
 
 @media screen and (max-width: 350px) {

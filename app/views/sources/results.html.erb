@@ -5,10 +5,7 @@
       <%= image_tag('chevron_left.svg', class: 'chevron') %> Back to Garden
     <% end %>
   </div>
-  <%= search_form_for @search, url: search_sources_path do |f| %>
-    <%= f.search_field :name_cont, class: 'source_search_input' %>
-    <%= f.submit class: 'source_search_submit' %>
-  <% end %>
+  <%= render "shared/searchbar" %>
   <div class="sub-menu">
     <div class="sub-menu-item">
       <%= link_to trees_top_path do %>
@@ -21,9 +18,18 @@
       <% end %>
     </div>
   </div>
-  <% if params[:search] %>
-    <p>This species of tree is unknown to the people of Jera.</p>
-    <p>Be the first to bring it on Jera!</p>
+  <% if @results == [] %>
+    <p class="no_results">This species of tree is unknown to the people of Jera.</p>
+    <p class="no_results">Be the first to bring it on Jera!</p>
+    <%= simple_form_for @source do |f| %>
+      <div class="form-inputs">
+        <%= f.input :url, required: true, label: false %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "I'm an explorer!" %>
+      </div>
+    <% end %>
   <% else %>
     <% @results.each do |source| %>
       <% sub = source.in_garden_of_user(current_user) %>
