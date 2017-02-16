@@ -23,7 +23,7 @@
     <p class="no_results">Be the first to bring it on Jera!</p>
     <%= simple_form_for @source do |f| %>
       <div class="form-inputs">
-        <%= f.input :url, required: true, label: false %>
+        <%= f.input :url, required: true, label: false, placeholder: "http://..." %>
       </div>
 
       <div class="form-actions">
