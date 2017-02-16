@@ -3,6 +3,7 @@
   flex-direction: column;
   margin: auto;
   margin-bottom: 60px;
+  margin-top: 30px;
   max-width: 400px
 }
 
@@ -138,15 +139,17 @@
 }
 
 @media screen and (max-width: 400px) {
-  .content-flex {
-    max-width: 350px
+  .content {
+    margin-left: 5px;
+    margin-right: 5px
+  }
+  .content.show {
+    margin-left: 0px;
+    margin-right: 10px
   }
 }
 
 @media screen and (max-width: 350px) {
-  .content-flex {
-    max-width: 300px
-  }
   .source-title {
     font-size: 14px;
   }

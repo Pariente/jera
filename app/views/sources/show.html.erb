@@ -1,48 +1,30 @@
 <% title @source.name %>
 <div class="content-flex">
   <%= render 'shared/back' %>
-  <div class="source show">
-    <div class="source-left-column">
-      <%= image_tag(@source.picture, class: 'source-pic') %>
-    </div>
-    <div class="source-right-column">
-      <p class="source-title">
-        <%= @source.name %>
-      </p>
+  <div class="tree">
+    <% sub = @source.in_garden_of_user(current_user) %>
+    <%= link_to source_path(@source) do %>
+      <div>
+        <%= image_tag(@source.picture, class: 'tree-pic') %>
+        <% if sub != nil && sub.auto_harvest %>
+          <%= image_tag("treebase_auto_harvest.svg") %>
+        <% else %>
+          <%= image_tag("treebase0.svg") %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="tree-name">
+      <%= link_to source_path(@source) do %>
+        <%= truncate(@source.name, length: 30) %>
+      <% end %>
       <p class="source-stats">
         In <b class="green"><%= @source.subscriptions.count %></b> <%= "garden".pluralize(@source.subscriptions.count) %>
       </p>
+      <%= render partial: 'shared/tree_footer', locals: {sub: sub, source: @source} %>
     </div>
   </div>
-  <p class="source-options">
-    <% if @sub == nil %>
-      <%= link_to new_source_subscription_path(@source), remote: :true do %>
-        <button class="subscribe-button">
-          <span>Add to garden</span>
-        </button>
-      <% end %>
-    <% else %>
-      <%= link_to source_subscription_path(@source, @sub), method: :delete, remote: :true do %>
-        <button class="unsubscribe-button">
-          <%= image_tag('check.svg', class: "check") %>
-          <span>In your garden</span>
-        </button>
-      <% end %>
-      <%= link_to source_subscription_toggle_auto_harvest_path(@source, @sub), method: :put do %>
-        <% if @sub.auto_harvest %>
-          <button class="auto-harvest-button">
-            <span>Auto-harvesting</span>
-          </button>
-        <% else %>
-          <button class="manual-harvest-button">
-            <span>Manual harvest</span>
-          </button>
-        <% end %>
-      <% end %>
-    <% end %>
-  </p>
   <% @harvest.each do |e| %>
-    <div class="content">
+    <div class="content show">
       <div class="content-right-column">
         <div class="content-top">
           <div class="time-published source-show"><%= distance_of_time_in_words(e.published_date.to_time, Time.now) %> ago</div>

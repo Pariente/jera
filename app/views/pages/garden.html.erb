@@ -2,7 +2,7 @@
 <div class="garden-flex">
   <div class="plant-tree">
     <%= link_to trees_latest_path do %>
-      <div class="tree-head">
+      <div>
         <%= image_tag("add_tree.svg", class: 'tree-pic') %>
       </div>
       <div class="tree-name">
@@ -15,7 +15,7 @@
     <% cache sub do %>
       <div class="tree">
         <%= link_to source_path(sub.source) do %>
-          <div class="tree-head">
+          <div>
             <%= image_tag(sub.source.picture, class: 'tree-pic') %>
             <% unless sub.new_entries == 0 %>
               <div class="new-entries">
@@ -38,8 +38,8 @@
           </p>
           <%= render partial: 'shared/tree_footer', locals: {sub: sub, source: sub.source} %>
         </div>
-        <% end %>
       </div>
     <% end %>
+  <% end %>
 </div>
 <%= render partial: 'shared/footer' %>

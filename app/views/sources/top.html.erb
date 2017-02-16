@@ -1,5 +1,5 @@
 <% title "Plant a tree" %>
-<div class="content-flex garden-container">
+<div class="garden-flex">
   <div class="back">
     <%= link_to garden_path do %>
       <%= image_tag('chevron_left.svg', class: 'chevron') %> Back
@@ -32,34 +32,26 @@
     </div>
   </div>
   <% @sources.each do |s| %>
-    <div class="content">
-      <div class="content-left-column">
-        <%= link_to source_path(s) do %>
-          <%= image_tag(s.picture, class: 'source-pic') %>
-        <% end %>
-      </div>
-      <div class="content-right-column">
-        <div class="content-top">
-          <div class="source-title alone">
-            <%= link_to source_path(s) do %>
-              <%= truncate(s.name, length: 30) %>
-            <% end %>
-          </div>
+    <div class="tree">
+      <% sub = s.in_garden_of_user(current_user) %>
+      <%= link_to source_path(s) do %>
+        <div>
+          <%= image_tag(s.picture, class: 'tree-pic') %>
+          <% if sub != nil && sub.auto_harvest %>
+            <%= image_tag("treebase_auto_harvest.svg") %>
+          <% else %>
+            <%= image_tag("treebase0.svg") %>
+          <% end %>
         </div>
-        <% if s.subscriptions.where(user: current_user) == [] %>
-          <%= link_to new_source_subscription_path(s), remote: :true do %>
-            <button class="subscribe-button right">
-              <span>Add to garden</span>
-            </button>
-          <% end %>
-        <% else %>
-          <%= link_to source_subscription_path(s, s.subscriptions.where(user: current_user).first), method: :delete, remote: :true do %>
-            <button class="unsubscribe-button right">
-              <%= image_tag('check.svg', class: "check") %>
-              <span>In your garden</span>
-            </button>
-          <% end %>
+      <% end %>
+      <div class="tree-name">
+        <%= link_to source_path(s) do %>
+          <%= truncate(s.name, length: 30) %>
         <% end %>
+        <p class="source-stats">
+          In <b class="green"><%= s.subscriptions.count %></b> <%= "garden".pluralize(s.subscriptions.count) %>
+        </p>
+        <%= render partial: 'shared/tree_footer', locals: {sub: sub, source: s} %>
       </div>
     </div>
   <% end %>

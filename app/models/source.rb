@@ -52,6 +52,15 @@ class Source < ActiveRecord::Base
     end
   end
 
+  def in_garden_of_user(current_user)
+    s = Subscription.where(source_id: self.id, user_id: current_user.id)
+    if s == []
+      return nil
+    else
+      return s.first
+    end
+  end
+
   private
 
   def self.entries_since(source, date)

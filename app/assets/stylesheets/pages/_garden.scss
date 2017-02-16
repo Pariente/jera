@@ -7,7 +7,7 @@
   margin: auto;
   margin-top: 30px;
   margin-bottom: 60px;
-  max-width: 600px;
+  max-width: 400px;
 }
 
 .tree,
@@ -56,9 +56,6 @@
   width: 60px
 }
 
-.tree-head {
-}
-
 .tree-name {
   font-size: $normal_size;
   padding-left: 10px;
@@ -83,6 +80,7 @@
   height: 30px;
   margin: 0px 0px 0px 10px;
   padding: 0px 15px;
+  text-align: left;
   width: 140px
 }
 
@@ -109,7 +107,8 @@
 
 .subscribe-button {
   background-color: $green;
-  color: $white
+  color: $white;
+  margin-left: 140px
 }
 
 .subscribe-button img,
@@ -137,26 +136,28 @@
   .tree {
     display: flex;
     width: 90%;
-    padding-left: 10px;
-  }
-  .subscribe-button,
-  .unsubscribe-button,
-  .auto-harvest-button,
-  .manual-harvest-button {
-    width: auto
+    padding-left: 10px
   }
 }
 
 @media screen and (max-width: 375px) {
   .tree-name {
-    font-size: 16px;
+    font-size: 16px
   }
   .plant-tree-title,
   .plant-tree-subtitle {
-    padding: 0px;
+    padding: 0px
   }
   .plant-tree-subtitle {
     font-weight: 300
+  }
+  .auto-harvest-button,
+  .manual-harvest-button,
+  .unsubscribe-button {
+    margin: 0px 5px 0px 0px
+  }
+  .subscribe-button {
+    margin-left: 125px
   }
 }
 
@@ -171,6 +172,17 @@
   .manual-harvest-button {
     font-size: $smallest_size;
     margin: 0px 5px 0px 0px;
-    padding: 0px 10px;
+    padding: 0px 10px
+  }
+  .auto-harvest-button,
+  .manual-harvest-button {
+    width: 95px
+  }
+  .subscribe-button,
+  .unsubscribe-button {
+    width: 115px
+  }
+  .subscribe-button {
+    margin-left: 100px
   }
 }
