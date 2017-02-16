@@ -11,9 +11,11 @@
   <div class="form-inputs">
     <%= f.input :username, autofocus: false %>
     <%= f.input :email %>
-    <label>New password</label>
+    <label>New password (leave blank if unchanged)</label>
     <%= f.input :password, autocomplete: "off", label: false %>
-    <%= f.input :current_password, autocomplete: "off" %>
+    <br>
+    <label class="brown bold">👉 Type your current password to update</label>
+    <%= f.input :current_password, autocomplete: "off", label: false %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
