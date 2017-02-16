@@ -19,7 +19,8 @@ form {
 label {
   color: $green;
   display: block;
-  font-weight: bold;
+  font-size: $form_size;
+  font-weight: 400;
   margin: 10px 0px 5px
 }
 
@@ -29,12 +30,12 @@ textarea {
   -webkit-appearance: none;
   -webkit-border-radius: 0pt;
   background-color: $white;
-  border: 2px solid $green;
-  border-radius: 10px;
+  border: 1px solid $grey;
+  border-radius: 5px;
   box-sizing: border-box;
   color: $dark_brown;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: $form_size;
+  font-weight: 700;
   height: 50px;
   padding: 0px 20px;
   width: 100%;
@@ -44,7 +45,7 @@ textarea {
 
 input[type="submit"] {
   background-color: $green;
-  border: 0px solid $green;
+  border: 1px solid $green;
   color: $white;
   cursor: pointer;
   display: block;
