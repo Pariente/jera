@@ -1,5 +1,5 @@
 class SourcesController < ApplicationController
-  before_action :set_source, only: [:show, :edit, :update, :destroy]
+  before_action :set_source, only: [:show, :edit, :update]
   require 'open-uri'
 
   def top
@@ -112,14 +112,6 @@ class SourcesController < ApplicationController
         format.html { render :edit }
         format.json { render json: @source.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  def destroy
-    @source.destroy
-    respond_to do |format|
-      format.html { redirect_to sources_url, notice: 'Source was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

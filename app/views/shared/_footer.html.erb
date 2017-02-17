@@ -1,24 +1,26 @@
 <div class="footer">
-  <%= link_to root_path do %>
-    <% if current_page?(root_path) || current_page?(pickings_path) %>
-      <p class="active-tab">Harvest</p>
-    <% else %>
-      <p>Harvest</p>
-    <% end %>
+  <% harvest = "" %>
+  <% garden = "" %>
+  <% profile = "" %>
+  <% if current_page?(root_path) || current_page?(pickings_path) %>
+    <% harvest = "active" %>
+  <% elsif current_page?(garden_path) %>
+    <% garden = "active" %>
+  <% elsif current_page?(edit_user_registration_path) %>
+    <% profile = "active" %>
   <% end %>
-  <%= link_to garden_path do %>
-    <% if current_page?(garden_path) %>
-      <p class="active-tab">Garden</p>
-    <% else %>
-      <p>Garden</p>
-    <% end %>
+  
+  <%= link_to root_path, class: harvest do %>
+    <%= image_tag('harvest_basket_white.svg') %>
+    <p class="center">Harvest</p>
   <% end %>
-  <%= link_to edit_user_registration_path do %>
-    <% if current_page?(edit_user_registration_path) %>
-      <p class="active-tab">Profile</p>
-    <% else %>
-      <p>Profile</p>
-    <% end %>
+  <%= link_to garden_path, class: garden do %>
+    <%= image_tag('garden_white.svg') %>
+    <p class="center">Garden</p>
+  <% end %>
+  <%= link_to edit_user_registration_path, class: profile do %>
+    <%= image_tag('profile_white.svg') %>
+    <p class="center">Profile</p>
   <% end %>
 </div>
 

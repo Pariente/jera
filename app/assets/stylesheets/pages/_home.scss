@@ -61,37 +61,26 @@ header > h1 {
 .footer a:visited {
   color: $white;
   display: flex;
-  font-size: $small_size;
-  margin: auto;
-  flex-grow: 1
+  flex-direction: column;
+  flex-grow: 1;
+  font-size: $small_size
 }
 
-.footer a p {
-  line-height: 55px;
-  border-bottom: 5px solid transparent;
-  padding-left: 0px;
-  padding-right: 0px;
-  text-align: center;
-  width: 100%
-}
-
-.footer a p.active-tab {
+.footer a.active {
+  border-bottom: 3px solid;
   border-color: $white
 }
 
-@media screen and (max-width: 400px) {
-  .footer a p {
-    line-height: 45px
-  }
+.footer a img {
+  height: 30px;
+  margin-top: 5px
 }
 
-@media only screen 
-and (min-device-width : 375px) 
-and (max-device-width : 667px) 
-and (orientation : portrait) {
-  .footer a p {
-    line-height: 45px
-  }
+.footer a p {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  width: 100%
 }
 
 /* --- ANCHORS --- */
@@ -112,7 +101,8 @@ a.sign-out {
   color: green;
   margin-top: 20px;
   text-align: right;
-  text-decoration: underline
+  text-decoration: underline;
+  width: auto
 }
 
 /* --- PARAGRAPHS --- */
