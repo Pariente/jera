@@ -1,4 +1,4 @@
-<div class="footer">
+<div class="navbar">
   <% harvest = "" %>
   <% garden = "" %>
   <% profile = "" %>
@@ -10,13 +10,13 @@
     <% profile = "active" %>
   <% end %>
   
-  <%= link_to root_path, class: harvest do %>
-    <%= image_tag('harvest_basket_white.svg') %>
-    <p class="center">Harvest</p>
-  <% end %>
   <%= link_to garden_path, class: garden do %>
     <%= image_tag('garden_white.svg') %>
     <p class="center">Garden</p>
+  <% end %>
+  <%= link_to root_path, class: harvest do %>
+    <%= image_tag('harvest_basket_white.svg') %>
+    <p class="center">Harvest</p>
   <% end %>
   <%= link_to edit_user_registration_path, class: profile do %>
     <%= image_tag('profile_white.svg') %>

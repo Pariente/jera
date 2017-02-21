@@ -41,43 +41,47 @@ header > h1 {
 
 /* --- FOOTER --- */
 
-.footer {
+.navbar {
   background-color: $green;
-  border-top: 3px solid $white;
   color: $white;
   display: flex;
   flex-wrap: wrap;
-  margin: 0px;
-  width: 100%;
-  position: fixed;
-  bottom: 0px;
   height: 60px;
+  justify-content: center;
+  margin: 0px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
   z-index: 200
 }
 
-.footer a,
-.footer a:hover,
-.footer a:active,
-.footer a:visited {
+.navbar a,
+.navbar a:hover,
+.navbar a:active,
+.navbar a:visited {
+  border-top: 3px solid $green;
   color: $white;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  font-size: $small_size
+  font-size: $small_size;
+  max-width: 200px;
+  opacity: 0.6
 }
 
-.footer a.active {
-  border-bottom: 3px solid;
-  border-color: $white
+.navbar a.active {
+  border-color: $white;
+  opacity: 1
 }
 
-.footer a img {
+.navbar a img {
   height: 30px;
   margin-top: 5px
 }
 
-.footer a p {
+.navbar a p {
   margin: 0px;
+  max-width: inherit;
   padding: 0px;
   text-align: center;
   width: 100%
