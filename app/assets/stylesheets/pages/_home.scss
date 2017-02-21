@@ -39,10 +39,9 @@ header > h1 {
   top: -7px
 }
 
-/* --- FOOTER --- */
+/* --- NAVBAR --- */
 
 .navbar {
-  background-color: $green;
   color: $white;
   display: flex;
   flex-wrap: wrap;
@@ -59,32 +58,46 @@ header > h1 {
 .navbar a:hover,
 .navbar a:active,
 .navbar a:visited {
+  background-color: $green;
   border-top: 3px solid $green;
   color: $white;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  font-size: $small_size;
+  justify-content: center;
   max-width: 200px;
-  opacity: 0.6
+}
+
+.navbar a:first-of-type {
+  border-radius: 0px 0px 0px 5px
+}
+
+.navbar a:last-of-type {
+  border-radius: 0px 0px 5px 0px
 }
 
 .navbar a.active {
   border-color: $white;
-  opacity: 1
-}
-
-.navbar a img {
-  height: 30px;
-  margin-top: 5px
 }
 
 .navbar a p {
   margin: 0px;
   max-width: inherit;
+  opacity: 0.6;
   padding: 0px;
   text-align: center;
   width: 100%
+}
+
+.navbar a.active p {
+  opacity: 1
+}
+
+@media screen and (max-width: 600px) {
+  .navbar a:first-of-type,
+  .navbar a:last-of-type {
+    border-radius: 0px
+  }
 }
 
 /* --- ANCHORS --- */

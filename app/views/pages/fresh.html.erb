@@ -1,25 +1,13 @@
-<% title "Harvest" %>
+<% title "Fresh" %>
 <div class="content-flex">
-  <div class="sub-menu">
-    <div class="sub-menu-item active">
-      <%= link_to root_path do %>
-        Last 7 days
-      <% end %>
-    </div>
-    <div class="sub-menu-item">
-      <%= link_to pickings_path do %>
-        Pickings
-      <% end %>
-    </div>
-  </div>
-  <% if @harvest == [] %>
+  <% if @fresh == [] %>
     <br><br>
     <h1>This is where the freshest fruits are delivered to you. :)</h1>
     <%= link_to trees_top_path do %>
-      <p class="center green underlined">Plant some trees to get a good harvest</p>
+      <p class="center green underlined">Plant some trees to harvest their fruits.</p>
     <% end %>
   <% end %>
-  <% @harvest.each do |e| %>
+  <% @fresh.each do |e| %>
     <% cache "entry-#{e.id}" do %>
       <div class="content">
         <div class="content-left-column">

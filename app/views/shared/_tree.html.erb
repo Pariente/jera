@@ -2,20 +2,12 @@
   <%= link_to source_path(source) do %>
     <div>
       <%= image_tag(source.picture, class: 'tree-pic') %>
-      <% if sub != nil && sub.auto_harvest %>
-        <%= image_tag("treebase_auto_harvest.svg") %>
-      <% else %>
-        <%= image_tag("treebase0.svg") %>
-      <% end %>
     </div>
   <% end %>
   <div class="tree-name">
     <%= link_to source_path(source) do %>
-      <%= truncate(source.name, length: 30) %>
+      <%= truncate(source.name, length: 50) %>
     <% end %>
-    <p class="source-stats">
-      In <b class="green"><%= source.subscriptions.count %></b> <%= "garden".pluralize(source.subscriptions.count) %>
-    </p>
     <div class="tree-footer">
       <% if sub == nil %>
         <%= link_to new_source_subscription_path(source), remote: :true do %>
@@ -25,19 +17,6 @@
           </button>
         <% end %>
       <% else %>
-        <%= link_to source_subscription_toggle_auto_harvest_path(source, sub), method: :put, remote: :true do %>
-          <% if sub.auto_harvest %>
-            <button class="manual-harvest-button">
-              <%= image_tag('harvest_basket_coloured.svg') %>
-              <span>Harvesting</span>
-            </button>
-          <% else %>
-            <button class="auto-harvest-button">
-              <%= image_tag('harvest_basket_greyed.svg') %>
-              <span>Harvest</span>
-            </button>
-          <% end %>
-        <% end %>
         <%= link_to source_subscription_path(source, sub), method: :delete, remote: :true do %>
           <button class="unsubscribe-button">
             <%= image_tag('garden_coloured.svg') %>

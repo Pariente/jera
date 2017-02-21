@@ -3,7 +3,7 @@
   <% garden = "" %>
   <% profile = "" %>
   <% if current_page?(root_path) || current_page?(pickings_path) %>
-    <% harvest = "active" %>
+    <% fresh = "active" %>
   <% elsif current_page?(garden_path) %>
     <% garden = "active" %>
   <% elsif current_page?(edit_user_registration_path) %>
@@ -11,16 +11,13 @@
   <% end %>
   
   <%= link_to garden_path, class: garden do %>
-    <%= image_tag('garden_white.svg') %>
     <p class="center">Garden</p>
   <% end %>
-  <%= link_to root_path, class: harvest do %>
-    <%= image_tag('harvest_basket_white.svg') %>
-    <p class="center">Harvest</p>
+  <%= link_to root_path, class: fresh do %>
+    <p class="center">Fresh</p>
   <% end %>
   <%= link_to edit_user_registration_path, class: profile do %>
-    <%= image_tag('profile_white.svg') %>
-    <p class="center">Profile</p>
+    <p class="center">Harvests</p>
   <% end %>
 </div>
 

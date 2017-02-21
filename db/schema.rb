@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170214085007) do
+ActiveRecord::Schema.define(version: 20170221160652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20170214085007) do
     t.integer  "source_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "auto_harvest",    default: true
     t.integer  "new_entries",     default: 0
     t.integer  "last_entry_seen"
   end

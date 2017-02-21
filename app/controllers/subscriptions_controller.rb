@@ -14,10 +14,4 @@ class SubscriptionsController < ApplicationController
     Subscription.find(params[:id]).destroy
   end
 
-  def toggle_auto_harvest
-    subscription = Subscription.find(params[:subscription_id])
-    subscription.toggle_auto_harvest
-    redirect_to(source_path(params[:source_id]))
-  end
-
 end

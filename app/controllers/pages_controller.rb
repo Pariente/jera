@@ -3,13 +3,13 @@ class PagesController < ApplicationController
   require 'feedjira'
   require 'open-uri'
 
-  def harvest
+  def fresh
 
     # INITIATING HARVEST
-    @harvest = []
+    @fresh = []
 
     # CURRENT USER'S SUBSCRIPTIONS
-    subscriptions = current_user.subscriptions.where(auto_harvest: true)
+    subscriptions = current_user.subscriptions.all
 
     # ALL SOURCES TO WHICH THE USER HAS SUBSCRIBED
     sources = []
@@ -20,7 +20,7 @@ class PagesController < ApplicationController
     sources.each do |s|
       # ADDING ENTRIES FROM LAST MONTH
       Source.entries_since(s, 1.week.ago).each do |e|
-        @harvest.push(e)
+        @fresh.push(e)
       end
 
       # SETTING NEW ENTRIES TO ZERO FOR AUTO-HARVESTED SOURCES
@@ -32,7 +32,7 @@ class PagesController < ApplicationController
     end
 
     # SORTING HARVEST BY REVERSE CHRONOLOGICAL ORDER
-    @harvest = @harvest.sort_by {|entry| entry.published_date}.reverse
+    @fresh = @fresh.sort_by {|entry| entry.published_date}.reverse
 
   end
 

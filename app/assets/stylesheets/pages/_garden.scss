@@ -2,11 +2,11 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  // justify-content: center;
+  // align-items: center;
   margin: auto;
-  margin-top: 30px;
-  margin-bottom: 60px;
+  margin-top: 60px;
+  margin-bottom: 30px;
   max-width: 400px;
 }
 
@@ -38,12 +38,6 @@
   max-width: 280px
 }
 
-.tree a,
-.plant-tree a {
-  display: flex;
-  text-align: center
-}
-
 .tree img,
 .plant-tree img {
   display: block;
@@ -57,19 +51,16 @@
 }
 
 .tree-name {
+  display: flex;
+  flex-direction: column;
   font-size: $normal_size;
+  justify-content: space-between;
   padding-left: 10px;
   text-align: left;
 }
 
-.tree-footer {
-  display: flex
-}
-
 .subscribe-button,
-.unsubscribe-button,
-.auto-harvest-button,
-.manual-harvest-button {
+.unsubscribe-button {
   background-color: $white;
   border-radius: 5px;
   border: 1px solid $green;
@@ -78,43 +69,23 @@
   display: inline-block;
   font-size: $smaller_size;
   height: 30px;
-  margin: 0px 0px 0px 10px;
   padding: 0px 15px;
   text-align: center;
   width: 140px
 }
 
-.auto-harvest-button,
-.manual-harvest-button {
-  width: 120px
-}
-
-.auto-harvest-button {
-  border-color: $grey;
-  color: $grey
-}
-
-.auto-harvest-button:hover {
-  border-color: $green;
-  color: $green
-}
-
-.unsubscribe-button:hover,
-.manual-harvest-button:hover {
+.unsubscribe-button:hover {
   border-color: $red;
   color: $red
 }
 
 .subscribe-button {
   background-color: $green;
-  color: $white;
-  margin-left: 140px
+  color: $white
 }
 
 .subscribe-button img,
-.unsubscribe-button img,
-.auto-harvest-button img,
-.manual-harvest-button img {
+.unsubscribe-button img {
   display: inline-block;
   height: 14px;
   vertical-align: bottom
@@ -151,14 +122,6 @@
   .plant-tree-subtitle {
     font-weight: 300
   }
-  .auto-harvest-button,
-  .manual-harvest-button,
-  .unsubscribe-button {
-    margin: 0px 5px 0px 0px
-  }
-  .subscribe-button {
-    margin-left: 125px
-  }
 }
 
 @media screen and (max-width: 350px) {
@@ -167,22 +130,12 @@
     font-weight: 700
   }
   .subscribe-button,
-  .unsubscribe-button,
-  .auto-harvest-button,
-  .manual-harvest-button {
+  .unsubscribe-button {
     font-size: $smallest_size;
-    margin: 0px 5px 0px 0px;
     padding: 0px 10px
-  }
-  .auto-harvest-button,
-  .manual-harvest-button {
-    width: 95px
   }
   .subscribe-button,
   .unsubscribe-button {
     width: 115px
-  }
-  .subscribe-button {
-    margin-left: 100px
   }
 }
