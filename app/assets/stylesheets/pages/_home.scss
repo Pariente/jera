@@ -139,18 +139,37 @@ p {
 /* --- BACK --- */
 
 .back {
-  box-sizing: border-box;
-  margin-bottom: 15px;
-  padding: 0px 0px 10px 10px;
-  width: 100%
+  color: $white;
+  display: flex;
+  flex-wrap: wrap;
+  height: 60px;
+  justify-content: center;
+  margin: 0px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 200
 }
 
 .back img {
-  vertical-align: baseline
+  padding-right: 10px
 }
 
-.back a {
-  color: $green
+.back a,
+.back a:hover,
+.back a:active,
+.back a:visited {
+  align-items: center;
+  background-color: $green;
+  border-radius: 0px 0px 5px 5px;
+  box-sizing: border-box;
+  color: $white;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: flex-start;
+  max-width: 600px;
+  padding-left: 20px
 }
 
 .chevron {

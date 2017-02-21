@@ -1,10 +1,10 @@
 <% title "Plant a tree" %>
+<div class="back">
+  <%= link_to garden_path do %>
+    <%= image_tag('chevron_left.svg', class: 'chevron') %> Garden
+  <% end %>
+</div>
 <div class="garden-flex">
-  <div class="back">
-    <%= link_to garden_path do %>
-      <%= image_tag('chevron_left.svg', class: 'chevron') %> Back to Garden
-    <% end %>
-  </div>
   <%= render "shared/searchbar" %>
   <div class="sub-menu">
     <div class="sub-menu-item active">
@@ -23,4 +23,3 @@
     <%= render partial: 'shared/tree', locals: {sub: sub, source: source} %>
   <% end %>
 </div>
-<%= render partial: 'shared/navbar' %>

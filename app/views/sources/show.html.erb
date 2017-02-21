@@ -1,6 +1,5 @@
 <% title @source.name %>
 <div class="content-flex">
-  <%= render 'shared/back' %>
   <% sub = @source.in_garden_of_user(current_user) %>
   <%= render partial: 'shared/tree', locals: {sub: sub, source: @source} %>
   <% @harvest.each do |e| %>
@@ -23,5 +22,4 @@
     </div>
   <% end %>
 </div>
-
-<%= render partial: 'shared/navbar' %>
+<%= render 'shared/back' %>
