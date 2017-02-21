@@ -8,22 +8,18 @@
     <%= link_to source_path(source) do %>
       <%= truncate(source.name, length: 50) %>
     <% end %>
-    <div class="tree-footer">
-      <% if sub == nil %>
-        <%= link_to new_source_subscription_path(source), remote: :true do %>
-          <button class="subscribe-button">
-            <%= image_tag('garden_white.svg') %>
-            <span>Add to garden</span>
-          </button>
-        <% end %>
-      <% else %>
-        <%= link_to source_subscription_path(source, sub), method: :delete, remote: :true do %>
-          <button class="unsubscribe-button">
-            <%= image_tag('garden_coloured.svg') %>
-            <span>In your garden</span>
-          </button>
-        <% end %>
+    <% if sub == nil %>
+      <%= link_to new_source_subscription_path(source), remote: :true do %>
+        <button class="subscribe-button">
+          <%= image_tag('white_plus.svg') %>
+        </button>
       <% end %>
-    </div>
+    <% else %>
+      <%= link_to source_subscription_path(source, sub), method: :delete, remote: :true do %>
+        <button class="unsubscribe-button">
+          <%= image_tag('red_cross.svg') %>
+        </button>
+      <% end %>
+    <% end %>
   </div>
 </div>

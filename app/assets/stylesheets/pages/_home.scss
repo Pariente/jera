@@ -100,6 +100,12 @@ header > h1 {
   }
 }
 
+@media screen and (max-width: 350px) {
+  .navbar a {
+    font-size: $normal_size
+  }
+}
+
 /* --- ANCHORS --- */
 
 a,
