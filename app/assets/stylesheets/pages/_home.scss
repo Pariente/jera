@@ -17,6 +17,30 @@ h3 {
   text-align: center
 }
 
+/* --- REDBAR --- */
+
+.redbar {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  width: 100%
+}
+
+.redbar span {
+  color: $red;
+  flex-shrink: 0;
+  font-size: $small_size;
+  padding-right: 10px
+}
+
+hr {
+  background-color: $red;
+  border: 0px;
+  height: 1px;
+  margin: 0px;
+  width: 100%
+}
+
 /* --- HEADER --- */
 
 header {

@@ -1,5 +1,6 @@
 <% title "Garden" %>
 <div class="garden-flex">
+  <%= render partial: 'shared/profile', locals: {user: current_user} %>
   <div class="plant-tree">
     <%= link_to trees_latest_path do %>
       <div class="plant-tree-pic">

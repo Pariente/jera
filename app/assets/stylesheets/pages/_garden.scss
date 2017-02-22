@@ -9,12 +9,18 @@
 }
 
 .tree,
-.plant-tree {
+.plant-tree,
+.profile {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   margin-top: 25px;
   margin-bottom: 0px;
+}
+
+.profile {
+  margin-bottom: 20px;
+  margin-top: 0px
 }
 
 .plant-tree {
@@ -41,10 +47,6 @@
   flex-direction: row
 }
 
-.plant-tree-text {
-
-}
-
 .plant-tree p {
   font-size: $normal_size;
   line-height: 18px;
@@ -65,13 +67,15 @@
   margin: auto
 }
 
-.tree-pic {
+.tree-pic,
+.profile-pic {
   border-radius: 5px;
   height: 60px;
   width: 60px
 }
 
-.tree-name {
+.tree-name,
+.profile-name {
   align-items: flex-start;
   display: flex;
   font-size: $normal_size;
@@ -79,6 +83,21 @@
   padding-left: 10px;
   text-align: left;
   width: 100%
+}
+
+.profile-name {
+  flex-direction: column;
+  font-size: $base-size;
+}
+
+.edit-profile-button {
+  background-color: $white;
+  border: 1px solid $grey;
+  border-radius: 5px;
+  color: $grey;
+  cursor: pointer;
+  font-size: $small_size;
+  padding: 5px 10px
 }
 
 .subscribe-button,
@@ -115,14 +134,9 @@
 }
 
 @media screen and (max-width: 450px) {
-  .tree {
-    display: flex;
-    padding-left: 10px;
-    width: 90%
-  }
-  .plant-tree {
-    margin: auto;
-    width: 90%
+  .garden-flex {
+    padding-left: 5px;
+    padding-right: 5px
   }
 }
 
@@ -137,14 +151,14 @@
   .plant-tree-subtitle {
     font-weight: 300
   }
-  .plant-tree {
-    padding: 10px
-  }
 }
 
 @media screen and (max-width: 350px) {
   .tree-name {
     font-size: $small_size;
     font-weight: 700
+  }
+  .plant-tree p {
+    font-size: $small_size
   }
 }
