@@ -107,6 +107,10 @@
     padding-right: 0px;
   }
   .source_search_submit {
-    font-size: $small_size
+    font-size: $small_size;
+    padding: 0px 10px
+  }
+  .source_search_input {
+    padding: 0px 5px
   }
 }

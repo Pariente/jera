@@ -185,6 +185,13 @@ p {
   }
 }
 
+@media screen and (max-width: 600px) {
+  .back a:first-of-type,
+  .back a:last-of-type {
+    border-radius: 0px
+  }
+}
+
 /* --- SUB MENU --- */
 
 .sub-menu {

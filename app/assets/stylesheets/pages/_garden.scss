@@ -18,26 +18,49 @@
 }
 
 .plant-tree {
-  border: 2px solid $green;
+  border: 1px solid $green;
   border-radius: 5px;
   padding: 15px
 }
 
+.plant-tree-pic {
+  background-color: $green;
+  border-radius: 5px;
+  display: flex;
+  height: 60px;
+  width: 60px
+}
+
+.plant-tree img {
+  height: 24px;
+  margin: auto
+}
+
+.plant-tree a {
+  display: flex;
+  flex-direction: row
+}
+
+.plant-tree-text {
+
+}
+
+.plant-tree p {
+  font-size: $normal_size;
+  line-height: 18px;
+  text-align: left
+}
+
 .plant-tree-title {
   font-weight: 700;
-  line-height: 20px;
-  margin-bottom: 5px
+  margin: 0px 0px 5px 10px
 }
 
 .plant-tree-subtitle {
-  font-size: $small_size;
-  line-height: 20px;
-  margin-bottom: 0px;
-  max-width: 280px
+  margin: 0px 0px 0px 10px;
 }
 
-.tree img,
-.plant-tree img {
+.tree img {
   display: block;
   margin: auto
 }
@@ -94,8 +117,12 @@
 @media screen and (max-width: 450px) {
   .tree {
     display: flex;
-    width: 90%;
-    padding-left: 10px
+    padding-left: 10px;
+    width: 90%
+  }
+  .plant-tree {
+    margin: auto;
+    width: 90%
   }
 }
 
@@ -110,15 +137,14 @@
   .plant-tree-subtitle {
     font-weight: 300
   }
+  .plant-tree {
+    padding: 10px
+  }
 }
 
 @media screen and (max-width: 350px) {
   .tree-name {
     font-size: $small_size;
     font-weight: 700
-  }
-  .subscribe-button,
-  .unsubscribe-button {
-    font-size: $smallest_size
   }
 }
