@@ -20,7 +20,9 @@ class PagesController < ApplicationController
     sources.each do |s|
       # ADDING ENTRIES FROM LAST MONTH
       Source.entries_since(s, 1.week.ago).each do |e|
-        @fresh.push(e)
+        unless e.is_masked_by_user?(current_user)
+          @fresh.push(e)
+        end
       end
 
       # SETTING NEW ENTRIES TO ZERO FOR AUTO-HARVESTED SOURCES

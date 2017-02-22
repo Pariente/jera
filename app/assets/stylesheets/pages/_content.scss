@@ -109,33 +109,52 @@
 // }
 
 .fruit-footer {
+  border-top: 1px solid $light_grey;
   display: flex;
-  justify-content: flex-end
+  justify-content: space-around;
+  margin-top: 20px
 }
 
-.apple {
-  height: 12px
-}
-
-.pick-entry,
-.picked-entry {
-  background-color: $white;
-  border: 0px;
-  cursor: pointer;
-  font-size: $smaller_size;
-  font-weight: 900;
-  margin: 0px 20px 15px 0px;
-  text-align: center;
-  width: 120px;
-}
-
-.pick-entry {
+.fruit-footer a {
   color: $grey;
+  flex-grow: 1;
+  font-size: $normal_size;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  text-align: center
 }
 
-.pick-entry:hover {
-  color: $red;
-  text-decoration: underline;
+.fruit-footer .mask {
+  border-right: 1px solid $light_grey
+}
+
+.fruit-footer .harvest {
+  color: $green
+}
+
+.fruit-footer .harvested {
+  background-color: $green;
+  color: $white
+}
+
+.content-masked {
+  align-items: center;
+  border: 1px solid $light_grey;
+  border-radius: 5px;
+  color: $grey;
+  display: flex;
+  flex-direction: column;
+  font-size: $normal_size;
+  line-height: 25px;
+  margin: 20px 0px 0px 10px;
+  padding: 15px 0px
+}
+
+.content-masked a {
+  color: $grey;
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: underline
 }
 
 @media screen and (max-width: 400px) {
