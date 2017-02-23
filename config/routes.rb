@@ -15,10 +15,11 @@ Rails.application.routes.draw do
 
   root to: 'pages#fresh'
   get 'garden' => 'pages#garden'
-  get 'pickings' => 'pickings#index'
+  get 'harvests' => 'pages#harvests'
+  get 'harvest/:date' => 'pages#harvest', as: :harvest
   get 'trees/top' => 'sources#top'
   get 'trees/latest' => 'sources#latest'
-  get 'search_sources' => "sources#results"
+  get 'search_sources' => 'sources#results'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -39,8 +39,27 @@
             Unmask
           <% end %>
         </div>
+        <div class="content-harvested hidden">
+          <span>You have harvested this content.</span>
+          <%= link_to new_entry_picking_path(e), class: 'cancel-harvest', remote: :true do %>
+            Remove from harvest
+          <% end %>
+        </div>
       </div>
     <% end %>
+  <% end %>
+</div>
+<div class="go-to-harvest">
+  <%= link_to harvest_path(Date.today) do %>
+    <div class="column">
+      <p>Today's harvest</p>
+      <div class="row">
+        <span class="normal-size harvest-count">0</span><p class="normal-size">&nbsp;added</p>
+      </div>
+    </div>
+    <div class="column">
+      <%= image_tag('chevron_right.svg', class: 'chevron') %>
+    </div>
   <% end %>
 </div>
 <%= render partial: 'shared/navbar' %>

@@ -25,8 +25,4 @@ class PickingsController < ApplicationController
     e = Entry.find(params[:entry_id])
     ActionController::Base.new.expire_fragment(%r{entry-#{e.id}/*})
   end
-
-  def index
-    @pickings = current_user.pickings.sort_by {|picking| picking.created_at}.reverse
-  end
 end

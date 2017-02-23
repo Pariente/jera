@@ -1,0 +1,126 @@
+.harvest-pack {
+  border: 1px solid $light_grey;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: 25px;
+  margin-bottom: 0px;
+  padding: 10px;
+}
+
+.harvest-picture {
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:center;
+  overflow: hidden;
+  width: 160px
+}
+
+.harvest-miniature {
+  max-height: 50px;
+  max-width: 80px;
+  overflow: hidden
+}
+
+.harvest-miniature.one {
+  max-height: 100px;
+  max-width: 160px
+}
+
+.harvest-miniature.one img {
+  min-height: 100px;
+  max-width: 160px
+}
+
+.harvest-miniature.two {
+  max-height: 100px;
+  max-width: 80px
+}
+
+.harvest-miniature.two img {
+  min-height: 100px;
+  max-width: 80px
+}
+
+.harvest-miniature img {
+  min-height: 50px;
+  max-width: 80px
+}
+
+.harvest-text {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px
+}
+
+.harvest-date {
+  margin: 0px;
+  margin-bottom: 10px;
+  padding: 0px;
+  font-weight: 700
+}
+
+.harvest-contents {
+  font-size: $normal_size;
+  margin: 0px;
+  padding-left: 10px
+}
+
+.go-to-harvest {
+  align-items: center;
+  background-color: $green;
+  border-radius: 5px;
+  display: flex;
+  height: 60px;
+  padding-right: 15px;
+  position: fixed;
+  bottom: -60px;
+  right: 100px;
+  width: 250px;
+  z-index: 200
+}
+
+.go-to-harvest a {
+  align-items: center;
+  color: $white;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: flex-end
+}
+
+.go-to-harvest .chevron {
+  height: 30px;
+  margin-left: 20px
+}
+
+.go-to-harvest a div {
+  align-items: flex-end
+}
+
+.go-to-harvest a p {
+  padding: 0px;
+  margin: 0px;
+}
+
+@media screen and (max-width: 1000px) {
+  .go-to-harvest {
+    right: 20px
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .go-to-harvest {
+    border-radius: 0px;
+    bottom: 0px;
+    right: inherit;
+    width: 100%
+  }
+  .go-to-harvest a {
+    padding-right: 20px
+  }
+}

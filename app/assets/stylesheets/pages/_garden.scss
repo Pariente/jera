@@ -14,8 +14,8 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  margin-top: 25px;
-  margin-bottom: 0px;
+  margin-top: 0px;
+  margin-bottom: 25px;
 }
 
 .profile {
@@ -26,7 +26,7 @@
 .plant-tree {
   border: 1px solid $green;
   border-radius: 5px;
-  margin-top: 10px;
+  margin-top: 0px;
   padding: 15px
 }
 

@@ -1,8 +1,10 @@
 <div class="fruit-footer">
   <% if entry.is_picked_by_user?(current_user) %>
-    <a class="harvested">
+    <% picking = entry.picked_by_user(current_user) %>
+    <% date = picking.created_at.to_date %>
+    <%= link_to harvest_path(date: date), class: 'harvested' do %>
       Harvested
-    </a>
+    <% end %>
   <% else %>
     <a class="harvested hidden">
       Harvested

@@ -44,53 +44,45 @@
 <body>
   <%= yield %>
   <script>
-    // PICK
+    // MASK
     $(".mask").unbind('click').bind('click', function(evt) {
       $(this).parents('.content').find('.content-left-column').addClass('hidden');
       $(this).parents('.content').find('.content-right-column').addClass('hidden');
       $(this).parents('.content').find('.content-masked').removeClass('hidden');
     });
-
     $(".unmask").unbind('click').bind('click', function(evt) {
       $(this).parents('.content').find('.content-left-column').removeClass('hidden');
       $(this).parents('.content').find('.content-right-column').removeClass('hidden');
       $(this).parents('.content-masked').addClass('hidden');
     });
 
+    // HARVEST
     $(".harvest").unbind('click').bind('click', function(evt) {
-
-      $(this).addClass('hidden');
-      $(this).siblings('.mask').addClass('hidden');
-      $(this).siblings('.harvested').removeClass('hidden');
-      // var old_count = $(this).attr("data-count");
-
-      // if ($(this).find("img.coloured").hasClass("hidden")) {
-      //   $(this).find("img.coloured").removeClass("hidden");
-      //   $(this).find("img.greyed").addClass("hidden");
-      //   $(this).find("span.picking-word").addClass("red");
-      //   $(this).find("span.count").addClass("red");
-      //   var new_count = parseInt(old_count, 10) + 1;
-      // } else {
-      //   $(this).find("img.coloured").addClass("hidden");
-      //   $(this).find("img.greyed").removeClass("hidden");
-      //   $(this).find("span.picking-word").removeClass("red");
-      //   $(this).find("span.count").removeClass("red");
-      //   var new_count = parseInt(old_count, 10) - 1;
-      // }
-
-      // $(this).attr("data-count", new_count);
-      // $(this).find("span.count").html(new_count);
-
-
-      // if (new_count == "1") {
-      //   $(this).find('span.picking-word').html("picking");
-      // } else {
-      //   $(this).find('span.picking-word').html("pickings");
-      // }
-
+      $(this).parents('.content').find('.content-left-column').addClass('hidden');
+      $(this).parents('.content').find('.content-right-column').addClass('hidden');
+      $(this).parents('.content').find('.content-harvested').removeClass('hidden');
+      if (parseInt($('.harvest-count').html(), 10) == 0) {
+        $('.go-to-harvest').animate({ bottom: "+=80px" }, 1000 );
+        $('.navbar').animate({ top: "-=60px" }, 1000 );
+      }
+      $('.harvest-count').html(parseInt($('.harvest-count').html(), 10)+1)
     });
 
-    
+    $(".cancel-harvest").unbind('click').bind('click', function(evt) {
+      $(this).parents('.content').find('.content-left-column').removeClass('hidden');
+      $(this).parents('.content').find('.content-right-column').removeClass('hidden');
+      $(this).parents('.content').find('.content-harvested').addClass('hidden');
+      $('.harvest-count').html(parseInt($('.harvest-count').html(), 10)-1)
+      if (parseInt($('.harvest-count').html(), 10) == 0) {
+        $('.go-to-harvest').animate({ bottom: "-=80px" }, 1000 );
+        $('.navbar').animate({ top: "+=60px" }, 1000 );
+      }
+    });
+
+    // UNHARVEST
+    $(".unharvest").unbind('click').bind('click', function(evt) {
+      $(this).parents('.content').addClass('hidden');
+    });
 
     // SUBSCRIBE
 
