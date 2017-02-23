@@ -1,25 +1,25 @@
 Rails.application.routes.draw do
 
-  resources :sources do
-    resources :subscriptions do
-      put 'toggle_auto_harvest' => 'subscriptions#toggle_auto_harvest'
-    end
+  resources :sources, except: [:destroy, :edit] do
+    resources :subscriptions
   end
 
   resources :entries do
     resources :pickings
+    resources :maskings
   end
 
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
 
-  root to: 'pages#harvest'
+  root to: 'pages#fresh'
   get 'garden' => 'pages#garden'
-  get 'pickings' => 'pickings#index'
+  get 'harvests' => 'pages#harvests'
+  get 'harvest/:date' => 'pages#harvest', as: :harvest
   get 'trees/top' => 'sources#top'
   get 'trees/latest' => 'sources#latest'
-  get 'search_sources' => "sources#results"
+  get 'search_sources' => 'sources#results'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

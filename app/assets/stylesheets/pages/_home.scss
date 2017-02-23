@@ -17,6 +17,31 @@ h3 {
   text-align: center
 }
 
+/* --- REDBAR --- */
+
+hr {
+  background-color: $red;
+  border: 0px;
+  height: 1px;
+  margin: 0px;
+  width: 100%
+}
+
+.redbar {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  width: 100%
+}
+
+.redbar span {
+  color: $red;
+  flex-shrink: 0;
+  font-size: $small_size;
+  padding-right: 10px
+}
+
 /* --- HEADER --- */
 
 header {
@@ -39,48 +64,71 @@ header > h1 {
   top: -7px
 }
 
-/* --- FOOTER --- */
+/* --- NAVBAR --- */
 
-.footer {
-  background-color: $green;
-  border-top: 3px solid $white;
+.navbar {
   color: $white;
   display: flex;
   flex-wrap: wrap;
-  margin: 0px;
-  width: 100%;
-  position: fixed;
-  bottom: 0px;
   height: 60px;
+  justify-content: center;
+  margin: 0px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
   z-index: 200
 }
 
-.footer a,
-.footer a:hover,
-.footer a:active,
-.footer a:visited {
+.navbar a,
+.navbar a:hover,
+.navbar a:active,
+.navbar a:visited {
+  background-color: $green;
+  border-top: 3px solid $green;
   color: $white;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  font-size: $small_size
+  justify-content: center;
+  max-width: 200px;
 }
 
-.footer a.active {
-  border-bottom: 3px solid;
-  border-color: $white
+.navbar a:first-of-type {
+  border-radius: 0px 0px 0px 5px
 }
 
-.footer a img {
-  height: 30px;
-  margin-top: 5px
+.navbar a:last-of-type {
+  border-radius: 0px 0px 5px 0px
 }
 
-.footer a p {
+.navbar a.active {
+  border-color: $white;
+}
+
+.navbar a p {
   margin: 0px;
+  max-width: inherit;
+  opacity: 0.6;
   padding: 0px;
   text-align: center;
   width: 100%
+}
+
+.navbar a.active p {
+  opacity: 1
+}
+
+@media screen and (max-width: 600px) {
+  .navbar a:first-of-type,
+  .navbar a:last-of-type {
+    border-radius: 0px
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .navbar a {
+    font-size: $normal_size
+  }
 }
 
 /* --- ANCHORS --- */
@@ -116,18 +164,37 @@ p {
 /* --- BACK --- */
 
 .back {
-  box-sizing: border-box;
-  margin-bottom: 15px;
-  padding: 0px 0px 10px 10px;
-  width: 100%
+  color: $white;
+  display: flex;
+  flex-wrap: wrap;
+  height: 60px;
+  justify-content: center;
+  margin: 0px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 200
 }
 
 .back img {
-  vertical-align: baseline
+  padding-right: 10px
 }
 
-.back a {
-  color: $green
+.back a,
+.back a:hover,
+.back a:active,
+.back a:visited {
+  align-items: center;
+  background-color: $green;
+  border-radius: 0px 0px 5px 5px;
+  box-sizing: border-box;
+  color: $white;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: flex-start;
+  max-width: 600px;
+  padding-left: 20px
 }
 
 .chevron {
@@ -140,6 +207,13 @@ p {
   }
   .chevron{
     height: 14px
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .back a:first-of-type,
+  .back a:last-of-type {
+    border-radius: 0px
   }
 }
 
@@ -180,7 +254,7 @@ p {
 }
 
 .hidden {
-  display: none
+  display: none !important
 }
 
 .green {
@@ -199,10 +273,24 @@ p {
   font-weight: 700
 }
 
+.normal-size {
+  font-size: $normal_size
+}
+
 .underlined {
   text-decoration: underline
 }
 
 .right {
   float: right
+}
+
+.column {
+  display: flex;
+  flex-direction: column
+}
+
+.row {
+  display: flex;
+  flex-direction: row
 }

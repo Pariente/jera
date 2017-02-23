@@ -23,7 +23,7 @@
   <%= csrf_meta_tags %>
   <meta property="og:title" content="Jera - Trees of Knowledge">
   <meta property="og:url" content="http://www.jerapp.com/">
-  <meta property="og:description" content="Your time is your most precious treasure. Keep learning and growing in an environment that respects it.">
+  <meta property="og:description" content="Your time is your most precious treasure. Keep learning and growing in an environment that respects you.">
   <meta property="og:image" content="http://www.jerapp.com/images/jera_facebook_og_image.png">
   <meta property="og:locale" content="en_US">
   <meta property="fb:admins" content="658929354279853">
@@ -42,6 +42,65 @@
   </script>
 </head>
 <body>
-<%= yield %>
+  <%= yield %>
+  <script>
+    // MASK
+    $(".mask").unbind('click').bind('click', function(evt) {
+      $(this).parents('.content').find('.content-left-column').addClass('hidden');
+      $(this).parents('.content').find('.content-right-column').addClass('hidden');
+      $(this).parents('.content').find('.content-masked').removeClass('hidden');
+    });
+    $(".unmask").unbind('click').bind('click', function(evt) {
+      $(this).parents('.content').find('.content-left-column').removeClass('hidden');
+      $(this).parents('.content').find('.content-right-column').removeClass('hidden');
+      $(this).parents('.content-masked').addClass('hidden');
+    });
+
+    // HARVEST
+    $(".harvest").unbind('click').bind('click', function(evt) {
+      $(this).parents('.content').find('.content-left-column').addClass('hidden');
+      $(this).parents('.content').find('.content-right-column').addClass('hidden');
+      $(this).parents('.content').find('.content-harvested').removeClass('hidden');
+      if (parseInt($('.harvest-count').html(), 10) == 0) {
+        $('.go-to-harvest').animate({ bottom: "+=80px" }, 1000 );
+        $('.navbar').animate({ top: "-=60px" }, 1000 );
+      }
+      $('.harvest-count').html(parseInt($('.harvest-count').html(), 10)+1)
+    });
+
+    $(".cancel-harvest").unbind('click').bind('click', function(evt) {
+      $(this).parents('.content').find('.content-left-column').removeClass('hidden');
+      $(this).parents('.content').find('.content-right-column').removeClass('hidden');
+      $(this).parents('.content').find('.content-harvested').addClass('hidden');
+      $('.harvest-count').html(parseInt($('.harvest-count').html(), 10)-1)
+      if (parseInt($('.harvest-count').html(), 10) == 0) {
+        $('.go-to-harvest').animate({ bottom: "-=80px" }, 1000 );
+        $('.navbar').animate({ top: "+=60px" }, 1000 );
+      }
+    });
+
+    // UNHARVEST
+    $(".unharvest").unbind('click').bind('click', function(evt) {
+      $(this).parents('.content').addClass('hidden');
+    });
+
+    // SUBSCRIBE
+
+    $(".subscribe-button").click(function() {
+      location.reload();
+    });
+
+    $(".subscribe-button").children().click(function() {
+      location.reload();
+    });
+
+    $(".unsubscribe-button").click(function() {
+      location.reload();
+    });
+
+    $(".unsubscribe-button").children().click(function() {
+      location.reload();
+    });
+  </script>
 </body>
 </html>

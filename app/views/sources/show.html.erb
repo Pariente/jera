@@ -1,6 +1,5 @@
 <% title @source.name %>
 <div class="content-flex">
-  <%= render 'shared/back' %>
   <% sub = @source.in_garden_of_user(current_user) %>
   <%= render partial: 'shared/tree', locals: {sub: sub, source: @source} %>
   <% @harvest.each do |e| %>
@@ -9,19 +8,24 @@
         <div class="content-top">
           <div class="time-published source-show"><%= distance_of_time_in_words(e.published_date.to_time, Time.now) %> ago</div>
         </div>
-        <%= link_to e.media_url, target: :blank, class: 'content-anchor' do %>
-          <div class="content-box">
+        <div class="content-box">
+          <%= link_to e.media_url, target: :blank, class: 'content-anchor' do %>
             <% unless e.thumbnail_url == "" %>
               <%= image_tag(e.thumbnail_url, class: 'content-thumbnail source-show') %>
             <% end %>
             <p class="content-title source-show"><%= e.title %></p>
-            <p class="content-desc"><%= truncate(e.content, length: 200) %></p>
-            <%= render partial: 'shared/fruit_footer', locals: {entry: e} %>
-          </div>
+          <% end %>
+          <p class="content-desc"><%= truncate(e.content, length: 200) %></p>
+          <%= render partial: 'shared/fruit_footer', locals: {entry: e} %>
+        </div>
+      </div>
+      <div class="content-masked hidden">
+        <span>You won’t see this content again.</span>
+        <%= link_to new_entry_masking_path(e), class: 'unmask', remote: :true do %>
+          Unmask
         <% end %>
       </div>
     </div>
   <% end %>
 </div>
-
-<%= render partial: 'shared/footer' %>
+<%= render 'shared/back' %>

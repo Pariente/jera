@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: column;
   margin: auto;
-  margin-bottom: 60px;
-  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-top: 80px;
   max-width: 400px
 }
 
 .content {
-  margin: 11px 10px 20px 0px;
+  margin: 0px 10px 30px 0px;
   max-width: 400px;
   min-width: 280px
 }
@@ -108,34 +108,81 @@
 //   text-align: center
 // }
 
-.fruit-footer {
-  display: flex;
-  justify-content: flex-end
+.picking-footer {
+  display:flex;
+  justify-content: flex-end;
+  padding: 0px 20px 10px 0px;
 }
 
-.apple {
-  height: 12px
-}
-
-.pick-entry,
-.picked-entry {
-  background-color: $white;
-  border: 0px;
-  cursor: pointer;
-  font-size: $smaller_size;
-  font-weight: 900;
-  margin: 0px 20px 15px 0px;
-  text-align: center;
-  width: 120px;
-}
-
-.pick-entry {
-  color: $grey;
-}
-
-.pick-entry:hover {
+.picking-footer a {
   color: $red;
-  text-decoration: underline;
+  cursor: pointer;
+  font-size: $small_size;
+  font-weight: 700
+}
+
+.picking-footer a:hover {
+  text-decoration: underline
+}
+
+.fruit-footer {
+  border-top: 1px solid $light_grey;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px
+}
+
+.fruit-footer a {
+  color: $grey;
+  flex-grow: 1;
+  font-size: $normal_size;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  text-align: center
+}
+
+.fruit-footer .mask {
+  border-right: 1px solid $light_grey
+}
+
+.fruit-footer .harvest {
+  color: $green
+}
+
+.fruit-footer .harvested {
+  background-color: $green;
+  color: $white
+}
+
+.content-masked,
+.content-harvested {
+  align-items: center;
+  border: 1px solid $light_grey;
+  border-radius: 5px;
+  color: $grey;
+  display: flex;
+  flex-direction: column;
+  font-size: $normal_size;
+  line-height: 25px;
+  margin: 20px 0px 0px 10px;
+  padding: 15px 0px
+}
+
+.content-masked a,
+.content-harvested a {
+  color: $grey;
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: underline
+}
+
+.content-harvested {
+  border-color: $green;
+  color: $green
+}
+
+.content-harvested a {
+  color: $green
 }
 
 @media screen and (max-width: 400px) {

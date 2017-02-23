@@ -1,52 +1,44 @@
-<% title "Harvest" %>
+<% if @date == "today" %>
+  <% title "Today's Harvest" %>
+<% elsif @date == "yesterday" %>
+  <% title "Yesterday's Harvest" %>
+<% else %>
+  <% title "Harvest of #{@date}" %>
+<% end %>
+<%= render partial: 'shared/back' %>
 <div class="content-flex">
-  <div class="sub-menu">
-    <div class="sub-menu-item active">
-      <%= link_to root_path do %>
-        Last 7 days
-      <% end %>
-    </div>
-    <div class="sub-menu-item">
-      <%= link_to pickings_path do %>
-        Pickings
-      <% end %>
-    </div>
-  </div>
-  <% if @harvest == [] %>
-    <br><br>
-    <h1>This is where the freshest fruits are delivered to you. :)</h1>
-    <%= link_to trees_top_path do %>
-      <p class="center green underlined">Plant some trees to get a good harvest</p>
-    <% end %>
+  <% if @date == "today" %>
+    <%= render partial: 'shared/redbar', locals: {title: "TODAY'S HARVEST"} %>
+  <% elsif @date == "yesterday" %>
+    <%= render partial: 'shared/redbar', locals: {title: "YESTERDAY'S HARVEST"} %>
+  <% else %>
+    <%= render partial: 'shared/redbar', locals: {title: "HARVEST - " + @date} %>
   <% end %>
-  <% @harvest.each do |e| %>
-    <% cache "entry-#{e.id}" do %>
-      <div class="content">
-        <div class="content-left-column">
-          <%= link_to source_path(e.source) do %>
-            <%= image_tag(e.source.picture, class: 'source-pic') %>
-          <% end %>
+  <% @entries.each do |e| %>
+    <div class="content">
+      <div class="content-left-column">
+        <%= link_to source_path(e.source) do %>
+          <%= image_tag(e.source.picture, class: 'source-pic') %>
+        <% end %>
+      </div>
+      <div class="content-right-column">
+        <div class="content-top">
+          <div class="source-title">
+              <%= link_to source_path(e.source) do %>
+                <%= truncate(e.source.name, length: 30) %>
+              <% end %>
+          </div>
+          <div class="time-published"><%= distance_of_time_in_words(e.published_date.to_time, Time.now) %> ago</div>
         </div>
-        <div class="content-right-column">
-          <div class="content-top">
-            <div class="source-title">
-                <%= link_to source_path(e.source) do %>
-                  <%= truncate(e.source.name, length: 30) %>
-                <% end %>
-            </div>
-            <div class="time-published"><%= distance_of_time_in_words(e.published_date.to_time, Time.now) %> ago</div>
-          </div>
-          <div class="content-box">
-            <%= link_to e.media_url, target: :blank, class: 'content-anchor' do %>
-              <%= image_tag(e.thumbnail_url, class: 'content-thumbnail') %>
-              <p class="content-title"><%= e.title %></p>
-            <% end %>
-            <p class="content-desc"><%= truncate(e.content, length: 200) %></p>
-            <%= render partial: 'shared/fruit_footer', locals: {entry: e} %>
-          </div>
+        <div class="content-box">
+          <%= link_to e.media_url, target: :blank, class: 'content-anchor' do %>
+            <%= image_tag(e.thumbnail_url, class: 'content-thumbnail') %>
+            <p class="content-title"><%= e.title %></p>
+          <% end %>
+          <p class="content-desc"><%= truncate(e.content, length: 200) %></p>
+          <%= render partial: 'shared/picking_footer', locals: {entry: e} %>
         </div>
       </div>
-    <% end %>
+    </div>
   <% end %>
 </div>
-<%= render partial: 'shared/footer' %>

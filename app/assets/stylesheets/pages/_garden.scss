@@ -2,120 +2,122 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
   margin: auto;
-  margin-top: 30px;
-  margin-bottom: 60px;
+  margin-top: 80px;
+  margin-bottom: 30px;
   max-width: 400px;
 }
 
 .tree,
-.plant-tree {
+.plant-tree,
+.profile {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  margin: 10px;
-  margin-bottom: 15px;
+  margin-top: 0px;
+  margin-bottom: 25px;
+}
+
+.profile {
+  margin-bottom: 20px;
+  margin-top: 0px
 }
 
 .plant-tree {
-  border: 2px solid $green;
+  border: 1px solid $green;
   border-radius: 5px;
+  margin-top: 0px;
   padding: 15px
+}
+
+.plant-tree-pic {
+  background-color: $green;
+  border-radius: 5px;
+  display: flex;
+  height: 60px;
+  width: 60px
+}
+
+.plant-tree img {
+  height: 24px;
+  margin: auto
+}
+
+.plant-tree a {
+  display: flex;
+  flex-direction: row
+}
+
+.plant-tree p {
+  font-size: $normal_size;
+  line-height: 18px;
+  text-align: left
 }
 
 .plant-tree-title {
   font-weight: 700;
-  line-height: 20px;
-  margin-bottom: 5px
+  margin: 0px 0px 5px 10px
 }
 
 .plant-tree-subtitle {
-  font-size: $small_size;
-  line-height: 20px;
-  margin-bottom: 0px;
-  max-width: 280px
+  margin: 0px 0px 0px 10px;
 }
 
-.tree a,
-.plant-tree a {
-  display: flex;
-  text-align: center
-}
-
-.tree img,
-.plant-tree img {
+.tree img {
   display: block;
   margin: auto
 }
 
-.tree-pic {
+.tree-pic,
+.profile-pic {
   border-radius: 5px;
   height: 60px;
   width: 60px
 }
 
-.tree-name {
+.tree-name,
+.profile-name {
+  align-items: flex-start;
+  display: flex;
   font-size: $normal_size;
+  justify-content: space-between;
   padding-left: 10px;
   text-align: left;
+  width: 100%
 }
 
-.tree-footer {
-  display: flex
+.profile-name {
+  flex-direction: column;
+  font-size: $base-size;
+}
+
+.edit-profile-button {
+  background-color: $white;
+  border: 1px solid $grey;
+  border-radius: 5px;
+  color: $grey;
+  cursor: pointer;
+  font-size: $small_size;
+  padding: 5px 10px
 }
 
 .subscribe-button,
-.unsubscribe-button,
-.auto-harvest-button,
-.manual-harvest-button {
+.unsubscribe-button {
   background-color: $white;
+  border: 0px;
   border-radius: 5px;
-  border: 1px solid $green;
-  color: $green;
   cursor: pointer;
-  display: inline-block;
-  font-size: $smaller_size;
-  height: 30px;
-  margin: 0px 0px 0px 10px;
-  padding: 0px 15px;
+  height: auto;
+  padding: 5px 15px;
   text-align: center;
-  width: 140px
-}
-
-.auto-harvest-button,
-.manual-harvest-button {
-  width: 120px
-}
-
-.auto-harvest-button {
-  border-color: $grey;
-  color: $grey
-}
-
-.auto-harvest-button:hover {
-  border-color: $green;
-  color: $green
-}
-
-.unsubscribe-button:hover,
-.manual-harvest-button:hover {
-  border-color: $red;
-  color: $red
 }
 
 .subscribe-button {
-  background-color: $green;
-  color: $white;
-  margin-left: 140px
+  background-color: $green
 }
 
 .subscribe-button img,
-.unsubscribe-button img,
-.auto-harvest-button img,
-.manual-harvest-button img {
-  display: inline-block;
+.unsubscribe-button img {
   height: 14px;
   vertical-align: bottom
 }
@@ -133,16 +135,15 @@
 }
 
 @media screen and (max-width: 450px) {
-  .tree {
-    display: flex;
-    width: 90%;
-    padding-left: 10px
+  .garden-flex {
+    padding-left: 5px;
+    padding-right: 5px
   }
 }
 
 @media screen and (max-width: 375px) {
   .tree-name {
-    font-size: 16px
+    font-size: $normal_size
   }
   .plant-tree-title,
   .plant-tree-subtitle {
@@ -151,14 +152,6 @@
   .plant-tree-subtitle {
     font-weight: 300
   }
-  .auto-harvest-button,
-  .manual-harvest-button,
-  .unsubscribe-button {
-    margin: 0px 5px 0px 0px
-  }
-  .subscribe-button {
-    margin-left: 125px
-  }
 }
 
 @media screen and (max-width: 350px) {
@@ -166,23 +159,7 @@
     font-size: $small_size;
     font-weight: 700
   }
-  .subscribe-button,
-  .unsubscribe-button,
-  .auto-harvest-button,
-  .manual-harvest-button {
-    font-size: $smallest_size;
-    margin: 0px 5px 0px 0px;
-    padding: 0px 10px
-  }
-  .auto-harvest-button,
-  .manual-harvest-button {
-    width: 95px
-  }
-  .subscribe-button,
-  .unsubscribe-button {
-    width: 115px
-  }
-  .subscribe-button {
-    margin-left: 100px
+  .plant-tree p {
+    font-size: $small_size
   }
 }

@@ -1,11 +1,12 @@
 <% title "Garden" %>
 <div class="garden-flex">
+  <%= render partial: 'shared/profile', locals: {user: current_user} %>
   <div class="plant-tree">
     <%= link_to trees_latest_path do %>
-      <div>
-        <%= image_tag("add_tree.svg", class: 'tree-pic') %>
+      <div class="plant-tree-pic">
+        <%= image_tag("white_plus.svg", class: 'tree-pic') %>
       </div>
-      <div class="tree-name">
+      <div class="plant-tree-text">
         <p class="plant-tree-title">Plant a new tree</p>
         <p class="plant-tree-subtitle">Find more interesting stuff to harvest from the wild world.</p>
       </div>
@@ -18,4 +19,4 @@
     <% end %>
   <% end %>
 </div>
-<%= render partial: 'shared/footer' %>
+<%= render partial: 'shared/navbar' %>

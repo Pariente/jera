@@ -1,0 +1,16 @@
+<div class="profile">
+  <% if user.picture == nil %>
+    <%= image_tag('logo.png', class: 'profile-pic') %>
+  <% else %>
+    <%= image_tag(user.picture, class: 'profile-pic') %>
+  <% end %>
+  <div class="profile-name">
+    <%= user.username %>
+    <%= link_to edit_user_registration_path do %>
+      <button class="edit-profile-button">
+        Edit profile
+      </button>
+    <% end %>
+  </div>
+</div>
+<%= render partial: 'shared/redbar', locals: {title: 'MY GARDEN'} %>

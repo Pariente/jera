@@ -26,7 +26,9 @@ class SourcesController < ApplicationController
     @harvest = []
 
     Source.entries_since(@source, 1.year.ago).each do |e|
-      @harvest.push(e)
+      unless e.is_masked_by_user?(current_user)
+        @harvest.push(e)
+      end
     end
 
     # SORTING HARVEST BY REVERSE CHRONOLOGICAL ORDER

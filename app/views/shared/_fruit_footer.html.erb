@@ -1,15 +1,19 @@
 <div class="fruit-footer">
-<%= link_to new_entry_picking_path(entry), remote: :true do %>
-  <%= content_tag :button, class: "pick-entry", data: {count: entry.pickings.count} do %>
-    <% if entry.is_picked_by_user?(current_user) %>
-      <%= image_tag('apple_coloured.svg', class: "apple coloured") %>
-      <%= image_tag('apple_greyed.svg', class: "apple greyed hidden") %>
-      <span class="count red"><%= entry.pickings.count %></span> <span class="picking-word red"><%= "picking".pluralize(entry.pickings.count) %></span>
-    <% else %>
-      <%= image_tag('apple_coloured.svg', class: "apple coloured hidden") %>
-      <%= image_tag('apple_greyed.svg', class: "apple greyed") %>
-      <span class="count"><%= entry.pickings.count %></span> <span class="picking-word"><%= "picking".pluralize(entry.pickings.count) %></span>
+  <% if entry.is_picked_by_user?(current_user) %>
+    <% picking = entry.picked_by_user(current_user) %>
+    <% date = picking.created_at.to_date %>
+    <%= link_to harvest_path(date: date), class: 'harvested' do %>
+      Harvested
+    <% end %>
+  <% else %>
+    <a class="harvested hidden">
+      Harvested
+    </a>
+    <%= link_to new_entry_masking_path(entry), class: 'mask', remote: :true do %>
+      Mask
+    <% end %>
+    <%= link_to new_entry_picking_path(entry), class: 'harvest', remote: :true do %>
+      Harvest
     <% end %>
   <% end %>
-<% end %>
 </div>

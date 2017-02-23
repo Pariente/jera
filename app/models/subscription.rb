@@ -2,11 +2,6 @@ class Subscription < ActiveRecord::Base
   belongs_to :user
   belongs_to :source
 
-  def toggle_auto_harvest
-    self.toggle :auto_harvest
-    self.save
-  end
-
   def self.dedupe
     # find all models and group them on keys which should be common
     grouped = all.group_by{|model| [model.user_id,model.source_id] }
