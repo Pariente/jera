@@ -114,6 +114,49 @@
 }
 
 @media screen and (max-width: 450px) {
+  .harvest-pack {
+    margin-left: 10px;
+    margin-right: 10px
+  }
+  .harvest-date {
+    font-size: $normal_size
+  }
+  .harvest-contents {
+    font-size: $small_size;
+    padding: 0px
+  }
+  .harvest-text {
+    justify-content: center;
+    padding: 15px
+  }
+  .harvest-picture {
+    min-width: 120px;
+    width: 120px
+  }
+  .harvest-miniature {
+    max-height: 40px;
+    max-width: 60px;
+    overflow: hidden
+  }
+  .harvest-miniature.one {
+    max-height: 80px;
+    max-width: 120px
+  }
+
+  .harvest-miniature.one img {
+    min-height: 80px;
+    max-width: 120px
+  }
+
+  .harvest-miniature.two {
+    max-height: 80px;
+    max-width: 60px
+  }
+
+  .harvest-miniature.two img {
+    min-height: 80px;
+    max-width: 60px
+  }
   .go-to-harvest {
     border-radius: 0px;
     bottom: 0px;
