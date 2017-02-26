@@ -5,7 +5,11 @@
 <% else %>
   <% title "Harvest of #{@date}" %>
 <% end %>
-<%= render partial: 'shared/back' %>
+<div class="back">
+  <%= link_to harvests_path do %>
+    <%= image_tag('chevron_back.svg', class: 'chevron') %> Harvests
+  <% end %>
+</div>
 <div class="content-flex">
   <% if @date == "today" %>
     <%= render partial: 'shared/redbar', locals: {title: "TODAY'S HARVEST"} %>
