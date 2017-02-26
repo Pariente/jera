@@ -96,21 +96,21 @@
 
     // SUBSCRIBE
 
-    $(".subscribe-button").click(function() {
-      location.reload();
+    $(".subscribe-button").unbind('click').bind('click', function(evt) {
+      $(this).find('.white-plus').addClass('hidden');
+      $(this).find('.red-cross').removeClass('hidden');
+      $(this).addClass('unsubscribe-button');
+      $(this).removeClass('subscribe-button');
     });
 
-    $(".subscribe-button").children().click(function() {
-      location.reload();
+    $(".unsubscribe-button").unbind('click').bind('click', function(evt) {
+      $(this).find('.red-cross').addClass('hidden');
+      $(this).find('.white-plus').removeClass('hidden');
+      $(this).addClass('subscribe-button');
+      $(this).removeClass('unsubscribe-button');
     });
 
-    $(".unsubscribe-button").click(function() {
-      location.reload();
-    });
 
-    $(".unsubscribe-button").children().click(function() {
-      location.reload();
-    });
   </script>
 </body>
 </html>

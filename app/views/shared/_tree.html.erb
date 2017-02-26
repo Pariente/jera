@@ -8,16 +8,16 @@
     <%= link_to source_path(source) do %>
       <%= truncate(source.name, length: 50) %>
     <% end %>
-    <% if sub == nil %>
-      <%= link_to new_source_subscription_path(source), remote: :true do %>
+    <%= link_to new_source_subscription_path(source), remote: :true do %>
+      <% if sub == nil %>
         <button class="subscribe-button">
-          <%= image_tag('white_plus.svg') %>
+          <%= image_tag('white_plus.svg', class: 'white-plus') %>
+          <%= image_tag('red_cross.svg', class: 'red-cross hidden') %>
         </button>
-      <% end %>
-    <% else %>
-      <%= link_to source_subscription_path(source, sub), method: :delete, remote: :true do %>
+      <% else %>
         <button class="unsubscribe-button">
-          <%= image_tag('red_cross.svg') %>
+          <%= image_tag('white_plus.svg', class: 'white-plus hidden') %>
+          <%= image_tag('red_cross.svg', class: 'red-cross') %>
         </button>
       <% end %>
     <% end %>
