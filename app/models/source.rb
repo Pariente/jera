@@ -61,10 +61,12 @@ class Source < ActiveRecord::Base
     end
   end
 
-  private
+  def entries_since(date)
+    Entry.where("source_id = ? AND published_date > ?", self.id, date)
+  end
 
-  def self.entries_since(source, date)
-    Entry.where("source_id = ? AND published_date > ?", source.id, date)
+  def last_entries(number)
+    Entry.where(source_id: self.id).last(number)
   end
 
 end

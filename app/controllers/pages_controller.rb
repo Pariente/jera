@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  before_action :set_last_action_at
 
   require 'feedjira'
   require 'open-uri'
@@ -7,6 +8,7 @@ class PagesController < ApplicationController
 
     # INITIATING HARVEST
     @fresh = []
+    @new = []
 
     # CURRENT USER'S SUBSCRIPTIONS
     subscriptions = current_user.subscriptions.all
@@ -18,23 +20,27 @@ class PagesController < ApplicationController
     end
 
     sources.each do |s|
-      # ADDING ENTRIES FROM LAST MONTH
-      Source.entries_since(s, 1.week.ago).each do |e|
-        unless e.is_masked_by_user?(current_user) || e.is_picked_by_user?(current_user)
-          @fresh.push(e)
-        end
+      since_last_week = s.entries_since(1.week.ago)
+      if since_last_week.length >= 30
+        iterator = s.last_entries(30)
+      else
+        iterator = since_last_week
       end
 
-      # SETTING NEW ENTRIES TO ZERO FOR AUTO-HARVESTED SOURCES
-      # sub = s.subscriptions.where(user: current_user).first
-      # sub.new_entries = 0
-      # sub.last_entry_seen = s.entries.last.id
-      # sub.save
-      
+      iterator.each do |e|
+        if e.is_fresh?(current_user)
+          if e.is_new?(current_user)
+            @new.push(e)
+          else
+            @fresh.push(e)
+          end
+        end
+      end
     end
 
-    # SORTING HARVEST BY REVERSE CHRONOLOGICAL ORDER
-    @fresh = @fresh.sort_by {|entry| entry.published_date}.reverse
+    # SORTING FRESH AND NEW BY REVERSE CHRONOLOGICAL ORDER
+    @fresh = @fresh.sort_by {|entry| entry.created_at}.reverse
+    @new = @new.sort_by {|entry| entry.created_at}.reverse
 
   end
 
@@ -70,6 +76,15 @@ class PagesController < ApplicationController
     pickings.each do |p|
       @entries.push(p.entry)
     end
+  end
+
+  private
+  def set_last_action_at
+    if Time.now > (current_user.last_session_last_action + 30*60)
+      current_user.previous_session_last_action = current_user.last_session_last_action
+    end
+    current_user.last_session_last_action = Time.now
+    current_user.save
   end
 
 end

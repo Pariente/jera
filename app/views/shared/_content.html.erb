@@ -1,0 +1,21 @@
+<div class="content show">
+  <div class="content-right-column">
+    <div class="content-top">
+      <div class="time-published source-show"><%= distance_of_time_in_words(e.created_at, Time.now) %> ago</div>
+    </div>
+    <div class="content-box">
+        <% unless e.thumbnail_url == "" %>
+          <%= image_tag(e.thumbnail_url, class: 'content-thumbnail source-show') %>
+        <% end %>
+        <p class="content-title source-show"><%= e.title %></p>
+      <p class="content-desc"><%= truncate(e.content, length: 200) %></p>
+      <%= render partial: 'shared/fruit_footer', locals: {entry: e} %>
+    </div>
+  </div>
+  <div class="content-masked hidden">
+    <span>You won’t see this content again.</span>
+    <%= link_to new_entry_masking_path(e), class: 'unmask', remote: :true do %>
+      Unmask
+    <% end %>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 class SourcesController < ApplicationController
   before_action :set_source, only: [:show, :edit, :update]
+  before_action :set_last_action_at
   require 'open-uri'
 
   def top
@@ -24,23 +25,25 @@ class SourcesController < ApplicationController
 
   def show
     @harvest = []
+    @new = []
 
-    Source.entries_since(@source, 1.year.ago).each do |e|
+    @source.last_entries(50).each do |e|
       unless e.is_masked_by_user?(current_user)
-        @harvest.push(e)
+        if e.is_new?(current_user)
+          @new.push(e)
+        else
+          @harvest.push(e)
+        end
       end
     end
 
     # SORTING HARVEST BY REVERSE CHRONOLOGICAL ORDER
-    @harvest = @harvest.sort_by {|entry| entry.published_date}.reverse
+    @harvest = @harvest.sort_by {|entry| entry.created_at}.reverse
+    @new = @new.sort_by {|entry| entry.created_at}.reverse
     
     @sub = @source.subscriptions.where(user: current_user).first
-    
-    # if @sub != nil
-    #   @sub.new_entries = 0
-    #   @sub.last_entry_seen = @source.entries.last.id
-    #   @sub.save
-    # end
+    @sub.last_time_checked = Time.now
+    @sub.save
   end
 
   def new
@@ -118,6 +121,13 @@ class SourcesController < ApplicationController
   end
 
   private
+    def set_last_action_at
+      if Time.now > (current_user.last_session_last_action + 30*60)
+        current_user.previous_session_last_action = current_user.last_session_last_action
+      end
+      current_user.last_session_last_action = Time.now
+      current_user.save
+    end
 
     def ransack_params
       Source.ransack(params[:q])
