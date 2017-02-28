@@ -43,6 +43,7 @@ class SourcesController < ApplicationController
     
     @sub = @source.subscriptions.where(user: current_user).first
     @sub.last_time_checked = Time.now
+    @sub.new_entries = 0
     @sub.save
   end
 
