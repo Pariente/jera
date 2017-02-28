@@ -2,7 +2,7 @@
 <div class="content-flex">
   <% if @fresh == [] %>
     <br><br>
-    <h1>This is where we store your daily harvests :)</h1>
+    <h1>This is where we store your daily harvests 😋</h1>
     <%= link_to trees_top_path do %>
       <p class="center green underlined">Plant some trees to harvest their fruits.</p>
     <% end %>
@@ -43,9 +43,9 @@
         </div>
         <div class="harvest-text">
           <% if h[0].today? %>
-            <p class="harvest-date">Today's harvest</p>
+            <p class="harvest-date">Today</p>
           <% elsif h[0] == Date.yesterday %>
-            <p class="harvest-date">Yesterday's harvest</p>
+            <p class="harvest-date">Yesterday</p>
           <% else %>
             <p class="harvest-date"><%= h[0].strftime("%e %b %Y") %></p>
           <% end %>
