@@ -46,13 +46,7 @@ class PagesController < ApplicationController
 
   def garden
     @subscriptions = current_user.subscriptions
-    # @subscriptions.each do |s|
-    #   all_entries = s.source.entries
-    #   last_seen = Entry.find(s.last_entry_seen)
-    #   last_seen_index = all_entries.index(last_seen)
-    #   s.new_entries = all_entries.count - last_seen_index - 1
-    # end
-    # @subscriptions = @subscriptions.sort_by {|sub| sub.new_entries}.reverse
+    @subscriptions = @subscriptions.sort_by {|sub| sub.source.last_entries(1).first.created_at}.reverse
   end
 
   def harvests
