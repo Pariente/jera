@@ -71,6 +71,8 @@
 .tree-pic,
 .profile-pic {
   border-radius: 5px;
+  min-width: 60px;
+  max-width: 60px;
   height: 60px;
   width: 60px
 }

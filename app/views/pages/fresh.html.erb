@@ -1,11 +1,8 @@
 <% title "Fresh" %>
 <div class="content-flex">
-  <% if @fresh == [] %>
+  <% if @fresh == [] && @new == [] %>
     <br><br>
-    <h1>This is where the freshest fruits are delivered to you. :)</h1>
-    <%= link_to trees_top_path do %>
-      <p class="center green underlined">Plant some trees to harvest their fruits.</p>
-    <% end %>
+    <h1>You haven't missed a thing since last time. 😊</h1>
   <% end %>
   <% unless @new == [] %>
     <%= render partial: 'shared/redbar', locals: {title: 'FRESH AND NEW'} %>
