@@ -58,7 +58,6 @@ class PagesController < ApplicationController
       sub.save
     end
     @subscriptions = @subscriptions.sort_by {|sub| sub.source.last_entries(1).first.created_at}.reverse
-    # @subscriptions = @subscriptions.sort_by {|sub| sub.new_entries}.reverse
   end
 
   def harvests

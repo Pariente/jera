@@ -1,4 +1,8 @@
-<div class="content show">
+<% if c == "harvested" %>
+  <div class="content show harvested">
+<% else %>
+  <div class="content show">
+<% end %>
   <div class="content-right-column">
     <div class="content-top">
       <div class="time-published source-show"><%= distance_of_time_in_words(e.created_at, Time.now) %> ago</div>

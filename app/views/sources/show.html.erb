@@ -1,15 +1,16 @@
 <% title @source.name %>
+<%= render 'shared/back' %>
 <div class="content-flex">
   <% sub = @source.in_garden_of_user(current_user) %>
   <%= render partial: 'shared/tree', locals: {sub: sub, source: @source} %>
   <div class="sub-menu">
     <div class="sub-menu-item active">
-      <%= link_to source_show_latest_path(@source) do %>
+      <%= link_to @source do %>
         Latest
       <% end %>
     </div>
     <div class="sub-menu-item">
-      <%= link_to source_show_harvested_path(@source) do %>
+      <%= link_to @source do %>
         Harvested
       <% end %>
     </div>
@@ -21,8 +22,12 @@
     <% end %>
     <%= render partial: 'shared/redbar', locals: {title: ''} %>
   <% end %>
-  <% @harvest.each do |e| %>
-    <%= render partial: 'shared/content', locals: {e: e} %>
+  <% @latest.each do |e| %>
+    <% if e.is_picked_by_user?(current_user) %>
+      <%= render partial: 'shared/content', locals: {e: e, c: 'harvested'} %>
+    <% else %>
+      <%= render partial: 'shared/content', locals: {e: e, c: ''} %>
+    <% end %>
   <% end %>
 </div>
 <div class="go-to-harvest">
@@ -38,4 +43,3 @@
     </div>
   <% end %>
 </div>
-<%= render 'shared/back' %>
