@@ -2,10 +2,12 @@
   <%= link_to source_path(source) do %>
     <div>
       <%= image_tag(source.picture, class: 'tree-pic') %>
-      <% unless sub.new_entries == 0 %>
-        <div class="new-entries">
-          <%= sub.new_entries %>
-        </div>
+      <% unless sub == nil || %>
+        <% unless sub.new_entries == 0 %>
+          <div class="new-entries">
+            <%= sub.new_entries %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   <% end %>
