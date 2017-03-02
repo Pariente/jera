@@ -1,5 +1,5 @@
 <div class="tree">
-  <%= link_to source_path(source) do %>
+  <%= link_to source_show_latest_path(source, :referer => request.original_url) do %>
     <div>
       <%= image_tag(source.picture, class: 'tree-pic') %>
       <% unless sub == nil %>
@@ -12,7 +12,7 @@
     </div>
   <% end %>
   <div class="tree-name">
-    <%= link_to source_path(source) do %>
+    <%= link_to source_show_latest_path(source, :referer => request.original_url) do %>
       <%= truncate(source.name, length: 50) %>
     <% end %>
     <%= link_to new_source_subscription_path(source), remote: :true do %>

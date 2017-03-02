@@ -1,13 +1,13 @@
 <div class="content">
   <div class="content-left-column">
-    <%= link_to source_path(e.source) do %>
+    <%= link_to source_show_latest_path(e.source, :referer => request.original_url) do %>
       <%= image_tag(e.source.picture, class: 'source-pic') %>
     <% end %>
   </div>
   <div class="content-right-column">
     <div class="content-top">
       <div class="source-title">
-          <%= link_to source_path(e.source) do %>
+          <%= link_to source_show_latest_path(e.source, :referer => request.original_url) do %>
             <%= truncate(e.source.name, length: 30) %>
           <% end %>
       </div>

@@ -23,30 +23,48 @@ class SourcesController < ApplicationController
     @source = Source.new
   end
 
-  def show
+  def show_latest
+    @referer = params[:referer]
     @latest = []
-    @harvested = []
     @new = []
-
     @source = Source.find(params[:id])
 
     @source.last_entries(50).each do |e|
-      unless e.is_masked_by_user?(current_user)
+      unless e.is_masked_by_user?(current_user) || e.is_picked_by_user?(current_user)
         if e.is_new?(current_user)
           @new.push(e)
         else
           @latest.push(e)
         end
-        if e.is_picked_by_user?(current_user)
-          @harvested.push(e)
-        end
       end
     end
 
-    # SORTING EACH ARRAY BY REVERSE CHRONOLOGICAL ORDER
-    @harvested = @harvested.sort_by {|entry| entry.created_at}.reverse
+    # SORTING HARVEST BY REVERSE CHRONOLOGICAL ORDER
     @latest = @latest.sort_by {|entry| entry.created_at}.reverse
     @new = @new.sort_by {|entry| entry.created_at}.reverse
+    
+    # MARKING THE SUBSCRIPTION AS CHECKED
+    @sub = @source.subscriptions.where(user: current_user).first
+    unless @sub == nil
+      @sub.last_time_checked = Time.now
+      @sub.new_entries = 0
+      @sub.save
+    end
+  end
+
+  def show_harvested
+    @referer = params[:referer]
+    @harvest = []
+    @source = Source.find(params[:id])
+
+    @source.entries.each do |e|
+      if e.is_picked_by_user?(current_user)
+        @harvest.push(e)
+      end
+    end
+
+    # SORTING HARVEST BY REVERSE CHRONOLOGICAL ORDER
+    @harvest = @harvest.sort_by {|entry| entry.created_at}.reverse
     
     # MARKING THE SUBSCRIPTION AS CHECKED
     @sub = @source.subscriptions.where(user: current_user).first
@@ -105,12 +123,12 @@ class SourcesController < ApplicationController
         @source.refresh
         sub = Subscription.create(user_id: current_user.id, source_id: @source.id, last_time_checked: 1.week.ago, new_entries: 0)
         sub.save
-        format.html { redirect_to @source, notice: 'Source was successfully created.' }
-        format.json { render :show, status: :created, location: @source }
+        format.html { redirect_to source_show_latest_path(@source), notice: 'Source was successfully created.' }
+        format.json { render :show_latest, status: :created, location: @source }
       else
         if @source.errors.full_messages.first == "Url has already been taken"
           original_source = Source.find_by(url: @source.url)
-          format.html { redirect_to source_path(original_source), notice: 'Source already existing. Redirecting to it.' }
+          format.html { redirect_to source_show_latest_path(original_source), notice: 'Source already existing. Redirecting to it.' }
         else
           format.html { render :new }
           format.json { render json: @source.errors, status: :unprocessable_entity }
@@ -123,7 +141,7 @@ class SourcesController < ApplicationController
     respond_to do |format|
       if @source.update(source_params)
         format.html { redirect_to @source, notice: 'Source was successfully updated.' }
-        format.json { render :show, status: :ok, location: @source }
+        format.json { render :show_latest, status: :ok, location: @source }
       else
         format.html { render :edit }
         format.json { render json: @source.errors, status: :unprocessable_entity }

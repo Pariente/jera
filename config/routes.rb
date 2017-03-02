@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get 'trees/top' => 'sources#top'
   get 'trees/latest' => 'sources#latest'
   get 'search_sources' => 'sources#results'
+  get 'source/:id/latest' => 'sources#show_latest', as: :source_show_latest
+  get 'source/:id/harvested' => 'sources#show_harvested', as: :source_show_harvested
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
