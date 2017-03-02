@@ -2,13 +2,18 @@
 <div class="content-flex">
   <% sub = @source.in_garden_of_user(current_user) %>
   <%= render partial: 'shared/tree', locals: {sub: sub, source: @source} %>
-  <% unless @new == [] %>
-    <%= render partial: 'shared/redbar', locals: {title: 'FRESH AND NEW'} %>
-    <% @new.each do |e| %>
-      <%= render partial: 'shared/content', locals: {e: e} %>
-    <% end %>
-    <%= render partial: 'shared/redbar', locals: {title: ''} %>
-  <% end %>
+  <div class="sub-menu">
+    <div class="sub-menu-item">
+      <%= link_to source_show_latest_path(@source) do %>
+        Latest
+      <% end %>
+    </div>
+    <div class="sub-menu-item active">
+      <%= link_to source_show_harvested_path(@source) do %>
+        Harvested
+      <% end %>
+    </div>
+  </div>
   <% @harvest.each do |e| %>
     <%= render partial: 'shared/content', locals: {e: e} %>
   <% end %>

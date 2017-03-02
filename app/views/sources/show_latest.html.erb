@@ -1,0 +1,41 @@
+<% title @source.name %>
+<div class="content-flex">
+  <% sub = @source.in_garden_of_user(current_user) %>
+  <%= render partial: 'shared/tree', locals: {sub: sub, source: @source} %>
+  <div class="sub-menu">
+    <div class="sub-menu-item active">
+      <%= link_to source_show_latest_path(@source) do %>
+        Latest
+      <% end %>
+    </div>
+    <div class="sub-menu-item">
+      <%= link_to source_show_harvested_path(@source) do %>
+        Harvested
+      <% end %>
+    </div>
+  </div>
+  <% unless @new == [] %>
+    <%= render partial: 'shared/redbar', locals: {title: 'FRESH AND NEW'} %>
+    <% @new.each do |e| %>
+      <%= render partial: 'shared/content', locals: {e: e} %>
+    <% end %>
+    <%= render partial: 'shared/redbar', locals: {title: ''} %>
+  <% end %>
+  <% @harvest.each do |e| %>
+    <%= render partial: 'shared/content', locals: {e: e} %>
+  <% end %>
+</div>
+<div class="go-to-harvest">
+  <%= link_to harvest_path(Date.today) do %>
+    <div class="column">
+      <p>Today's harvest</p>
+      <div class="row">
+        <span class="normal-size harvest-count">0</span><p class="normal-size">&nbsp;added</p>
+      </div>
+    </div>
+    <div class="column">
+      <%= image_tag('chevron_right.svg', class: 'chevron') %>
+    </div>
+  <% end %>
+</div>
+<%= render 'shared/back' %>

@@ -34,6 +34,7 @@
 .plant-tree-pic {
   background-color: $green;
   border-radius: 5px;
+  box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.2);
   display: flex;
   height: 60px;
   width: 60px
@@ -41,6 +42,7 @@
 
 .plant-tree img {
   height: 24px;
+  width: 60px;
   margin: auto
 }
 
@@ -72,6 +74,7 @@
 .tree-pic,
 .profile-pic {
   border-radius: 5px;
+  box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.2);
   min-width: 60px;
   max-width: 60px;
   height: 60px;
@@ -128,13 +131,15 @@
 .new-entries {
   background-color: $red;
   border-radius: 100%;
+  box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.4);
   color: $white;
+  font-size: $small_size;
   padding: 5px;
   position: relative;
   right: 18px;
   text-align: center;
   top: -70px;
-  width: 23px;
+  width: 16px;
   z-index: 100
 }
 

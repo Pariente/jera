@@ -20,4 +20,10 @@
       Unmask
     <% end %>
   </div>
+  <div class="content-harvested hidden">
+    <span>You have harvested this content.</span>
+    <%= link_to new_entry_picking_path(e), class: 'cancel-harvest', remote: :true do %>
+      Remove from harvest
+    <% end %>
+  </div>
 </div>
