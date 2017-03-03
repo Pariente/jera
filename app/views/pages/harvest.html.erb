@@ -19,30 +19,6 @@
     <%= render partial: 'shared/redbar', locals: {title: "HARVEST - " + @date} %>
   <% end %>
   <% @entries.each do |e| %>
-    <div class="content">
-      <div class="content-left-column">
-        <%= link_to source_show_latest_path(e.source) do %>
-          <%= image_tag(e.source.picture, class: 'source-pic') %>
-        <% end %>
-      </div>
-      <div class="content-right-column">
-        <div class="content-top">
-          <div class="source-title">
-              <%= link_to source_show_latest_path(e.source) do %>
-                <%= truncate(e.source.name, length: 30) %>
-              <% end %>
-          </div>
-          <div class="time-published"><%= distance_of_time_in_words(e.created_at, Time.now) %> ago</div>
-        </div>
-        <div class="content-box">
-          <%= link_to e.media_url, target: :blank, class: 'content-anchor' do %>
-            <%= image_tag(e.thumbnail_url, class: 'content-thumbnail') %>
-            <p class="content-title"><%= e.title %></p>
-          <% end %>
-          <p class="content-desc"><%= truncate(e.content, length: 200) %></p>
-          <%= render partial: 'shared/picking_footer', locals: {entry: e} %>
-        </div>
-      </div>
-    </div>
+    <%= render partial: 'shared/fruit_harvested', locals: {e: e} %>
   <% end %>
 </div>
