@@ -54,17 +54,23 @@ class SourcesController < ApplicationController
 
   def show_harvested
     @referer = params[:referer]
+    @unread = []
     @harvest = []
     @source = Source.find(params[:id])
 
     @source.entries.each do |e|
       if e.is_picked_by_user?(current_user)
-        @harvest.push(e)
+        if e.is_read_by_user?(current_user)
+          @harvest.push(e)
+        else
+          @unread.push(e)
+        end
       end
     end
 
     # SORTING HARVEST BY REVERSE CHRONOLOGICAL ORDER
-    @harvest = @harvest.sort_by {|entry| entry.created_at}.reverse
+    @harvest = @harvest.sort_by {|entry| entry.picked_by_user(current_user).created_at}.reverse
+    @unread = @unread.sort_by {|entry| entry.picked_by_user(current_user).created_at}.reverse
     
     # MARKING THE SUBSCRIPTION AS CHECKED
     @sub = @source.subscriptions.where(user: current_user).first

@@ -19,6 +19,10 @@
       <% end %>
     </div>
   </div>
+  <% if @new == [] && @latest == [] %>
+    <br><br>
+    <h1>This tree has no new fruit for you. 👌</h1>
+  <% end %>
   <% unless @new == [] %>
     <%= render partial: 'shared/redbar', locals: {title: 'FRESH AND NEW'} %>
     <% @new.each do |e| %>

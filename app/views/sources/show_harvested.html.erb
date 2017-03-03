@@ -19,6 +19,17 @@
       <% end %>
     </div>
   </div>
+  <% if @unread == [] && @harvest == [] %>
+    <br><br>
+    <h1>You've harvested no fruit from this tree, yet. 👩‍🌾</h1>
+  <% end %>
+  <% unless @unread == [] %>
+    <%= render partial: 'shared/redbar', locals: {title: @unread.count.to_s + ' NOT SEEN'} %>
+    <% @unread.each do |e| %>
+      <%= render partial: 'shared/content', locals: {e: e} %>
+    <% end %>
+    <%= render partial: 'shared/redbar', locals: {title: ''} %>
+  <% end %>
   <% @harvest.each do |e| %>
     <%= render partial: 'shared/content', locals: {e: e} %>
   <% end %>
