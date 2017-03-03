@@ -6,8 +6,8 @@
     <% fresh = "active" %>
   <% elsif current_page?(garden_path) %>
     <% garden = "active" %>
-  <% elsif current_page?(harvests_path) %>
-    <% harvests = "active" %>
+  <% elsif current_page?(harvest_path) %>
+    <% harvest = "active" %>
   <% end %>
   
   <%= link_to garden_path, class: garden do %>
@@ -16,7 +16,7 @@
   <%= link_to root_path, class: fresh do %>
     <p class="center">Fresh</p>
   <% end %>
-  <%= link_to harvests_path, class: harvests do %>
-    <p class="center">Harvests</p>
+  <%= link_to harvest_path, class: harvest do %>
+    <p class="center">Harvest</p>
   <% end %>
 </div>

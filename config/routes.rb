@@ -16,8 +16,7 @@ Rails.application.routes.draw do
 
   root to: 'pages#fresh'
   get 'garden' => 'pages#garden'
-  get 'harvests' => 'pages#harvests'
-  get 'harvest/:date' => 'pages#harvest', as: :harvest
+  get 'harvest' => 'pages#harvest'
   get 'trees/top' => 'sources#top'
   get 'trees/latest' => 'sources#latest'
   get 'search_sources' => 'sources#results'

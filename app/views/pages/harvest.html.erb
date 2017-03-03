@@ -1,24 +1,20 @@
-<% if @date == "today" %>
-  <% title "Today's Harvest" %>
-<% elsif @date == "yesterday" %>
-  <% title "Yesterday's Harvest" %>
-<% else %>
-  <% title "Harvest of #{@date}" %>
-<% end %>
-<div class="back">
-  <%= link_to harvests_path do %>
-    <%= image_tag('chevron_back.svg', class: 'chevron') %> Harvests
-  <% end %>
-</div>
+<% title "Harvest" %>
 <div class="content-flex">
-  <% if @date == "today" %>
-    <%= render partial: 'shared/redbar', locals: {title: "TODAY'S HARVEST"} %>
-  <% elsif @date == "yesterday" %>
-    <%= render partial: 'shared/redbar', locals: {title: "YESTERDAY'S HARVEST"} %>
-  <% else %>
-    <%= render partial: 'shared/redbar', locals: {title: "HARVEST - " + @date} %>
+  <% if @unread == [] && @harvest == [] %>
+    <br><br>
+    <h1>Harvest some of your trees' fruits to fill this place with joy. 👩‍🌾</h1>
   <% end %>
-  <% @entries.each do |e| %>
-    <%= render partial: 'shared/fruit_harvested', locals: {e: e} %>
+  <% unless @unread == [] %>
+    <%= render partial: 'shared/redbar', locals: {title: @unread.count.to_s + ' NOT SEEN'} %>
+    <% @unread.each do |e| %>
+      <%= render partial: 'shared/fruit_harvested', locals: {e: e} %>
+    <% end %>
+    <%= render partial: 'shared/redbar', locals: {title: ''} %>
+  <% end %>
+  <% unless @harvested == nil %>
+    <% @harvested.each do |e| %>
+      <%= render partial: 'shared/fruit_harvested', locals: {e: e} %>
+    <% end %>
   <% end %>
 </div>
+<%= render partial: 'shared/navbar' %>

@@ -60,27 +60,19 @@ class PagesController < ApplicationController
     @subscriptions = @subscriptions.sort_by {|sub| sub.source.last_entries(1).first.created_at}.reverse
   end
 
-  def harvests
-    pickings = current_user.pickings
-    @harvests = pickings.group_by {|picking| picking.created_at.to_date }
-    @harvests = @harvests.sort_by {|h| h[0]}.reverse
-  end
-
   def harvest
-    date = params[:date].to_date
-    if date == Date.today
-      @date = "today"
-    elsif date == Date.yesterday
-      @date = "yesterday"
-    else
-      @date = date.strftime("%e %b %Y")
-    end
-    pickings = current_user.pickings.where(created_at: date.midnight..date.end_of_day)
-    pickings = pickings.sort_by {|p| p.created_at}.reverse
-    @entries = []
+    @unread = []
+    @harvested = []
+    pickings = current_user.pickings
     pickings.each do |p|
-      @entries.push(p.entry)
+      if p.entry.is_read_by_user?(current_user)
+        @harvested.push(p.entry)
+      else
+        @unread.push(p.entry)
+      end
     end
+    @harvested = @harvested.sort_by {|e| e.picked_by_user(current_user).created_at }.reverse
+    @unread = @unread.sort_by {|e| e.picked_by_user(current_user).created_at }.reverse
   end
 
   private
