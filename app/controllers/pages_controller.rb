@@ -21,7 +21,7 @@ class PagesController < ApplicationController
 
     sources.each do |s|
       since_last_week = s.entries_since(1.week.ago)
-      if since_last_week.length >= 30
+      if since_last_week.length > 30
         iterator = s.last_entries(30)
       else
         iterator = since_last_week
@@ -54,8 +54,10 @@ class PagesController < ApplicationController
           new_entries += 1
         end
       end
-      sub.new_entries = new_entries
-      sub.save
+      if new_entries != 0
+        sub.new_entries = new_entries
+        sub.save
+      end
     end
     @subscriptions = @subscriptions.sort_by {|sub| sub.source.last_entries(1).first.created_at}.reverse
   end
@@ -64,6 +66,7 @@ class PagesController < ApplicationController
     @unread = []
     @harvested = []
     pickings = current_user.pickings
+    pickings = pickings.sort_by {|p| p.created_at}.reverse
     pickings.each do |p|
       if p.entry.is_read_by_user?(current_user)
         @harvested.push(p.entry)
@@ -71,8 +74,6 @@ class PagesController < ApplicationController
         @unread.push(p.entry)
       end
     end
-    @harvested = @harvested.sort_by {|e| e.picked_by_user(current_user).created_at }.reverse
-    @unread = @unread.sort_by {|e| e.picked_by_user(current_user).created_at }.reverse
   end
 
   private
