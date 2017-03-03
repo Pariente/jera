@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :entries do
     resources :pickings
     resources :maskings
+    resources :readings
   end
 
   devise_for :users, controllers: {

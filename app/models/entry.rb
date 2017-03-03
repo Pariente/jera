@@ -12,6 +12,11 @@ class Entry < ActiveRecord::Base
     existing_masking != []
   end
 
+  def is_read_by_user?(current_user)
+    existing_reading = Reading.where(user_id: current_user.id, entry_id: self.id)
+    existing_reading != []
+  end
+
   def picked_by_user(current_user)
     Picking.where(user_id: current_user.id, entry_id: self.id).first
   end
