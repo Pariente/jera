@@ -69,4 +69,8 @@ class Source < ActiveRecord::Base
     Entry.where(source_id: self.id).last(number)
   end
 
+  def subscriptions_count
+    self.subscriptions.count
+  end
+
 end

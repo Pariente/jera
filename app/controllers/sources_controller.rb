@@ -4,16 +4,12 @@ class SourcesController < ApplicationController
   require 'open-uri'
 
   def top
-    sources = Source.all
-    @top = sources.sort_by {|source| source.subscriptions.count}.reverse
-    @top = @top.first(100)
+    @top = Source.all.sort_by {|s| s.subscriptions_count}.reverse.last(50)
     @search = ransack_params
   end
 
   def latest
-    sources = Source.all
-    @latest = sources.sort_by {|source| source.created_at}.reverse
-    @latest = @latest.first(100)
+    @latest = Source.last(50).reverse
     @search = ransack_params
   end
 
@@ -28,8 +24,9 @@ class SourcesController < ApplicationController
     @latest = []
     @new = []
     @source = Source.find(params[:id])
+    last_entries = @source.last_entries(50).reverse
 
-    @source.last_entries(50).each do |e|
+    last_entries.each do |e|
       unless e.is_masked_by_user?(current_user) || e.is_picked_by_user?(current_user)
         if e.is_new?(current_user)
           @new.push(e)
@@ -38,10 +35,6 @@ class SourcesController < ApplicationController
         end
       end
     end
-
-    # SORTING HARVEST BY REVERSE CHRONOLOGICAL ORDER
-    @latest = @latest.sort_by {|entry| entry.created_at}.reverse
-    @new = @new.sort_by {|entry| entry.created_at}.reverse
     
     # MARKING THE SUBSCRIPTION AS CHECKED
     @sub = @source.subscriptions.where(user: current_user).first
@@ -58,19 +51,16 @@ class SourcesController < ApplicationController
     @harvest = []
     @source = Source.find(params[:id])
 
-    @source.entries.each do |e|
-      if e.is_picked_by_user?(current_user)
-        if e.is_read_by_user?(current_user)
-          @harvest.push(e)
-        else
-          @unread.push(e)
-        end
+    pickings = current_user.pickings.where(source_id: @source.id)
+    pickings = pickings.sort_by {|p| p.created_at}.reverse
+
+    pickings.each do |p|
+      if p.entry.is_read_by_user?(current_user)
+        @harvest.push(p.entry)
+      else
+        @unread.push(p.entry)
       end
     end
-
-    # SORTING HARVEST BY REVERSE CHRONOLOGICAL ORDER
-    @harvest = @harvest.sort_by {|entry| entry.picked_by_user(current_user).created_at}.reverse
-    @unread = @unread.sort_by {|entry| entry.picked_by_user(current_user).created_at}.reverse
     
     # MARKING THE SUBSCRIPTION AS CHECKED
     @sub = @source.subscriptions.where(user: current_user).first
