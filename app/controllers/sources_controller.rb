@@ -4,7 +4,7 @@ class SourcesController < ApplicationController
   require 'open-uri'
 
   def top
-    @top = Source.all.sort_by {|s| s.subscriptions_count}.reverse.last(50)
+    @top = Source.all.sort_by {|s| s.subscriptions_count}.reverse.first(50)
     @search = ransack_params
   end
 
