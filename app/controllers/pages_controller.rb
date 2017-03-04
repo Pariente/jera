@@ -74,6 +74,7 @@ class PagesController < ApplicationController
         @unread.push(p.entry)
       end
     end
+    @harvested = @harvested.last(30)
   end
 
   private
