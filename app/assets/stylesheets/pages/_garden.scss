@@ -108,6 +108,16 @@
   padding: 5px 10px
 }
 
+.sign-out-button {
+  background-color: $white;
+  border: 1px solid $red;
+  border-radius: 5px;
+  color: $red;
+  cursor: pointer;
+  font-size: $small_size;
+  padding: 5px 10px
+}
+
 .subscribe-button,
 .unsubscribe-button {
   background-color: $white;

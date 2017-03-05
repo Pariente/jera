@@ -1,7 +1,9 @@
 <% title "Profile" %>
 <div class="content-flex">
   <%= link_to destroy_user_session_path, method: :delete, class: "sign-out" do %>
-    Sign Out
+    <button class="sign-out-button">
+      Sign out
+    </button>
   <% end %>
 </div>
 <h2>Edit your profile</h2>
