@@ -26,12 +26,12 @@
   <% unless @new == [] %>
     <%= render partial: 'shared/redbar', locals: {title: 'FRESH AND NEW'} %>
     <% @new.each do |e| %>
-      <%= render partial: 'shared/content', locals: {e: e} %>
+      <%= render partial: 'shared/fruit_headless', locals: {e: e} %>
     <% end %>
     <%= render partial: 'shared/redbar', locals: {title: ''} %>
   <% end %>
   <% @latest.each do |e| %>
-    <%= render partial: 'shared/content', locals: {e: e} %>
+    <%= render partial: 'shared/fruit_headless', locals: {e: e} %>
   <% end %>
 </div>
 <div class="go-to-harvest">

@@ -26,12 +26,12 @@
   <% unless @unread == [] %>
     <%= render partial: 'shared/redbar', locals: {title: @unread.count.to_s + ' NOT SEEN'} %>
     <% @unread.each do |e| %>
-      <%= render partial: 'shared/content', locals: {e: e} %>
+      <%= render partial: 'shared/fruit_headless', locals: {e: e} %>
     <% end %>
     <%= render partial: 'shared/redbar', locals: {title: ''} %>
   <% end %>
   <% @harvest.each do |e| %>
-    <%= render partial: 'shared/content', locals: {e: e} %>
+    <%= render partial: 'shared/fruit_headless', locals: {e: e} %>
   <% end %>
 </div>
 <div class="go-to-harvest">

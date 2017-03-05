@@ -14,19 +14,7 @@
       <div class="time-published"><%= distance_of_time_in_words(e.created_at, Time.now) %> ago</div>
     </div>
     <div class="content-box">
-      <div class="content-read" data-entry="<%= e.id %>">
-        <%= link_to e.media_url, target: :blank, class: 'content-anchor' do %>
-          <% if e.is_read_by_user?(current_user) %>
-            <div class="read-sign">SEEN</div>
-            <%= image_tag(e.thumbnail_url, class: 'content-thumbnail low-opacity') %>
-          <% else %>
-            <div class="read-sign hidden">SEEN</div>
-            <%= image_tag(e.thumbnail_url, class: 'content-thumbnail') %>
-          <% end %>
-          <p class="content-title"><%= e.title %></p>
-        <% end %>
-      </div>
-      <p class="content-desc"><%= truncate(e.content, length: 200) %></p>
+      <%= render partial: 'shared/content_info', locals: {e: e} %>
       <%= render partial: 'shared/fruit_footer', locals: {entry: e} %>
     </div>
   </div>

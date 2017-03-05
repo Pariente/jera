@@ -1,4 +1,9 @@
 <% title "Profile" %>
+<div class="back">
+  <%= link_to garden_path do %>
+    <%= image_tag('chevron_back.svg', class: 'chevron') %> Garden
+  <% end %>
+</div>
 <div class="content-flex">
   <%= link_to destroy_user_session_path, method: :delete, class: "sign-out" do %>
     <button class="sign-out-button">
@@ -29,11 +34,8 @@
     <%= f.submit "Update" %>
   </div>
 <% end %>
-
 <div class="content-flex">
   <p>We believe that your most precious treasure is your time, and we will never do anything that disrespects it.</p>
   <p>If we have failed you and our principles, we are deeply sorry. Here's the link to delete your account:</p>
   <p class="center"><%= link_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "red" %></p>
 </div>
-
-<%= render "shared/back" %>

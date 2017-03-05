@@ -91,7 +91,7 @@ header > h1 {
 .navbar a:hover,
 .navbar a:active,
 .navbar a:visited {
-  background-image: linear-gradient(-180deg, #47B869 3%, #2F7A43 99%);
+  background-image: linear-gradient(-180deg, #47B869 3%, hsla(136, 44%, 40%, 1) 99%);
   border-top: 3px solid $green;
   color: $white;
   display: flex;

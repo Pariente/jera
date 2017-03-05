@@ -1,19 +1,16 @@
-<div class="fruit-footer">
-  <% if entry.is_picked_by_user?(current_user) %>
-    <% picking = entry.picked_by_user(current_user) %>
-    <% date = picking.created_at.to_date %>
-    <%= link_to harvest_path(date: date), class: 'harvested' do %>
-      Harvested
+<% if entry.is_picked_by_user?(current_user) %>
+  <div class="picking-footer">
+    <%= link_to new_entry_picking_path(entry), class: 'unharvest', remote: :true do %>
+      Unharvest
     <% end %>
-  <% else %>
-    <a class="harvested hidden">
-      Harvested
-    </a>
+  </div>
+<% else %>
+  <div class="fruit-footer">
     <%= link_to new_entry_masking_path(entry), class: 'mask', remote: :true do %>
       Mask
     <% end %>
     <%= link_to new_entry_picking_path(entry), class: 'harvest', remote: :true do %>
       Harvest
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
