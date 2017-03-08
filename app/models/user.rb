@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def set_first_session_action
-     self.last_session_last_action = Time.now
+    self.previous_session_last_action = Time.now
+    self.last_session_last_action = Time.now
   end
 end
