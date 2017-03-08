@@ -1,12 +1,13 @@
 class PickingsController < ApplicationController
   def new
     existing_picking = Picking.where(user_id: current_user.id, entry_id: params[:entry_id])
-    
     # CHECKING IF PICKING EXISTS
     if existing_picking == []
 
       # IF IT DOES NOT, CREATE AND SAVE IT
-      pick = Picking.create(user_id: current_user.id, entry_id: params[:entry_id])
+      entry = Entry.find(params[:entry_id])
+      source = entry.source
+      pick = Picking.create(user_id: current_user.id, entry_id: params[:entry_id], source_id: source.id)
       pick.save
     else
 
