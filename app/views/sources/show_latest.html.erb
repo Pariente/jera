@@ -1,7 +1,14 @@
 <% title @source.name %>
 <div class="back">
-  <%= link_to @referer do %>
-    <%= image_tag('chevron_back.svg', class: 'chevron') %> Back
+  <% if @referer == nil %>
+    <% @referer = garden_url %>
+    <%= link_to @referer do %>
+      <%= image_tag('chevron_back.svg', class: 'chevron') %> Garden
+    <% end %>
+  <% else %>
+    <%= link_to @referer do %>
+      <%= image_tag('chevron_back.svg', class: 'chevron') %> Back
+    <% end %>
   <% end %>
 </div>
 <div class="content-flex">
