@@ -110,12 +110,11 @@ class SourcesController < ApplicationController
       rss_url = rss_xml['href']
     end
 
-    feed = Feedjira::Feed.fetch_and_parse rss_url
-
+    # feed = Feedjira::Feed.fetch_and_parse rss_url
     @source = Source.new(name: name, url: url, rss_url: rss_url, picture: picture)
 
     respond_to do |format|
-      if @source.save
+      if rss_url != nil && @source.save
         @source.refresh
         sub = Subscription.create(user_id: current_user.id, source_id: @source.id, last_time_checked: 1.week.ago, new_entries: 0)
         sub.save
@@ -126,11 +125,15 @@ class SourcesController < ApplicationController
           original_source = Source.find_by(url: @source.url)
           format.html { redirect_to source_show_latest_path(original_source), notice: 'Source already existing. Redirecting to it.' }
         else
-          format.html { render :new }
+          format.html { redirect_to unable_to_fetch_path }
           format.json { render json: @source.errors, status: :unprocessable_entity }
         end
       end
     end
+  end
+
+  def unable_to_fetch
+    @search = ransack_params
   end
 
   def update
