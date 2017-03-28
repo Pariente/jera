@@ -37,12 +37,12 @@ class SourcesController < ApplicationController
     end
     
     # MARKING THE SUBSCRIPTION AS CHECKED
-    @sub = @source.subscriptions.where(user: current_user).first
-    unless @sub == nil
-      @sub.last_time_checked = Time.now
-      @sub.new_entries = 0
-      @sub.save
-    end
+    # @sub = @source.subscriptions.where(user: current_user).first
+    # unless @sub == nil
+    #   @sub.last_time_checked = Time.now
+    #   @sub.new_entries = 0
+    #   @sub.save
+    # end
   end
 
   def show_harvested
@@ -63,12 +63,12 @@ class SourcesController < ApplicationController
     end
     
     # MARKING THE SUBSCRIPTION AS CHECKED
-    @sub = @source.subscriptions.where(user: current_user).first
-    unless @sub == nil
-      @sub.last_time_checked = Time.now
-      @sub.new_entries = 0
-      @sub.save
-    end
+    # @sub = @source.subscriptions.where(user: current_user).first
+    # unless @sub == nil
+    #   @sub.last_time_checked = Time.now
+    #   @sub.new_entries = 0
+    #   @sub.save
+    # end
   end
 
   def new
