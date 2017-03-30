@@ -65,13 +65,13 @@ class PagesController < ApplicationController
   def harvest
     @unread = []
     @harvested = []
-    pickings = current_user.pickings
-    pickings = pickings.sort_by {|p| p.created_at}.reverse
-    pickings.each do |p|
-      if p.entry.is_read_by_user?(current_user)
-        @harvested.push(p.entry)
+    harvested = current_user.entry_actions.where(harvested: true)
+    harvested = harvested.sort_by {|p| p.created_at}.reverse
+    harvested.each do |h|
+      if h.read
+        @harvested.push(h.entry)
       else
-        @unread.push(p.entry)
+        @unread.push(h.entry)
       end
     end
     @harvested = @harvested.first(30)

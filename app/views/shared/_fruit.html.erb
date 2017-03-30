@@ -20,13 +20,13 @@
   </div>
   <div class="content-masked hidden">
     <span>You won’t see this content again.</span>
-    <%= link_to new_entry_masking_path(e), class: 'unmask', remote: :true do %>
+    <%= link_to entry_unmask_path(e), class: 'unmask', remote: :true do %>
       Unmask
     <% end %>
   </div>
   <div class="content-harvested hidden">
     <span>You have harvested this content.</span>
-    <%= link_to new_entry_picking_path(e), class: 'cancel-harvest', remote: :true do %>
+    <%= link_to entry_unharvest_path(e), class: 'cancel-harvest', remote: :true do %>
       Remove from harvest
     <% end %>
   </div>

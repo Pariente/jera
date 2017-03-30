@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   end
 
   resources :entries do
-    resources :pickings
-    resources :maskings
-    resources :readings
+    get 'harvest' => 'entry_actions#harvest'
+    get 'unharvest' => 'entry_actions#unharvest'
+    get 'mask' => 'entry_actions#mask'
+    get 'unmask' => 'entry_actions#unmask'
+    get 'read' => 'entry_actions#read'
+    get 'unread' => 'entry_actions#unread'
   end
 
   devise_for :users, controllers: {

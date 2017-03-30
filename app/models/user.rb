@@ -3,8 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   before_create :set_first_session_action
   has_many :subscriptions
-  has_many :pickings
-  has_many :readings
+  has_many :entry_actions
   validates_uniqueness_of :username
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

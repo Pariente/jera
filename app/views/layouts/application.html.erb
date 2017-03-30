@@ -93,7 +93,7 @@
     // READ
     $(".content-read").unbind('click').bind('click', function() {
       var id = $(this).data("entry");
-      $.post("/entries/" + id + "/readings/new", { _method: 'get' });
+      $.post("/entries/" + id + "/read", { _method: 'get' });
       if ( $(this).find('.read-sign').hasClass('hidden') ) {
         $(this).find('.read-sign').removeClass('hidden');
         $(this).find('img').addClass('low-opacity');
@@ -115,7 +115,6 @@
       $(this).addClass('subscribe-button');
       $(this).removeClass('unsubscribe-button');
     });
-
 
   </script>
 </body>

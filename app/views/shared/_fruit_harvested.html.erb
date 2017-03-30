@@ -16,7 +16,7 @@
     <div class="content-box">
       <%= render partial: 'shared/content_info', locals: {e: e} %>
       <div class="picking-footer">
-        <%= link_to new_entry_picking_path(e), class: 'unharvest', remote: :true do %>
+        <%= link_to entry_unharvest_path(e), class: 'unharvest', remote: :true do %>
           Unharvest
         <% end %>
       </div>

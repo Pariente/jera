@@ -27,7 +27,7 @@ class SourcesController < ApplicationController
     last_entries = @source.last_entries(50).reverse
 
     last_entries.each do |e|
-      unless e.is_masked_by_user?(current_user) || e.is_picked_by_user?(current_user)
+      unless e.is_masked_by_user?(current_user) || e.is_harvested_by_user?(current_user)
         if e.is_new?(current_user)
           @new.push(e)
         else
@@ -51,14 +51,14 @@ class SourcesController < ApplicationController
     @harvest = []
     @source = Source.find(params[:id])
 
-    pickings = current_user.pickings.where(source_id: @source.id)
-    pickings = pickings.sort_by {|p| p.created_at}.reverse
+    harvested = current_user.entry_actions.where(source_id: @source.id, harvested: true)
+    harvested = harvested.sort_by {|p| p.created_at}.reverse
 
-    pickings.each do |p|
-      if p.entry.is_read_by_user?(current_user)
-        @harvest.push(p.entry)
+    harvested.each do |h|
+      if h.read
+        @harvest.push(h.entry)
       else
-        @unread.push(p.entry)
+        @unread.push(h.entry)
       end
     end
     
