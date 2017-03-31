@@ -100,6 +100,22 @@
       }
     });
 
+    $(".read").unbind('click').bind('click', function() {
+      $(this).parents('.content-box').find('.read-sign').removeClass('hidden');
+      $(this).parents('.content-box').find('img').addClass('low-opacity');
+      $(this).siblings('.unread').removeClass('hidden');
+      $(this).addClass('hidden');
+    });
+
+    // UNREAD
+
+    $(".unread").unbind('click').bind('click', function() {
+      $(this).parents('.content-box').find('.read-sign').addClass('hidden');
+      $(this).parents('.content-box').find('img').removeClass('low-opacity');
+      $(this).siblings('.read').removeClass('hidden');
+      $(this).addClass('hidden');
+    });
+
     // SUBSCRIBE
 
     $(".subscribe-button").unbind('click').bind('click', function(evt) {

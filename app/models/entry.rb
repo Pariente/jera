@@ -21,7 +21,7 @@ class Entry < ActiveRecord::Base
     source = Source.find(self.source_id)
     sub = Subscription.where(source_id: source.id, user_id: current_user.id).first
     unless sub == nil
-      (self.created_at > current_user.previous_session_last_action) && !self.is_masked_by_user?(current_user) && !self.is_harvested_by_user?(current_user) && (sub.last_time_checked < self.created_at) 
+      (self.created_at > current_user.previous_session_last_action) && !self.is_masked_by_user?(current_user) && !self.is_harvested_by_user?(current_user) && !self.is_read_by_user?(current_user) && (sub.last_time_checked < self.created_at) 
     end
   end
 
