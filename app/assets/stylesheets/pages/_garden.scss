@@ -1,16 +1,68 @@
-.garden-flex {
+.garden-flex,
+.plant-tree-flex {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   margin: auto;
-  margin-top: 80px;
   margin-bottom: 30px;
   max-width: 400px;
 }
 
-.tree,
-.plant-tree,
+.plant-tree-flex {
+  margin-top: 110px
+}
+
 .profile {
+  display: flex;
+  justify-content: center;
+  top: 0px;
+  width: 100%;
+}
+
+.profile-flex {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px
+}
+
+.profile-background {
+  background-image: image-url("background_leaves.png");
+  border-radius: 0px 0px 5px 5px;
+  height: 100px;
+  width: 100%
+}
+
+.profile-pic-and-title {
+  display: flex;
+  flex-direction: row;
+  margin-top: -30px;
+  margin-left: 50px
+}
+
+.profile-name {
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  font-size: $base-size;
+  margin-left: 10px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.50)
+}
+
+.edit-profile-button {
+  background-color: $white;
+  border: 0px;
+  border-radius: 50px;
+  box-shadow: 0px 0px 10px 0px rgba(102, 102, 102, 0.4);
+  color: $grey;
+  cursor: pointer;
+  margin-top: 12px;
+  padding: 5px 10px
+}
+
+
+.tree,
+.plant-tree {
   display: flex;
   flex-direction: row;
   height: 60px;
@@ -82,8 +134,7 @@
   width: 60px
 }
 
-.tree-name,
-.profile-name {
+.tree-name {
   align-items: flex-start;
   display: flex;
   font-size: $normal_size;
@@ -93,28 +144,15 @@
   width: 100%
 }
 
-.profile-name {
-  flex-direction: column;
-  font-size: $base-size;
-}
-
-.edit-profile-button {
-  background-color: $white;
-  border: 1px solid $grey;
-  border-radius: 5px;
-  color: $grey;
-  cursor: pointer;
-  font-size: $small_size;
-  padding: 5px 10px
-}
-
 .sign-out-button {
   background-color: $white;
-  border: 1px solid $red;
-  border-radius: 5px;
+  border: 0px;
+  border-radius: 50px;
+  box-shadow: 0px 0px 10px 0px rgba(102, 102, 102, 0.4);
   color: $red;
   cursor: pointer;
-  font-size: $small_size;
+  font-size: $normal_size;
+  margin-top: 12px;
   padding: 5px 10px
 }
 
@@ -155,13 +193,22 @@
 }
 
 @media screen and (max-width: 450px) {
-  .garden-flex {
+  .profile-flex {
+    max-width: 400px
+  }
+  .profile-background {
+    border-radius: 0px
+  }
+  .profile-pic-and-title {
+    margin-left: 15px
+  }
+  .garden-flex,
+  .plant-tree-flex {
     padding-left: 5px;
     padding-right: 5px
   }
   .tree,
-  .plant-tree,
-  .profile {
+  .plant-tree {
     margin-left: 10px;
     margin-right: 10px
   }

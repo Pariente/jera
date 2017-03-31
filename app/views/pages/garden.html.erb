@@ -1,6 +1,16 @@
 <% title "Garden" %>
+<div class="nav">
+  <div class="nav-flex nav-flex-right">
+    <%= link_to root_path do %>
+      <div class="nav-green-button">
+        <span>Mes nouveautés</span>
+        <%= image_tag('white_arrow_right.svg', class: 'arrow-right') %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= render partial: 'shared/profile', locals: {user: current_user} %>
 <div class="garden-flex">
-  <%= render partial: 'shared/profile', locals: {user: current_user} %>
   <div class="plant-tree">
     <%= link_to trees_latest_path do %>
       <div class="plant-tree-pic">
@@ -19,4 +29,3 @@
     <% end %>
   <% end %>
 </div>
-<%= render partial: 'shared/navbar' %>

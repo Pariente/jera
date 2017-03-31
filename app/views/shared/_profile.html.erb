@@ -1,15 +1,20 @@
 <div class="profile">
-  <% if user.picture == nil %>
-    <%= image_tag('logo.png', class: 'profile-pic') %>
-  <% else %>
-    <%= image_tag(user.picture, class: 'profile-pic') %>
-  <% end %>
-  <div class="profile-name">
-    <%= user.username %>
-    <%= link_to edit_user_registration_path do %>
-      <button class="edit-profile-button">
-        Edit profile
-      </button>
-    <% end %>
+  <div class="profile-flex">
+    <div class="profile-background"></div>
+    <div class="profile-pic-and-title">
+      <% if user.picture == nil %>
+        <%= image_tag('logo.png', class: 'profile-pic') %>
+      <% else %>
+        <%= image_tag(user.picture, class: 'profile-pic') %>
+      <% end %>
+      <div class="profile-name">
+        <%= user.username %>
+        <%= link_to edit_user_registration_path do %>
+          <button class="edit-profile-button">
+            Modifier mon profil
+          </button>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

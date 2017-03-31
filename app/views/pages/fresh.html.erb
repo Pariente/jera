@@ -1,4 +1,19 @@
 <% title "Fresh" %>
+<div class="nav">
+  <div class="nav-flex">
+    <%= link_to garden_path do %>
+      <div class="garden-button">
+        <%= image_tag('garden_icon.svg') %>
+      </div>
+    <% end %>
+    <%= link_to harvest_path do %>
+      <div class="nav-green-button">
+        <span>Ma récolte</span>
+        <%= image_tag('white_arrow_right.svg', class: 'arrow-right') %>
+      </div>
+    <% end %>
+  </div>
+</div>
 <div class="content-flex">
   <% if @fresh == [] && @new == [] %>
     <br><br>
@@ -32,4 +47,3 @@
     </div>
   <% end %>
 </div>
-<%= render partial: 'shared/navbar' %>

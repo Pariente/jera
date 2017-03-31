@@ -40,6 +40,7 @@ class PagesController < ApplicationController
 
     # SORTING FRESH AND NEW BY REVERSE CHRONOLOGICAL ORDER
     @fresh = @fresh.sort_by {|entry| entry.created_at}.reverse
+    @fresh = @fresh.first(20)
     @new = @new.sort_by {|entry| entry.created_at}.reverse
 
   end

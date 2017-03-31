@@ -1,20 +1,15 @@
 <% title "Plant a tree" %>
-<div class="back">
-  <%= link_to garden_path do %>
-    <%= image_tag('chevron_back.svg', class: 'chevron') %> Garden
-  <% end %>
-</div>
-<div class="garden-flex">
-  <%= render "shared/searchbar" %>
+<%= render partial: 'shared/searchbar' %>
+<div class="plant-tree-flex">
   <div class="sub-menu">
     <div class="sub-menu-item active">
       <%= link_to trees_top_path do %>
-        Top
+        Populaires
       <% end %>
     </div>
     <div class="sub-menu-item">
       <%= link_to trees_latest_path do %>
-        Latest
+        Découvertes
       <% end %>
     </div>
   </div>

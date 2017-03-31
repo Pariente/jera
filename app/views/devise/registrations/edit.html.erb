@@ -1,28 +1,35 @@
-<% title "Profile" %>
-<div class="back">
-  <%= link_to garden_path do %>
-    <%= image_tag('chevron_back.svg', class: 'chevron') %> Garden
-  <% end %>
+<% title "Modifier mon profil" %>
+<div class="nav">
+  <div class="nav-flex">
+    <%= link_to garden_path do %>
+      <div class="nav-green-button">
+        <%= image_tag('white_arrow_left.svg', class: 'arrow-left') %>
+        <span>Mes jardins</span>
+      </div>
+    <% end %>
+  </div>
 </div>
-<div class="content-flex">
+<div class="garden-flex">
   <%= link_to destroy_user_session_path, method: :delete, class: "sign-out" do %>
     <button class="sign-out-button">
-      Sign out
+      Déconnexion
     </button>
   <% end %>
 </div>
-<h2>Edit your profile</h2>
+<h2>Modifier mon profil</h2>
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="form-inputs">
-    <%= f.input :username, autofocus: false %>
+    <label>Nom d'utilisateur</label>
+    <%= f.input :username, autofocus: false, label: false %>
     <%= f.input :email %>
-    <%= f.input :picture %>
-    <label>New password (leave blank if unchanged)</label>
+    <label>Photo de profil</label>
+    <%= f.input :picture, label: false %>
+    <label>Nouveau mdp (laissez blanc si inchangé)</label>
     <%= f.input :password, autocomplete: "off", label: false %>
     <br>
-    <label class="brown bold">👉 Type your current password to update</label>
+    <label class="brown bold">👉 Écrivez votre mdp actuel pour valider</label>
     <%= f.input :current_password, autocomplete: "off", label: false %>
   </div>
 
@@ -31,11 +38,11 @@
   <% end %>
 
   <div class="form-actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Modifier mon profil" %>
   </div>
 <% end %>
-<div class="content-flex">
-  <p>We believe that your most precious treasure is your time, and we will never do anything that disrespects it.</p>
-  <p>If we have failed you and our principles, we are deeply sorry. Here's the link to delete your account:</p>
-  <p class="center"><%= link_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "red" %></p>
+<div class="garden-flex">
+  <p>Nous pensons que votre temps est votre trésor le plus précieux, et nous ne le respecterons toujours.</p>
+  <p>Si nous avons échoué à cela, nous en sommes sincèrement désolés. Aussi, voici le lien pour supprimer votre compte :</p>
+  <p class="center"><%= link_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Êtes-vous bien sûr de vouloir supprimer votre compte ?" }, method: :delete, class: "red" %></p>
 </div>

@@ -43,6 +43,10 @@ textarea {
   min-width: 280px;
 }
 
+input:focus {
+  outline: 0
+}
+
 input[type="submit"] {
   background-image: linear-gradient(-180deg, #47B869 3%, hsla(136, 44%, 40%, 1) 99%);
   border: 1px solid $green;

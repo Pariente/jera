@@ -1,4 +1,14 @@
 <% title "Harvest" %>
+<div class="nav">
+  <div class="nav-flex">
+    <%= link_to root_path do %>
+      <div class="nav-green-button">
+        <%= image_tag('white_arrow_left.svg', class: 'arrow-left') %>
+        <span>Mes nouveautés</span>
+      </div>
+    <% end %>
+  </div>
+</div>
 <div class="content-flex">
   <% if @unread == [] && @harvest == [] %>
     <br><br>
@@ -17,4 +27,3 @@
     <% end %>
   <% end %>
 </div>
-<%= render partial: 'shared/navbar' %>

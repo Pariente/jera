@@ -72,6 +72,133 @@ header > h1 {
   top: -7px
 }
 
+/* --- NAV --- */
+
+.nav {
+  display: flex;
+  height: 60px;
+  justify-content: center;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 200
+}
+
+.nav-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 15px;
+  width: 100%;
+  max-width: 500px
+}
+
+.nav-flex-right {
+  justify-content: flex-end
+}
+
+.garden-button {
+  background-color: $white;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 0px rgba(102, 102, 102, 0.4);
+  display: flex;
+  flex-align: center;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.nav-green-button {
+  align-items: center;
+  background-color: $green;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 0px rgba(102, 102, 102, 0.4);
+  color: white;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  margin-right: 10px;
+  padding: 0px 15px
+}
+
+.arrow-left {
+  margin-right: 5px
+}
+
+.arrow-right {
+  margin-left: 5px
+}
+
+@media screen and (max-width: 450px) {
+  .nav-flex {
+    max-width: 400px
+  }
+}
+
+/* --- NAVSEARCH --- */
+
+.nav-search {
+  display: flex;
+  height: 90px;
+  justify-content: center;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 200
+}
+
+.nav-search-flex {
+  border-radius: 0px 0px 5px 5px;
+  background-color: $green;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 500px
+}
+
+.nav-search-back {
+  color: $white;
+  padding: 10px 0px 10px 10px
+}
+
+.magnifier {
+  align-items: stretch;
+  background-color: $white;
+  border-radius: 5px 0px 0px 5px;
+  display: flex;
+  height: 40px;
+  padding: 0px 10px
+}
+
+.nav-search-bar form {
+  margin: auto;
+  padding-bottom: 5px
+}
+
+.nav-search-bar input {
+  border: 0px;
+  border-radius: 0px 5px 5px 0px;
+  font-size: $normal_size;
+  height: 40px;
+  padding-left: 0px;
+  padding-right: 10px
+}
+
+.nav-search-bar input[type="submit"] {
+  background-color: transparent;
+  background-image: none;
+  height: 40px !important;
+  padding-right: 0px
+}
+
+@media screen and (max-width: 450px) {
+  .nav-search-flex {
+    border-radius: 0px;
+    max-width: 400px
+  }
+}
+
 /* --- NAVBAR --- */
 
 .navbar {
@@ -309,4 +436,8 @@ p {
 
 .low-opacity {
   opacity: 0.5
+}
+
+.margin-right-auto {
+  margin-right: auto
 }
