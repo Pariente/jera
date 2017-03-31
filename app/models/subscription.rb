@@ -1,6 +1,7 @@
 class Subscription < ActiveRecord::Base
   belongs_to :user
   belongs_to :source
+  enum colour: [:red, :blue, :yellow]
 
   def self.dedupe
     # find all models and group them on keys which should be common
