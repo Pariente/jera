@@ -1,4 +1,8 @@
-<% title "Mes nouveautés" %>
+<% if @new == 0 %> 
+  <% title "Mes nouveautés" %>
+<% else %>
+  <% title "(#{@new.count}) Mes nouveautés" %>
+<% end %>
 <div class="nav">
   <div class="nav-flex">
     <%= link_to garden_path do %>
