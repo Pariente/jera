@@ -1,37 +1,5 @@
 <% title @source.name %>
-<div class="nav">
-  <div class="nav-flex">
-    <% if @referer == nil || @referer == garden_url%>
-      <%= link_to garden_path do %>
-        <div class="nav-green-button">
-          <%= image_tag('white_arrow_left.svg', class: 'arrow-left') %>
-          <span>Mes jardins</span>
-        </div>
-      <% end %>
-    <% elsif @referer == root_url %>
-      <%= link_to root_path do %>
-        <div class="nav-green-button">
-          <%= image_tag('white_arrow_left.svg', class: 'arrow-left') %>
-          <span>Mes nouveautés</span>
-        </div>
-      <% end %>
-    <% elsif @referer == harvest_url %>
-      <%= link_to harvest_path do %>
-        <div class="nav-green-button">
-          <%= image_tag('white_arrow_left.svg', class: 'arrow-left') %>
-          <span>Ma récolte</span>
-        </div>
-      <% end %>
-    <% else %>
-      <%= link_to @referer do %>
-        <div class="nav-green-button">
-          <%= image_tag('white_arrow_left.svg', class: 'arrow-left') %>
-          <span>Retour</span>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-</div>
+<%= render partial: 'shared/nav_source', locals: {referer: @referer} %>
 <div class="content-flex">
   <% sub = @source.in_garden_of_user(current_user) %>
   <%= render partial: 'shared/tree', locals: {sub: sub, source: @source} %>
@@ -60,18 +28,5 @@
   <% end %>
   <% @harvest.each do |e| %>
     <%= render partial: 'shared/fruit_headless', locals: {e: e} %>
-  <% end %>
-</div>
-<div class="go-to-harvest">
-  <%= link_to harvest_path do %>
-    <div class="column">
-      <p>Today's harvest</p>
-      <div class="row">
-        <span class="normal-size harvest-count">0</span><p class="normal-size">&nbsp;added</p>
-      </div>
-    </div>
-    <div class="column">
-      <%= image_tag('chevron_right.svg', class: 'chevron') %>
-    </div>
   <% end %>
 </div>

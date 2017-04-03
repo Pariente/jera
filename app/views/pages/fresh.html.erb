@@ -11,6 +11,7 @@
       </div>
     <% end %>
     <%= link_to harvest_path do %>
+      <div class="added-to-harvest">+<span class="harvest-count">0</span></div>
       <div class="nav-green-button">
         <span>Ma récolte</span>
         <%= image_tag('white_arrow_right.svg', class: 'arrow-right') %>
@@ -37,7 +38,4 @@
       <%= render partial: 'shared/fruit', locals: {e: e} %>
     <% end %>
   <% end %>
-</div>
-<div class="added-to-harvest">
-  +1
 </div>

@@ -1,0 +1,43 @@
+<div class="nav">
+  <div class="nav-flex">
+    <% if referer == nil || referer == garden_url%>
+      <%= link_to garden_path do %>
+        <div class="nav-green-button">
+          <%= image_tag('white_arrow_left.svg', class: 'arrow-left') %>
+          <span>Mes jardins</span>
+        </div>
+      <% end %>
+    <% elsif referer == root_url %>
+      <%= link_to root_path do %>
+        <div class="nav-green-button">
+          <%= image_tag('white_arrow_left.svg', class: 'arrow-left') %>
+          <span>Mes nouveautés</span>
+        </div>
+      <% end %>
+    <% elsif referer == harvest_url %>
+      <%= link_to harvest_path do %>
+        <div class="added-to-harvest">+<span class="harvest-count">0</span></div>
+        <div class="nav-green-button">
+          <%= image_tag('white_arrow_left.svg', class: 'arrow-left') %>
+          <span>Ma récolte</span>
+        </div>
+      <% end %>
+    <% else %>
+      <%= link_to referer do %>
+        <div class="nav-green-button">
+          <%= image_tag('white_arrow_left.svg', class: 'arrow-left') %>
+          <span>Retour</span>
+        </div>
+      <% end %>
+    <% end %>
+    <% unless referer == harvest_url %>
+      <%= link_to harvest_path do %>
+        <div class="added-to-harvest">+<span class="harvest-count">0</span></div>
+        <div class="nav-green-button">
+          <span>Ma récolte</span>
+          <%= image_tag('white_arrow_right.svg', class: 'arrow-right') %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

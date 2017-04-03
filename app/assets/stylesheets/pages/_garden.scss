@@ -46,7 +46,7 @@
   flex-direction: column;
   font-size: $base-size;
   margin-left: 10px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.50)
+  text-shadow: 0px 2px 4px rgba(0,0,0,1)
 }
 
 .edit-profile-button {
@@ -65,7 +65,7 @@
   background-color: $white;
   border: 0px;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px 0px rgba(102, 102, 102, 0.4);
+  box-shadow: 0px 0px 10px 0px rgba(102, 102, 102, 0.2);
   color: $black;
   display: flex;
   height: 30px;
@@ -102,7 +102,7 @@
 .tree-pic,
 .profile-pic {
   border-radius: 5px;
-  box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.2);
+  box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.4);
   min-width: 60px;
   max-width: 60px;
   height: 60px;
