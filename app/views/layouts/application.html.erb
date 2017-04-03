@@ -97,6 +97,8 @@
       if ( $(this).find('.read-sign').hasClass('hidden') ) {
         $(this).find('.read-sign').removeClass('hidden');
         $(this).find('img').addClass('low-opacity');
+        $(this).siblings('.fruit-footer').find('.unread').removeClass('hidden');
+        $(this).siblings('.fruit-footer').find('.read').addClass('hidden');
       }
     });
 
