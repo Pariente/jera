@@ -38,21 +38,21 @@
   <div class="sub-menu">
     <div class="sub-menu-item">
       <%= link_to source_show_latest_path(@source, :referer => @referer) do %>
-        Latest
+        Récents
       <% end %>
     </div>
     <div class="sub-menu-item active">
       <%= link_to source_show_harvested_path(@source, :referer => @referer) do %>
-        Harvested
+        Récoltés
       <% end %>
     </div>
   </div>
   <% if @unread == [] && @harvest == [] %>
     <br><br>
-    <h1>You've harvested no fruit from this tree, yet. 👩‍🌾</h1>
+    <h1>Vous n'avez pas encore récolté de fruits de cet arbre. 👩‍🌾</h1>
   <% end %>
   <% unless @unread == [] %>
-    <%= render partial: 'shared/redbar', locals: {title: @unread.count.to_s + ' NOT SEEN'} %>
+    <%= render partial: 'shared/redbar', locals: {title: @unread.count.to_s + ' NON LUS'} %>
     <% @unread.each do |e| %>
       <%= render partial: 'shared/fruit_headless', locals: {e: e} %>
     <% end %>

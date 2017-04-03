@@ -1,4 +1,4 @@
-<% title "Fresh" %>
+<% title "Mes nouveautés" %>
 <div class="nav">
   <div class="nav-flex">
     <%= link_to garden_path do %>
@@ -17,10 +17,10 @@
 <div class="content-flex">
   <% if @fresh == [] && @new == [] %>
     <br><br>
-    <h1>You haven't missed a thing since last time. 😊</h1>
+    <h1>Vous êtes parfaitement à jour.<br>Pourquoi ne pas consulter votre récolte si vous en avez le temps ? 😊</h1>
   <% end %>
   <% unless @new == [] %>
-    <%= render partial: 'shared/redbar', locals: {title: 'FRESH AND NEW'} %>
+    <%= render partial: 'shared/redbar', locals: {title: 'NOUVEAUX'} %>
     <% @new.each do |e| %>
       <% cache "entry-#{e.id}" do %>
         <%= render partial: 'shared/fruit', locals: {e: e} %>

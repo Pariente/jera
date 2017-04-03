@@ -1,23 +1,18 @@
-<% title "Plant a tree" %>
-<div class="back">
-  <%= link_to garden_path do %>
-    <%= image_tag('chevron_back.svg', class: 'chevron') %> Garden
-  <% end %>
-</div>
-<div class="garden-flex">
-  <%= render "shared/searchbar" %>
+<% title "Planter un arbre" %>
+<%= render partial: 'shared/searchbar' %>
+<div class="plant-tree-flex">
   <div class="sub-menu">
     <div class="sub-menu-item active">
       <%= link_to trees_top_path do %>
-        Top
+        Populaires
       <% end %>
     </div>
     <div class="sub-menu-item">
       <%= link_to trees_latest_path do %>
-        Latest
+        Découvertes
       <% end %>
     </div>
   </div>
-  <p class="no_results">This tree could not be brought to Jera. 😔</p>
-  <p class="no_results">Please <a href="https://twitter.com/jerapptree" target="_blank" class="green underline">ask us on Twitter</a>, we're eager to help you bring this tree to your garden.</p>
+  <p class="no_results">Cet arbre n'a pas pu être ajouté à Jera. 😔</p>
+  <p class="no_results"><a href="https://twitter.com/jerapptree" target="_blank" class="green underline">Demandez-nous sur Twitter</a> de l'ajouter pour vous, nous tâchons toujours de vous offrir le meilleur.</p>
 </div>

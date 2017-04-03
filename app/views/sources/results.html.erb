@@ -1,4 +1,4 @@
-<% title "Plant a tree" %>
+<% title "Planter un arbre" %>
 <%= render partial: 'shared/searchbar' %>
 <div class="plant-tree-flex">
   <div class="sub-menu">
@@ -14,15 +14,15 @@
     </div>
   </div>
   <% if @results == [] %>
-    <p class="no_results">This species of tree is unknown to the people of Jera.</p>
-    <p class="no_results">Be the first to bring it on Jera!</p>
+    <p class="no_results">Cette espèce d'arbre est encore inconnue.</p>
+    <p class="no_results">Faîtes-la découvrir à Jera !</p>
     <%= simple_form_for @source do |f| %>
       <div class="form-inputs">
         <%= f.input :url, required: true, label: false, placeholder: "http://..." %>
       </div>
 
       <div class="form-actions">
-        <%= f.button :submit, "I'm an explorer!" %>
+        <%= f.button :submit, "Je suis une exploratrice !" %>
       </div>
     <% end %>
   <% else %>

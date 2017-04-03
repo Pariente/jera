@@ -11,7 +11,7 @@
             <%= truncate(e.source.name, length: 30) %>
           <% end %>
       </div>
-      <div class="time-published"><%= distance_of_time_in_words(e.created_at, Time.now) %> ago</div>
+      <div class="time-published">il y a <%= distance_of_time_in_words(e.created_at, Time.now) %></div>
     </div>
     <div class="content-box">
       <%= render partial: 'shared/content_info', locals: {e: e} %>
@@ -19,15 +19,15 @@
     </div>
   </div>
   <div class="content-masked hidden">
-    <span>You won’t see this content again.</span>
+    <span>Vous ne verrez plus ce fruit.</span>
     <%= link_to entry_unmask_path(e), class: 'unmask', remote: :true do %>
-      Unmask
+      Annuler
     <% end %>
   </div>
   <div class="content-harvested hidden">
-    <span>You have harvested this content.</span>
+    <span>Ajouté à votre récolte.</span>
     <%= link_to entry_unharvest_path(e), class: 'cancel-harvest', remote: :true do %>
-      Remove from harvest
+      Annuler
     <% end %>
   </div>
 </div>

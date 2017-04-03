@@ -1,14 +1,15 @@
 <%= render partial: 'shared/header' %>
 
-<h2>Log In</h2>
+<h2>Connexion</h2>
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-inputs">
     <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :password, required: true %>
+    <label>Mot de passe</label>
+    <%= f.input :password, label: false, required: true %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
+    <%= f.button :submit, "Connexion" %>
   </div>
 <% end %>
 

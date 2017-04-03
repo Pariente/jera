@@ -11,7 +11,7 @@
             <%= truncate(e.source.name, length: 30) %>
           <% end %>
       </div>
-      <div class="time-published"><%= distance_of_time_in_words(e.created_at, Time.now) %> ago</div>
+      <div class="time-published">il y a <%= distance_of_time_in_words(e.created_at, Time.now) %></div>
     </div>
     <div class="content-box">
       <%= render partial: 'shared/content_info', locals: {e: e} %>

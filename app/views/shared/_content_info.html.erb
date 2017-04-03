@@ -1,14 +1,14 @@
 <div class="content-read" data-entry="<%= e.id %>">
   <%= link_to e.media_url, target: "_blank", class: 'content-anchor' do %>
     <% if e.is_read_by_user?(current_user) %>
-      <div class="read-sign">SEEN</div>
+      <div class="read-sign">VU</div>
       <% if e.thumbnail_url == "" || e.thumbnail_url == nil %>
         <%= image_tag('entry_img_default.png', class: 'content-thumbnail low-opacity') %>
       <% else %>
         <%= image_tag(e.thumbnail_url, class: 'content-thumbnail low-opacity') %>
       <% end %>
     <% else %>
-      <div class="read-sign hidden">SEEN</div>
+      <div class="read-sign hidden">VU</div>
       <% if e.thumbnail_url == "" || e.thumbnail_url == nil %>
         <br>
       <% else %>
