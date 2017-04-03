@@ -60,6 +60,26 @@
   padding: 5px 10px
 }
 
+.plant-tree-button {
+  align-items: center;
+  background-color: $white;
+  border: 0px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(102, 102, 102, 0.4);
+  color: $black;
+  display: flex;
+  height: 30px;
+  flex-direction: row;
+  font-size: $normal_size;
+  cursor: pointer;
+  margin-bottom: 30px;
+  padding: 5px 10px
+}
+
+.plant-tree-button span {
+  padding-left: 10px
+}
+
 
 .tree,
 .plant-tree {

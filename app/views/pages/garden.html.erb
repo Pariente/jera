@@ -11,17 +11,12 @@
 </div>
 <%= render partial: 'shared/profile', locals: {user: current_user} %>
 <div class="garden-flex">
-  <div class="plant-tree">
-    <%= link_to trees_latest_path do %>
-      <div class="plant-tree-pic">
-        <%= image_tag("white_plus.svg") %>
-      </div>
-      <div class="plant-tree-text">
-        <p class="plant-tree-title">Plant a new tree</p>
-        <p class="plant-tree-subtitle">Find more interesting stuff to harvest from the wild world.</p>
-      </div>
-    <% end %>
-  </div>
+  <%= link_to trees_latest_path do %>
+    <div class="plant-tree-button">
+      <%= image_tag("round_plus_button.svg") %>
+      <span>Planter un nouvel arbre</span>
+    </div>
+  <% end %>
   <% @subscriptions.each do |sub| %>
     <% cache sub do %>
       <% source = sub.source %>
