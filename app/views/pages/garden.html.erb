@@ -11,6 +11,7 @@
 </div>
 <%= render partial: 'shared/profile', locals: {user: current_user} %>
 <div class="garden-flex">
+  <%= render partial: 'shared/colour_filters', locals: {colour: @colour} %>
   <%= link_to trees_latest_path do %>
     <div class="plant-tree-button">
       <%= image_tag("round_plus_button.svg") %>

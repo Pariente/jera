@@ -1,13 +1,38 @@
 class SubscriptionsController < ApplicationController
   before_action :set_last_action_at
 
-  def new
-    if Subscription.where(source_id: params[:source_id], user_id: current_user.id) != []
-      Subscription.where(source_id: params[:source_id], user_id: current_user.id).destroy_all
-    else
-      source = Source.find(params[:source_id])
-      sub = Subscription.create(source_id: params[:source_id], user_id: current_user.id, last_time_checked: 1.week.ago, new_entries: 0)
+  def subscribe
+    if Subscription.where(source_id: params[:source_id], user_id: current_user.id) == []
+      sub = Subscription.create(source_id: params[:source_id], user_id: current_user.id, colour: params[:colour], last_time_checked: 1.week.ago, new_entries: 0)
       sub.save
+    end
+
+    respond_to do |format|
+      format.json { render json: sub, status: '200' }
+    end
+  end
+
+  def update
+    subs = Subscription.where(source_id: params[:source_id], user_id: current_user.id)
+    unless subs == []
+      sub = subs.first
+      sub.colour = params[:colour]
+      sub.save
+    end
+
+    respond_to do |format|
+      format.json { render json: sub, status: '200' }
+    end
+  end
+
+  def unsubscribe
+    subs = Subscription.where(source_id: params[:source_id], user_id: current_user.id)
+    unless subs == []
+      subs.destroy_all
+    end
+
+    respond_to do |format|
+      format.json { render json: 'Unsubscribed.', status: '200' }
     end
   end
 

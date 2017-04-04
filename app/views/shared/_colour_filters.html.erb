@@ -1,0 +1,29 @@
+<% all = 'low-opacity' %>
+<% red = 'low-opacity' %>
+<% blue = 'low-opacity' %>
+<% yellow = 'low-opacity' %>
+
+<% if colour == 'red' %>
+  <% red = '' %>
+<% elsif colour == 'blue' %>
+  <% blue = '' %>
+<% elsif colour == 'yellow' %>
+  <% yellow = '' %>
+<% else %>
+  <% all = '' %>
+<% end %>
+
+<div class="garden-colours">
+  <%= link_to garden_path, class: "all-gardens #{all}" do %>
+    Tous
+  <% end %>
+  <%= link_to garden_path(colour: 'red'), class: "red-garden #{red}" do %>
+    Fraises
+  <% end %>
+  <%= link_to garden_path(colour: 'blue'), class: "blue-garden #{blue}" do %>
+    Baies
+  <% end %>
+  <%= link_to garden_path(colour: 'yellow'), class: "yellow-garden #{yellow}" do %>
+    Citrus
+  <% end %>
+</div>

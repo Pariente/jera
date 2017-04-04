@@ -1,10 +1,22 @@
 Rails.application.routes.draw do
 
-  resources :sources, except: [:destroy, :edit] do
-    resources :subscriptions
+  root to: 'pages#fresh'
+  get 'garden' => 'pages#garden'
+  get 'harvest' => 'pages#harvest'
+  get 'trees/top' => 'sources#top'
+  get 'trees/latest' => 'sources#latest'
+  get 'search_sources' => 'sources#results'
+  get 'unable_to_fetch' => 'sources#unable_to_fetch'
+  get 'source/:id/latest' => 'sources#show_latest', as: :source_show_latest
+  get 'source/:id/harvested' => 'sources#show_harvested', as: :source_show_harvested
+
+  resources :sources, only: [] do
+    get 'subscribe' => 'subscriptions#subscribe'
+    get 'unsubscribe' => 'subscriptions#unsubscribe'
+    get 'move_garden' => 'subscriptions#update'
   end
 
-  resources :entries do
+  resources :entries, only: [] do
     get 'harvest' => 'entry_actions#harvest'
     get 'unharvest' => 'entry_actions#unharvest'
     get 'mask' => 'entry_actions#mask'
@@ -16,16 +28,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
-
-  root to: 'pages#fresh'
-  get 'garden' => 'pages#garden'
-  get 'harvest' => 'pages#harvest'
-  get 'trees/top' => 'sources#top'
-  get 'trees/latest' => 'sources#latest'
-  get 'search_sources' => 'sources#results'
-  get 'unable_to_fetch' => 'sources#unable_to_fetch'
-  get 'source/:id/latest' => 'sources#show_latest', as: :source_show_latest
-  get 'source/:id/harvested' => 'sources#show_harvested', as: :source_show_harvested
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

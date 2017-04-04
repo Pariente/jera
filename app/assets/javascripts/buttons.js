@@ -67,19 +67,31 @@ document.addEventListener("turbolinks:load", function() {
     $(this).addClass('hidden');
   });
 
-  // SUBSCRIBE
-  $(".subscribe-button").unbind('click').bind('click', function(evt) {
-    $(this).find('.white-plus').addClass('hidden');
-    $(this).find('.red-cross').removeClass('hidden');
-    $(this).addClass('unsubscribe-button');
-    $(this).removeClass('subscribe-button');
+  // ADD TO GARDEN
+  $(".add-to-garden").unbind('click').bind('click', function(evt) {
+    evt.preventDefault();
+    $(this).parents('.tree').find('.add-to-garden-screen').removeClass('hidden');
+    $('body').css('overflow', 'hidden');
+  });
+
+  // CANCEL ADD TO GARDEN
+  $(".cancel-add-to-garden").unbind('click').bind('click', function(evt) {
+    evt.preventDefault();
+    $(this).parents('.add-to-garden-screen').fadeOut('slow', function() {
+      $(this).addClass('hidden')
+    });
+    $('body').css('overflow', 'initial');
   });
 
   // UNSUBSCRIBE
+  $(".delete-tree").unbind('click').bind('click', function(evt) {
+    $(this).parents('.tree').find('.add-to-garden').removeClass('hidden');
+    $(this).parents('.tree').find('.move-tree').addClass('hidden');
+    $(this).parents('.tree').find('.delete-tree').addClass('hidden');
+  });
+
+  // MOVE TO OTHER GARDEN
   $(".unsubscribe-button").unbind('click').bind('click', function(evt) {
-    $(this).find('.red-cross').addClass('hidden');
-    $(this).find('.white-plus').removeClass('hidden');
-    $(this).addClass('subscribe-button');
-    $(this).removeClass('unsubscribe-button');
+    
   });
 });

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Combined-Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="A4" transform="translate(-412.000000, -637.000000)" fill-rule="nonzero" fill="#FFFFFF">
+            <g id="Navbar" transform="translate(398.000000, 623.000000)">
+                <path d="M20.9599999,19.0399999 L20.9599999,12.9588904 C20.9599999,12.4279613 20.5301933,12 19.9999999,12 C19.4708854,12 19.0399999,12.4293098 19.0399999,12.9588904 L19.0399999,19.0399999 L12.9588904,19.0399999 C12.4279613,19.0399999 12,19.4698066 12,19.9999999 C12,20.5291145 12.4293098,20.9599999 12.9588904,20.9599999 L19.0399999,20.9599999 L19.0399999,27.0411096 C19.0399999,27.5720387 19.4698066,28 19.9999999,28 C20.5291144,28 20.9599999,27.5706901 20.9599999,27.0411096 L20.9599999,20.9599999 L27.0411096,20.9599999 C27.5720385,20.9599999 28,20.5301933 28,19.9999999 C28,19.4708854 27.5706901,19.0399999 27.0411096,19.0399999 L20.9599999,19.0399999 Z" id="Combined-Shape" transform="translate(20.000000, 20.000000) rotate(45.000000) translate(-20.000000, -20.000000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

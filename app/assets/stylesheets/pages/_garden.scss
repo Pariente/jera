@@ -15,8 +15,10 @@
 .profile {
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 0px;
   top: 0px;
-  width: 100%;
+  width: 100%
 }
 
 .profile-flex {
@@ -60,6 +62,40 @@
   padding: 5px 10px
 }
 
+.garden-colours {
+  display: flex;
+  flex-direction: row;
+  font-size: $normal_size;
+  justify-content: space-between;
+  margin-bottom: 20px
+}
+
+.garden-colours a {
+  align-items: center;
+  border-radius: 5px;
+  color: $white;
+  display: flex;
+  justify-content: center;
+  height: 30px;
+  width: 90px
+}
+
+.all-gardens {
+  background-color: $green
+}
+
+.red-garden {
+  background-color: $red
+}
+
+.blue-garden {
+  background-color: $blue
+}
+
+.yellow-garden {
+  background-color: $yellow
+}
+
 .plant-tree-button {
   align-items: center;
   background-color: $white;
@@ -89,11 +125,6 @@
   margin-bottom: 35px;
 }
 
-.profile {
-  margin-bottom: 20px;
-  margin-top: 0px
-}
-
 .tree img {
   display: block;
   margin: auto
@@ -109,9 +140,10 @@
   width: 60px
 }
 
-.tree-name {
+.tree-content {
   align-items: flex-start;
   display: flex;
+  flex-direction: column;
   font-size: $normal_size;
   justify-content: space-between;
   padding-left: 10px;
@@ -119,53 +151,166 @@
   width: 100%
 }
 
-.sign-out-button {
-  background-color: $white;
-  border: 0px;
-  border-radius: 50px;
-  box-shadow: 0px 0px 10px 0px rgba(102, 102, 102, 0.4);
-  color: $red;
-  cursor: pointer;
-  font-size: $normal_size;
-  margin-top: 12px;
-  padding: 5px 10px
-}
-
-.subscribe-button,
-.unsubscribe-button {
-  background-color: $white;
-  border: 0px;
-  border-radius: 5px;
-  cursor: pointer;
-  height: auto;
-  padding: 5px 15px;
-  text-align: center;
-}
-
-.subscribe-button {
-  background-image: linear-gradient(-180deg, #47B869 3%, hsla(136, 44%, 40%, 1) 99%);
-}
-
-.subscribe-button img,
-.unsubscribe-button img {
-  height: 14px;
-  vertical-align: bottom
-}
-
-.new-entries {
-  background-color: $red;
-  border-radius: 100%;
-  box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.4);
-  color: $white;
+.tree-footer,
+.tree-footer-add {
+  display: flex;
   font-size: $small_size;
-  padding: 5px;
-  position: relative;
-  right: 13px;
-  text-align: center;
-  top: -70px;
-  width: 16px;
-  z-index: 100
+  justify-content: flex-end;
+  width: 100%
 }
+
+a.add-to-garden {
+  align-items: center;
+  background-color: $green;
+  border-radius: 20px;
+  box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.2);
+  color: $white;
+  display: flex;
+  height: 25px;
+  justify-content: center;
+  margin-left: 10px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  width: 70px
+}
+
+.tree-footer-add a img {
+  margin: 0px;
+  padding-right: 5px
+}
+
+.tree-footer-add a.move-tree,
+.tree-footer-add a.delete-tree, {
+  color: $grey;
+  padding-left: 15px;
+  padding-right: 15px
+}
+
+.add-to-garden-screen {
+  align-items: center;
+  background-color: rgba(255,255,255,0.5);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 400
+}
+
+.add-to-garden-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: -30px;
+  max-width: 450px;
+  width: 100%;
+  z-index: 500
+}
+
+.cancel-add-to-garden {
+  align-items: center;
+  background-color: $green;
+  border-radius: 40px;
+  box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.2);
+  cursor: pointer;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  margin-right: 20px;
+  width: 40px;
+}
+
+.add-to-garden-body {
+  align-items: center;
+  background-color: $white;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.2);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 400px;
+  margin: 10px;
+  max-width: 450px;
+  padding: 20px 10px;
+  width: 100%
+}
+
+.add-to-garden-title {
+  margin: initial;
+  padding: 0px;
+  text-align: center;
+}
+
+.garden-pic {
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.4);
+  display: inline-block;
+  min-width: 30px;
+  max-width: 30px;
+  height: 30px;
+  width: 30px
+}
+
+.seeds {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  width: 100%
+}
+
+.seed {
+  align-items: center;
+  background-color: $white;
+  border-radius: 50px;
+  box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.4);
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  width: 50px
+}
+
+.seed.red {
+  border: 3px solid #B33A46;
+}
+
+.seed.blue {
+  border: 3px solid $blue;
+}
+
+.seed.yellow {
+  border: 3px solid $yellow;
+}
+
+img.weed {
+  display: initial;
+  display: none;
+  margin-bottom: -70px;
+  padding-right: 30px;
+  opacity: 0
+}
+
+.earth {
+  margin-top: 20px;
+}
+
+// .new-entries {
+//   background-color: $red;
+//   border-radius: 100%;
+//   box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.4);
+//   color: $white;
+//   font-size: $small_size;
+//   padding: 5px;
+//   position: relative;
+//   right: 13px;
+//   text-align: center;
+//   top: -70px;
+//   width: 16px;
+//   z-index: 100
+// }
 
 @media screen and (max-width: 450px) {
   .profile-flex {
@@ -186,14 +331,36 @@
     margin-left: 10px;
     margin-right: 10px
   }
+  .add-to-garden-header,
+  .add-to-garden-body {
+    max-width: 400px
+  }
 }
 
 @media screen and (max-width: 375px) {
   .profile-background {
     border-radius: 0px
   }
+  .tree-pic {
+    height: 50px;
+    min-height: 50px;
+    min-width: 50px;
+    width: 50px
+  }
   .tree-name {
     font-size: $normal_size
+  }
+  .tree-footer-add a.red,
+  .tree-footer-add a.blue,
+  .tree-footer-add a.yellow {
+    width: 50px
+  }
+  .garden-colours a {
+    width: 80px
+  }
+  .add-to-garden-header,
+  .add-to-garden-body {
+    max-width: 330px
   }
 }
 
@@ -201,5 +368,15 @@
   .tree-name {
     font-size: $small_size;
     font-weight: 700
+  }
+  .garden-colours {
+    font-size: $smaller_size
+  }
+  .garden-colours a {
+    width: 70px
+  }
+  .add-to-garden-header,
+  .add-to-garden-body {
+    max-width: 300px
   }
 }

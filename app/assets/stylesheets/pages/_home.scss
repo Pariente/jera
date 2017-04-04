@@ -14,6 +14,7 @@ h3 {
   font-weight: 400;
   letter-spacing: 1px;
   margin-top: 0px;
+  padding: 0px 10px;
   text-align: center
 }
 
@@ -131,7 +132,7 @@ header > h1 {
 
 @media screen and (max-width: 450px) {
   .nav-flex {
-    max-width: 400px
+    max-width: 450px
   }
 }
 
@@ -195,7 +196,7 @@ header > h1 {
 @media screen and (max-width: 450px) {
   .nav-search-flex {
     border-radius: 0px;
-    max-width: 400px
+    max-width: 450px
   }
 }
 
@@ -265,16 +266,9 @@ p {
   padding-left: 20px
 }
 
-.chevron {
-  height: 16px
-}
-
 @media screen and (max-width: 350px) {
   .back {
     font-size: $normal_size
-  }
-  .chevron{
-    height: 14px
   }
 }
 
