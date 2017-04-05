@@ -1,5 +1,5 @@
-$(function() {
-  $('.seed').each(function(){
+document.addEventListener("turbolinks:load", function() {
+  $('.seed').unbind().each(function(){
     $(this).draggable({
       containment: $(this).parent().parent(),
       revert : function(event, ui) {
