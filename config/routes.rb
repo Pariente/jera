@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'source/:id/latest' => 'sources#show_latest', as: :source_show_latest
   get 'source/:id/harvested' => 'sources#show_harvested', as: :source_show_harvested
 
-  resources :sources, only: [] do
+  resources :sources do
     get 'subscribe' => 'subscriptions#subscribe'
     get 'unsubscribe' => 'subscriptions#unsubscribe'
     get 'move_garden' => 'subscriptions#update'
