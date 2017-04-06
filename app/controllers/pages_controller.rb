@@ -28,7 +28,9 @@ class PagesController < ApplicationController
       end
 
       iterator.each do |e|
-        @fresh.push(e)
+        if e.is_fresh?(current_user)
+          @fresh.push(e)
+        end
       end
 
       # iterator.each do |e|
