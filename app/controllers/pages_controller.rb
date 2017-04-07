@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   require 'open-uri'
 
   def fresh
-
+    @colour = params[:colour]
     # INITIATING HARVEST
     @fresh = []
     @new = []
@@ -13,7 +13,18 @@ class PagesController < ApplicationController
     # CURRENT USER'S SUBSCRIPTIONS
     subscriptions = current_user.subscriptions.all
 
-    # ALL SOURCES TO WHICH THE USER HAS SUBSCRIBED
+    if @colour == 'red'
+      array = subscriptions.to_a.delete_if {|sub| !sub.red?}
+      subscriptions = array
+    elsif @colour == 'blue'
+      array = subscriptions.to_a.delete_if {|sub| !sub.blue?}
+      subscriptions = array
+    elsif @colour == 'yellow'
+      array = subscriptions.to_a.delete_if {|sub| !sub.yellow?}
+      subscriptions = array
+    end
+
+    # THE SOURCES TO WHICH THE USER HAS SUBSCRIBED
     sources = []
     subscriptions.each do |sub|
       sources.push(Source.find(sub.source_id))
