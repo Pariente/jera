@@ -74,9 +74,28 @@ class PagesController < ApplicationController
   end
 
   def harvest
+    @colour = params[:colour]
     @unread = []
     @harvested = []
-    harvested = current_user.entry_actions.where(harvested: true)
+    subscriptions = current_user.subscriptions.all
+    array = []
+    sources = []
+
+    if @colour == 'red'
+      array = subscriptions.to_a.delete_if {|sub| !sub.red?}
+    elsif @colour == 'blue'
+      array = subscriptions.to_a.delete_if {|sub| !sub.blue?}
+    elsif @colour == 'yellow'
+      array = subscriptions.to_a.delete_if {|sub| !sub.yellow?}
+    else
+      array = subscriptions
+    end
+
+    array.each do |sub|
+      sources.push(sub.source)
+    end
+
+    harvested = current_user.entry_actions.where(harvested: true).where("entry_actions.source_id IN (?)", sources)
     harvested = harvested.sort_by {|p| p.created_at}.reverse
     harvested.each do |h|
       if h.read
