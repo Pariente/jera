@@ -28,4 +28,16 @@ class Entry < ActiveRecord::Base
   def is_fresh?(current_user)
     !self.is_masked_by_user?(current_user) && !self.is_harvested_by_user?(current_user) && (self.created_at > 1.week.ago)
   end
+
+  def self.dedupe
+    # find all models and group them on keys which should be common
+    grouped = all.group_by{|model| [model.media_url] }
+    grouped.values.each do |duplicates|
+      # the first one we want to keep right?
+      first_one = duplicates.shift # or pop for last one
+      # if there are any more left, they are duplicates
+      # so delete all of them
+      duplicates.each{|double| double.destroy} # duplicates can now be destroyed
+    end
+  end
 end
