@@ -13,9 +13,6 @@
         <a href="#" class="add-to-garden">
           <span>Ajouter</span>
         </a>
-        <%= link_to root_path, class: 'move-tree hidden', remote: :true do %>
-          <span>Déplacer</span>
-        <% end %>
         <%= link_to source_unsubscribe_path(source), class: 'delete-tree hidden', remote: :true do %>
           <span>Supprimer</span>
         <% end %>
@@ -23,9 +20,6 @@
         <a href="#" class="add-to-garden hidden">
           <span>Ajouter</span>
         </a>
-        <%= link_to root_path, class: 'move-tree', remote: :true do %>
-          <span>Déplacer</span>
-        <% end %>
         <%= link_to source_unsubscribe_path(source), class: 'delete-tree', remote: :true do %>
           <span>Supprimer</span>
         <% end %>

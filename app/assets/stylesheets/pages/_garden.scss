@@ -196,7 +196,7 @@ a.add-to-garden {
   display: flex;
   height: 25px;
   justify-content: center;
-  margin-left: 10px;
+  margin-right: 10px;
   text-shadow: 0 2px 4px rgba(0,0,0,0.3);
   width: 70px
 }
@@ -362,6 +362,12 @@ img.weed {
   .add-to-garden-header,
   .add-to-garden-body {
     max-width: 400px
+  }
+  .garden-colours {
+    margin-left: 10px;
+  }
+  .choose-colour ul li {
+    padding-bottom: 10px
   }
 }
 
