@@ -63,7 +63,7 @@
 }
 
 .garden-colours {
-  align-items: flex-start;
+  align-items: baseline;
   display: flex;
   flex-direction: row;
   font-weight: bold;
@@ -106,22 +106,6 @@
 .choose-colour img {
   cursor: pointer;
   margin: 10px 5px 0px 10px;
-}
-
-.all-gardens {
-  background-color: $green
-}
-
-.red-garden {
-  background-color: $red
-}
-
-.blue-garden {
-  background-color: $blue
-}
-
-.yellow-garden {
-  background-color: $yellow
 }
 
 .plant-tree-button {
