@@ -94,4 +94,14 @@ document.addEventListener("turbolinks:load", function() {
   $(".unsubscribe-button").unbind('click').bind('click', function(evt) {
     
   });
+
+  // FILTER COLOUR
+  $(".filtered-colour").unbind('click').bind('click', function(evt) {
+    $(this).addClass('hidden');
+    $(this).parent().find('.choose-colour').removeClass('hidden');
+  });
+  $(".hide-colour-selector").unbind('click').bind('click', function(evt) {
+    $(this).parent().addClass('hidden');
+    $(this).parents('.garden-colours').find('.filtered-colour').removeClass('hidden');
+  });
 });

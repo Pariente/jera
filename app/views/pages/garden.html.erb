@@ -11,13 +11,13 @@
 </div>
 <%= render partial: 'shared/profile', locals: {user: current_user} %>
 <div class="garden-flex">
-  <%= render partial: 'shared/colour_filters', locals: {colour: @colour} %>
   <%= link_to trees_latest_path do %>
     <div class="plant-tree-button">
       <%= image_tag("round_plus_button.svg") %>
       <span>Planter un nouvel arbre</span>
     </div>
   <% end %>
+  <%= render partial: 'shared/garden_filter', locals: {colour: @colour} %>
   <% @subscriptions.each do |sub| %>
     <% cache sub do %>
       <% source = sub.source %>

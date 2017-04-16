@@ -1,0 +1,24 @@
+<div class="garden-colours">
+  <div class="filter-colours">Filtrer :</div>
+  <div class='filtered-colour'>
+    <% if colour == 'red' %>
+      🍓 <span class="underline">mes fruits rouges</span>
+    <% elsif colour == 'blue' %>
+      🍇 <span class="underline">mes fruits bleus</span>
+    <% elsif colour == 'yellow' %>
+      🍋 <span class="underline">mes fruits jaunes</span>
+    <% else %>
+      🌳 <span class="underline">tous mes fruits</span>
+    <% end %>
+    <%= image_tag('chevron_down.svg', height: '10px') %>
+  </div>
+  <div class="choose-colour hidden">
+    <ul>
+      <li><%= link_to harvest_path do %>🌳 tous mes fruits<% end %></li>
+      <li><%= link_to harvest_path(colour: 'red') do %>🍓 mes fruits rouges<% end %></li>
+      <li><%= link_to harvest_path(colour: 'blue') do %>🍇 mes fruits bleus<% end %></li>
+      <li><%= link_to harvest_path(colour: 'yellow') do %>🍋 mes fruits jaunes<% end %></li>
+    </ul>
+    <%= image_tag('chevron_up.svg', height: '10px', class: 'hide-colour-selector') %>
+  </div>
+</div>
