@@ -6,8 +6,8 @@
 <div class="nav">
   <div class="nav-flex">
     <%= link_to garden_path do %>
-      <div class="garden-button">
-        <%= image_tag('garden_icon.svg') %>
+      <div class="profile-button">
+        <%= image_tag(current_user.picture) %>
       </div>
     <% end %>
     <%= link_to harvest_path do %>
