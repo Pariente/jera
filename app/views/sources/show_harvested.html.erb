@@ -17,7 +17,7 @@
   </div>
   <% if @unread == [] && @harvest == [] %>
     <br><br>
-    <h1>Vous n'avez pas encore récolté de fruits de cet arbre. 👩‍🌾</h1>
+    <span class="empty-message">Vous n'avez pas encore récolté de fruits de cet arbre. 👩‍🌾</span>
   <% end %>
   <% unless @unread == [] %>
     <%= render partial: 'shared/redbar', locals: {title: @unread.count.to_s + ' NON LUS'} %>

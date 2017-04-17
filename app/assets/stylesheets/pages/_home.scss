@@ -234,6 +234,12 @@ p {
   max-width: 500px
 }
 
+span.empty-message {
+  font-size: $h2_size;
+  line-height: 40px;
+  text-align: center
+}
+
 /* --- BACK --- */
 
 .back {

@@ -11,8 +11,8 @@
 </div>
 <div class="content-flex">
   <%= render partial: 'shared/harvest_filter', locals: {colour: @colour} %>
-  <% if @unread == [] && @harvest == [] %>
-    <h1>Récoltez les fruits de vos arbres qui vous intéressent pour les lire plus tard ou les conserver précieusement ici. 👩‍🌾</h1>
+  <% if @unread == [] && @harvested == [] %>
+    <span class="empty-message">Récoltez les fruits de vos arbres qui vous intéressent pour les lire plus tard ou les conserver précieusement ici. 👩‍🌾</span>
   <% end %>
   <% unless @unread == [] %>
     <%= render partial: 'shared/redbar', locals: {title: @unread.count.to_s + ' NON LUS'} %>

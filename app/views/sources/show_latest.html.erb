@@ -17,7 +17,7 @@
   </div>
   <% if @new == [] && @latest == [] %>
     <br><br>
-    <h1>Cet arbre n'a pas encore de nouveau fruit. 👌</h1>
+    <span class="empty-message">Cet arbre n'a pas encore de nouveau fruit. 👌</span>
   <% end %>
   <% unless @new == [] %>
     <%= render partial: 'shared/redbar', locals: {title: 'NOUVEAUX'} %>
