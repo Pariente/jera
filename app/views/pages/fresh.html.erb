@@ -22,7 +22,8 @@
 <div class="content-flex">
   <%= render partial: 'shared/fresh_filter', locals: {colour: @colour} %>
   <% if @fresh == [] %>
-    <span class="empty-message">Vous êtes parfaitement à jour. 👌<br><br>Pourquoi ne pas consulter votre récolte si vous en avez le temps ? 😊</span>
+    <span class="empty-message">Vous êtes parfaitement à jour. 😌</span>
+    <span class="empty-message">Pourquoi ne pas consulter votre récolte si vous en avez le temps ? 👩‍🌾</span>
   <% else %>
     <% @fresh.each do |e| %>
       <% cache "entry-#{e.id}" do %>
