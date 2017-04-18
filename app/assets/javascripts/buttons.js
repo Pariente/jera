@@ -104,4 +104,14 @@ document.addEventListener("turbolinks:load", function() {
     $(this).parent().addClass('hidden');
     $(this).parents('.garden-colours').find('.filtered-colour').removeClass('hidden');
   });
+
+  // ACCEPT FRIENDSHIP
+  $(".accept-friend-request").unbind('click').bind('click', function(evt) {
+    $(this).parents('.friend-request').addClass('hidden');
+  });
+
+  // REFUSE FRIENDSHIP
+  $(".refuse-friend-request").unbind('click').bind('click', function(evt) {
+    $(this).parents('.friend-request').addClass('hidden');
+  });
 });

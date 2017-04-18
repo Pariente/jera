@@ -1,0 +1,15 @@
+<div class="friend-request">
+  <%= image_tag(f.requester.picture) %>
+  <div class="right-column">
+    <span><b><%= f.requester.username %></b> vous demande comme ami.</span>
+    <div class="friend-request-buttons">
+      <%= link_to accept_friendship_path(f), class: 'accept-friend-request', remote: :true do %>
+        <span>Accepter</span>
+      <% end %>
+      </a>
+      <%= link_to refuse_friendship_path(f), class: 'refuse-friend-request', remote: :true do %>
+        <span>Refuser</span>
+      <% end %>
+    </div>
+  </div>
+</div>

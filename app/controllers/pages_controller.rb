@@ -43,22 +43,14 @@ class PagesController < ApplicationController
           @fresh.push(e)
         end
       end
-
-      # iterator.each do |e|
-        # if e.is_fresh?(current_user)
-        #   if e.is_new?(current_user)
-        #     @new.push(e)
-        #   else
-            # @fresh.push(e)
-          # end
-        # end
-      # end
     end
 
     # SORTING FRESH AND NEW BY REVERSE CHRONOLOGICAL ORDER
     @fresh = @fresh.sort_by {|entry| entry.created_at}.reverse
     @fresh = @fresh.first(30)
-    # @new = @new.sort_by {|entry| entry.created_at}.reverse
+
+    # PENDING FRIEND REQUESTS
+    @friend_requests = Friendship.where(friend_user_id: current_user.id, status: 'pending')
 
   end
 

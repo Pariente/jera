@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330145030) do
+ActiveRecord::Schema.define(version: 20170418095243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 20170330145030) do
     t.datetime "updated_at"
   end
 
+  create_table "friendships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_user_id"
+    t.integer "status",         default: 0
+  end
+
+  add_index "friendships", ["friend_user_id", "user_id"], name: "index_friendships_on_friend_user_id_and_user_id", unique: true, using: :btree
+  add_index "friendships", ["user_id", "friend_user_id"], name: "index_friendships_on_user_id_and_friend_user_id", unique: true, using: :btree
+
   create_table "sources", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
@@ -63,20 +72,20 @@ ActiveRecord::Schema.define(version: 20170330145030) do
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                        default: "", null: false
-    t.string   "encrypted_password",           default: "", null: false
+    t.string   "email",                        default: "",                                 null: false
+    t.string   "encrypted_password",           default: "",                                 null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                default: 0,  null: false
+    t.integer  "sign_in_count",                default: 0,                                  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                                                                null: false
+    t.datetime "updated_at",                                                                null: false
     t.string   "username"
-    t.string   "picture"
+    t.string   "picture",                      default: "/images/default_user_picture.png"
     t.datetime "previous_session_last_action"
     t.datetime "last_session_last_action"
   end

@@ -25,6 +25,10 @@ Rails.application.routes.draw do
     get 'unread' => 'entry_actions#unread'
   end
 
+  get 'befriend/:id' => 'friendships#ask', as: :befriend
+  get 'accept_friendship/:id' => 'friendships#accept', as: :accept_friendship
+  get 'refuse_friendship/:id' => 'friendships#refuse', as: :refuse_friendship
+
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
