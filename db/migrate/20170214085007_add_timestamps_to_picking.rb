@@ -1,4 +1,4 @@
-class AddTimestampsToPickings < ActiveRecord::Migration
+class AddTimestampsToPicking < ActiveRecord::Migration
   def change
     change_table :pickings do |t|
       t.timestamps

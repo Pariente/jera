@@ -4,6 +4,18 @@ class Source < ActiveRecord::Base
   has_many :entry_actions
   validates :url, uniqueness: true
 
+  def self.to_csv
+    attributes = %w{name url rss_url picture}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |user|
+        csv << attributes.map{ |attr| user.send(attr) }
+      end
+    end
+  end
+
   def refresh
 
     # FETCHING FEED

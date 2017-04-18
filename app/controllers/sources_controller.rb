@@ -2,6 +2,14 @@ class SourcesController < ApplicationController
   before_action :set_source, only: [:show, :edit, :update]
   before_action :set_last_action_at
   require 'open-uri'
+  require 'csv'
+
+  def index
+    @sources = Source.all
+    respond_to do |format|
+      format.csv { send_data @sources.to_csv, filename: "sources-#{Date.today}.csv" }
+    end
+  end
 
   def top
     @top = Source.all.sort_by {|s| s.subscriptions_count}.reverse.first(50)
