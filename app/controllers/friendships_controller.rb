@@ -1,5 +1,9 @@
 class FriendshipsController < ApplicationController
   before_action :set_friendship, only: [:accept, :refuse]
+
+  def index
+    @friends = current_user.friends
+  end
   def ask
     friends = User.where(id: params[:id])
     if friends == []

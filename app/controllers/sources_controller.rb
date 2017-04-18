@@ -1,6 +1,5 @@
 class SourcesController < ApplicationController
   before_action :set_source, only: [:show, :edit, :update]
-  before_action :set_last_action_at
   require 'open-uri'
 
   def top
@@ -28,11 +27,7 @@ class SourcesController < ApplicationController
 
     last_entries.each do |e|
       unless e.is_masked_by_user?(current_user) || e.is_harvested_by_user?(current_user)
-        if e.is_new?(current_user)
-          @new.push(e)
-        else
-          @latest.push(e)
-        end
+        @latest.push(e)
       end
     end
     
@@ -116,7 +111,7 @@ class SourcesController < ApplicationController
     respond_to do |format|
       if rss_url != nil && @source.save
         @source.refresh
-        sub = Subscription.create(user_id: current_user.id, source_id: @source.id, last_time_checked: 1.week.ago, new_entries: 0)
+        sub = Subscription.create(user_id: current_user.id, source_id: @source.id)
         sub.save
         format.html { redirect_to source_show_latest_path(@source), notice: 'Source was successfully created.' }
         format.json { render :show_latest, status: :created, location: @source }
@@ -149,14 +144,6 @@ class SourcesController < ApplicationController
   end
 
   private
-    def set_last_action_at
-      if Time.now > (current_user.last_session_last_action + 30*60)
-        current_user.previous_session_last_action = current_user.last_session_last_action
-      end
-      current_user.last_session_last_action = Time.now
-      current_user.save
-    end
-
     def ransack_params
       Source.ransack(params[:q])
     end

@@ -9,11 +9,18 @@
       <% end %>
       <div class="profile-name">
         <%= user.username %>
-        <%= link_to edit_user_registration_path do %>
-          <button class="edit-profile-button">
-            Modifier mon profil
-          </button>
-        <% end %>
+        <div class="row">
+          <%= link_to edit_user_registration_path do %>
+            <button class="edit-profile-button">
+              Modifier mon profil
+            </button>
+          <% end %>
+          <%= link_to friends_list_path do %>
+            <button class="friends-list-button">
+              Liste de mes amis
+            </button>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
