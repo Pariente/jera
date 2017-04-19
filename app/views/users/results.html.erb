@@ -1,0 +1,12 @@
+<% title "Liste de mes amis" %>
+<%= render partial: 'shared/friends_searchbar' %>
+<div class="plant-tree-flex">
+  <% if @results == [] %>
+    <p class="no_results">Aucune personne n'a été trouvée.</p>
+    <p class="no_results">Invitez vos amis à s'inscrire sur Jera pour échanger les fruits de vos jardins.</p>
+  <% else %>
+    <% @results.each do |user| %>
+      <%= render partial: 'shared/user', locals: {user: user} %>
+    <% end %>
+  <% end %>
+</div>

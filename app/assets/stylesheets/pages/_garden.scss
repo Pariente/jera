@@ -51,7 +51,8 @@
   text-shadow: 0px 2px 4px rgba(0,0,0,1)
 }
 
-.edit-profile-button {
+.edit-profile-button,
+.friends-list-button {
   background-color: $white;
   border: 0px;
   border-radius: 50px;
@@ -59,6 +60,7 @@
   color: $grey;
   cursor: pointer;
   margin-top: 12px;
+  margin-right: 10px;
   padding: 5px 10px
 }
 

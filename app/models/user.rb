@@ -1,20 +1,38 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  before_create :set_first_session_action
-  has_and_belongs_to_many :friends, 
-    class_name: "User", 
-    join_table: :friendships, 
-    foreign_key: :user_id, 
-    association_foreign_key: :friend_user_id
   has_many :subscriptions
   has_many :entry_actions
   validates_uniqueness_of :username
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  def set_first_session_action
-    self.previous_session_last_action = Time.now
-    self.last_session_last_action = Time.now
+  def friends
+    friendships_as_requester = Friendship.where(user_id: self.id, status: 1)
+    friendships_as_receiver = Friendship.where(friend_user_id: self.id, status: 1)
+    friends = []
+    friendships_as_requester.each do |f|
+      friends.push(User.find(f.friend_user_id))
+    end
+    friendships_as_receiver.each do |f|
+      friends.push(User.find(f.user_id))
+    end
+    return friends
+  end
+
+  def pending_friends
+    pending_friends = []
+    Friendship.where(user_id: self.id, status: 0).each do |f|
+      pending_friends.push(User.find(f.friend_user_id))
+    end
+    return pending_friends
+  end
+
+  def is_friend_with?(user)
+    self.friends.include?(user)
+  end
+
+  def send_friend_request_to?(user)
+    self.pending_friends.include?(user)
   end
 end

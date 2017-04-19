@@ -1,0 +1,14 @@
+<% title "Liste de mes amis" %>
+<%= render partial: 'shared/friends_searchbar' %>
+<div class="plant-tree-flex">
+  <% if @pending == [] && @friends == [] %>
+    <span class="empty-message">Vous pouvez recommander des fruits de vos jardins à vos amis, si vous pensez qu'ils leur plairont. 😋</span>
+  <% else %>
+    <% @pending.each do |p| %>
+      <%= render partial: 'shared/user', locals: {user: p} %>
+    <% end %>
+    <% @friends.each do |f| %>
+      <%= render partial: 'shared/user', locals: {user: f} %>
+    <% end %>
+  <% end %>
+</div>

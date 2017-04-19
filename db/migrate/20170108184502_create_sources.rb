@@ -3,6 +3,8 @@ class CreateSources < ActiveRecord::Migration
     create_table :sources do |t|
       t.string :name
       t.string :url
+      t.string :rss_url
+      t.string :picture
 
       t.timestamps null: false
     end

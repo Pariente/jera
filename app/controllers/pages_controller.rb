@@ -1,5 +1,4 @@
 class PagesController < ApplicationController
-  before_action :set_last_action_at
 
   require 'feedjira'
   require 'open-uri'
@@ -97,15 +96,6 @@ class PagesController < ApplicationController
       end
     end
     @harvested = @harvested.first(30)
-  end
-
-  private
-  def set_last_action_at
-    if Time.now > (current_user.last_session_last_action + 30*60)
-      current_user.previous_session_last_action = current_user.last_session_last_action
-    end
-    current_user.last_session_last_action = Time.now
-    current_user.save
   end
 
 end
