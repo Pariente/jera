@@ -19,4 +19,20 @@ class User < ActiveRecord::Base
     end
     return friends
   end
+
+  def pending_friends
+    pending_friends = []
+    Friendship.where(user_id: self.id, status: 0).each do |f|
+      pending_friends.push(User.find(f.friend_user_id))
+    end
+    return pending_friends
+  end
+
+  def is_friend_with?(user)
+    self.friends.include?(user)
+  end
+
+  def send_friend_request_to?(user)
+    self.pending_friends.include?(user)
+  end
 end

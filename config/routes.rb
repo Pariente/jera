@@ -25,7 +25,8 @@ Rails.application.routes.draw do
     get 'unread' => 'entry_actions#unread'
   end
 
-  get 'friends_list' => 'friendships#index'
+  get 'friends_list' => 'users#show_friends'
+  get 'search_friends' => 'users#results'
   get 'befriend/:id' => 'friendships#ask', as: :befriend
   get 'accept_friendship/:id' => 'friendships#accept', as: :accept_friendship
   get 'refuse_friendship/:id' => 'friendships#refuse', as: :refuse_friendship

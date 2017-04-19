@@ -105,6 +105,12 @@ document.addEventListener("turbolinks:load", function() {
     $(this).parents('.garden-colours').find('.filtered-colour').removeClass('hidden');
   });
 
+  // SEND FRIEND REQUEST
+  $(".send-friend-request").unbind('click').bind('click', function(evt) {
+    $(this).addClass('hidden');
+    $(this).parent().find('.pending').removeClass('hidden');
+  });
+
   // ACCEPT FRIENDSHIP
   $(".accept-friend-request").unbind('click').bind('click', function(evt) {
     $(this).parents('.friend-request').addClass('hidden');

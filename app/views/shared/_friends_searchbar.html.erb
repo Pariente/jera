@@ -1,0 +1,19 @@
+<div class="nav-search">
+  <div class="nav-search-flex">
+    <%= link_to garden_path, class: 'margin-right-auto' do %>
+      <div class="nav-search-back">
+        <%= image_tag('white_arrow_left.svg', class: 'arrow-left') %>
+        Mon profil
+      </div>
+    <% end %>
+    <div class="nav-search-bar">
+      <%= search_form_for @search, url: search_friends_path do |f| %>
+        <div class="magnifier">
+          <%= image_tag('magnifier_icon.svg') %>
+        </div>
+        <%= f.search_field :username_has_any_term, class: 'friends_search_input', placeholder: 'Trouvez vos amis' %>
+        <%= f.submit 'Chercher', class: 'friends_search_submit' %>
+      <% end %>
+    </div>
+  </div>
+</div>
