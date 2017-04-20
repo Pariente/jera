@@ -157,7 +157,7 @@
 .fruit-footer a {
   color: $grey;
   flex-grow: 1;
-  font-size: $normal_size;
+  font-size: $small_size;
   padding-bottom: 10px;
   padding-top: 10px;
   text-align: center
@@ -170,6 +170,11 @@
 .fruit-footer .read,
 .fruit-footer .unread, {
   border-left: 1px solid $light_grey
+}
+
+.fruit-footer .recommend {
+  border-left: 1px solid $light_grey;
+  color: $green
 }
 
 .fruit-footer .harvest {

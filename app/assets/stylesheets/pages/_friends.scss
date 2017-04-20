@@ -35,7 +35,9 @@
 
 a.send-friend-request,
 a.accept-friend-request,
-a.refuse-friend-request {
+a.refuse-friend-request,
+a.recommend-to-friend,
+a.recommend-to-team {
   align-items: center;
   background-color: $green;
   border-radius: 20px;
@@ -52,6 +54,27 @@ a.refuse-friend-request {
 
 a.refuse-friend-request {
   background-color: $red;
+}
+
+a.recommend-to-friend,
+a.recommend-to-team, {
+  margin-top: 5px;
+}
+
+.recommend-span {
+  color: $grey;
+  margin-right: 10px;
+  min-width: 65px
+}
+
+textarea.message {
+  font-size: $small_size;
+  font-weight: normal;
+  height: 80px;
+  margin-top: 10px;
+  max-height: 320px;
+  padding: 10px;
+  resize: none
 }
 
 .pending {

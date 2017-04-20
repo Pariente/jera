@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :subscriptions
   has_many :entry_actions
+  has_many :memberships
+  has_many :messages
   validates_uniqueness_of :username
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -34,5 +36,9 @@ class User < ActiveRecord::Base
 
   def send_friend_request_to?(user)
     self.pending_friends.include?(user)
+  end
+
+  def recommendations_received
+    return Recommendation.where(receiver_id: self.id)
   end
 end

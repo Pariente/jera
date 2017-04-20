@@ -48,6 +48,9 @@ class PagesController < ApplicationController
     @fresh = @fresh.sort_by {|entry| entry.created_at}.reverse
     @fresh = @fresh.first(30)
 
+    # RECOMMENDATIONS
+    @recommendations = current_user.recommendations_received
+
     # PENDING FRIEND REQUESTS
     @friend_requests = Friendship.where(friend_user_id: current_user.id, status: 'pending')
 

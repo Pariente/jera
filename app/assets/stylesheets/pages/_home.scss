@@ -386,6 +386,12 @@ span.empty-message {
   opacity: 0.5
 }
 
+.not-active {
+  cursor: default;
+  opacity: 0.6;
+  pointer-events: none
+}
+
 .margin-right-auto {
   margin-right: auto
 }

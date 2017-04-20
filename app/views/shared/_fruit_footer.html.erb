@@ -11,12 +11,15 @@
     <%= link_to entry_unharvest_path(entry), class: 'unharvest', remote: :true do %>
       Supprimer
     <% end %>
-      <%= link_to entry_unread_path(entry), class: entry_unread, remote: :true do %>
-        Marquer comme non lu
-      <% end %>
-      <%= link_to entry_read_path(entry), class: entry_read, remote: :true do %>
-        Marquer comme lu
-      <% end %>
+    <%= link_to entry_unread_path(entry), class: entry_unread, remote: :true do %>
+      Marquer comme non lu
+    <% end %>
+    <%= link_to entry_read_path(entry), class: entry_read, remote: :true do %>
+      Marquer comme lu
+    <% end %>
+    <%= link_to new_entry_recommendation_path(entry, :referer => request.original_url), class: 'recommend' do %>
+      Partager
+    <% end %>
   <% else %>
     <%= link_to entry_mask_path(entry), class: 'mask', remote: :true do %>
       Masquer

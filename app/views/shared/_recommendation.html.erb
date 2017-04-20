@@ -1,0 +1,33 @@
+<div class="content">
+  <div class="content-left-column">
+    <%= link_to source_show_latest_path(e.source, :referer => request.original_url) do %>
+      <%= image_tag(e.source.picture, class: 'source-pic') %>
+    <% end %>
+  </div>
+  <div class="content-right-column">
+    <div class="content-top">
+      <div class="source-title">
+          <%= link_to source_show_latest_path(e.source, :referer => request.original_url) do %>
+            <%= truncate(e.source.name, length: 30) %>
+          <% end %>
+      </div>
+      <div class="time-published">il y a <%= distance_of_time_in_words(e.created_at, Time.now) %></div>
+    </div>
+    <div class="content-box">
+      <%= render partial: 'shared/content_info', locals: {e: e} %>
+      <%= render partial: 'shared/fruit_footer', locals: {entry: e} %>
+    </div>
+  </div>
+  <div class="content-masked hidden">
+    <span>Vous ne verrez plus ce fruit.</span>
+    <%= link_to entry_unmask_path(e), class: 'unmask', remote: :true do %>
+      Annuler
+    <% end %>
+  </div>
+  <div class="content-harvested hidden">
+    <span>Ajouté à votre récolte.</span>
+    <%= link_to entry_unharvest_path(e), class: 'cancel-harvest', remote: :true do %>
+      Annuler
+    <% end %>
+  </div>
+</div>

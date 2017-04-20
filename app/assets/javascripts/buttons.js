@@ -1,4 +1,15 @@
+function recommendation_textarea(element) {
+  element.style.height = "80px";
+  element.style.height = (element.scrollHeight)+"px";
+  if (element.value.length >= 10 && $(element).parent().find('.recommend-to-friend').hasClass('not-active')) {
+    $(element).parent().find('.recommend-to-friend').removeClass('not-active');
+  } else if (element.value.length <= 10 && !$(element).parent().find('.recommend-to-friend').hasClass('not-active')) {
+    $(element).parent().find('.recommend-to-friend').addClass('not-active');
+  }
+}
+
 document.addEventListener("turbolinks:load", function() {
+
   // MASK
   $(".mask").unbind('click').bind('click', function(evt) {
     $(this).parents('.content').find('.content-left-column').addClass('hidden');
@@ -119,5 +130,23 @@ document.addEventListener("turbolinks:load", function() {
   // REFUSE FRIENDSHIP
   $(".refuse-friend-request").unbind('click').bind('click', function(evt) {
     $(this).parents('.friend-request').addClass('hidden');
+  });
+
+  // RECOMMEND
+  $(".recommend-to-friend").unbind('click').bind('click', function(evt) {
+    evt.preventDefault();
+    var entry_id = $(this).data('entry-id');
+    var receiver_id = $(this).data('receiver-id');
+    var message = $(this).parents('.friend-div').find('textarea').val();
+    // $.post("/entries/" + entry_id + "/recommend_to_friend/" + receiver_id + ".json", { _method: 'get', message: message });
+    $.ajax({
+        url: "/entries/" + entry_id + "/recommend_to_friend/" + receiver_id + ".json",
+        type: "GET",
+        data: {message: message},
+        success: function(resp){ }
+    });
+    $(this).addClass('hidden');
+    $(this).parents('.friend-div').find('textarea').addClass('hidden');
+    $(this).parent().find('.green').removeClass('hidden');
   });
 });

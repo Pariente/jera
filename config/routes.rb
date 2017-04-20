@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     get 'unmask' => 'entry_actions#unmask'
     get 'read' => 'entry_actions#read'
     get 'unread' => 'entry_actions#unread'
+    resources :recommendations, only: [:new]
   end
 
   get 'friends_list' => 'users#show_friends'
@@ -31,6 +32,11 @@ Rails.application.routes.draw do
   get 'befriend/:id' => 'friendships#ask', as: :befriend
   get 'accept_friendship/:id' => 'friendships#accept', as: :accept_friendship
   get 'refuse_friendship/:id' => 'friendships#refuse', as: :refuse_friendship
+
+  get 'entries/:entry_id/recommend_to_friend/:receiver_id' => 'recommendations#recommend_to_friend', as: :recommend_to_friend
+  get 'entries/:entry_id/recommend_to_team/:team_id' => 'recommendations#recommend_to_team', as: :recommend_to_team
+
+  resources :messages, only: [:new]
 
   devise_for :users, controllers: {
     sessions: 'users/sessions'
