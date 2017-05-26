@@ -222,6 +222,39 @@
   color: $green
 }
 
+.recommendation-header {
+  display: flex;
+  flex-direction: row;
+  margin: 0px 4px;
+}
+
+.recommendation-header .message-column {
+  display: flex;
+  flex-direction: column;
+  padding-left: 7px
+}
+
+.message-pic {
+  border-radius: 5px;
+  height: 25px;
+  width: 25px
+}
+
+.message-header {
+  color: $grey
+}
+
+.message-username {
+  color: $black;
+  font-weight: bold
+}
+
+.message-header,
+.message-text {
+  font-size: $normal_size;
+  margin-bottom: 5px;
+}
+
 @media screen and (max-width: 400px) {
   .content {
     margin-left: 5px;
