@@ -98,7 +98,9 @@ class PagesController < ApplicationController
         @unread.push(h)
       end
     end
-    unless @unread.count >= 30
+    if @unread.count >= 30
+      @harvested = []
+    else
       @harvested = @harvested.first(30 - @unread.count)
     end
   end
