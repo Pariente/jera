@@ -26,7 +26,7 @@
     <%= render partial: 'shared/redbar', locals: {title: ''} %>
   <% end %>
   <% unless @harvested == nil %>
-    <% @harvested.each do |e| %>
+    <% @harvested.each do |action| %>
       <%= render partial: 'shared/fruit_harvested', locals: {e: action.entry} %>
     <% end %>
   <% end %>
