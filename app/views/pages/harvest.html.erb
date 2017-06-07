@@ -16,14 +16,18 @@
   <% end %>
   <% unless @unread == [] %>
     <%= render partial: 'shared/redbar', locals: {title: @unread.count.to_s + ' NON LUS'} %>
-    <% @unread.each do |e| %>
-      <%= render partial: 'shared/fruit_harvested', locals: {e: e} %>
+    <% @unread.each do |action| %>
+      <% if action.recommendation_id != nil %>
+        <%= render partial: 'shared/recommendation', locals: {e: action.entry, r: action.recommendation} %>
+      <% else %>
+        <%= render partial: 'shared/fruit_harvested', locals: {e: action.entry} %>
+      <% end %>
     <% end %>
     <%= render partial: 'shared/redbar', locals: {title: ''} %>
   <% end %>
   <% unless @harvested == nil %>
     <% @harvested.each do |e| %>
-      <%= render partial: 'shared/fruit_harvested', locals: {e: e} %>
+      <%= render partial: 'shared/fruit_harvested', locals: {e: action.entry} %>
     <% end %>
   <% end %>
 </div>

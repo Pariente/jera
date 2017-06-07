@@ -39,6 +39,13 @@ class User < ActiveRecord::Base
   end
 
   def recommendations_received
-    return Recommendation.where(receiver_id: self.id)
+    all_recs = Recommendation.where(receiver_id: self.id)
+    recs = []
+    all_recs.each do |r|
+      if self.entry_actions.where(recommendation_id: r.id) == []
+        recs.push(r)
+      end
+    end
+    return recs
   end
 end

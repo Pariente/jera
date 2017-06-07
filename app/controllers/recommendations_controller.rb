@@ -12,7 +12,7 @@ class RecommendationsController < ApplicationController
   end
 
   def recommend_to_friend
-    if Recommendation.where(user_id: current_user.id, receiver_id: params[:receiver_id]) == []
+    if Recommendation.where(user_id: current_user.id, receiver_id: params[:receiver_id], entry_id: params[:entry_id]) == []
       if current_user.is_friend_with?(User.find(params[:receiver_id]))
         @reco = Recommendation.create(user_id: current_user.id, receiver_id: params[:receiver_id], entry_id: params[:entry_id])
         @reco.save

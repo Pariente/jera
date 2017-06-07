@@ -89,16 +89,18 @@ class PagesController < ApplicationController
       sources.push(sub.source)
     end
 
-    harvested = current_user.entry_actions.where(harvested: true).where("entry_actions.source_id IN (?)", sources)
+    harvested = current_user.entry_actions.where(harvested: true)
     harvested = harvested.sort_by {|p| p.created_at}.reverse
     harvested.each do |h|
       if h.read
-        @harvested.push(h.entry)
+        @harvested.push(h)
       else
-        @unread.push(h.entry)
+        @unread.push(h)
       end
     end
-    @harvested = @harvested.first(30)
+    unless @unread.count >= 30
+      @harvested = @harvested.first(30 - @unread.count)
+    end
   end
 
 end

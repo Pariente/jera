@@ -5,9 +5,9 @@ class SourcesController < ApplicationController
 
   def index
     @sources = Source.all
-    respond_to do |format|
-      format.csv { send_data @sources.to_csv, filename: "sources-#{Date.today}.csv" }
-    end
+#    respond_to do |format|
+#     format.csv { send_data @sources.to_csv, filename: "sources-#{Date.today}.csv" }
+#    end
   end
 
   def top

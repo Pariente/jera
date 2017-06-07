@@ -1,15 +1,15 @@
 class EntryActionsController < ApplicationController
   def harvest
-    existing_action = EntryAction.where(user_id: current_user.id, entry_id: params[:entry_id])
+    existing_action = EntryAction.where(user_id: current_user.id, entry_id: params[:entry_id], recommendation_id: params[:recommendation_id])
     # CHECKING IF ACTION EXISTS
     if existing_action == []
       # IF IT DOESN'T, CREATE AND SAVE IT WITH "HARVESTED" AS TRUE
       entry = Entry.find(params[:entry_id])
       source = entry.source
-      action = EntryAction.create(user_id: current_user.id, entry_id: params[:entry_id], source_id: source.id, harvested: true)
+      action = EntryAction.create(user_id: current_user.id, entry_id: params[:entry_id], source_id: source.id, harvested: true, recommendation_id: params[:recommendation_id])
       action.save
     else
-      # IF SO, THEN TURN THE "HARVESTED" TO FALSE
+      # IF SO, TURN THE "HARVESTED" TO TRUE
       existing_action.first.harvested = true
       existing_action.first.save
     end
@@ -28,29 +28,29 @@ class EntryActionsController < ApplicationController
   end
 
   def unharvest
-    action = EntryAction.where(user_id: current_user.id, entry_id: params[:entry_id])
-    unless action == []
-      if action.first.read
-        action.first.harvested = false
-        action.first.save
+    existing_action = EntryAction.where(user_id: current_user.id, entry_id: params[:entry_id], recommendation_id: params[:recommendation_id])
+    unless existing_action == []
+      if existing_action.first.read
+        existing_action.first.harvested = false
+        existing_action.first.save
       else
-        action.destroy_all
+        existing_action.destroy_all
       end
     end
 
     respond_to do |format|
-      format.json { render json: action, status: '200' }
+      format.json { render json: existing_action, status: '200' }
     end
   end
 
   def mask
-    existing_action = EntryAction.where(user_id: current_user.id, entry_id: params[:entry_id])
+    existing_action = EntryAction.where(user_id: current_user.id, entry_id: params[:entry_id], recommendation_id: params[:recommendation_id])
     # CHECKING IF ACTION EXISTS
     if existing_action == []
       # IF IT DOESN'T, CREATE AND SAVE IT WITH "MASKED" AS TRUE
       entry = Entry.find(params[:entry_id])
       source = entry.source
-      action = EntryAction.create(user_id: current_user.id, entry_id: params[:entry_id], source_id: source.id, masked: true)
+      action = EntryAction.create(user_id: current_user.id, entry_id: params[:entry_id], source_id: source.id, masked: true, recommendation_id: params[:recommendation_id])
       action.save
     else
       # IF IT DOES, UPDATE THE VALUE OF "MASKED" TO TRUE
@@ -72,29 +72,29 @@ class EntryActionsController < ApplicationController
   end
 
   def unmask
-    action = EntryAction.where(user_id: current_user.id, entry_id: params[:entry_id])
-    unless action == []
-      if action.first.read
-        action.first.masked = false
-        action.first.save
+    existing_action = EntryAction.where(user_id: current_user.id, entry_id: params[:entry_id], recommendation_id: params[:recommendation_id])
+    unless existing_action == []
+      if existing_action.first.read
+        existing_action.first.masked = false
+        existing_action.first.save
       else
-        action.destroy_all
+        existing_action.destroy_all
       end
     end
 
     respond_to do |format|
-      format.json { render json: action, status: '200' }
+      format.json { render json: existing_action, status: '200' }
     end
   end
 
   def read
-    existing_action = EntryAction.where(user_id: current_user.id, entry_id: params[:entry_id])
+    existing_action = EntryAction.where(user_id: current_user.id, entry_id: params[:entry_id], recommendation_id: params[:recommendation_id])
     # CHECKING IF ACTION EXISTS
     if existing_action == []
       # IF IT DOESN'T, CREATE AND SAVE IT WITH "READ" AS TRUE
       entry = Entry.find(params[:entry_id])
       source = entry.source
-      action = EntryAction.create(user_id: current_user.id, entry_id: params[:entry_id], source_id: source.id, read: true)
+      action = EntryAction.create(user_id: current_user.id, entry_id: params[:entry_id], source_id: source.id, read: true, recommendation_id: params[:recommendation_id])
       action.save
     else
       # IF IT DOES, UPDATE THE VALUE OF "READ" TO TRUE
@@ -116,14 +116,14 @@ class EntryActionsController < ApplicationController
   end
 
   def unread
-    action = EntryAction.where(user_id: current_user.id, entry_id: params[:entry_id])
+    existing_action = EntryAction.where(user_id: current_user.id, entry_id: params[:entry_id], recommendation_id: params[:recommendation_id])
     unless action == []
-      action.first.read = false
-      action.first.save
+      existing_action.first.read = false
+      existing_action.first.save
     end
 
     respond_to do |format|
-      format.json { render json: action, status: '200' }
+      format.json { render json: existing_action, status: '200' }
     end
   end
 

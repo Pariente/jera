@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420133258) do
+ActiveRecord::Schema.define(version: 20170607143049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,11 +33,12 @@ ActiveRecord::Schema.define(version: 20170420133258) do
     t.integer  "user_id"
     t.integer  "entry_id"
     t.integer  "source_id"
-    t.boolean  "harvested",  default: false
-    t.boolean  "masked",     default: false
-    t.boolean  "read",       default: false
+    t.boolean  "harvested",         default: false
+    t.boolean  "masked",            default: false
+    t.boolean  "read",              default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "recommendation_id"
   end
 
   create_table "friendships", force: :cascade do |t|

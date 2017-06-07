@@ -8,7 +8,7 @@
     <span class="message-text"><%= first_message.text %></span>
   </div>
 </div>
-<div class="content">
+<div class="content recommended">
   <div class="content-left-column">
     <%= link_to source_show_latest_path(e.source, :referer => request.original_url) do %>
       <%= image_tag(e.source.picture, class: 'source-pic') %>
@@ -25,18 +25,18 @@
     </div>
     <div class="content-box">
       <%= render partial: 'shared/content_info', locals: {e: e} %>
-      <%= render partial: 'shared/fruit_footer', locals: {entry: e} %>
+      <%= render partial: 'shared/fruit_footer', locals: {entry: e, rec_id: r.id} %>
     </div>
   </div>
   <div class="content-masked hidden">
     <span>Vous ne verrez plus ce fruit.</span>
-    <%= link_to entry_unmask_path(e), class: 'unmask', remote: :true do %>
+    <%= link_to entry_unmask_path(e, recommendation_id: r.id), class: 'unmask', remote: :true do %>
       Annuler
     <% end %>
   </div>
   <div class="content-harvested hidden">
     <span>Ajouté à votre récolte.</span>
-    <%= link_to entry_unharvest_path(e), class: 'cancel-harvest', remote: :true do %>
+    <%= link_to entry_unharvest_path(e, recommendation_id: r.id), class: 'cancel-harvest', remote: :true do %>
       Annuler
     <% end %>
   </div>

@@ -5,18 +5,18 @@
     </div>
     <div class="content-box">
       <%= render partial: 'shared/content_info', locals: {e: e} %>
-      <%= render partial: 'shared/fruit_footer', locals: {entry: e} %>
+      <%= render partial: 'shared/fruit_footer', locals: {entry: e, rec_id: nil} %>
     </div>
   </div>
   <div class="content-masked hidden">
     <span>Vous ne verrez plus ce fruit.</span>
-    <%= link_to entry_unmask_path(e), class: 'unmask', remote: :true do %>
+    <%= link_to entry_unmask_path(e, recommendation_id: nil), class: 'unmask', remote: :true do %>
       Annuler
     <% end %>
   </div>
   <div class="content-harvested hidden">
     <span>Ajouté à votre récolte.</span>
-    <%= link_to entry_unharvest_path(e), class: 'cancel-harvest', remote: :true do %>
+    <%= link_to entry_unharvest_path(e, recommendation_id: nil), class: 'cancel-harvest', remote: :true do %>
       Annuler
     <% end %>
   </div>
