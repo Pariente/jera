@@ -5,7 +5,13 @@ class Entry < ActiveRecord::Base
 
   def is_harvested_by_user?(current_user)
     action = EntryAction.where(user_id: current_user.id, entry_id: self.id)
-    action != [] && action.first.harvested
+    harvested = false
+    action.each do |a|
+      if a.harvested
+        harvested = true
+      end
+    end
+    harvested
   end
 
   def is_masked_by_user?(current_user)

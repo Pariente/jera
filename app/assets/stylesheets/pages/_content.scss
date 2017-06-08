@@ -41,7 +41,6 @@
   height: 55px;
   left: 0;
   position: absolute;
-  top: 0;
   width: 55px;
   z-index: 100
 }
@@ -148,13 +147,18 @@
 }
 
 .fruit-footer {
-  border-top: 1px solid $light_grey;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   margin-top: 20px
 }
 
-.fruit-footer a {
+.fruit-footer-buttons {
+  border-top: 1px solid $light_grey;
+  border-bottom: 1px solid $light_grey;
+  display: flex
+}
+.fruit-footer-buttons a {
   color: $grey;
   flex-grow: 1;
   font-size: $small_size;
@@ -201,7 +205,7 @@
   flex-direction: column;
   font-size: $normal_size;
   line-height: 25px;
-  margin: 20px 0px 0px 10px;
+  margin: 0px 0px 0px 10px;
   padding: 15px 0px
 }
 
@@ -222,16 +226,26 @@
   color: $green
 }
 
-.recommendation-header {
-  border-left: 3px solid $green;
+.recommendation-header,
+.message {
   display: flex;
   flex-direction: row;
+  font-size: $normal_size;
   margin: 0px;
   padding-bottom: 10px;
   padding-left: 5px
 }
 
-.recommendation-header .message-column {
+.messages {
+  margin-top: 5px
+}
+
+.message {
+  margin: 0px 10px 0px 5px;
+  padding: 0px;
+}
+
+.message-column {
   display: flex;
   flex-direction: column;
   padding-left: 7px
@@ -254,12 +268,45 @@
 
 .message-header,
 .message-text {
-  font-size: $normal_size;
   margin-bottom: 5px;
 }
 
-.content.recommended {
-  border-left: 3px solid $green
+.write-response {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  font-size: $normal_size;
+  justify-content: space-between;
+  margin: 5px;
+  margin-top: 0px;
+}
+
+.write-response textarea {
+  border: 0px;
+  font-size: $normal_size;
+  font-weight: normal;
+  height: 25px;
+  margin: 0px 5px;
+  max-height: 320px;
+  max-width: 250px;
+  min-width: inherit;
+  padding: 3px 5px;
+  resize: none
+}
+
+.write-response a {
+  align-items: center;
+  background-color: $green;
+  border-radius: 20px;
+  box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.2);
+  color: $white;
+  display: flex;
+  font-size: $normal_size;
+  height: 25px;
+  justify-content: center;
+  padding: 0px 10px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  width: 80px
 }
 
 @media screen and (max-width: 400px) {

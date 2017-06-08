@@ -8,12 +8,23 @@ function recommendation_textarea(element) {
   }
 }
 
+function message_textarea(element) {
+  element.style.height = "25px";
+  element.style.height = (element.scrollHeight)+"px";
+  if (element.value.length >= 10 && $(element).parent().find('.recommend-to-friend').hasClass('not-active')) {
+    $(element).parent().find('.recommend-to-friend').removeClass('not-active');
+  } else if (element.value.length <= 10 && !$(element).parent().find('.recommend-to-friend').hasClass('not-active')) {
+    $(element).parent().find('.recommend-to-friend').addClass('not-active');
+  }
+}
+
 document.addEventListener("turbolinks:load", function() {
 
   // MASK
   $(".mask").unbind('click').bind('click', function(evt) {
     $(this).parents('.content').find('.content-left-column').addClass('hidden');
     $(this).parents('.content').find('.content-right-column').addClass('hidden');
+    $(this).parents('.content').find('.recommendation-header').addClass('hidden');
     $(this).parents('.content').find('.content-masked').removeClass('hidden');
   });
 
@@ -21,6 +32,7 @@ document.addEventListener("turbolinks:load", function() {
   $(".unmask").unbind('click').bind('click', function(evt) {
     $(this).parents('.content').find('.content-left-column').removeClass('hidden');
     $(this).parents('.content').find('.content-right-column').removeClass('hidden');
+    $(this).parents('.content').find('.recommendation-header').removeClass('hidden');
     $(this).parents('.content-masked').addClass('hidden');
   });
 
@@ -28,6 +40,7 @@ document.addEventListener("turbolinks:load", function() {
   $(".harvest").unbind('click').bind('click', function(evt) {
     $(this).parents('.content').find('.content-left-column').addClass('hidden');
     $(this).parents('.content').find('.content-right-column').addClass('hidden');
+    $(this).parents('.content').find('.recommendation-header').addClass('hidden');
     $(this).parents('.content').find('.content-harvested').removeClass('hidden');
     $('.harvest-count').html(parseInt($('.harvest-count').html(), 10)+1)
     if (parseInt($('.harvest-count').html(), 10) == 1) {
@@ -39,6 +52,7 @@ document.addEventListener("turbolinks:load", function() {
   $(".cancel-harvest").unbind('click').bind('click', function(evt) {
     $(this).parents('.content').find('.content-left-column').removeClass('hidden');
     $(this).parents('.content').find('.content-right-column').removeClass('hidden');
+    $(this).parents('.content').find('.recommendation-header').removeClass('hidden');
     $(this).parents('.content').find('.content-harvested').addClass('hidden');
     $('.harvest-count').html(parseInt($('.harvest-count').html(), 10)-1)
     if (parseInt($('.harvest-count').html(), 10) == 0) {
@@ -148,5 +162,22 @@ document.addEventListener("turbolinks:load", function() {
     $(this).addClass('hidden');
     $(this).parents('.friend-div').find('textarea').addClass('hidden');
     $(this).parent().find('.green').removeClass('hidden');
+  });
+
+  // WRITE RESPONSE
+  $(".message-response-button").unbind('click').bind('click', function(evt) {
+    evt.preventDefault();
+    var rec_id = $(this).data('rec-id');
+    var text = $(this).parents('.write-response').find('textarea').val();
+    $.ajax({
+        url: "/recommendation/" + rec_id + "/respond.json",
+        type: "POST",
+        data: {text: text},
+        success: function(resp){ }
+    });
+    $(this).parents('.fruit-footer').find('.messages').find('.hidden').clone().appendTo('.messages');
+    $(this).parents('.fruit-footer').find('.messages').find('.hidden').first().find('.message-text').text(text);
+    $(this).parents('.fruit-footer').find('.messages').find('.hidden').first().removeClass('hidden');
+    $(this).parents('.write-response').find('textarea').val('');
   });
 });

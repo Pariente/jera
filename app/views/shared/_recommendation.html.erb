@@ -1,14 +1,13 @@
 <% sender = User.find(r.user_id) %>
 <% messages = r.messages %>
 <% first_message = messages.first %>
-<div class="recommendation-header">
-  <%= image_tag(sender.picture, class: 'message-pic') %>
-  <div class="message-column">
-    <span class="message-header"><span class="message-username"><%= sender.username %></span> vous recommande :</span>
-    <span class="message-text"><%= first_message.text %></span>
-  </div>
-</div>
 <div class="content recommended">
+  <div class="recommendation-header">
+    <%= image_tag(sender.picture, class: 'message-pic') %>
+    <div class="message-column">
+      <span class="message-header"><span class="message-username"><%= sender.username %></span> vous recommande :</span>
+    </div>
+  </div>
   <div class="content-left-column">
     <%= link_to source_show_latest_path(e.source, :referer => request.original_url) do %>
       <%= image_tag(e.source.picture, class: 'source-pic') %>

@@ -90,7 +90,7 @@ class PagesController < ApplicationController
     end
 
     harvested = current_user.entry_actions.where(harvested: true)
-    harvested = harvested.sort_by {|p| p.created_at}.reverse
+    harvested = harvested.sort_by {|p| p.updated_at}.reverse
     harvested.each do |h|
       if h.read
         @harvested.push(h)

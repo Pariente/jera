@@ -4,7 +4,7 @@
     <%= link_to root_path do %>
       <div class="nav-green-button">
         <%= image_tag('white_arrow_left.svg', class: 'arrow-left') %>
-        <span>Mes nouveautés</span>
+        <span>Nouveautés</span>
       </div>
     <% end %>
   </div>
@@ -15,7 +15,7 @@
     <span class="empty-message">Récoltez les fruits de vos arbres qui vous intéressent pour les lire plus tard ou les conserver précieusement ici. 👩‍🌾</span>
   <% end %>
   <% unless @unread == [] %>
-    <%= render partial: 'shared/redbar', locals: {title: @unread.count.to_s + ' NON LUS'} %>
+    <%= render partial: 'shared/redbar', locals: {title: @unread.count.to_s + ' NON VUS'} %>
     <% @unread.each do |action| %>
       <% if action.recommendation_id != nil %>
         <%= render partial: 'shared/recommendation', locals: {e: action.entry, r: action.recommendation} %>
@@ -27,7 +27,11 @@
   <% end %>
   <% unless @harvested == nil %>
     <% @harvested.each do |action| %>
-      <%= render partial: 'shared/fruit_harvested', locals: {e: action.entry} %>
+      <% if action.recommendation_id != nil %>
+        <%= render partial: 'shared/recommendation', locals: {e: action.entry, r: action.recommendation} %>
+      <% else %>
+        <%= render partial: 'shared/fruit_harvested', locals: {e: action.entry} %>
+      <% end %>
     <% end %>
   <% end %>
 </div>

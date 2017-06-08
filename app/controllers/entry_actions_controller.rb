@@ -88,7 +88,7 @@ class EntryActionsController < ApplicationController
   end
 
   def read
-    existing_action = EntryAction.where(user_id: current_user.id, entry_id: params[:entry_id], recommendation_id: params[:recommendation_id])
+    existing_action = EntryAction.where(user_id: current_user.id, entry_id: params[:entry_id])
     # CHECKING IF ACTION EXISTS
     if existing_action == []
       # IF IT DOESN'T, CREATE AND SAVE IT WITH "READ" AS TRUE
@@ -98,8 +98,10 @@ class EntryActionsController < ApplicationController
       action.save
     else
       # IF IT DOES, UPDATE THE VALUE OF "READ" TO TRUE
-      existing_action.first.read = true
-      existing_action.first.save
+      existing_action.each do |a|
+        a.read = true
+        a.save
+      end
     end
 
     # CLEARING THIS FRAGMENT FROM CACHE
@@ -118,8 +120,10 @@ class EntryActionsController < ApplicationController
   def unread
     existing_action = EntryAction.where(user_id: current_user.id, entry_id: params[:entry_id], recommendation_id: params[:recommendation_id])
     unless action == []
-      existing_action.first.read = false
-      existing_action.first.save
+      existing_action.each do |a|
+        a.read = false
+        a.save
+      end
     end
 
     respond_to do |format|

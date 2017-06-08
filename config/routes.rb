@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   get 'entries/:entry_id/recommend_to_friend/:receiver_id' => 'recommendations#recommend_to_friend', as: :recommend_to_friend
   get 'entries/:entry_id/recommend_to_team/:team_id' => 'recommendations#recommend_to_team', as: :recommend_to_team
 
-  resources :messages, only: [:new]
+  post 'recommendation/:rec_id/respond' => 'messages#new', as: :respond
 
   devise_for :users, controllers: {
     sessions: 'users/sessions'

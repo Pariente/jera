@@ -4,14 +4,14 @@
       <%= link_to garden_path do %>
         <div class="nav-green-button">
           <%= image_tag('white_arrow_left.svg', class: 'arrow-left') %>
-          <span>Mes jardins</span>
+          <span>Mon jardin</span>
         </div>
       <% end %>
     <% elsif referer == root_url %>
       <%= link_to root_path do %>
         <div class="nav-green-button">
           <%= image_tag('white_arrow_left.svg', class: 'arrow-left') %>
-          <span>Mes nouveautés</span>
+          <span>Nouveautés</span>
         </div>
       <% end %>
     <% elsif referer == harvest_url %>
@@ -34,7 +34,7 @@
       <%= link_to harvest_path do %>
         <div class="added-to-harvest">+<span class="harvest-count">0</span></div>
         <div class="nav-green-button">
-          <span>Ma récolte</span>
+          <span>M<a récolte/span>
           <%= image_tag('white_arrow_right.svg', class: 'arrow-right') %>
         </div>
       <% end %>

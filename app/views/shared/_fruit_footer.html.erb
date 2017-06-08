@@ -7,25 +7,53 @@
 <% end %>
 
 <div class="fruit-footer">
-  <% if entry.is_harvested_by_user?(current_user) %>
-    <%= link_to entry_unharvest_path(entry, recommendation_id: rec_id), class: 'unharvest', remote: :true do %>
-      Supprimer
+  <div class="fruit-footer-buttons">
+    <% if entry.is_harvested_by_user?(current_user) %>
+      <%= link_to entry_unharvest_path(entry, recommendation_id: rec_id), class: 'unharvest', remote: :true do %>
+        Supprimer
+      <% end %>
+      <%= link_to entry_unread_path(entry, recommendation_id: rec_id), class: entry_unread, remote: :true do %>
+        Marquer comme non lu
+      <% end %>
+      <%= link_to entry_read_path(entry, recommendation_id: rec_id), class: entry_read, remote: :true do %>
+        Marquer comme lu
+      <% end %>
+      <%= link_to new_entry_recommendation_path(entry, :referer => request.original_url), class: 'recommend' do %>
+        Partager
+      <% end %>
+    <% else %>
+      <%= link_to entry_mask_path(entry, recommendation_id: rec_id), class: 'mask', remote: :true do %>
+        Masquer
+      <% end %>
+      <%= link_to entry_harvest_path(entry, recommendation_id: rec_id), class: 'harvest', remote: :true do %>
+        Récolter
+      <% end %>
     <% end %>
-    <%= link_to entry_unread_path(entry, recommendation_id: rec_id), class: entry_unread, remote: :true do %>
-      Marquer comme non lu
-    <% end %>
-    <%= link_to entry_read_path(entry, recommendation_id: rec_id), class: entry_read, remote: :true do %>
-      Marquer comme lu
-    <% end %>
-    <%= link_to new_entry_recommendation_path(entry, :referer => request.original_url), class: 'recommend' do %>
-      Partager
-    <% end %>
-  <% else %>
-    <%= link_to entry_mask_path(entry, recommendation_id: rec_id), class: 'mask', remote: :true do %>
-      Masquer
-    <% end %>
-    <%= link_to entry_harvest_path(entry, recommendation_id: rec_id), class: 'harvest', remote: :true do %>
-      Récolter
-    <% end %>
+  </div>
+  <% if rec_id != nil %>
+    <div class="messages">
+      <% messages = Recommendation.find(rec_id).messages.sort_by {|m| m.created_at} %>
+      <% messages.each do |m| %>
+        <div class="message">
+          <%= image_tag(m.user.picture, class: 'message-pic') %>
+          <div class="message-column">
+            <span class="message-username"><%= m.user.username %></span>
+            <span class="message-text"><%= m.text %></span>
+          </div>
+        </div>
+      <% end %>
+      <div class="message hidden">
+        <%= image_tag(current_user.picture, class: 'message-pic') %>
+        <div class="message-column">
+          <span class="message-username"><%= current_user.username %></span>
+          <span class="message-text"></span>
+        </div>
+      </div>
+    </div>
+    <div class="write-response">
+      <%= image_tag(current_user.picture, class: 'message-pic') %>
+      <textarea onkeyup="message_textarea(this)" placeholder="Write some shit yo"></textarea>
+      <a href="#" data-rec-id="<%= rec_id %>" class="message-response-button">Répondre</a>
+    </div>
   <% end %>
 </div>
