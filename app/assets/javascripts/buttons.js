@@ -36,6 +36,22 @@ document.addEventListener("turbolinks:load", function() {
     }
   });
 
+  // TOGGLE SEARCH IN NAVBAR
+  $(".magnifier-button").unbind('click').bind('click', function(evt) {
+    if ($('.search-navbar').css('opacity') == 0) {
+      $('.search-navbar').animate({height:20},200);
+      $('.search-navbar').animate({marginBottom:10},100);
+      $('.search-navbar').css('visibility', 'visible');
+      $('.search-navbar').fadeTo(400, 1, function() {});
+    } else {
+      $('.search-navbar').fadeTo(400, 0, function() {
+        $('.search-navbar').animate({height:0},200);
+        $('.search-navbar').animate({marginBottom:0},100);
+        $('.search-navbar').css('visibility', 'hidden');
+      });
+    }
+  });
+
   // MASK
   $(".mask").unbind('click').bind('click', function(evt) {
     $(this).parents('.content').find('.content-left-column').addClass('hidden');

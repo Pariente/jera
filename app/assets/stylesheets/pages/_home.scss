@@ -150,20 +150,16 @@ header > h1 {
   justify-content: flex-end
 }
 
-.nav-flex img {
+img.profile-button {
   background-color: $white;
   border-radius: 5px;
   box-shadow: 0px 0px 10px 0px rgba(102, 102, 102, 0.4);
+  cursor: pointer;
   display: flex;
   height: 25px;
   justify-content: center;
-  margin-right: 10px;
+  margin-right: 30px;
   width: 25px
-}
-
-img.profile-button {
-  cursor: pointer;
-  margin-right: 25px
 }
 
 .added-to-harvest {
@@ -202,6 +198,33 @@ img.profile-button {
   justify-content: center;
   margin-right: 10px;
   padding: 0px 15px
+}
+
+.magnifier-button {
+  cursor: pointer
+}
+
+.search-navbar {
+  height: 0px;
+  justify-content: flex-end;
+  margin-bottom: 0px;
+  opacity: 0;
+  visibility: hidden;
+  width: 0px
+}
+
+.search-navbar form {
+  padding: 0px
+}
+
+input.nav_search_input {
+  border: 0px;
+  height: inherit;
+  font-size: $normal_size;
+  font-weight: 300;
+  min-width: 70px;
+  padding: 0px 10px;
+  width: inherit
 }
 
 .arrow-left {
@@ -257,7 +280,7 @@ img.profile-button {
 }
 
 .nav-search-bar form {
-  margin: auto;
+  margin: 0px;
   padding-bottom: 5px
 }
 

@@ -8,6 +8,7 @@ class PagesController < ApplicationController
     # INITIATING HARVEST
     @fresh = []
     @new = []
+    @search = ransack_params
 
     # CURRENT USER'S SUBSCRIPTIONS
     subscriptions = current_user.subscriptions.all
@@ -74,6 +75,7 @@ class PagesController < ApplicationController
     @colour = params[:colour]
     @unread = []
     @harvested = []
+    @search = ransack_params
     subscriptions = current_user.subscriptions.all
     array = []
     sources = []
@@ -108,4 +110,12 @@ class PagesController < ApplicationController
     end
   end
 
+  private
+    def ransack_params
+      Source.ransack(params[:q])
+    end
+
+    def ransack_result
+      @search.result(distinct: true)
+    end
 end
