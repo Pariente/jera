@@ -1,14 +1,22 @@
-<% if @new.count == 0 %> 
-  <% title "Nouveautés" %>
-<% else %>
-  <% title "(#{@new.count}) Nouveautés" %>
-<% end %>
 <div class="nav">
   <div class="nav-flex">
+    <% if current_page?(controller: 'pages', action: 'fresh') %>
+      <% fresh = 'active' %>
+      <% harvest = '' %>
+    <% elsif current_page?(controller: 'pages', action: 'harvest') %>
+      <% fresh = '' %>
+      <% harvest = 'active' %>
+    <% end %>
     <%= link_to garden_path do %>
       <div class="profile-button">
         <%= image_tag(current_user.picture) %>
       </div>
+    <% end %>
+    <%= link_to root_path, class: fresh do %>
+      NOUVEAUTÉS
+    <% end %>
+    <%= link_to harvest_path, class: harvest do %>
+      RÉCOLTE
     <% end %>
     <%= link_to harvest_path do %>
       <div class="added-to-harvest">+<span class="harvest-count">0</span></div>
@@ -20,15 +28,21 @@
   </div>
 </div>
 <div class="content-flex">
-  <%= render partial: 'shared/fresh_filter', locals: {colour: @colour} %>
+  <h1>Nouveautés</h1>
+  <hr>
   <% @friend_requests.each do |f| %>
     <%= render partial: 'shared/friend_request', locals: {f: f} %>
   <% end %>
-  <% if @fresh == [] && @recommendations == [] %>
+  <% if @fresh == [] && @recommendations == [] && @responses == [] %>
     <span class="empty-message">Vous êtes parfaitement à jour. 😌</span>
     <span class="empty-message">Pourquoi ne pas consulter votre récolte si vous en avez le temps ? 👩‍🌾</span>
   <% else %>
     <% @recommendations.each do |r| %>
+      <% cache "recommendation-#{r.id}" do %>
+        <%= render partial: 'shared/recommendation', locals: {e: r.entry, r: r} %>
+      <% end %>
+    <% end %>
+    <% @responses.each do |r| %>
       <% cache "recommendation-#{r.id}" do %>
         <%= render partial: 'shared/recommendation', locals: {e: r.entry, r: r} %>
       <% end %>

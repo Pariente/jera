@@ -5,6 +5,13 @@ class MessagesController < ApplicationController
     if rec.receiver_id == current_user.id || rec.user_id == current_user.id
       @message = Message.create(user_id: current_user.id, recommendation_id: rec.id, text: params[:text])
       @message.save
+      rec.updated_at = Time.now
+      rec.save
+      # if rec.entry.is_harvested_by_user?(current_user)
+      #   actions = EntryAction.where(entry_id: rec.entry.id, user_id: current_user.id)
+      #   actions.first.updated_at = Time.now
+      #   actions.first.save
+      # end
       e = Entry.find(rec.entry.id)
       ActionController::Base.new.expire_fragment(%r{entry-#{e.id}/*})
       respond_to do |format|

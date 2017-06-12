@@ -118,8 +118,8 @@ class EntryActionsController < ApplicationController
   end
 
   def unread
-    existing_action = EntryAction.where(user_id: current_user.id, entry_id: params[:entry_id], recommendation_id: params[:recommendation_id])
-    unless action == []
+    existing_action = EntryAction.where(user_id: current_user.id, entry_id: params[:entry_id])
+    unless existing_action == []
       existing_action.each do |a|
         a.read = false
         a.save

@@ -48,4 +48,24 @@ class User < ActiveRecord::Base
     end
     return recs
   end
+
+  def recommendations_with_responses
+    recs = []
+    Recommendation.where(receiver_id: self.id).each do |r|
+      if r.messages != []
+        if r.messages.last.user_id != self.id
+          recs.push(r)
+        end
+      end
+    end
+    Recommendation.where(user_id: self.id).each do |r|
+      if r.messages != []
+        if r.messages.last.user_id != self.id
+          recs.push(r)
+        end
+      end
+    end
+    return recs
+  end
+
 end

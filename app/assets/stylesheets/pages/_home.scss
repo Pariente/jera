@@ -22,14 +22,18 @@ p {
   text-align: left;
 }
 
-/* --- REDBAR --- */
+/* --- HR --- */
 
 hr {
-  background-color: $red;
+  background-color: $light_grey;
   border: 0px;
   height: 1px;
-  margin: 0px;
+  margin: 0px 0px 20px;
   width: 100%
+}
+
+hr.redbar {
+  background-color: $red;
 }
 
 .redbar {
@@ -90,12 +94,19 @@ header > h1 {
 }
 
 .nav-flex {
+  align-items: center;
   display: flex;
   flex-direction: row;
+  font-weight: 300;
   justify-content: space-between;
   padding: 15px;
   width: 100%;
   max-width: 500px
+}
+
+.nav-flex > a.active {
+  color: $green;
+  font-weight: 400
 }
 
 .nav-flex-right {
@@ -104,7 +115,7 @@ header > h1 {
 
 .profile-button {
   background-color: $white;
-  border-radius: 20px;
+  border-radius: 5px;
   box-shadow: 0px 0px 10px 0px rgba(102, 102, 102, 0.4);
   display: flex;
   flex-align: center;
@@ -114,7 +125,7 @@ header > h1 {
 }
 
 .profile-button img {
-  border-radius: 20px;
+  border-radius: 5px;
   height: 40px;
   width: 40px
 }

@@ -51,6 +51,9 @@ class PagesController < ApplicationController
     # RECOMMENDATIONS
     @recommendations = current_user.recommendations_received
 
+    # RESPONSES
+    @responses = current_user.recommendations_with_responses
+
     # PENDING FRIEND REQUESTS
     @friend_requests = Friendship.where(friend_user_id: current_user.id, status: 'pending')
 
