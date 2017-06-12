@@ -1,18 +1,8 @@
 <% title "Ma Récolte" %>
-<div class="nav">
-  <div class="nav-flex">
-    <%= link_to root_path do %>
-      <div class="nav-green-button">
-        <%= image_tag('white_arrow_left.svg', class: 'arrow-left') %>
-        <span>Nouveautés</span>
-      </div>
-    <% end %>
-  </div>
-</div>
+<%= render partial: 'shared/navbar' %>
 <div class="content-flex">
-  <%= render partial: 'shared/harvest_filter', locals: {colour: @colour} %>
   <% if @unread == [] && @harvested == [] %>
-    <span class="empty-message">Récoltez les fruits de vos arbres qui vous intéressent pour les lire plus tard ou les conserver précieusement ici. 👩‍🌾</span>
+    <span class="empty-message">Récoltez les articles ou vidéos qui vous intéressent parmi les dernières publications de vos abonnements. 👩‍🌾</span>
   <% end %>
   <% unless @unread == [] %>
     <%= render partial: 'shared/redbar', locals: {title: @unread.count.to_s + ' NON VUS'} %>

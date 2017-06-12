@@ -1,34 +1,6 @@
-<div class="nav">
-  <div class="nav-flex">
-    <% if current_page?(controller: 'pages', action: 'fresh') %>
-      <% fresh = 'active' %>
-      <% harvest = '' %>
-    <% elsif current_page?(controller: 'pages', action: 'harvest') %>
-      <% fresh = '' %>
-      <% harvest = 'active' %>
-    <% end %>
-    <%= link_to garden_path do %>
-      <div class="profile-button">
-        <%= image_tag(current_user.picture) %>
-      </div>
-    <% end %>
-    <%= link_to root_path, class: fresh do %>
-      NOUVEAUTÉS
-    <% end %>
-    <%= link_to harvest_path, class: harvest do %>
-      RÉCOLTE
-    <% end %>
-    <%= link_to harvest_path do %>
-      <div class="added-to-harvest">+<span class="harvest-count">0</span></div>
-      <div class="nav-green-button">
-        <span>Ma récolte</span>
-        <%= image_tag('white_arrow_right.svg', class: 'arrow-right') %>
-      </div>
-    <% end %>
-  </div>
-</div>
+<%= render partial: 'shared/navbar' %>
 <div class="content-flex">
-  <h1>Nouveautés</h1>
+  <h1>Dernières publications</h1>
   <hr>
   <% @friend_requests.each do |f| %>
     <%= render partial: 'shared/friend_request', locals: {f: f} %>

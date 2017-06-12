@@ -20,6 +20,22 @@ function message_textarea(element) {
 
 document.addEventListener("turbolinks:load", function() {
 
+  // TOGGLE BOTTOM NAVBAR
+  $(".profile-button").unbind('click').bind('click', function(evt) {
+    if ($('.bottom-navbar').css('opacity') == 0) {
+      $('.bottom-navbar').animate({height:20},200);
+      $('.bottom-navbar').animate({marginBottom:10},100);
+      $('.bottom-navbar').css('visibility', 'visible');
+      $('.bottom-navbar').fadeTo(400, 1, function() {});
+    } else {
+      $('.bottom-navbar').fadeTo(400, 0, function() {
+        $('.bottom-navbar').animate({height:0},200);
+        $('.bottom-navbar').animate({marginBottom:0},100);
+        $('.bottom-navbar').css('visibility', 'hidden');
+      });
+    }
+  });
+
   // MASK
   $(".mask").unbind('click').bind('click', function(evt) {
     $(this).parents('.content').find('.content-left-column').addClass('hidden');

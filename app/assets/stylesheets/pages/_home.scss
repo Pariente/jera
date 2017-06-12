@@ -28,8 +28,7 @@ hr {
   background-color: $light_grey;
   border: 0px;
   height: 1px;
-  margin: 0px 0px 20px;
-  width: 100%
+  margin: 0px 10px 20px 0px
 }
 
 hr.redbar {
@@ -84,8 +83,8 @@ header > h1 {
 /* --- NAV --- */
 
 .nav {
+  background-color: $white;
   display: flex;
-  height: 60px;
   justify-content: center;
   position: fixed;
   top: 0px;
@@ -95,39 +94,101 @@ header > h1 {
 
 .nav-flex {
   align-items: center;
+  border-radius: 0px 0px 5px 5px;
+  box-shadow: 2px 2px 4px 0px rgba(102, 102, 102, 0.2);
   display: flex;
-  flex-direction: row;
-  font-weight: 300;
+  flex-direction: column;
+  font-size: $normal_size;
+  font-weight: 400;
   justify-content: space-between;
-  padding: 15px;
-  width: 100%;
-  max-width: 500px
+  letter-spacing: 0.5px;
+  max-width: 600px;
+  padding: 0px 15px;
+  width: 100%
 }
 
-.nav-flex > a.active {
+.top-navbar {
+  justify-content: space-between;
+  margin: 10px 0px;
+  width: 100%
+}
+
+.top-navbar a {
+  align-items: center;
+  display: flex;
+  margin-right: 20px
+}
+
+.top-navbar a.active {
   color: $green;
-  font-weight: 400
+}
+
+.bottom-navbar {
+  height: 0px;
+  justify-content: flex-start;
+  margin-bottom: 0px;
+  opacity: 0;
+  visibility: hidden;
+  width: 100%
+}
+
+.bottom-navbar a {
+  align-items: center;
+  display: flex;
+  font-size: $smaller_size;
+  margin: 0px 10px 0px 0px
+}
+
+.bottom-navbar .notification-bullet {
+  height: 7px;
+  left: inherit;
+  top: inherit;
+  width: 7px
 }
 
 .nav-flex-right {
   justify-content: flex-end
 }
 
-.profile-button {
+.nav-flex img {
   background-color: $white;
   border-radius: 5px;
   box-shadow: 0px 0px 10px 0px rgba(102, 102, 102, 0.4);
   display: flex;
-  flex-align: center;
-  height: 40px;
+  height: 25px;
   justify-content: center;
-  width: 40px;
+  margin-right: 10px;
+  width: 25px
 }
 
-.profile-button img {
-  border-radius: 5px;
-  height: 40px;
-  width: 40px
+img.profile-button {
+  cursor: pointer;
+  margin-right: 25px
+}
+
+.added-to-harvest {
+  align-items: center;
+  color: $red;
+  display: flex;
+  font-size: $small_size;
+  height: 20px;
+  justify-content: center;
+  opacity: 0;
+  padding-left: 5px;
+  width: 20px
+}
+
+.notification-bullet {
+  background-color: $red;
+  border: 2px solid $white;
+  border-radius: 100%;
+  height: 10px;
+  opacity: 0;
+  position: relative;
+  top: -7px;
+  left: 32px;
+  width: 10px;
+  z-index: 300
 }
 
 .nav-green-button {
@@ -153,6 +214,8 @@ header > h1 {
 
 @media screen and (max-width: 450px) {
   .nav-flex {
+    border-radius: 0px;
+    font-size: $small_size;
     max-width: 450px
   }
 }

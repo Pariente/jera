@@ -10,6 +10,7 @@
 .content-flex h1 {
   font-family: 'Cormorant';
   margin: 0px;
+  margin-left: 5px;
   padding: 0px;
   text-align: left
 }
@@ -317,10 +318,17 @@
 }
 
 @media screen and (max-width: 400px) {
-  .content,
-  .recommendation-header {
+  .content-flex {
+    margin-top: 70px
+  }
+  .content {
     margin-left: 5px;
     margin-right: 5px
+  }
+  .content-flex h1,
+  .content-flex hr {
+    margin-left: 10px;
+    margin-right: 10px
   }
   .content.show {
     margin-left: 0px;
