@@ -11,17 +11,17 @@
     <div class="tree-footer-add">
       <% if sub == nil %>
         <a href="#" class="add-to-garden">
-          <span>Ajouter</span>
+          <span>Abonner</span>
         </a>
         <%= link_to source_unsubscribe_path(source), class: 'delete-tree hidden', remote: :true do %>
-          <span>Supprimer</span>
+          <span>Désabonner</span>
         <% end %>
       <% else %>
         <a href="#" class="add-to-garden hidden">
-          <span>Ajouter</span>
+          <span>Abonner</span>
         </a>
         <%= link_to source_unsubscribe_path(source), class: 'delete-tree', remote: :true do %>
-          <span>Supprimer</span>
+          <span>Désabonner</span>
         <% end %>
       <% end %>
     </div>

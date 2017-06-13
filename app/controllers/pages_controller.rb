@@ -61,6 +61,7 @@ class PagesController < ApplicationController
   end
 
   def garden
+    @search = ransack_params
     @colour = params[:colour]
     if ['red', 'blue', 'yellow'].include?(@colour)
       @subscriptions = current_user.subscriptions.where(colour: Subscription.colours[@colour])

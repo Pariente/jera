@@ -1,23 +1,14 @@
-<% title "Mon jardin" %>
-<div class="nav">
-  <div class="nav-flex nav-flex-right">
-    <%= link_to root_path do %>
-      <div class="nav-green-button">
-        <span>Nouveautés</span>
-        <%= image_tag('white_arrow_right.svg', class: 'arrow-right') %>
-      </div>
-    <% end %>
-  </div>
-</div>
-<%= render partial: 'shared/profile', locals: {user: current_user} %>
+<% title "Mes abonnements" %>
+<%= render partial: 'shared/navbar' %>
 <div class="garden-flex">
+  <h1>Vos abonnements</h1>
+  <hr>
   <%= link_to trees_latest_path do %>
     <div class="plant-tree-button">
       <%= image_tag("round_plus_button.svg") %>
-      <span>Planter un nouvel arbre</span>
+      <span>M'abonner à une nouvelle source</span>
     </div>
   <% end %>
-  <%= render partial: 'shared/garden_filter', locals: {colour: @colour} %>
   <% @subscriptions.each do |sub| %>
     <% cache sub do %>
       <% source = sub.source %>
