@@ -333,6 +333,12 @@
     margin-left: 0px;
     margin-right: 10px
   }
+  .content-right-column {
+    margin-left: 0px
+  }
+  .content-top {
+    padding-left: 62px
+  }
 }
 
 @media screen and (max-width: 350px) {
@@ -357,6 +363,9 @@
     height: 45px;
     width: 45px;
     z-index: 100
+  }
+  .content-top {
+    padding-left: 50px
   }
   .source-pic {
     border-radius: 5px;

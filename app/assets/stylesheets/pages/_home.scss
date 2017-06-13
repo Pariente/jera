@@ -147,15 +147,17 @@ header > h1 {
   height: 0px;
   justify-content: flex-start;
   margin-bottom: 0px;
+  opacity: 0;
   overflow: hidden;
   width: 100%;
-  -webkit-transition: height .7s, margin-bottom .7s;
-  transition: height .7s, margin-bottom .7s
+  -webkit-transition: height .7s, margin-bottom .7s, opacity .3s;
+  transition: height .7s, margin-bottom .7s, opacity .3s
 }
 
 .bottom-navbar.expanded {
   height: 20px;
   margin-bottom: 10px;
+  opacity: 1
 }
 
 .bottom-navbar a {
@@ -282,7 +284,11 @@ input.nav_search_input {
     font-size: $smallest_size
   }
   .bottom-navbar.expanded {
-    height: 200px
+    height: 200px;
+  }
+  .bottom-navbar {
+    flex-direction: column !important;
+    justify-content: space-around
   }
 }
 
@@ -292,10 +298,6 @@ input.nav_search_input {
   }
   .top-navbar a {
     font-size: $small_size;
-  }
-  .bottom-navbar {
-    flex-direction: column !important;
-    justify-content: space-around
   }
 }
 
