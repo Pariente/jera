@@ -96,6 +96,7 @@ header > h1 {
   align-items: center;
   border-radius: 0px 0px 5px 5px;
   box-shadow: 2px 2px 4px 0px rgba(102, 102, 102, 0.2);
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   font-size: $normal_size;
@@ -108,9 +109,28 @@ header > h1 {
 }
 
 .top-navbar {
+  align-items: center;
   justify-content: space-between;
   margin: 10px 0px;
   width: 100%
+}
+
+.nav-first-row {
+  opacity: 1;
+  -webkit-transition: opacity .5s, width 1s;
+  transition: opacity .5s, width 1s;
+  width: 290px
+}
+
+.nav-first-row.shrinked {
+  opacity: 0;
+  overflow: hidden;
+  width: 0px
+}
+
+.top-navbar .row:nth-of-type(2) {
+  flex-grow: 1;
+  justify-content: flex-end
 }
 
 .top-navbar a {
@@ -127,9 +147,15 @@ header > h1 {
   height: 0px;
   justify-content: flex-start;
   margin-bottom: 0px;
-  opacity: 0;
-  visibility: hidden;
-  width: 100%
+  overflow: hidden;
+  width: 100%;
+  -webkit-transition: height .7s, margin-bottom .7s;
+  transition: height .7s, margin-bottom .7s
+}
+
+.bottom-navbar.expanded {
+  height: 20px;
+  margin-bottom: 10px;
 }
 
 .bottom-navbar a {
@@ -156,10 +182,10 @@ img.profile-button {
   box-shadow: 0px 0px 10px 0px rgba(102, 102, 102, 0.4);
   cursor: pointer;
   display: flex;
-  height: 25px;
+  height: 30px;
   justify-content: center;
-  margin-right: 30px;
-  width: 25px
+  margin: 0px;
+  width: 30px
 }
 
 .added-to-harvest {
@@ -182,7 +208,7 @@ img.profile-button {
   opacity: 0;
   position: relative;
   top: -7px;
-  left: 32px;
+  left: -7px;
   width: 10px;
   z-index: 300
 }
@@ -201,20 +227,30 @@ img.profile-button {
 }
 
 .magnifier-button {
-  cursor: pointer
+  cursor: pointer;
+  height: 20px;
+  width: 20px
 }
 
-.search-navbar {
-  height: 0px;
-  justify-content: flex-end;
+.row.search-navbar {
+  justify-content: flex-start;
   margin-bottom: 0px;
-  opacity: 0;
-  visibility: hidden;
-  width: 0px
+  margin-left: 5px;
+  overflow: hidden;
+  width: 0px;
+  -webkit-transition: width 1s;
+  transition: width 1s
+}
+
+.row.search-navbar.expanded {
+  width: 90%
 }
 
 .search-navbar form {
-  padding: 0px
+  margin: 0px;
+  max-width: inherit;
+  padding: 0px;
+  width: 90%
 }
 
 input.nav_search_input {
@@ -222,6 +258,7 @@ input.nav_search_input {
   height: inherit;
   font-size: $normal_size;
   font-weight: 300;
+  max-width: inherit;
   min-width: 70px;
   padding: 0px 10px;
   width: inherit
@@ -240,6 +277,25 @@ input.nav_search_input {
     border-radius: 0px;
     font-size: $small_size;
     max-width: 450px
+  }
+  .bottom-navbar a {
+    font-size: $smallest_size
+  }
+  .bottom-navbar.expanded {
+    height: 200px
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .top-navbar {
+    justify-content: flex-start
+  }
+  .top-navbar a {
+    font-size: $small_size;
+  }
+  .bottom-navbar {
+    flex-direction: column !important;
+    justify-content: space-around
   }
 }
 

@@ -8,9 +8,9 @@
       <% harvest = 'active' %>
     <% end %>
     <div class="row top-navbar">
-      <div class="row">
-        <div class="notification-bullet">&nbsp;</div>
+      <div class="row nav-first-row">
         <%= image_tag(current_user.picture, class: 'profile-button') %>
+        <div class="notification-bullet">&nbsp;</div>
         <%= link_to root_path, class: fresh do %>
           NOUVEAUTÉS
         <% end %>
@@ -22,11 +22,11 @@
       <div class="row">
         <%= image_tag('magnifier_icon_grey.svg', class: 'magnifier-button') %>
       </div>
-    </div>
-    <div class="row search-navbar">
-      <%= search_form_for @search, url: search_sources_path do |f| %>
-        <%= f.search_field :name_has_any_term, class: 'nav_search_input', placeholder: 'Chercher...' %>
-      <% end %>
+      <div class="row search-navbar">
+        <%= search_form_for @search, url: search_sources_path do |f| %>
+          <%= f.search_field :name_has_any_term, class: 'nav_search_input', placeholder: 'Chercher sur Jera...' %>
+        <% end %>
+      </div>
     </div>
     <div class="row bottom-navbar">
       <a href="#">

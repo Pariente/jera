@@ -20,36 +20,23 @@ function message_textarea(element) {
 
 document.addEventListener("turbolinks:load", function() {
 
+  // WHEN CLICKING OUTSIDE OF NAV, SHRINK SEARCHBAR AND BOTTOM NAVBAR
+  $('body').click(function(event) { 
+    if ($(event.target).closest('.nav').length) { return; }
+    $('.search-navbar').removeClass('expanded');
+    $('.bottom-navbar').removeClass('expanded');        
+    $('.nav-first-row').removeClass('shrinked');        
+  });
+
   // TOGGLE BOTTOM NAVBAR
   $(".profile-button").unbind('click').bind('click', function(evt) {
-    if ($('.bottom-navbar').css('opacity') == 0) {
-      $('.bottom-navbar').animate({height:20},200);
-      $('.bottom-navbar').animate({marginBottom:10},100);
-      $('.bottom-navbar').css('visibility', 'visible');
-      $('.bottom-navbar').fadeTo(400, 1, function() {});
-    } else {
-      $('.bottom-navbar').fadeTo(400, 0, function() {
-        $('.bottom-navbar').animate({height:0},200);
-        $('.bottom-navbar').animate({marginBottom:0},100);
-        $('.bottom-navbar').css('visibility', 'hidden');
-      });
-    }
+    $('.bottom-navbar').toggleClass('expanded');
   });
 
   // TOGGLE SEARCH IN NAVBAR
   $(".magnifier-button").unbind('click').bind('click', function(evt) {
-    if ($('.search-navbar').css('opacity') == 0) {
-      $('.search-navbar').animate({height:20},200);
-      $('.search-navbar').animate({marginBottom:10},100);
-      $('.search-navbar').css('visibility', 'visible');
-      $('.search-navbar').fadeTo(400, 1, function() {});
-    } else {
-      $('.search-navbar').fadeTo(400, 0, function() {
-        $('.search-navbar').animate({height:0},200);
-        $('.search-navbar').animate({marginBottom:0},100);
-        $('.search-navbar').css('visibility', 'hidden');
-      });
-    }
+    $('.nav-first-row').toggleClass('shrinked');
+    $('.search-navbar').toggleClass('expanded');
   });
 
   // MASK
