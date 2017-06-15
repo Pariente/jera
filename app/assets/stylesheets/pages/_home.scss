@@ -18,6 +18,13 @@ h3 {
   text-align: center
 }
 
+h1 {
+  font-family: 'Cormorant';
+  margin: 0px;
+  padding: 0px;
+  text-align: left
+}
+
 p {
   text-align: left;
 }
@@ -164,7 +171,12 @@ header > h1 {
   align-items: center;
   display: flex;
   font-size: $smaller_size;
-  margin: 0px 10px 0px 0px
+  margin: 0px 15px 0px 0px
+}
+
+.bottom-navbar a.red {
+  color: $red;
+  font-weight: 800
 }
 
 .bottom-navbar .notification-bullet {
@@ -396,10 +408,14 @@ p {
 }
 
 span.empty-message {
-  font-size: $h2_size;
-  line-height: 40px;
-  margin-top: 15px;
+  font-family: 'Cormorant';
+  font-size: $base_size;
+  margin: 15px 20px;
   text-align: center
+}
+
+span.empty-message a {
+  text-decoration: underline
 }
 
 /* --- BACK --- */
@@ -453,6 +469,22 @@ span.empty-message {
 
 /* --- SUB MENU --- */
 
+.submenu {
+  margin: 10px 0px 10px 5px
+}
+
+.submenu a {
+  color: $grey;
+  font-size: $normal_size;
+  font-weight: 300;
+  margin-right: 20px
+}
+
+.submenu a.active {
+  color: $green;
+  font-weight: 700
+}
+
 .sub-menu {
   display: flex;
   margin-bottom: 30px;
@@ -475,7 +507,10 @@ span.empty-message {
   padding: 0px 35px 5px
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 400px) {
+  .submenu {
+    margin-left: 10px
+  }
   .sub-menu-item a {
     padding: 0px 20px 5px
   }

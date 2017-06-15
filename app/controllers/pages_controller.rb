@@ -4,7 +4,6 @@ class PagesController < ApplicationController
   require 'open-uri'
 
   def fresh
-    @colour = params[:colour]
     # INITIATING HARVEST
     @fresh = []
     @new = []
@@ -12,17 +11,6 @@ class PagesController < ApplicationController
 
     # CURRENT USER'S SUBSCRIPTIONS
     subscriptions = current_user.subscriptions.all
-
-    if @colour == 'red'
-      array = subscriptions.to_a.delete_if {|sub| !sub.red?}
-      subscriptions = array
-    elsif @colour == 'blue'
-      array = subscriptions.to_a.delete_if {|sub| !sub.blue?}
-      subscriptions = array
-    elsif @colour == 'yellow'
-      array = subscriptions.to_a.delete_if {|sub| !sub.yellow?}
-      subscriptions = array
-    end
 
     # THE SOURCES TO WHICH THE USER HAS SUBSCRIBED
     sources = []
@@ -62,52 +50,40 @@ class PagesController < ApplicationController
 
   def garden
     @search = ransack_params
-    @colour = params[:colour]
-    if ['red', 'blue', 'yellow'].include?(@colour)
-      @subscriptions = current_user.subscriptions.where(colour: Subscription.colours[@colour])
-    else
-      @subscriptions = current_user.subscriptions
-    end
+    @subscriptions = current_user.subscriptions
     array = @subscriptions.to_a.delete_if {|sub| sub.source.last_entries(1) == []}
     @subscriptions = array.sort_by {|sub| sub.source.last_entries(1).first.created_at}.reverse
   end
 
   def harvest
-    @colour = params[:colour]
-    @unread = []
-    @harvested = []
+    @filter = params[:filter]
     @search = ransack_params
-    subscriptions = current_user.subscriptions.all
-    array = []
-    sources = []
+    @harvested = []
+    @unread_count = 0
 
-    if @colour == 'red'
-      array = subscriptions.to_a.delete_if {|sub| !sub.red?}
-    elsif @colour == 'blue'
-      array = subscriptions.to_a.delete_if {|sub| !sub.blue?}
-    elsif @colour == 'yellow'
-      array = subscriptions.to_a.delete_if {|sub| !sub.yellow?}
-    else
-      array = subscriptions
-    end
+    unread = []
+    harvested = []
 
-    array.each do |sub|
-      sources.push(sub.source)
-    end
 
-    harvested = current_user.entry_actions.where(harvested: true)
-    harvested = harvested.sort_by {|p| p.updated_at}.reverse
-    harvested.each do |h|
-      if h.read
-        @harvested.push(h)
-      else
-        @unread.push(h)
+    # ALL HARVESTED ENTRIES BY USER
+    harvested_all = current_user.entry_actions.where(harvested: true)
+    harvested_all = harvested_all.sort_by {|p| p.created_at}.reverse
+
+    # ALL HARVESTED ENTRIES THE USER HAS NOT READ YET
+    harvested_all.each do |h|
+      unless h.read
+        unread.push(h)
       end
     end
-    if @unread.count >= 30
-      @harvested = []
+
+    # NUMBER OF HARVESTED ENTRIES THE USER HAS NOT READ YET
+    @unread_count = unread.count
+
+    # FILTERING RESULTS
+    if @filter == 'unseen'
+      @harvested = unread.first(20)
     else
-      @harvested = @harvested.first(30 - @unread.count)
+      @harvested = harvested_all.first(20)
     end
   end
 

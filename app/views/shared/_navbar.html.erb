@@ -29,18 +29,10 @@
       </div>
     </div>
     <div class="row bottom-navbar">
-      <a href="#">
-        <div class="notification-bullet" id="notification-villages">&nbsp;</div>VILLAGES
-      </a>
-      <%= link_to friends_list_path do %>
-        <div class="notification-bullet" id="notification-contacts">&nbsp;</div>CONTACTS
-      <% end %>
-      <%= link_to garden_path do %>
-        <div class="notification-bullet" id="notification-subscriptions">&nbsp;</div>ABONNEMENTS
-      <% end %>
-      <%= link_to edit_user_registration_path do %>
-        <div class="notification-bullet" id="notification-parameters">&nbsp;</div>PARAMÈTRES
-      <% end %>
+      <a href="#">VILLAGES</a>
+      <%= link_to friends_list_path do %>CONTACTS<% end %>
+      <%= link_to garden_path do %>ABONNEMENTS<% end %>
+      <%= link_to edit_user_registration_path do %>PARAMÈTRES<% end %>
     </div>
   </div>
 </div>

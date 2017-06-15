@@ -3,16 +3,18 @@
   flex-direction: column;
   margin: auto;
   margin-bottom: 30px;
-  margin-top: 80px;
+  margin-top: 70px;
   max-width: 400px
 }
 
-.content-flex h1 {
+span.date-demarcation {
   font-family: 'Cormorant';
-  margin: 0px;
-  margin-left: 5px;
-  padding: 0px;
-  text-align: left
+  margin-bottom: 10px;
+  text-align: center
+}
+
+.content-flex h1 {
+  margin: 20px 0px 0px 5px
 }
 
 .content {
@@ -45,7 +47,7 @@
 .content-left-column {
   background-color: $white;
   border: 4px solid $white;
-  border-radius: 5px;
+  border-bottom-right-radius: 5px;
   height: 55px;
   left: 0;
   position: absolute;
@@ -324,7 +326,10 @@
     margin-left: 5px;
     margin-right: 5px
   }
-  .content-flex h1,
+  .content-flex h1 {
+    margin: 0px 10px;
+  }
+
   .content-flex hr {
     margin-left: 10px;
     margin-right: 10px

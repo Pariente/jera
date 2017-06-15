@@ -1,13 +1,17 @@
 <%= render partial: 'shared/navbar' %>
 <div class="content-flex">
+  <% if @friend_requests != [] %>
+    <h1>Invitations</h1>
+    <hr>
+    <% @friend_requests.each do |f| %>
+      <%= render partial: 'shared/friend_request', locals: {f: f} %>
+    <% end %>
+  <% end %>
   <h1>Dernières publications</h1>
   <hr>
-  <% @friend_requests.each do |f| %>
-    <%= render partial: 'shared/friend_request', locals: {f: f} %>
-  <% end %>
-  <% if @fresh == [] && @recommendations == [] && @responses == [] %>
+  <% if @fresh == [] %>
     <span class="empty-message">Vous êtes parfaitement à jour. 😌</span>
-    <span class="empty-message">Pourquoi ne pas consulter votre récolte si vous en avez le temps ? 👩‍🌾</span>
+    <span class="empty-message">Pourquoi ne pas <%= link_to harvest_path do %>consulter votre récolte<% end %> si vous en avez le temps ? 👩‍🌾</span>
   <% else %>
     <% @recommendations.each do |r| %>
       <% cache "recommendation-#{r.id}" do %>
