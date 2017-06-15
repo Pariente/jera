@@ -20,6 +20,18 @@ function message_textarea(element) {
 
 document.addEventListener("turbolinks:load", function() {
 
+  $(window).scroll(function() {
+  if($(window).scrollTop() + $(window).height() == $(document).height()) {
+    var entry_count = $('.content').length;
+    if ($('.unseen').hasClass('active')) {
+      $.get("/more_not_seen/" + entry_count);
+    }
+    else if ($('.all').hasClass('active')) {
+      $.get("/more_all/" + entry_count);
+    }
+  }
+  });
+
   // WHEN CLICKING OUTSIDE OF NAV, SHRINK SEARCHBAR AND BOTTOM NAVBAR
   $('body').click(function(event) { 
     if ($(event.target).closest('.nav').length) { return; }

@@ -1,4 +1,25 @@
 class EntryActionsController < ApplicationController
+  
+  def more_not_seen
+    @actions = []
+    @actions = EntryAction.where(user_id: current_user.id, harvested: true, read: false)
+    @actions = @actions.to_a.sort_by {|p| p.created_at}.reverse
+    @actions = @actions.drop(params[:index].to_i).first(20)
+    respond_to do |format|
+      format.js { render 'more_entry_action.js.erb' }
+    end
+  end
+
+  def more_all
+    @actions = []
+    @actions = EntryAction.where(user_id: current_user.id, harvested: true)
+    @actions = @actions.to_a.sort_by {|p| p.created_at}.reverse
+    @actions = @actions.drop(params[:index].to_i).first(20)
+    respond_to do |format|
+      format.js { render 'more_entry_action.js.erb' }
+    end
+  end
+
   def harvest
     existing_action = EntryAction.where(user_id: current_user.id, entry_id: params[:entry_id], recommendation_id: params[:recommendation_id])
     # CHECKING IF ACTION EXISTS
@@ -137,4 +158,9 @@ class EntryActionsController < ApplicationController
     e = Entry.find(params[:entry_id])
     ActionController::Base.new.expire_fragment(%r{entry-#{e.id}/*})
   end
+
+  private
+    def source_params
+      params.require(:entry_action).permit(:user_id, :harvested, :read, :masked)
+    end
 end

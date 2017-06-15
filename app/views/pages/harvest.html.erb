@@ -10,36 +10,15 @@
       <% unseen = '' %>
       <% all = 'active' %>
     <% end %>
-    <%= link_to harvest_path, class: all do %>TOUS<% end %>
-    <%= link_to harvest_path(filter: 'unseen'), class: unseen do %>NON VUS <span class="unread-count">(<%= @unread_count %>)</span><% end %>
+    <%= link_to harvest_path, class: "all #{all}" do %>TOUS<% end %>
+    <%= link_to harvest_path(filter: 'unseen'), class: "unseen #{unseen}" do %>NON VUS <span class="unread-count">(<%= @unread_count %>)</span><% end %>
   </div>
   <hr>
   <% if @harvested == [] %>
     <span class="empty-message">Récoltez les articles ou vidéos qui vous intéressent parmi les dernières publications de vos abonnements. 👩‍🌾</span>
   <% end %>
   <% unless @harvested == nil %>
-    <% @previous_date = nil %>
     <% @harvested.each do |action| %>
-      <% if @previous_date == nil %>
-        <% if action.created_at.to_date.today? %>
-          <span class="date-demarcation">Aujourd'hui</span>
-        <% elsif (action.created_at + 1.day).to_date == Date.yesterday %>
-          <span class="date-demarcation">Hier'hui</span>
-        <% else %>
-          <span class="date-demarcation"><%= l(action.created_at.strftime('%A')) %></span>
-        <% end %>
-      <% else %>
-        <% unless action.created_at.to_date == @previous_date.to_date %>
-          <% if action.created_at.to_date.today? %>
-            <span class="date-demarcation">Aujourd'hui</span>
-          <% elsif (action.created_at + 1.day).to_date == Date.yesterday %>
-            <span class="date-demarcation">Hier'hui</span>
-          <% else %>
-            <span class="date-demarcation"><%= l(action.created_at, format: '%-d %B') %></span>
-          <% end %>
-        <% end %>
-      <% end %>
-      <% @previous_date = action.created_at %>
       <% if action.recommendation_id != nil %>
         <%= render partial: 'shared/recommendation', locals: {e: action.entry, r: action.recommendation} %>
       <% else %>

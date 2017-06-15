@@ -81,10 +81,18 @@ class PagesController < ApplicationController
 
     # FILTERING RESULTS
     if @filter == 'unseen'
-      @harvested = unread.first(20)
+      @harvested = unread
     else
-      @harvested = harvested_all.first(20)
+      @harvested = harvested_all
     end
+
+    # INFORMING THE VIEW OF THE NUMBER OF REMAINING ACTIONS
+    @remaining_actions_count = 0
+    if @harvested.count > 20
+      @remaining_actions_count = @harvested.count - 20
+    end
+
+    @harvested = @harvested.first(20)
   end
 
   private
