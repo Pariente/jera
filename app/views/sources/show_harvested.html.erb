@@ -1,16 +1,16 @@
 <% title @source.name %>
-<%= render partial: 'shared/nav_source', locals: {referer: @referer} %>
+<%= render partial: 'shared/navbar' %>
 <div class="content-flex">
   <% sub = @source.in_garden_of_user(current_user) %>
   <%= render partial: 'shared/tree', locals: {sub: sub, source: @source} %>
   <div class="sub-menu">
     <div class="sub-menu-item">
-      <%= link_to source_show_latest_path(@source, :referer => @referer) do %>
+      <%= link_to source_show_latest_path(@source) do %>
         Récents
       <% end %>
     </div>
     <div class="sub-menu-item active">
-      <%= link_to source_show_harvested_path(@source, :referer => @referer) do %>
+      <%= link_to source_show_harvested_path(@source) do %>
         Récoltés
       <% end %>
     </div>

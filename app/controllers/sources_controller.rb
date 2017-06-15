@@ -27,7 +27,7 @@ class SourcesController < ApplicationController
   end
 
   def show_latest
-    @referer = params[:referer]
+    @search = ransack_params
     @latest = []
     @new = []
     @source = Source.find(params[:id])
@@ -41,7 +41,7 @@ class SourcesController < ApplicationController
   end
 
   def show_harvested
-    @referer = params[:referer]
+    @search = ransack_params
     @unread = []
     @harvest = []
     @source = Source.find(params[:id])

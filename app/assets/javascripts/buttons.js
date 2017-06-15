@@ -20,7 +20,8 @@ function message_textarea(element) {
 
 document.addEventListener("turbolinks:load", function() {
 
-  $(window).scroll(function() {
+  $(window).scroll(function(e) {
+  e.stopImmediatePropagation();
   if($(window).scrollTop() + $(window).height() == $(document).height()) {
     var entry_count = $('.content').length;
     if ($('.unseen').hasClass('active')) {
