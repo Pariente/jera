@@ -240,6 +240,8 @@ img.profile-button {
   padding: 0px 15px
 }
 
+/* --- SEARCH NAVBAR --- */
+
 .magnifier-button {
   cursor: pointer;
   height: 20px;
@@ -256,15 +258,24 @@ img.profile-button {
   transition: width 1s
 }
 
+.row.permanent-search-navbar {
+  justify-content: flex-start;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding-bottom: 10px;
+  width: 100%
+}
+
 .row.search-navbar.expanded {
   width: 90%
 }
 
-.search-navbar form {
+.search-navbar form,
+.permanent-search-navbar form {
   margin: 0px;
   max-width: inherit;
   padding: 0px;
-  width: 90%
+  width: 100%
 }
 
 input.nav_search_input {

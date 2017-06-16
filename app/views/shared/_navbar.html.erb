@@ -23,7 +23,7 @@
         <%= image_tag('magnifier_icon_grey.svg', class: 'magnifier-button') %>
       </div>
       <div class="row search-navbar">
-        <%= search_form_for @search, url: search_sources_path do |f| %>
+        <%= search_form_for @search, url: sources_search_path do |f| %>
           <%= f.search_field :name_has_any_term, class: 'nav_search_input', placeholder: 'Chercher sur Jera...' %>
         <% end %>
       </div>

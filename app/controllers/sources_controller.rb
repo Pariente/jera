@@ -28,8 +28,11 @@ class SourcesController < ApplicationController
 
   def results
     @search = ransack_params
-    @results  = ransack_result
+    @sources  = ransack_result
     @source = Source.new
+    respond_to do |format|
+      format.html { render 'index.html.erb' }
+    end
   end
 
   def show_latest
