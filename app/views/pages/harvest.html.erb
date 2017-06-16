@@ -1,21 +1,25 @@
-<% title "Ma Récolte" %>
+<% title "Récolte" %>
 <%= render partial: 'shared/navbar' %>
 <div class="content-flex">
   <h1>Votre récolte</h1>
   <div class="row submenu">
-    <% if params[:filter] == 'unseen' %>
-      <% unseen = 'active' %>
-      <% all = '' %>
-    <% else %>
+    <% if params[:filter] == 'all' %>
       <% unseen = '' %>
       <% all = 'active' %>
+    <% else %>
+      <% unseen = 'active' %>
+      <% all = '' %>
     <% end %>
-    <%= link_to harvest_path, class: "all #{all}" do %>TOUS<% end %>
-    <%= link_to harvest_path(filter: 'unseen'), class: "unseen #{unseen}" do %>NON VUS <span class="unread-count">(<%= @unread_count %>)</span><% end %>
+    <%= link_to harvest_path, class: "unseen #{unseen}" do %>NON VUS <span class="unread-count">(<%= @unread_count %>)</span><% end %>
+    <%= link_to harvest_path(filter: 'all'), class: "all #{all}" do %>TOUS<% end %>
   </div>
   <hr>
   <% if @harvested == [] %>
-    <span class="empty-message">Récoltez les articles ou vidéos qui vous intéressent parmi les dernières publications de vos abonnements. 👩‍🌾</span>
+    <% if params[:filter] == 'all' %>
+      <span class="empty-message">Récoltez les articles ou vidéos qui vous intéressent parmi les dernières publications de vos abonnements. 👩‍🌾</span>
+    <% else %>
+      <span class="empty-message">Vous n'avez aucun article non lu : vous êtes parfaitement à jour. 😎</span>
+    <% end %>
   <% end %>
   <% unless @harvested == nil %>
     <% @harvested.each do |action| %>
