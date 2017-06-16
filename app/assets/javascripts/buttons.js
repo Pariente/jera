@@ -50,6 +50,7 @@ document.addEventListener("turbolinks:load", function() {
   $(".magnifier-button").unbind('click').bind('click', function(evt) {
     $('.nav-first-row').toggleClass('shrinked');
     $('.search-navbar').toggleClass('expanded');
+    $('.nav_search_input').focus();
   });
 
   // MASK
@@ -58,6 +59,7 @@ document.addEventListener("turbolinks:load", function() {
     $(this).parents('.content').find('.content-right-column').addClass('hidden');
     $(this).parents('.content').find('.recommendation-header').addClass('hidden');
     $(this).parents('.content').find('.content-masked').removeClass('hidden');
+
   });
 
   // UNMASK
