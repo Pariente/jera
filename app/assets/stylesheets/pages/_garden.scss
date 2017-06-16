@@ -10,11 +10,15 @@
 }
 
 .garden-flex h1 {
-  margin: 20px 0px 0px 5px
+  margin: 0px 0px 0px 5px
 }
 
 .plant-tree-flex {
   margin-top: 110px
+}
+
+.plant-tree-flex h1 {
+  margin: 20px 0px 0px 5px
 }
 
 .profile {
@@ -331,10 +335,13 @@ img.weed {
 //   z-index: 100
 // }
 
-@media screen and (max-width: 450px) {
-  .garden-flex h1 {
-    margin: 0px 10px;
+@media screen and (max-width: 400px) {
+  .garden-flex h1,
+  .plant-tree-flex h1 {
+    margin-left: 10px;
   }
+}
+@media screen and (max-width: 450px) {
   .profile-flex {
     max-width: 450px
   }

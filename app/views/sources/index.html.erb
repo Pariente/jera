@@ -1,0 +1,25 @@
+<% title "S'abonner à une nouvelle source" %>
+<%= render partial: 'shared/searchbar' %>
+<div class="plant-tree-flex">
+  <h1>Sources d'information</h1>
+  <div class="row submenu center">
+    <% if params[:filter] == 'popular' %>
+      <% popular = 'active' %>
+      <% latest = '' %>
+    <% else %>
+      <% popular = '' %>
+      <% latest = 'active' %>
+    <% end %>
+    <%= link_to sources_path, class: "#{latest}" do %>
+      DÉCOUVERTES
+    <% end %>
+    <%= link_to sources_path(filter: 'popular'), class: "#{popular}" do %>
+      POPULAIRES
+    <% end %>
+  </div>
+  <hr>
+  <% @sources.each do |source| %>
+    <% sub = source.in_garden_of_user(current_user) %>
+    <%= render partial: 'shared/tree', locals: {sub: sub, source: source} %>
+  <% end %>
+</div>

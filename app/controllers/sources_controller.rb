@@ -4,21 +4,27 @@ class SourcesController < ApplicationController
   require 'csv'
 
   def index
-    @sources = Source.all
-#    respond_to do |format|
-#     format.csv { send_data @sources.to_csv, filename: "sources-#{Date.today}.csv" }
-#    end
+    @search = ransack_params
+    if params[:filter] == 'popular'
+      @sources = Source.all.sort_by {|s| s.subscriptions_count}.reverse.first(30)
+    else
+      @sources = Source.last(30).reverse
+    end
+    # @sources = Source.all
+    # respond_to do |format|
+    #  format.csv { send_data @sources.to_csv, filename: "sources-#{Date.today}.csv" }
+    # end
   end
 
-  def top
-    @top = Source.all.sort_by {|s| s.subscriptions_count}.reverse.first(50)
-    @search = ransack_params
-  end
+  # def top
+  #   @top = Source.all.sort_by {|s| s.subscriptions_count}.reverse.first(50)
+  #   @search = ransack_params
+  # end
 
-  def latest
-    @latest = Source.last(50).reverse
-    @search = ransack_params
-  end
+  # def latest
+  #   @latest = Source.last(50).reverse
+  #   @search = ransack_params
+  # end
 
   def results
     @search = ransack_params
