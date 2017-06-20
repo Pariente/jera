@@ -69,6 +69,13 @@ class PagesController < ApplicationController
     harvested_all = current_user.entry_actions.where(harvested: true)
     harvested_all = harvested_all.sort_by {|p| p.created_at}.reverse
 
+    # ALL HARVESTED ENTRIES THE USER HAS NOT READ YET
+    harvested_all.each do |h|
+      unless h.read
+        unread.push(h)
+      end
+    end
+
     # NUMBER OF HARVESTED ENTRIES THE USER HAS NOT READ YET
     @unread_count = unread.count
 
@@ -76,12 +83,6 @@ class PagesController < ApplicationController
     if @filter == 'all'
       @harvested = harvested_all
     else
-      # ALL HARVESTED ENTRIES THE USER HAS NOT READ YET
-      harvested_all.each do |h|
-        unless h.read
-          unread.push(h)
-        end
-      end
       @harvested = unread
     end
 
