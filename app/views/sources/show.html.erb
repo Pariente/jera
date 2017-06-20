@@ -1,0 +1,33 @@
+<% title @source.name %>
+<%= render partial: 'shared/navbar' %>
+<div class="content-flex">
+  <% sub = @source.in_garden_of_user(current_user) %>
+  <%= render partial: 'shared/tree', locals: {sub: sub, source: @source} %>
+  <div class="row submenu center">
+    <% if @filter == 'harvested' %>
+      <% harvested = 'active' %>
+      <% latest = '' %>
+    <% else %>
+      <% harvested = '' %>
+      <% latest = 'active' %>
+    <% end %>
+    <%= link_to source_show_path(@source), class: "#{latest}" do %>
+      RÉCENTS
+    <% end %>
+    <%= link_to source_show_path(@source, filter: 'harvested'), class: "#{harvested}" do %>
+      RÉCOLTÉS
+    <% end %>
+  </div>
+  <hr>
+  <% if @entries == [] %>
+    <% if @filter == 'harvested' %>
+      <span class="empty-message">Vous n'avez récolté aucun article de cette source.</span>
+    <% else %>
+      <span class="empty-message">Vous êtes à jour. 😌</span>
+    <% end %>
+  <% else %>
+    <% @entries.each do |e| %>
+      <%= render partial: 'shared/fruit_headless', locals: {e: e} %>
+    <% end %>
+  <% end %>
+</div>

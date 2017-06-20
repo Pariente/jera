@@ -1,5 +1,5 @@
 class SourcesController < ApplicationController
-  before_action :set_source, only: [:show, :edit, :update]
+  before_action :set_source, only: [:show, :update]
   require 'open-uri'
   require 'csv'
 
@@ -10,21 +10,7 @@ class SourcesController < ApplicationController
     else
       @sources = Source.last(30).reverse
     end
-    # @sources = Source.all
-    # respond_to do |format|
-    #  format.csv { send_data @sources.to_csv, filename: "sources-#{Date.today}.csv" }
-    # end
   end
-
-  # def top
-  #   @top = Source.all.sort_by {|s| s.subscriptions_count}.reverse.first(50)
-  #   @search = ransack_params
-  # end
-
-  # def latest
-  #   @latest = Source.last(50).reverse
-  #   @search = ransack_params
-  # end
 
   def results
     @search = ransack_params
@@ -35,43 +21,25 @@ class SourcesController < ApplicationController
     end
   end
 
-  def show_latest
+  def show
+    @filter = params[:filter]
     @search = ransack_params
-    @latest = []
-    @new = []
     @source = Source.find(params[:id])
-    last_entries = @source.last_entries(50).reverse
+    @entries = []
 
-    last_entries.each do |e|
-      unless e.is_masked_by_user?(current_user) || e.is_harvested_by_user?(current_user)
-        @latest.push(e)
+    if @filter == 'harvested'
+      harvested = current_user.entry_actions.where(source_id: @source.id, harvested: true)
+      harvested = harvested.sort_by {|p| p.created_at}.reverse
+      harvested.each do |h|
+        @entries.push(h.entry)
       end
-    end
-  end
-
-  def show_harvested
-    @search = ransack_params
-    @unread = []
-    @harvest = []
-    @source = Source.find(params[:id])
-
-    harvested = current_user.entry_actions.where(source_id: @source.id, harvested: true)
-    harvested = harvested.sort_by {|p| p.created_at}.reverse
-
-    harvested.each do |h|
-      if h.read
-        @harvest.push(h.entry)
-      else
-        @unread.push(h.entry)
-      end
+    else
+      @entries = @source.last_entries(30).sort_by {|p| p.created_at}.reverse
     end
   end
 
   def new
     @source = Source.new
-  end
-
-  def edit
   end
 
   def create
@@ -114,12 +82,12 @@ class SourcesController < ApplicationController
         @source.refresh
         sub = Subscription.create(user_id: current_user.id, source_id: @source.id)
         sub.save
-        format.html { redirect_to source_show_latest_path(@source), notice: 'Source was successfully created.' }
+        format.html { redirect_to source_show_path(@source), notice: 'Source was successfully created.' }
         format.json { render :show_latest, status: :created, location: @source }
       else
         if @source.errors.full_messages.first == "Url has already been taken"
           original_source = Source.find_by(url: @source.url)
-          format.html { redirect_to source_show_latest_path(original_source), notice: 'Source already existing. Redirecting to it.' }
+          format.html { redirect_to source_show_path(original_source), notice: 'Source already existing. Redirecting to it.' }
         else
           format.html { redirect_to unable_to_fetch_path }
           format.json { render json: @source.errors, status: :unprocessable_entity }

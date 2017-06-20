@@ -1,11 +1,11 @@
 <div class="tree">
-  <%= link_to source_show_latest_path(source, :referer => request.original_url) do %>
+  <%= link_to source_show_path(source, :referer => request.original_url) do %>
     <div>
       <%= image_tag(source.picture, class: 'tree-pic') %>
     </div>
   <% end %>
   <div class="tree-content">
-    <%= link_to source_show_latest_path(source, :referer => request.original_url) do %>
+    <%= link_to source_show_path(source, :referer => request.original_url) do %>
       <%= truncate(source.name, length: 50) %>
     <% end %>
     <div class="tree-footer-add">
