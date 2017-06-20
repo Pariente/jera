@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  def show_friends
+  def contacts
     @friends = current_user.friends
     @pending = current_user.pending_friends
     @search = ransack_params

@@ -28,8 +28,8 @@ Rails.application.routes.draw do
   get 'more_not_seen/:index' => 'entry_actions#more_not_seen', as: :more_not_seen
   get 'more_all/:index' => 'entry_actions#more_all', as: :more_all
 
-  get 'friends_list' => 'users#show_friends'
-  get 'search_friends' => 'users#results'
+  get 'contacts' => 'users#contacts'
+  get 'contacts_search' => 'users#results'
   get 'befriend/:id' => 'friendships#ask', as: :befriend
   get 'accept_friendship/:id' => 'friendships#accept', as: :accept_friendship
   get 'refuse_friendship/:id' => 'friendships#refuse', as: :refuse_friendship
