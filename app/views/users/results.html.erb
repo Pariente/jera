@@ -1,7 +1,8 @@
 <% title "Résultats de recherche" %>
 <%= render partial: 'shared/contacts_searchbar' %>
 <div class="plant-tree-flex">
-  <h1>Résultats de recherche</h1>
+  <%= link_to contacts_path, class: 'back-button' do %><%= image_tag('green_arrow_left.svg') %> RETOUR<% end %>
+  <h1>Résultats "<%= @search.conditions.first.values.first.value %>"</h1>
   <hr>
   <% if @results == [] %>
     <p class="no_results">Aucune personne n'a été trouvée.</p>

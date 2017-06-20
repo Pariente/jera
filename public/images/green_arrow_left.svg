@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="14px" viewBox="0 0 20 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>white_arrow_left</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="white_arrow_left" fill-rule="nonzero" fill="#43AB5F">
+            <path d="M16.573703,5.6588289 L0.9918031,5.6588289 C0.4553056,5.6588289 0,6.1065442 0,6.6588289 C0,7.2149641 0.4440454,7.6588289 0.9918031,7.6588289 L16.573703,7.6588289 L12.6207011,11.6118308 C12.2390521,11.9934798 12.2334312,12.6322657 12.6239555,13.0227899 C13.0172025,13.4160369 13.6461878,13.4147713 14.0349147,13.0260444 L19.6141434,7.4468157 C19.8471169,7.2637774 20,6.9788594 20,6.6588289 C20,6.3251825 19.8401769,6.0319451 19.5940198,5.8507186 L14.0349147,0.2916135 C13.6461878,-0.0971135 13.0172025,-0.0983791 12.6239555,0.2948679 C12.2334312,0.6853922 12.2390521,1.3241781 12.6207011,1.705827 L16.573703,5.6588289 Z" id="Combined-Shape" transform="translate(10.000000, 6.658829) scale(-1, 1) translate(-10.000000, -6.658829) "></path>
+        </g>
+    </g>
+</svg>

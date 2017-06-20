@@ -431,6 +431,17 @@ span.empty-message a {
 
 /* --- BACK --- */
 
+a.back-button {
+  color: $green;
+  font-size: $small_size;
+  font-weight: 800;
+  margin-bottom: 10px 
+}
+
+.back-button img {
+  height: 10px
+}
+
 .back {
   color: $white;
   display: flex;
