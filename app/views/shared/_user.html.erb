@@ -4,15 +4,15 @@
     <span><b><%= user.username %></b></span>
     <div class="friend-request-buttons">
       <% if user.is_friend_with?(current_user) %>
-        <span class="green">Vous êtes amis.</span>
+        <span class="green">Vous êtes en contact.</span>
         <span class="pending hidden">En attente de réponse...</span>
         <%= link_to befriend_path(user), class: 'send-friend-request hidden', remote: :true do %>Ajouter<% end %>
       <% elsif current_user.send_friend_request_to?(user) %>
-        <span class="green hidden">Vous êtes amis.</span>
+        <span class="green hidden">Vous êtes en contact.</span>
         <span class="pending">En attente de réponse...</span>
         <%= link_to befriend_path(user), class: 'send-friend-request hidden', remote: :true do %>Ajouter<% end %>
       <% else %>
-        <span class="green hidden">Vous êtes amis.</span>
+        <span class="green hidden">Vous êtes en contact.</span>
         <span class="pending hidden">En attente de réponse...</span>
         <%= link_to befriend_path(user), class: 'send-friend-request', remote: :true do %>Ajouter<% end %>
       <% end %>
