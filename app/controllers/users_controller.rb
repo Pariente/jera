@@ -4,6 +4,12 @@ class UsersController < ApplicationController
     @friends = current_user.friends
     @pending = current_user.pending_friends
     @search = ransack_params
+
+    # RECOMMENDATIONS
+    @recommendations = current_user.recommendations_received
+    
+    # RESPONSES
+    @responses = current_user.recommendations_with_responses
   end
 
   def results

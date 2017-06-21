@@ -11,10 +11,10 @@ function recommendation_textarea(element) {
 function message_textarea(element) {
   element.style.height = "25px";
   element.style.height = (element.scrollHeight)+"px";
-  if (element.value.length >= 10 && $(element).parent().find('.recommend-to-friend').hasClass('not-active')) {
-    $(element).parent().find('.recommend-to-friend').removeClass('not-active');
-  } else if (element.value.length <= 10 && !$(element).parent().find('.recommend-to-friend').hasClass('not-active')) {
-    $(element).parent().find('.recommend-to-friend').addClass('not-active');
+  if (element.value.length >= 1 && $(element).parent().find('.message-response-button').hasClass('not-active')) {
+    $(element).parent().find('.message-response-button').removeClass('not-active');
+  } else if (element.value.length <= 1 && !$(element).parent().find('.message-response-button').hasClass('not-active')) {
+    $(element).parent().find('.message-response-button').addClass('not-active');
   }
 }
 

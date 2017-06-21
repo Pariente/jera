@@ -1,12 +1,38 @@
 <% title "Contacts" %>
 <%= render partial: 'shared/contacts_searchbar' %>
 <div class="plant-tree-flex">
-  <% if @pending == [] && @friends == [] %>
-    <span class="empty-message">Vous pouvez recommander vos découvertes à vos contacts, si vous pensez qu'elles leur plairont. 😋</span>
-  <% else %>
+  <!-- Pending contact requests -->
+  <% unless @pending == [] %>
+    <h1>Demandes reçues</h1>
+    <hr>
     <% @pending.each do |p| %>
       <%= render partial: 'shared/user', locals: {user: p} %>
     <% end %>
+  <% end %>
+  <!-- Freshly received recommendations -->
+  <% unless @recommendations == [] %>
+    <h1>Recommandations reçues</h1>
+    <hr>
+    <% @recommendations.each do |r| %>
+      <% cache "recommendation-#{r.id}" do %>
+        <%= render partial: 'shared/recommendation', locals: {e: r.entry, r: r} %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <!-- Freshly received responses -->
+  <% unless @responses == [] %>
+    <h1>Réponses reçues</h1>
+    <hr>
+    <% @responses.each do |r| %>
+      <% cache "recommendation-#{r.id}" do %>
+        <%= render partial: 'shared/recommendation', locals: {e: r.entry, r: r} %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% if @pending == [] && @friends == [] %>
+    <span class="empty-message">Vous pouvez recommander vos découvertes à vos contacts, si vous pensez qu'elles leur plairont. 😋</span>
+  <% else %>
     <% @friends.each do |f| %>
       <%= render partial: 'shared/user', locals: {user: f} %>
     <% end %>

@@ -53,7 +53,7 @@
     <div class="write-response">
       <%= image_tag(current_user.picture, class: 'message-pic') %>
       <textarea onkeyup="message_textarea(this)" placeholder="Write some shit yo"></textarea>
-      <a href="#" data-rec-id="<%= rec_id %>" class="message-response-button">Répondre</a>
+      <a href="#" data-rec-id="<%= rec_id %>" class="message-response-button not-active">Répondre</a>
     </div>
   <% end %>
 </div>

@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
 
   def new
     rec = Recommendation.find(params[:rec_id])
-    if rec.receiver_id == current_user.id || rec.user_id == current_user.id
+    if (rec.receiver_id == current_user.id || rec.user_id == current_user.id) && (params[:text] != "")
       @message = Message.create(user_id: current_user.id, recommendation_id: rec.id, text: params[:text])
       @message.save
       rec.updated_at = Time.now
