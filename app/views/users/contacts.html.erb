@@ -24,9 +24,7 @@
     <h1>Réponses reçues</h1>
     <hr>
     <% @responses.each do |r| %>
-      <% cache "recommendation-#{r.id}" do %>
-        <%= render partial: 'shared/recommendation', locals: {e: r.entry, r: r, response: true} %>
-      <% end %>
+      <%= render partial: 'shared/recommendation', locals: {e: r.entry, r: r, response: true} %>
     <% end %>
   <% end %>
 

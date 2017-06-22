@@ -38,8 +38,8 @@ class User < ActiveRecord::Base
     self.pending_friends.include?(user)
   end
 
-  def recommendations_received
-    all_recs = Recommendation.where(receiver_id: self.id)
+  def new_recs
+    all_recs = Recommendation.where("receiver_id = ? AND updated_at > ?", self.id, self.last_time_checked_contacts)
     recs = []
     all_recs.each do |r|
       if self.entry_actions.where(recommendation_id: r.id) == []
@@ -49,20 +49,12 @@ class User < ActiveRecord::Base
     return recs
   end
 
-  def recommendations_with_responses
+  def new_responses
+    all_recs = Recommendation.where("receiver_id = ? OR user_id = ? AND updated_at > ?", self.id, self.id, self.last_time_checked_contacts)
     recs = []
-    Recommendation.where(receiver_id: self.id).each do |r|
-      if r.messages != []
-        if r.messages.last.user_id != self.id
-          recs.push(r)
-        end
-      end
-    end
-    Recommendation.where(user_id: self.id).each do |r|
-      if r.messages != []
-        if r.messages.last.user_id != self.id
-          recs.push(r)
-        end
+    all_recs.each do |r|
+      unless r.messages == [] || r.messages.last.user_id == self.id
+        recs.push(r)
       end
     end
     return recs

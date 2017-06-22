@@ -6,10 +6,13 @@ class UsersController < ApplicationController
     @search = ransack_params
 
     # RECOMMENDATIONS
-    @recommendations = current_user.recommendations_received
+    @recommendations = current_user.new_recs
     
     # RESPONSES
-    @responses = current_user.recommendations_with_responses
+    @responses = current_user.new_responses
+
+    current_user.last_time_checked_contacts = Time.now
+    current_user.save
   end
 
   def results
