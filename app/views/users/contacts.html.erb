@@ -15,7 +15,7 @@
     <hr>
     <% @recommendations.each do |r| %>
       <% cache "recommendation-#{r.id}" do %>
-        <%= render partial: 'shared/recommendation', locals: {e: r.entry, r: r} %>
+        <%= render partial: 'shared/recommendation', locals: {e: r.entry, r: r, response: false} %>
       <% end %>
     <% end %>
   <% end %>
@@ -25,7 +25,7 @@
     <hr>
     <% @responses.each do |r| %>
       <% cache "recommendation-#{r.id}" do %>
-        <%= render partial: 'shared/recommendation', locals: {e: r.entry, r: r} %>
+        <%= render partial: 'shared/recommendation', locals: {e: r.entry, r: r, response: true} %>
       <% end %>
     <% end %>
   <% end %>
@@ -33,6 +33,8 @@
   <% if @pending == [] && @friends == [] %>
     <span class="empty-message">Vous pouvez recommander vos découvertes à vos contacts, si vous pensez qu'elles leur plairont. 😋</span>
   <% else %>
+    <h1>Vos contacts</h1>
+    <hr>
     <% @friends.each do |f| %>
       <%= render partial: 'shared/user', locals: {user: f} %>
     <% end %>
