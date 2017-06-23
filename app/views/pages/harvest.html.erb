@@ -24,9 +24,9 @@
   <% unless @harvested == nil %>
     <% @harvested.each do |action| %>
       <% if action.recommendation_id != nil %>
-        <%= render partial: 'shared/recommendation', locals: {e: action.entry, r: action.recommendation} %>
+        <%= render partial: 'shared/recommendation', locals: {e: action.entry, r: action.recommendation, response: false} %>
       <% else %>
-        <%= render partial: 'shared/fruit_harvested', locals: {e: action.entry} %>
+        <%= render partial: 'shared/fruit_harvested', locals: {e: action.entry, response: false} %>
       <% end %>
     <% end %>
   <% end %>

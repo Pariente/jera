@@ -11,8 +11,10 @@ class UsersController < ApplicationController
     # RESPONSES
     @responses = current_user.new_responses
 
-    current_user.last_time_checked_contacts = Time.now
-    current_user.save
+    notif = current_user.notification
+    notif.last_time_checked_contacts = Time.now
+    notif.new_from_contacts = false
+    notif.save
   end
 
   def results

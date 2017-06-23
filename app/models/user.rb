@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   end
 
   def new_recs
-    all_recs = Recommendation.where("receiver_id = ? AND updated_at > ?", self.id, self.last_time_checked_contacts)
+    all_recs = Recommendation.where("receiver_id = ? AND updated_at > ?", self.id, self.notification.last_time_checked_contacts)
     recs = []
     all_recs.each do |r|
       if self.entry_actions.where(recommendation_id: r.id) == []
@@ -51,10 +51,10 @@ class User < ActiveRecord::Base
   end
 
   def new_responses
-    all_recs = Recommendation.where("receiver_id = ? OR user_id = ? AND updated_at > ?", self.id, self.id, self.last_time_checked_contacts)
+    all_recs = Recommendation.where("receiver_id = ? OR user_id = ? AND updated_at > ?", self.id, self.id, self.notification.last_time_checked_contacts)
     recs = []
     all_recs.each do |r|
-      unless r.messages == [] || r.messages.last.user_id == self.id
+      unless r.messages.length <= 1 || r.messages.last.user_id == self.id
         recs.push(r)
       end
     end

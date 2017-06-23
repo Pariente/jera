@@ -14,9 +14,20 @@ class RecommendationsController < ApplicationController
   def recommend_to_friend
     if Recommendation.where(user_id: current_user.id, receiver_id: params[:receiver_id], entry_id: params[:entry_id]) == []
       if current_user.is_friend_with?(User.find(params[:receiver_id]))
-        @reco = Recommendation.create(user_id: current_user.id, receiver_id: params[:receiver_id], entry_id: params[:entry_id])
-        @reco.save
-        @message = Message.create(user_id: current_user.id, recommendation_id: @reco.id, text: params[:message])
+        @reco = Recommendation.create(
+          user_id: current_user.id,
+          receiver_id: params[:receiver_id],
+          entry_id: params[:entry_id])
+
+        @message = Message.create(
+          user_id: current_user.id,
+          recommendation_id: @reco.id,
+          text: params[:message])
+
+        receiver_notification = User.find(params[:receiver_id]).notification
+        receiver_notification.new_from_contacts = true
+        receiver_notification.save
+
         respond_to do |format|
           format.json { render json: [@reco, @message], status: '200' }
         end

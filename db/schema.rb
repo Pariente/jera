@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607143049) do
+ActiveRecord::Schema.define(version: 20170623062403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,14 @@ ActiveRecord::Schema.define(version: 20170607143049) do
 
   add_index "messages", ["recommendation_id"], name: "index_messages_on_recommendation_id", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "last_time_checked_contacts"
+    t.datetime "last_time_checked_villages"
+    t.boolean  "new_from_contacts"
+    t.boolean  "new_from_villages"
+  end
 
   create_table "recommendations", force: :cascade do |t|
     t.integer  "user_id"
