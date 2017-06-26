@@ -33,6 +33,10 @@ document.addEventListener("turbolinks:load", function() {
   }
   });
 
+  $('form').submit(function() {
+    $(this).find("button[type='submit']").prop('disabled',true);
+  });
+
   // WHEN CLICKING OUTSIDE OF NAV, SHRINK SEARCHBAR AND BOTTOM NAVBAR
   $('body').click(function(event) { 
     if ($(event.target).closest('.nav').length) { return; }
