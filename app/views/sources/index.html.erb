@@ -22,4 +22,11 @@
     <% sub = source.in_garden_of_user(current_user) %>
     <%= render partial: 'shared/tree', locals: {sub: sub, source: source} %>
   <% end %>
+  <h1>Ajouter une source</h1>
+  <hr>
+  <p class="helper">Si la source que vous cherchez ne figure pas encore sur Jera, vous pouvez l'ajouter en copiant-collant le lien vers cette source dans le champ ci-dessous :</p>
+  <%= simple_form_for @source do |f| %>
+    <%= f.input :url, required: true, label: false, placeholder: "http://..." %>
+    <%= f.button :submit, "Ajouter" %>
+  <% end %>
 </div>

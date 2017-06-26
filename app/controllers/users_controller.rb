@@ -2,7 +2,13 @@ class UsersController < ApplicationController
 
   def contacts
     @friends = current_user.friends
-    @pending = current_user.pending_friends
+
+    # RECEIVED CONTACT REQUESTS
+    @received_contact_requests = Friendship.where(friend_user_id: current_user.id, status: 'pending')
+    
+    # SENT CONTACT REQUESTS
+    @sent_contact_requests = current_user.pending_friends
+
     @search = ransack_params
 
     # RECOMMENDATIONS

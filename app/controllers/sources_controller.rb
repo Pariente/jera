@@ -4,9 +4,10 @@ class SourcesController < ApplicationController
   require 'csv'
 
   def index
+    @source = Source.new
     @search = ransack_params
     if params[:filter] == 'popular'
-      @sources = Source.all.sort_by {|s| s.subscriptions_count}.reverse.first(30)
+      @sources = Source.all.sort_by {|s| s.subscriptions_count}.last(30).reverse
     else
       @sources = Source.last(30).reverse
     end

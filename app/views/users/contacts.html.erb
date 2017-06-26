@@ -1,11 +1,11 @@
 <% title "Contacts" %>
 <%= render partial: 'shared/contacts_searchbar' %>
 <div class="plant-tree-flex">
-  <!-- Pending contact requests -->
-  <% unless @pending == [] %>
-    <h1>Demandes reçues</h1>
+  <!-- Received contact requests -->
+  <% unless @received_contact_requests == [] %>
+    <h1>Invitations reçues</h1>
     <hr>
-    <% @pending.each do |p| %>
+    <% @received_contact_requests.each do |p| %>
       <%= render partial: 'shared/user', locals: {user: p} %>
     <% end %>
   <% end %>
@@ -28,13 +28,21 @@
     <% end %>
   <% end %>
 
-  <% if @pending == [] && @friends == [] %>
+  <% if @sent_contact_requests == [] && @friends == [] %>
     <span class="empty-message">Vous pouvez recommander vos découvertes à vos contacts, si vous pensez qu'elles leur plairont. 😋</span>
   <% else %>
     <h1>Vos contacts</h1>
     <hr>
     <% @friends.each do |f| %>
       <%= render partial: 'shared/user', locals: {user: f} %>
+    <% end %>
+    <!-- Received contact requests -->
+    <% unless @sent_contact_requests == [] %>
+      <h1>Invitations en attente</h1>
+      <hr>
+      <% @sent_contact_requests.each do |p| %>
+        <%= render partial: 'shared/user', locals: {user: p} %>
+      <% end %>
     <% end %>
   <% end %>
 </div>

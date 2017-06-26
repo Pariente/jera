@@ -20,6 +20,7 @@ h3 {
 
 h1 {
   font-family: 'Cormorant';
+  font-weight: 700;
   margin: 0px;
   padding: 0px;
   text-align: left
@@ -27,6 +28,11 @@ h1 {
 
 p {
   text-align: left;
+}
+
+p.helper {
+  font-family: 'Cormorant';
+  font-weight: 400
 }
 
 /* --- HR --- */
