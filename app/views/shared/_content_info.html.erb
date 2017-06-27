@@ -10,7 +10,7 @@
     <% else %>
       <div class="read-sign hidden">VU</div>
       <% if e.thumbnail_url == "" || e.thumbnail_url == nil %>
-        <br>
+        <%= image_tag('entry_img_default.png', class: 'content-thumbnail low-opacity') %>
       <% else %>
         <%= image_tag(e.thumbnail_url, class: 'content-thumbnail') %>
       <% end %>
