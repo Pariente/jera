@@ -99,6 +99,7 @@ class SourcesController < ApplicationController
 
   def unable_to_fetch
     @search = ransack_params
+    @source = Source.new
   end
 
   def update
