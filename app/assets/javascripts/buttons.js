@@ -134,30 +134,14 @@ document.addEventListener("turbolinks:load", function() {
 
   // ADD TO GARDEN
   $(".add-to-garden").unbind('click').bind('click', function(evt) {
-    evt.preventDefault();
-    $(this).parents('.tree').find('.add-to-garden-screen').removeClass('hidden');
-    $('body').css('overflow', 'hidden');
-  });
-
-  // CANCEL ADD TO GARDEN
-  $(".cancel-add-to-garden").unbind('click').bind('click', function(evt) {
-    evt.preventDefault();
-    $(this).parents('.add-to-garden-screen').fadeOut('slow', function() {
-      $(this).addClass('hidden')
-    });
-    $('body').css('overflow', 'initial');
+    $(this).parents('.tree').find('.add-to-garden').addClass('hidden');
+    $(this).parents('.tree').find('.delete-tree').removeClass('hidden');
   });
 
   // UNSUBSCRIBE
   $(".delete-tree").unbind('click').bind('click', function(evt) {
     $(this).parents('.tree').find('.add-to-garden').removeClass('hidden');
-    $(this).parents('.tree').find('.move-tree').addClass('hidden');
     $(this).parents('.tree').find('.delete-tree').addClass('hidden');
-  });
-
-  // MOVE TO OTHER GARDEN
-  $(".unsubscribe-button").unbind('click').bind('click', function(evt) {
-    
   });
 
   // FILTER COLOUR

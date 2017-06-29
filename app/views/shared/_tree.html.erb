@@ -10,42 +10,16 @@
     <% end %>
     <div class="tree-footer-add">
       <% if sub == nil %>
-        <a href="#" class="add-to-garden">
-          <span>Abonner</span>
-        </a>
-        <%= link_to source_unsubscribe_path(source), class: 'delete-tree hidden', remote: :true do %>
-          <span>Désabonner</span>
-        <% end %>
+        <% unsubscribe = "hidden" %>
       <% else %>
-        <a href="#" class="add-to-garden hidden">
-          <span>Abonner</span>
-        </a>
-        <%= link_to source_unsubscribe_path(source), class: 'delete-tree', remote: :true do %>
-          <span>Désabonner</span>
-        <% end %>
+        <% subscribe = "hidden" %>
       <% end %>
-    </div>
-  </div>
-  <div class="add-to-garden-screen hidden">
-    <div class="add-to-garden-header">
-      <div class="cancel-add-to-garden">
-        <%= image_tag('white_cross.svg') %>
-      </div>
-    </div>
-    <div class="add-to-garden-body">
-      <p class="add-to-garden-title">Ajouter <b><%= truncate(source.name, length: 50) %></b> à un de vos jardins :</p>
-      <div>
-        <div class="seeds">
-          <div class="seed red" data-colour="red">🍓</div>
-          <div class="seed blue" data-colour="blue">🍇</div>
-          <div class="seed yellow" data-colour="yellow">🍋</div>
-        </div>
-        <%= image_tag('plant_seed_arrow.svg', class: 'plant-seed-arrow') %>
-        <%= image_tag('weed.svg', class: 'weed') %>
-        <div class="earth" data-source="<%= source.id %>">
-          <%= image_tag('earth.svg', width: '300') %>
-        </div>
-      </div>
+      <%= link_to source_subscribe_path(source), class: "add-to-garden #{subscribe}", remote: :true do %>
+        <span>Abonner</span>
+      <% end %>
+      <%= link_to source_unsubscribe_path(source), class: "delete-tree #{unsubscribe}", remote: :true do %>
+        <span>Désabonner</span>
+      <% end %>
     </div>
   </div>
 </div>
