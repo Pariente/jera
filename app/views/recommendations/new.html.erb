@@ -2,34 +2,24 @@
 <%= render partial: 'shared/share_searchbar', locals: {entry: @entry, ref: @referer} %>
 <div class="plant-tree-flex">
   <p><span class="recommend-span">🎁 Partager :</span><b><%= @entry.title %></b></p>
-  <% if @results == nil %>
+  <% if @contacts == [] %>
     <p class="no_results">Aucune personne n'a été trouvée.</p>
     <p class="no_results">Invitez vos amis à s'inscrire sur Jera pour échanger les fruits de vos jardins.</p>
   <% else %>
-    <% if @pending == [] && @friends == [] %>
-      <span class="empty-message">Vous pouvez recommander des fruits de vos jardins à vos amis, si vous pensez qu'ils leur plairont. 😋</span>
-      <%= link_to friends_list_path do %>
-      <div class="plant-tree-button">
-        <%= image_tag("round_plus_button.svg") %>
-        <span>Trouver mes amis</span>
-      </div>
-    <% end %>
-    <% else %>
-      <% @friends.each do |f| %>
-        <div class="friend-div">
-          <%= image_tag(f.picture) %>
-          <div class="right-column full-width">
-            <span><b><%= f.username %></b></span>
-            <textarea onkeyup="recommendation_textarea(this)" maxlength="500" placeholder='Pourquoi avez-vous pensé à elle/lui ?' class="message"></textarea>
-            <div class="friend-request-buttons">
-              <a href="#" data-entry-id="<%= @entry.id %>" data-receiver-id="<%= f.id %>" class="recommend-to-friend not-active">
-                Partager
-              </a>
-              <span class="green hidden">Partagé</span>
-            </div>
+    <% @contacts.each do |c| %>
+      <div class="friend-div">
+        <%= image_tag(c.picture) %>
+        <div class="right-column full-width">
+          <span><b><%= c.username %></b></span>
+          <textarea onkeyup="recommendation_textarea(this)" maxlength="500" placeholder='Pourquoi avez-vous pensé à elle/lui ?' class="message"></textarea>
+          <div class="friend-request-buttons">
+            <a href="#" data-entry-id="<%= @entry.id %>" data-receiver-id="<%= c.id %>" class="recommend-to-friend not-active">
+              Partager
+            </a>
+            <span class="green hidden">Partagé</span>
           </div>
         </div>
-      <% end %>
+      </div>
     <% end %>
   <% end %>
 </div>

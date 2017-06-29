@@ -1,18 +1,32 @@
-<div class="nav-search">
-  <div class="nav-search-flex">
-    <%= link_to harvest_path, class: 'margin-right-auto' do %>
-      <div class="nav-search-back">
-        <%= image_tag('white_arrow_left.svg', class: 'arrow-left') %>
-        Retour
-      </div>
+<div class="nav">
+  <div class="nav-flex">
+    <% if current_user.notification.new_from_contacts %>
+      <% new_from_contacts = 'red' %>
+      <% notification = 'full-opacity' %>
     <% end %>
-    <div class="nav-search-bar">
+    <div class="row top-navbar">
+      <div class="row nav-first-row">
+        <%= image_tag(current_user.picture, class: 'profile-button') %>
+        <div class="notification-bullet <%= notification %>">&nbsp;</div>
+        <%= link_to root_path do %>
+          NOUVEAUTÉS
+        <% end %>
+        <%= link_to harvest_path do %>
+          RÉCOLTE
+          <div class="added-to-harvest">+<span class="harvest-count">0</span></div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row bottom-navbar">
+      <a href="#">VILLAGES</a>
+      <%= link_to contacts_path, class: new_from_contacts do %>CONTACTS<% end %>
+      <%= link_to garden_path do %>ABONNEMENTS<% end %>
+      <%= link_to edit_user_registration_path do %>PARAMÈTRES<% end %>
+    </div>
+    <div class="row permanent-search-navbar">
       <%= search_form_for @search, url: new_entry_recommendation_path(entry) do |f| %>
-        <div class="magnifier">
-          <%= image_tag('magnifier_icon.svg') %>
-        </div>
-        <%= f.search_field :username_has_any_term, class: 'friends_search_input', placeholder: 'Trouvez vos amis' %>
-        <%= f.submit 'Chercher', class: 'friends_search_submit' %>
+        <%= image_tag('magnifier_icon_grey.svg') %>
+        <%= f.search_field :username_has_any_term, class: 'nav_search_input', placeholder: 'Trouvez vos amis' %>
       <% end %>
     </div>
   </div>

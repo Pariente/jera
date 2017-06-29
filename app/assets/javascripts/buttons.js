@@ -20,6 +20,7 @@ function message_textarea(element) {
 
 document.addEventListener("turbolinks:load", function() {
 
+  // WHEN SCROLLING TO BOTTOM OF THE PAGE, LOADING MORE ENTRIES
   $(window).scroll(function(e) {
   e.stopImmediatePropagation();
   if($(window).scrollTop() + $(window).height() == $(document).height()) {
@@ -33,6 +34,7 @@ document.addEventListener("turbolinks:load", function() {
   }
   });
 
+  // DISABLING SUBMIT BUTTONS AFTER SUBMIT TO PREVENT SPAMMING
   $('form').submit(function() {
     $(this).find("button[type='submit']").prop('disabled',true);
   });

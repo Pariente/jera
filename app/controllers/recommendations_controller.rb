@@ -3,11 +3,11 @@ class RecommendationsController < ApplicationController
   def new
     @entry = Entry.find(params[:entry_id])
     @recommendation = Recommendation.new()
-    @friends = current_user.friends
+    @contacts = current_user.friends
     @memberships = current_user.memberships
     @search = ransack_params
-    unless params[:q]
-      @results  = ransack_result
+    unless params[:q] == []
+      @contacts  = ransack_result
     end
   end
 
