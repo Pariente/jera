@@ -26,6 +26,15 @@ h1 {
   text-align: left
 }
 
+h3 {
+  color: $grey;
+  font-family: 'Cormorant';
+  font-size: $normal_size;
+  margin: 0px 0px 0px 5px;
+  padding: 0px;
+  text-align: left
+}
+
 p {
   text-align: left;
 }
@@ -547,6 +556,10 @@ a.back-button {
 
 .underline {
   text-decoration: underline
+}
+
+.no-margin {
+  margin: 0
 }
 
 .hidden {

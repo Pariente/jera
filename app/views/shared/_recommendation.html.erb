@@ -9,7 +9,7 @@
       <div class="message-column">
         <span class="message-header"><span class="message-username"><%= last_user.username %></span> vous a répondu :</span>
       </div>
-    <% else %>
+    <% elsif sender != current_user %>
       <%= image_tag(sender.picture, class: 'message-pic') %>
       <div class="message-column">
         <span class="message-header"><span class="message-username"><%= sender.username %></span> vous recommande :</span>

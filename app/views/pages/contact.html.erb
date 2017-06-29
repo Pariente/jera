@@ -1,0 +1,8 @@
+<%= render partial: 'shared/navbar' %>
+<div class="content-flex">
+  <h1><%= @user.username %></h1>
+  <hr>
+  <% @recs.each do |r| %>
+    <%= render partial: 'shared/recommendation', locals: {e: r.entry, r: r, response: false} %>
+  <% end %>
+</div>

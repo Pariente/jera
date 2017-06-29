@@ -6,8 +6,13 @@ class RecommendationsController < ApplicationController
     @contacts = current_user.friends
     @memberships = current_user.memberships
     @search = ransack_params
-    unless params[:q] == []
-      @contacts  = ransack_result
+    unless params[:q] == nil
+      @contacts = []
+      ransack_result.each do |u|
+        if current_user.is_friend_with?(u)
+          @contacts.push(u)
+        end
+      end
     end
   end
 

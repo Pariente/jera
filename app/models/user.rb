@@ -39,8 +39,17 @@ class User < ActiveRecord::Base
     self.pending_friends.include?(user)
   end
 
+  def recs_with(user)
+    if self.is_friend_with?(user)
+      recs_received = Recommendation.where(receiver_id: self.id, user_id: user.id)
+      recs_sent = Recommendation.where(receiver_id: user.id, user_id: self.id)
+      @recommendations = (recs_sent + recs_received).sort_by {|r| r.updated_at}.reverse
+    end
+    return @recommendations
+  end
+
   def new_recs
-    all_recs = Recommendation.where("receiver_id = ? AND updated_at > ?", self.id, self.notification.last_time_checked_contacts)
+    all_recs = Recommendation.where("receiver_id = ? AND created_at > ?", self.id, self.notification.last_time_checked_contacts)
     recs = []
     all_recs.each do |r|
       if self.entry_actions.where(recommendation_id: r.id) == []

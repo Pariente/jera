@@ -4,19 +4,18 @@
     <span><b><%= user.username %></b></span>
     <div class="friend-request-buttons">
       <% if user.is_friend_with?(current_user) %>
-        <% first_span = '' %>
         <% second_span = 'hidden' %>
         <% befriend_link = 'hidden' %>
       <% elsif current_user.send_friend_request_to?(user) %>
         <% first_span = 'hidden' %>
-        <% second_span = '' %>
         <% befriend_link = 'hidden' %>
       <% else %>
         <% first_span = 'hidden' %>
         <% second_span = 'hidden' %>
-        <% befriend_link = '' %>
       <% end %>
-      <a href="#" class="green <%= first_span %>">Vos échanges</a>
+      <%= link_to recommendations_with_path(user.id), class: "recommendations-count #{first_span}" do %>
+        <%= current_user.recs_with(user).length %> recommandations
+      <% end %>
       <span class="pending <%= second_span %>">
         En attente de réponse...
       </span>

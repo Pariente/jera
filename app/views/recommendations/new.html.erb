@@ -1,9 +1,9 @@
 <% title "Recommander \"#{@entry.title}\"" %>
-<%= render partial: 'shared/share_searchbar', locals: {entry: @entry, ref: @referer} %>
+<%= render partial: 'shared/share_searchbar', locals: {entry: @entry} %>
 <div class="plant-tree-flex">
-  <h1>Recommander un article</h1>
+  <h1>Recommander</h1>
+  <h3>"<%= @entry.title %>"</h3>
   <hr>
-  <p><b><%= @entry.title %></b></p>
   <% if @contacts == [] %>
     <p class="no_results">Aucun contact n'a été trouvée.</p>
   <% else %>

@@ -83,6 +83,12 @@ class PagesController < ApplicationController
     @harvested = @harvested.first(20)
   end
 
+  def contact
+    @user = User.find(params[:id])
+    @recs = current_user.recs_with(@user)
+    @search = ransack_params
+  end
+
   private
     def ransack_params
       Source.ransack(params[:q])

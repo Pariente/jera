@@ -98,6 +98,13 @@ textarea.message {
   margin-bottom: 20px;
 }
 
+a.recommendations-count {
+  color: $grey;
+  font-size: $small_size;
+  font-weight: 100;
+  text-decoration: underline
+}
+
 @media screen and (max-width: 350px) {
   .friends_search {
     padding-left: 0px;

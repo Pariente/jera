@@ -18,7 +18,7 @@
       <%= link_to entry_read_path(entry, recommendation_id: rec_id), class: entry_read, remote: :true do %>
         Marquer comme lu
       <% end %>
-      <%= link_to new_entry_recommendation_path(entry, :referer => request.original_url), class: 'recommend' do %>
+      <%= link_to new_entry_recommendation_path(entry), class: 'recommend' do %>
         Partager
       <% end %>
     <% else %>
