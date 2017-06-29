@@ -58,12 +58,6 @@ a.recommend-to-team, {
   margin-top: 5px;
 }
 
-.recommend-span {
-  color: $grey;
-  margin-right: 10px;
-  min-width: 65px
-}
-
 textarea.message {
   font-size: $small_size;
   font-weight: normal;
@@ -99,8 +93,9 @@ textarea.message {
 }
 
 .no_results {
-  max-width: 300px;
-  text-align: center;
+  font-family: 'Cormorant';
+  margin: 0px;
+  margin-bottom: 20px;
 }
 
 @media screen and (max-width: 350px) {

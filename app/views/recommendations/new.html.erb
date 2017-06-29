@@ -1,10 +1,11 @@
-<% title "Partager #{@entry.title}" %>
+<% title "Recommander \"#{@entry.title}\"" %>
 <%= render partial: 'shared/share_searchbar', locals: {entry: @entry, ref: @referer} %>
 <div class="plant-tree-flex">
-  <p><span class="recommend-span">🎁 Partager :</span><b><%= @entry.title %></b></p>
+  <h1>Recommander un article</h1>
+  <hr>
+  <p><b><%= @entry.title %></b></p>
   <% if @contacts == [] %>
-    <p class="no_results">Aucune personne n'a été trouvée.</p>
-    <p class="no_results">Invitez vos amis à s'inscrire sur Jera pour échanger les fruits de vos jardins.</p>
+    <p class="no_results">Aucun contact n'a été trouvée.</p>
   <% else %>
     <% @contacts.each do |c| %>
       <div class="friend-div">
@@ -14,9 +15,9 @@
           <textarea onkeyup="recommendation_textarea(this)" maxlength="500" placeholder='Pourquoi avez-vous pensé à elle/lui ?' class="message"></textarea>
           <div class="friend-request-buttons">
             <a href="#" data-entry-id="<%= @entry.id %>" data-receiver-id="<%= c.id %>" class="recommend-to-friend not-active">
-              Partager
+              Envoyer
             </a>
-            <span class="green hidden">Partagé</span>
+            <span class="green hidden">Envoyée</span>
           </div>
         </div>
       </div>
