@@ -1,4 +1,4 @@
-<% title "Planter un arbre" %>
+<% title "Impossible d'ajouter cette source" %>
 <%= render partial: 'shared/searchbar' %>
 <div class="plant-tree-flex">
   <h1>Sources d'information</h1>
@@ -11,9 +11,5 @@
     <% end %>
   </div>
   <hr>
-  <p class="helper">Aucune source sur Jera ne correspond à votre recherche. Vous pouvez l'ajouter ci-dessous en copiant-collant le lien vers cette source dans le champ ci-dessous :</p>
-  <%= simple_form_for @source do |f| %>
-    <%= f.input :url, required: true, label: false, placeholder: "http://..." %>
-    <%= f.button :submit, "Ajouter" %>
-  <% end %>
+  <p class="helper">Hélas, cette source ne peut pas être ajoutée à Jera, car elle ne fournit pas de flux RSS.</p>
 </div>
