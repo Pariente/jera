@@ -18,6 +18,15 @@ class Source < ActiveRecord::Base
 
   def refresh
 
+    def normalize_uri(uri)
+      return uri if uri.is_a? URI
+
+      uri = uri.to_s
+      uri, *tail = uri.rpartition "#" if uri["#"]
+
+      URI(URI.encode(uri) << Array(tail).join)
+    end
+
     # FETCHING FEED
     feed = Feedjira::Feed.fetch_and_parse self.rss_url
 
@@ -34,7 +43,7 @@ class Source < ActiveRecord::Base
           image = e.image
         else
           user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.854.0 Safari/535.2"
-          doc = Nokogiri::HTML(open(e.url, 'User-Agent' => user_agent, 'read_timeout' => '1' ), nil, "UTF-8")
+          doc = Nokogiri::HTML(open(normalize_uri(e.url), 'User-Agent' => user_agent, 'read_timeout' => '1' ), nil, "UTF-8")
           unless doc.at('meta[property="og:image"]') == nil
             image = doc.at('meta[property="og:image"]')['content']
           end
@@ -52,6 +61,7 @@ class Source < ActiveRecord::Base
 
         content = ActionController::Base.helpers.strip_tags(content)
         content = CGI::unescapeHTML(content)
+        content = content.truncate(300)
 
         # ADDING ENTRY TO THE DATABASE
         Entry.create(
