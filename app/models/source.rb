@@ -37,7 +37,9 @@ class Source < ActiveRecord::Base
           p 'inside else'
           user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.854.0 Safari/535.2"
           doc = Nokogiri::HTML(open(e.url.to_s, 'User-Agent' => user_agent, 'read_timeout' => '1' ), nil, "UTF-8")
+          p 'after doc nokogiri'
           unless doc.at('meta[property="og:image"]') == nil
+            p 'inside unless'
             image = doc.at('meta[property="og:image"]')['content'].to_s
           end
         end
