@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Source < ActiveRecord::Base
   has_many :subscriptions
   has_many :entries
