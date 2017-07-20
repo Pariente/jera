@@ -22,7 +22,6 @@ class Source < ActiveRecord::Base
     feed = Feedjira::Feed.fetch_and_parse self.rss_url.to_s
 
     feed.entries.each do |e|
-      p 'inside feed.entries.each'
 
       # CHECKING IF ENTRIES ARE IN THE DATABASE
       if (Entry.where(media_url: e.url.to_s) == [])
@@ -35,6 +34,7 @@ class Source < ActiveRecord::Base
         elsif e.try(:image) != nil
           image = e.image.to_s
         else
+          p 'inside else'
           user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.854.0 Safari/535.2"
           doc = Nokogiri::HTML(open(e.url.to_s, 'User-Agent' => user_agent, 'read_timeout' => '1' ), nil, "UTF-8")
           unless doc.at('meta[property="og:image"]') == nil
