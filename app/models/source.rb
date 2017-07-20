@@ -18,45 +18,36 @@ class Source < ActiveRecord::Base
 
   def refresh
 
-    def normalize_uri(uri)
-      return uri if uri.is_a? URI
-
-      uri = uri.to_s
-      uri, *tail = uri.rpartition "#" if uri["#"]
-
-      URI(URI.encode(uri) << Array(tail).join)
-    end
-
     # FETCHING FEED
-    feed = Feedjira::Feed.fetch_and_parse self.rss_url
+    feed = Feedjira::Feed.fetch_and_parse self.rss_url.to_s
 
     feed.entries.each do |e|
 
       # CHECKING IF ENTRIES ARE IN THE DATABASE
-      if (Entry.where(media_url: e.url) == [])
+      if (Entry.where(media_url: e.url.to_s) == [])
 
         # RETRIEVING ENTRY THUMBNAIL
         image = ""
         if e.try(:media_thumbnail_url) != nil
-          image = e.media_thumbnail_url
+          image = e.media_thumbnail_url.to_s
         elsif e.try(:image) != nil
-          image = e.image
+          image = e.image.to_s
         else
           user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.854.0 Safari/535.2"
           doc = Nokogiri::HTML(open(e.url.to_s, 'User-Agent' => user_agent, 'read_timeout' => '1' ), nil, "UTF-8")
           unless doc.at('meta[property="og:image"]') == nil
-            image = doc.at('meta[property="og:image"]')['content']
+            image = doc.at('meta[property="og:image"]')['content'].to_s
           end
         end
 
         # RETRIEVING ENTRY DESCRIPTION
         content = ""
         if e.try(:content) != nil
-          content = e.content
+          content = e.content.to_s
         elsif e.try(:description) != nil
-          content = e.description
+          content = e.description.to_s
         elsif e.try(:summary) != nil
-          content = e.summary
+          content = e.summary.to_s
         end
 
         content = ActionController::Base.helpers.strip_tags(content)
@@ -69,7 +60,7 @@ class Source < ActiveRecord::Base
           title: e.title,
           content: content,
           published_date: e.published, 
-          media_url: e.url,
+          media_url: e.url.to_s,
           thumbnail_url: image)
       end
     end
