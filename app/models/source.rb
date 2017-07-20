@@ -22,10 +22,12 @@ class Source < ActiveRecord::Base
     feed = Feedjira::Feed.fetch_and_parse self.rss_url.to_s
 
     feed.entries.each do |e|
+      p 'inside feed.entries.each'
 
       # CHECKING IF ENTRIES ARE IN THE DATABASE
       if (Entry.where(media_url: e.url.to_s) == [])
 
+        p 'inside where entry media url'
         # RETRIEVING ENTRY THUMBNAIL
         image = ""
         if e.try(:media_thumbnail_url) != nil
@@ -39,6 +41,7 @@ class Source < ActiveRecord::Base
             image = doc.at('meta[property="og:image"]')['content'].to_s
           end
         end
+        p 'after image retrieving'
 
         # RETRIEVING ENTRY DESCRIPTION
         content = ""
@@ -50,9 +53,13 @@ class Source < ActiveRecord::Base
           content = e.summary.to_s
         end
 
+        p 'after content retrieving'
+
         content = ActionController::Base.helpers.strip_tags(content)
         content = CGI::unescapeHTML(content)
         content = content.truncate(300)
+
+        p 'after content formating'
 
         # ADDING ENTRY TO THE DATABASE
         Entry.create(
@@ -62,6 +69,8 @@ class Source < ActiveRecord::Base
           published_date: e.published, 
           media_url: e.url.to_s,
           thumbnail_url: image)
+
+        p 'after entry creating'
       end
     end
   end
