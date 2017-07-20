@@ -20,14 +20,6 @@ class Source < ActiveRecord::Base
 
   def refresh
 
-    def photo_from_url(url)
-      if !Nokogiri::HTML(open(url)).css("meta[property='og:image']").blank?
-        photo_url = Nokogiri::HTML(open(url)).css("meta[property='og:image']").first.attributes["content"]
-        self.photo = URI.parse(photo_url)
-        self.save
-      end
-    end
-
     # FETCHING FEED
     feed = Feedjira::Feed.fetch_and_parse self.rss_url
 
@@ -43,8 +35,11 @@ class Source < ActiveRecord::Base
           image = e.media_thumbnail_url
         elsif e.try(:image) != nil
           image = e.image
-        else
-          p 'inside else'
+        elsif !Nokogiri::HTML(open(e.url)).css("meta[property='og:image']").blank?
+          p 'inside elsif'
+          photo_url = Nokogiri::HTML(open(e.url)).css("meta[property='og:image']").first.attributes["content"]
+          image = URI.parse(photo_url)
+        end
           # user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.854.0 Safari/535.2"
           # doc = Nokogiri::HTML(open(e.url.to_s, 'User-Agent' => user_agent, 'read_timeout' => '1' ), nil, "UTF-8")
           # p 'after doc nokogiri'
@@ -52,8 +47,6 @@ class Source < ActiveRecord::Base
           #   p 'inside unless'
           #   image = doc.at('meta[property="og:image"]')['content'].to_s
           # end
-          image = photo_from_url(e.url)
-        end
         p 'after image retrieving'
 
         # RETRIEVING ENTRY DESCRIPTION
