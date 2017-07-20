@@ -18,41 +18,50 @@ class Source < ActiveRecord::Base
 
   def refresh
 
+    def photo_from_url(url)
+      if !Nokogiri::HTML(open(url)).css("meta[property='og:image']").blank?
+        photo_url = Nokogiri::HTML(open(url)).css("meta[property='og:image']").first.attributes["content"]
+        self.photo = URI.parse(photo_url)
+        self.save
+      end
+    end
+
     # FETCHING FEED
-    feed = Feedjira::Feed.fetch_and_parse self.rss_url.to_s
+    feed = Feedjira::Feed.fetch_and_parse self.rss_url
 
     feed.entries.each do |e|
 
       # CHECKING IF ENTRIES ARE IN THE DATABASE
-      if (Entry.where(media_url: e.url.to_s) == [])
+      if (Entry.where(media_url: e.url) == [])
 
         p 'inside where entry media url'
         # RETRIEVING ENTRY THUMBNAIL
         image = ""
         if e.try(:media_thumbnail_url) != nil
-          image = e.media_thumbnail_url.to_s
+          image = e.media_thumbnail_url
         elsif e.try(:image) != nil
-          image = e.image.to_s
+          image = e.image
         else
           p 'inside else'
-          user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.854.0 Safari/535.2"
-          doc = Nokogiri::HTML(open(e.url.to_s, 'User-Agent' => user_agent, 'read_timeout' => '1' ), nil, "UTF-8")
-          p 'after doc nokogiri'
-          unless doc.at('meta[property="og:image"]') == nil
-            p 'inside unless'
-            image = doc.at('meta[property="og:image"]')['content'].to_s
-          end
+          # user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.854.0 Safari/535.2"
+          # doc = Nokogiri::HTML(open(e.url.to_s, 'User-Agent' => user_agent, 'read_timeout' => '1' ), nil, "UTF-8")
+          # p 'after doc nokogiri'
+          # unless doc.at('meta[property="og:image"]') == nil
+          #   p 'inside unless'
+          #   image = doc.at('meta[property="og:image"]')['content'].to_s
+          # end
+          image = photo_from_url(e.url)
         end
         p 'after image retrieving'
 
         # RETRIEVING ENTRY DESCRIPTION
         content = ""
         if e.try(:content) != nil
-          content = e.content.to_s
+          content = e.content
         elsif e.try(:description) != nil
-          content = e.description.to_s
+          content = e.description
         elsif e.try(:summary) != nil
-          content = e.summary.to_s
+          content = e.summary
         end
 
         p 'after content retrieving'
@@ -69,7 +78,7 @@ class Source < ActiveRecord::Base
           title: e.title,
           content: content,
           published_date: e.published, 
-          media_url: e.url.to_s,
+          media_url: e.url,
           thumbnail_url: image)
 
         p 'after entry creating'
