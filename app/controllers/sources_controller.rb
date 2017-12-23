@@ -15,7 +15,7 @@ class SourcesController < ApplicationController
 
   def results
     @search = ransack_params
-    @sources  = ransack_result
+    @sources = ransack_result
     @source = Source.new
     respond_to do |format|
       format.html { render 'index.html.erb' }

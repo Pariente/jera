@@ -7,7 +7,7 @@ class PagesController < ApplicationController
     # INITIATING HARVEST
     @fresh = []
     @new = []
-    @search = ransack_params
+    @search = Source.ransack(params[:q])
 
     # CURRENT USER'S SUBSCRIPTIONS
     subscriptions = current_user.subscriptions.all
@@ -43,58 +43,16 @@ class PagesController < ApplicationController
   end
 
   def garden
-    @search = ransack_params
+    @search = Source.ransack(params[:q])
     @subscriptions = current_user.subscriptions
     array = @subscriptions.to_a.delete_if {|sub| sub.source.last_entries(1) == []}
     @subscriptions = array.sort_by {|sub| sub.source.last_entries(1).first.created_at}.reverse
   end
 
-  def harvest
-    @filter = params[:filter]
-    @search = ransack_params
-    @harvested = []
-    @unread_count = 0
+  # def contact
+  #   @user = User.find(params[:id])
+  #   @recs = current_user.recs_with(@user)
+  #   @search = ransack_params
+  # end
 
-    unread = []
-    harvested = []
-
-
-    # ALL HARVESTED ENTRIES BY USER
-    harvested_all = current_user.entry_actions.where(harvested: true)
-    harvested_all = harvested_all.sort_by {|p| p.created_at}.reverse
-
-    # ALL HARVESTED ENTRIES THE USER HAS NOT READ YET
-    harvested_all.each do |h|
-      unless h.read
-        unread.push(h)
-      end
-    end
-
-    # NUMBER OF HARVESTED ENTRIES THE USER HAS NOT READ YET
-    @unread_count = unread.count
-
-    # FILTERING RESULTS
-    if @filter == 'all'
-      @harvested = harvested_all
-    else
-      @harvested = unread
-    end
-
-    @harvested = @harvested.first(20)
-  end
-
-  def contact
-    @user = User.find(params[:id])
-    @recs = current_user.recs_with(@user)
-    @search = ransack_params
-  end
-
-  private
-    def ransack_params
-      Source.ransack(params[:q])
-    end
-
-    def ransack_result
-      @search.result(distinct: true)
-    end
 end

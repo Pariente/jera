@@ -1,5 +1,5 @@
 <% title "Récolte" %>
-<%= render partial: 'shared/navbar' %>
+<%= render partial: 'shared/navbar', locals: {:filter => @filter} %>
 <div class="content-flex">
   <h1>Votre récolte</h1>
   <div class="row submenu">
@@ -20,8 +20,7 @@
     <% else %>
       <span class="empty-message">Vous n'avez aucun article non lu : vous êtes parfaitement à jour. 😎</span>
     <% end %>
-  <% end %>
-  <% unless @harvested == nil %>
+  <% else %>
     <% @harvested.each do |action| %>
       <% if action.recommendation_id != nil %>
         <%= render partial: 'shared/recommendation', locals: {e: action.entry, r: action.recommendation, response: false} %>

@@ -6,7 +6,7 @@
     <% end %>
     <% if current_page?(controller: 'pages', action: 'fresh') %>
       <% fresh = 'active' %>
-    <% elsif current_page?(controller: 'pages', action: 'harvest') %>
+    <% elsif current_page?(controller: 'harvests', action: 'harvest') %>
       <% harvest = 'active' %>
     <% end %>
     <div class="row top-navbar">
@@ -25,14 +25,20 @@
         <%= image_tag('magnifier_icon_grey.svg', class: 'magnifier-button') %>
       </div>
       <div class="row search-navbar">
-        <%= search_form_for @search, url: sources_search_path do |f| %>
-          <%= f.search_field :name_has_any_term, class: 'nav_search_input', placeholder: 'Chercher sur Jera...' %>
+        <% if harvest == 'active' %>
+          <%= search_form_for @search, url: harvest_path(filter: params[:filter]) do |f| %>
+            <%= f.search_field :entry_title_cont, class: 'nav_search_input', placeholder: 'Chercher dans votre récolte...' %>
+          <% end %>
+        <% else %>
+          <%= search_form_for @search, url: sources_search_path do |f| %>
+            <%= f.search_field :name_has_any_term, class: 'nav_search_input', placeholder: 'Chercher sur Jera...' %>
+          <% end %>
         <% end %>
       </div>
     </div>
     <div class="row bottom-navbar">
-      <a href="#">VILLAGES</a>
-      <%= link_to contacts_path, class: new_from_contacts do %>CONTACTS<% end %>
+      <!-- <a href="#">VILLAGES</a> -->
+     <!--  <%= link_to contacts_path, class: new_from_contacts do %>CONTACTS<% end %> -->
       <%= link_to garden_path do %>ABONNEMENTS<% end %>
       <%= link_to edit_user_registration_path do %>PARAMÈTRES<% end %>
     </div>

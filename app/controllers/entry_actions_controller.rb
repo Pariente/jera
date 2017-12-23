@@ -152,6 +152,15 @@ class EntryActionsController < ApplicationController
     end
   end
 
+  def results
+    @search = ransack_params
+    @actions  = ransack_result
+    @actions = EntryAction.new
+    respond_to do |format|
+      format.html { render 'index.html.erb' }
+    end
+  end
+
   def destroy
     EntryAction.find(params[:id]).destroy
     # CLEARING THIS FRAGMENT FROM CACHE
@@ -160,6 +169,13 @@ class EntryActionsController < ApplicationController
   end
 
   private
+    def ransack_params
+      EntryAction.where().ransack(params[:q])
+    end
+
+    def ransack_result
+      @search.result(distinct: true)
+    end
     def source_params
       params.require(:entry_action).permit(:user_id, :harvested, :read, :masked)
     end
