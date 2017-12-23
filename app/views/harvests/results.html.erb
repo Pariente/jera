@@ -1,7 +1,7 @@
 <% title "Récolte - Recherche" %>
 <%= render partial: 'shared/navbar', locals: {:filter => @filter} %>
 <div class="content-flex">
-  <h1>Résultats "<%= @query["entry_title_cont"] %>"</h1>
+  <h1>"<%= @query["entry_title_cont"] %>" - <%= pluralize(@harvested.count, 'résultat') %></h1>
   <hr>
   <% if @harvested == [] %>
     <span class="empty-message">Aucun élément de votre récolte ne correspond à votre recherche.</span>
