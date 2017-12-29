@@ -26,6 +26,7 @@ class HarvestsController < ApplicationController
     # NUMBER OF HARVESTED ENTRIES THE USER HAS NOT READ YET
     @unread_count = unread.count
 
+    # RENDERING NORMAL HARVEST VIEW, OR RESULTS VIEW IF USER MADE A SEARCH
     if @query == nil
       # FILTERING RESULTS
       if @filter != 'all'
