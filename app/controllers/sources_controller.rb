@@ -13,6 +13,13 @@ class SourcesController < ApplicationController
     end
   end
 
+  def garden
+    @search = ransack_params
+    @subscriptions = current_user.subscriptions
+    array = @subscriptions.to_a.delete_if {|sub| sub.source.last_entries(1) == []}
+    @subscriptions = array.sort_by {|sub| sub.source.last_entries(1).first.created_at}.reverse
+  end
+
   def results
     @search = ransack_params
     @sources = ransack_result

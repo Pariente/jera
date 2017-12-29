@@ -42,13 +42,6 @@ class PagesController < ApplicationController
 
   end
 
-  def garden
-    @search = Source.ransack(params[:q])
-    @subscriptions = current_user.subscriptions
-    array = @subscriptions.to_a.delete_if {|sub| sub.source.last_entries(1) == []}
-    @subscriptions = array.sort_by {|sub| sub.source.last_entries(1).first.created_at}.reverse
-  end
-
   # def contact
   #   @user = User.find(params[:id])
   #   @recs = current_user.recs_with(@user)

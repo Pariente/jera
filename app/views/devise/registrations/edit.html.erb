@@ -1,14 +1,5 @@
 <% title "Modifier mon profil" %>
-<div class="nav">
-  <div class="nav-flex">
-    <%= link_to garden_path do %>
-      <div class="nav-green-button">
-        <%= image_tag('white_arrow_left.svg', class: 'arrow-left') %>
-        <span>Mes jardins</span>
-      </div>
-    <% end %>
-  </div>
-</div>
+<%= render partial: 'shared/navbar' %>
 <div class="garden-flex">
   <%= link_to destroy_user_session_path, method: :delete, class: "sign-out" do %>
     <button class="sign-out-button">

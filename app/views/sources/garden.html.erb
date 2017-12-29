@@ -1,0 +1,18 @@
+<% title "Mes abonnements" %>
+<%= render partial: 'shared/navbar' %>
+<div class="garden-flex">
+  <h1>Vos abonnements</h1>
+  <hr>
+  <%= link_to sources_path do %>
+    <div class="plant-tree-button">
+      <%= image_tag("round_plus_button.svg") %>
+      <span>S'abonner à une nouvelle source</span>
+    </div>
+  <% end %>
+  <% @subscriptions.each do |sub| %>
+    <% cache sub do %>
+      <% source = sub.source %>
+      <%= render partial: 'shared/tree', locals: {sub: sub, source: source} %>
+    <% end %>
+  <% end %>
+</div>
