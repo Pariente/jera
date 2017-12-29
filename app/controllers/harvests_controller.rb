@@ -34,7 +34,6 @@ class HarvestsController < ApplicationController
       @harvested = @harvested.first(20)
       render :harvest
     else
-      @harvested = @harvested.first(20)
       render :results
     end
   end

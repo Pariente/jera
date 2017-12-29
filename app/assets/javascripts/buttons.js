@@ -23,7 +23,7 @@ document.addEventListener("turbolinks:load", function() {
   // WHEN SCROLLING TO BOTTOM OF THE PAGE, LOADING MORE ENTRIES
   $(window).scroll(function(e) {
   e.stopImmediatePropagation();
-  if($(window).scrollTop() + $(window).height() == $(document).height()) {
+  if($(window).scrollTop() + $(window).height() == $(document).height() - 300) {
     var entry_count = $('.content').length;
     if ($('.unseen').hasClass('active')) {
       $.get("/more_not_seen/" + entry_count);

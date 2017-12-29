@@ -7,7 +7,7 @@
     <% if current_page?(controller: 'pages', action: 'fresh') %>
       <% fresh = 'active' %>
       <% harvest = '' %>
-    <% elsif current_page?(controller: 'pages', action: 'harvest') %>
+    <% elsif current_page?(controller: 'harvests', action: 'harvest') %>
       <% fresh = '' %>
       <% harvest = 'active' %>
     <% end %>
