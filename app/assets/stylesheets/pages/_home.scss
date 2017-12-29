@@ -185,6 +185,7 @@ header > h1 {
 .bottom-navbar a {
   align-items: center;
   display: flex;
+  flex-grow: 1;
   font-size: $smaller_size;
   margin: 0px 15px 0px 0px
 }
@@ -316,7 +317,7 @@ input.nav_search_input {
     font-size: $smallest_size
   }
   .bottom-navbar.expanded {
-    height: 200px;
+    height: 100px;
   }
   .bottom-navbar {
     flex-direction: column !important;
