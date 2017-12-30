@@ -1,4 +1,10 @@
-$(".content").last().after("<%= escape_javascript(render partial: 'shared/more_entry_action', locals: { actions: @actions } ) %>"); 
+$(".content").last().after("<%= escape_javascript(render partial: 'harvests/more_harvested', locals: { harvested: @harvested } ) %>"); 
+if (<%= @load_more_count %> == 0) {
+  $(".load-more").addClass("hidden");
+}
+else {
+  $(".load-more-count").text("<%= @load_more_count %>");
+}
 
 // WHEN CLICKING OUTSIDE OF NAV, SHRINK SEARCHBAR AND BOTTOM NAVBAR
 $('body').click(function(event) { 
@@ -112,21 +118,6 @@ $(".delete-tree").unbind('click').bind('click', function(evt) {
   $(this).parents('.tree').find('.add-to-garden').removeClass('hidden');
   $(this).parents('.tree').find('.move-tree').addClass('hidden');
   $(this).parents('.tree').find('.delete-tree').addClass('hidden');
-});
-
-// MOVE TO OTHER GARDEN
-$(".unsubscribe-button").unbind('click').bind('click', function(evt) {
-  
-});
-
-// FILTER COLOUR
-$(".filtered-colour").unbind('click').bind('click', function(evt) {
-  $(this).addClass('hidden');
-  $(this).parent().find('.choose-colour').removeClass('hidden');
-});
-$(".hide-colour-selector").unbind('click').bind('click', function(evt) {
-  $(this).parent().addClass('hidden');
-  $(this).parents('.garden-colours').find('.filtered-colour').removeClass('hidden');
 });
 
 // SEND FRIEND REQUEST

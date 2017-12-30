@@ -1,15 +1,19 @@
+<% if params[:filter] == 'all' %>
+  <% unseen = '' %>
+  <% all = 'active' %>
+<% else %>
+  <% unseen = 'active' %>
+  <% all = '' %>
+<% end %>
+<% load_more = "" %>
+<% if @load_more_count == 0 %>
+  <% load_more = "hidden" %>
+<% end %>
 <% title "Récolte" %>
 <%= render partial: 'shared/navbar', locals: {:filter => @filter} %>
 <div class="content-flex">
   <h1>Votre récolte</h1>
   <div class="row submenu">
-    <% if params[:filter] == 'all' %>
-      <% unseen = '' %>
-      <% all = 'active' %>
-    <% else %>
-      <% unseen = 'active' %>
-      <% all = '' %>
-    <% end %>
     <%= link_to harvest_path, class: "unseen #{unseen}" do %>NON VUS <span class="unread-count">(<%= @unread_count %>)</span><% end %>
     <%= link_to harvest_path(filter: 'all'), class: "all #{all}" do %>TOUS<% end %>
   </div>
@@ -29,4 +33,5 @@
       <% end %>
     <% end %>
   <% end %>
+  <a class="load-more">Voir<span class="load-more-count">&nbsp;<%= @load_more_count %>&nbsp;</span>de plus</a>
 </div>

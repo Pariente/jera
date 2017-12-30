@@ -327,6 +327,28 @@ span.date-demarcation {
   text-transform: uppercase
 }
 
+.load-more {
+  -webkit-appearance: none;
+  align-items: center;
+  background-color: $green;
+  border: 0px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: $white;
+  cursor: pointer;
+  display: flex;
+  font-size: $form_size;
+  font-weight: 700;
+  height: 60px;
+  justify-content: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.load-more:hover {
+  color: $white;
+}
+
 @media screen and (max-width: 400px) {
   .content-flex {
     margin-top: 70px

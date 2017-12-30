@@ -20,18 +20,13 @@ function message_textarea(element) {
 
 document.addEventListener("turbolinks:load", function() {
 
-  // WHEN SCROLLING TO BOTTOM OF THE PAGE, LOADING MORE ENTRIES
-  $(window).scroll(function(e) {
-  e.stopImmediatePropagation();
-  if($(window).scrollTop() + $(window).height() == $(document).height() - 300) {
+  // LOADING MORE ENTRIES (OR ENTRYACTIONS)
+  $(".load-more").unbind('click').bind('click', function(evt) {
     var entry_count = $('.content').length;
-    if ($('.unseen').hasClass('active')) {
-      $.get("/more_not_seen/" + entry_count);
-    }
-    else if ($('.all').hasClass('active')) {
-      $.get("/more_all/" + entry_count);
-    }
-  }
+    var all = true;
+    if ($('.unseen').hasClass('active')) { all = false };
+    $.get("harvests/more/", {index: entry_count, all: all});
+  // }
   });
 
   // DISABLING SUBMIT BUTTONS AFTER SUBMIT TO PREVENT SPAMMING

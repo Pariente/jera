@@ -25,8 +25,7 @@ Rails.application.routes.draw do
     resources :recommendations, only: [:new]
   end
 
-  get 'more_not_seen/:index' => 'entry_actions#more_not_seen', as: :more_not_seen
-  get 'more_all/:index' => 'entry_actions#more_all', as: :more_all
+  get 'harvests/more' => 'harvests#more'
 
   get 'contacts' => 'users#contacts'
   get 'contacts_search' => 'users#results'

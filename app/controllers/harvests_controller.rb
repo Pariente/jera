@@ -2,6 +2,7 @@ class HarvestsController < ApplicationController
 
   require 'feedjira'
   require 'open-uri'
+  include ApplicationHelper
 
   def harvest
     @filter = params[:filter]
@@ -32,10 +33,26 @@ class HarvestsController < ApplicationController
       if @filter != 'all'
         @harvested = unread
       end
+      @load_more_count = load_more_count(@harvested)
       @harvested = @harvested.first(20)
       render :harvest
     else
       render :results
+    end
+  end
+
+  def more
+    @harvested = []
+    if params[:all] == 'true'
+      @harvested = EntryAction.where(user_id: current_user.id, harvested: true)
+    else
+      @harvested = EntryAction.where(user_id: current_user.id, harvested: true, read: false)
+    end
+    @harvested = @harvested.to_a.sort_by {|p| p.created_at}.reverse
+    @harvested = @harvested.drop(params[:index].to_i).first(20)
+    @load_more_count = load_more_count(@harvested)
+    respond_to do |format|
+      format.js { render 'more_harvested.js.erb' }
     end
   end
 
