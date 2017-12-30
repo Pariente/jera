@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    'trees/top'
+    'sources'
   end
 
   # GET /resource/sign_up

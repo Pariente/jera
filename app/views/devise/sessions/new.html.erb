@@ -1,16 +1,19 @@
 <%= render partial: 'shared/header' %>
 
-<h2>Connexion</h2>
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-    <label>Mot de passe</label>
-    <%= f.input :password, label: false, required: true %>
-  </div>
+<div class="content-flex">
+  <h1>Connexion</h1>
+  <hr>
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-inputs">
+      <%= f.input :email, required: true, autofocus: true %>
+      <label>Mot de passe</label>
+      <%= f.input :password, label: false, required: true %>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Connexion" %>
-  </div>
-<% end %>
+    <div class="form-actions">
+      <%= f.button :submit, "Connexion" %>
+    </div>
+  <% end %>
+</div>
 
 <%= render "devise/shared/links" %>

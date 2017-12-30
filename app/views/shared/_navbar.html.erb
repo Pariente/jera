@@ -21,20 +21,22 @@
           <div class="added-to-harvest">+<span class="harvest-count">0</span></div>
         <% end %>
       </div>
-      <div class="row">
-        <%= image_tag('magnifier_icon_grey.svg', class: 'magnifier-button') %>
-      </div>
-      <div class="row search-navbar">
-        <% if harvest == 'active' %>
-          <%= search_form_for @search, url: harvest_path(filter: params[:filter]) do |f| %>
-            <%= f.search_field :entry_title_cont, class: 'nav_search_input', placeholder: 'Chercher dans votre récolte...' %>
+      <% if defined?(@search) %>
+        <div class="row">
+          <%= image_tag('magnifier_icon_grey.svg', class: 'magnifier-button') %>
+        </div>
+        <div class="row search-navbar">
+          <% if harvest == 'active' %>
+            <%= search_form_for @search, url: harvest_path(filter: params[:filter]) do |f| %>
+              <%= f.search_field :entry_title_cont, class: 'nav_search_input', placeholder: 'Chercher dans votre récolte...' %>
+            <% end %>
+          <% else %>
+            <%= search_form_for @search, url: sources_search_path do |f| %>
+              <%= f.search_field :name_has_any_term, class: 'nav_search_input', placeholder: 'Chercher sur Jera...' %>
+            <% end %>
           <% end %>
-        <% else %>
-          <%= search_form_for @search, url: sources_search_path do |f| %>
-            <%= f.search_field :name_has_any_term, class: 'nav_search_input', placeholder: 'Chercher sur Jera...' %>
-          <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
     <div class="row bottom-navbar">
       <!-- <a href="#">VILLAGES</a> -->
