@@ -53,33 +53,6 @@ hr {
   margin: 0px 10px 20px 0px
 }
 
-hr.redbar {
-  background-color: $red;
-}
-
-.redbar {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 20px;
-  width: 100%
-}
-
-.redbar span {
-  color: $red;
-  flex-shrink: 0;
-  font-size: $small_size;
-  padding-right: 10px
-}
-
-@media screen and (max-width: 420px) {
-  .redbar {
-    padding-left: 10px;
-    padding-right: 10px;
-    width: inherit;
-  }
-}
-
 /* --- HEADER --- */
 
 header {
@@ -187,11 +160,6 @@ header > h1 {
   display: flex;
   font-size: $smaller_size;
   margin: 0px 15px 0px 0px
-}
-
-.bottom-navbar a.red {
-  color: $red;
-  font-weight: 800
 }
 
 .nav-flex-right {
@@ -317,7 +285,7 @@ input.nav_search_input {
     font-size: $smallest_size
   }
   .bottom-navbar.expanded {
-    height: 100px;
+    height: 150px;
   }
   .bottom-navbar {
     flex-direction: column !important;
@@ -334,33 +302,6 @@ input.nav_search_input {
   }
 }
 
-/* --- NAVSEARCH --- */
-
-.nav-search {
-  display: flex;
-  height: 90px;
-  justify-content: center;
-  position: fixed;
-  top: 0px;
-  width: 100%;
-  z-index: 200
-}
-
-.nav-search-flex {
-  border-radius: 0px 0px 5px 5px;
-  background-color: $green;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 500px
-}
-
-.nav-search-back {
-  color: $white;
-  padding: 10px 0px 10px 10px
-}
-
 .magnifier {
   align-items: stretch;
   background-color: $white;
@@ -368,34 +309,6 @@ input.nav_search_input {
   display: flex;
   height: 40px;
   padding: 0px 10px
-}
-
-.nav-search-bar form {
-  margin: 0px;
-  padding-bottom: 5px
-}
-
-.nav-search-bar input {
-  border: 0px;
-  border-radius: 0px 5px 5px 0px;
-  font-size: $normal_size;
-  height: 40px;
-  padding-left: 0px;
-  padding-right: 10px
-}
-
-.nav-search-bar input[type="submit"] {
-  background-color: transparent;
-  background-image: none;
-  height: 40px !important;
-  padding-right: 0px
-}
-
-@media screen and (max-width: 450px) {
-  .nav-search-flex {
-    border-radius: 0px;
-    max-width: 450px
-  }
 }
 
 /* --- ANCHORS --- */
@@ -410,10 +323,6 @@ a:visited {
 
 a.red {
   color: $red
-}
-
-a.sign-out {
-  text-align: right
 }
 
 /* --- PARAGRAPHS --- */

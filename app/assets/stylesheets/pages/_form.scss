@@ -2,7 +2,7 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 400px;
+  margin: 0px 10px;
   padding-bottom: 20px
 }
 
@@ -100,16 +100,7 @@ input[type="submit"][disabled] {
 }
 
 @media screen and (max-width: 400px) {
-  form {
-    max-width: 350px
-  }
   p {
     padding: 10px 25px 0px
-  }
-}
-
-@media screen and (max-width: 350px) {
-  form {
-    max-width: 300px
   }
 }

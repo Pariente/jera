@@ -2,6 +2,7 @@ class SourcesController < ApplicationController
   before_action :set_source, only: [:show, :update]
   require 'open-uri'
   require 'csv'
+  include ApplicationHelper
 
   def index
     @source = Source.new
@@ -11,13 +12,6 @@ class SourcesController < ApplicationController
     else
       @sources = Source.last(30).reverse
     end
-  end
-
-  def garden
-    @search = ransack_params
-    @subscriptions = current_user.subscriptions
-    array = @subscriptions.to_a.delete_if {|sub| sub.source.last_entries(1) == []}
-    @subscriptions = array.sort_by {|sub| sub.source.last_entries(1).first.created_at}.reverse
   end
 
   def results
@@ -53,53 +47,65 @@ class SourcesController < ApplicationController
   def create
     url = source_params["url"]
 
-    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.854.0 Safari/535.2"
-    begin 
-      doc = Nokogiri::HTML(open(url, 'proxy' => 'http://(ip_address):(port)', 'User-Agent' => user_agent, 'read_timeout' => '10' ), nil, "UTF-8")
-    rescue
-      resp = HTTParty.get(url)
-      doc = Nokogiri::HTML(resp.body)
-    end
+    if uri?(url)
 
-    og_image = doc.at('meta[property="og:image"]')
-    picture = ""
-    unless og_image == nil
-      picture = og_image['content']
-    end
+      # FETCHING URL BODY
+      user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.854.0 Safari/535.2"
+      begin 
+        doc = Nokogiri::HTML(open(url, 'proxy' => 'http://(ip_address):(port)', 'User-Agent' => user_agent, 'read_timeout' => '10' ), nil, "UTF-8")
+      rescue
+        resp = HTTParty.get(url)
+        doc = Nokogiri::HTML(resp.body)
+      end
 
-    og_title = doc.at('meta[property="og:title"]')
-    if og_title == nil
-      name = doc.at('title').text
-    else
-      name = og_title['content']
-    end
+      # FETCHING SOURCE IMAGE
+      og_image = doc.at('meta[property="og:image"]')
+      picture = ""
+      unless og_image == nil
+        picture = og_image['content']
+      end
 
-    rss_xml = doc.at('link[type="application/rss+xml"]')
-    if rss_xml == nil
-      rss_xml = doc.at('link[type="application/atom+xml"]')
-    end 
-    unless rss_xml == nil
-      rss_url = rss_xml['href']
-    end
-
-    # feed = Feedjira::Feed.fetch_and_parse rss_url
-    @source = Source.new(name: name, url: url, rss_url: rss_url, picture: picture)
-
-    respond_to do |format|
-      if rss_url != nil && @source.save
-        @source.refresh
-        sub = Subscription.create(user_id: current_user.id, source_id: @source.id)
-        sub.save
-        format.html { redirect_to source_show_path(@source), notice: 'Source was successfully created.' }
-        format.json { render :show_latest, status: :created, location: @source }
+      # FETCHING SOURCE TITLE
+      og_title = doc.at('meta[property="og:title"]')
+      if og_title == nil
+        name = doc.at('title').text
       else
-        if @source.errors.full_messages.first == "Url has already been taken"
-          original_source = Source.find_by(url: @source.url)
-          format.html { redirect_to source_show_path(original_source), notice: 'Source already existing. Redirecting to it.' }
+        name = og_title['content']
+      end
+
+      # FETCHING RSS
+      rss_xml = doc.at('link[type="application/rss+xml"]')
+      if rss_xml == nil
+        rss_xml = doc.at('link[type="application/atom+xml"]')
+      end 
+      unless rss_xml == nil
+        rss_url = rss_xml['href']
+      end
+
+      # INSTANTIATING SOURCE
+      @source = Source.new(name: name, url: url, rss_url: rss_url, picture: picture)
+
+      respond_to do |format|
+        if rss_url != nil && @source.save
+          @source.refresh
+          sub = Subscription.create(user_id: current_user.id, source_id: @source.id)
+          sub.save
+          format.html { redirect_to source_show_path(@source), notice: 'Source was successfully created.' }
+          format.json { render :show_latest, status: :created, location: @source }
         else
-          format.html { redirect_to unable_to_fetch_path }
-          format.json { render json: @source.errors, status: :unprocessable_entity }
+          if @source.errors.full_messages.first == "Url has already been taken"
+            original_source = Source.find_by(url: @source.url)
+            format.html { redirect_to source_show_path(original_source), notice: 'Source already existing. Redirecting to it.' }
+          else
+            format.html { redirect_to unable_to_fetch_path }
+            format.json { render json: @source.errors, status: :unprocessable_entity }
+          end
         end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to unable_to_fetch_path }
+        format.json { render json: @source.errors, status: :unprocessable_entity }
       end
     end
   end

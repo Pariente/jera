@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root to: 'pages#fresh'
-  get 'garden' => 'sources#garden'
+  get 'garden' => 'subscriptions#index'
   get 'harvest' => 'harvests#harvest'
   get 'sources' => 'sources#index', as: :sources
   get 'sources_search' => 'sources#results'

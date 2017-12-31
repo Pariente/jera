@@ -1,5 +1,12 @@
 class SubscriptionsController < ApplicationController
 
+  def index
+    @search = Source.ransack(params[:q])
+    @subscriptions = current_user.subscriptions
+    array = @subscriptions.to_a.delete_if {|sub| sub.source.last_entries(1) == []}
+    @subscriptions = array.sort_by {|sub| sub.source.last_entries(1).first.created_at}.reverse
+  end
+
   def subscribe
     if Subscription.where(source_id: params[:source_id], user_id: current_user.id) == []
       sub = Subscription.create(source_id: params[:source_id], user_id: current_user.id, colour: params[:colour])

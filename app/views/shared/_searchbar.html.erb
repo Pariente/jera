@@ -27,6 +27,7 @@
     <div class="row bottom-navbar">
       <%= link_to garden_path do %>ABONNEMENTS<% end %>
       <%= link_to edit_user_registration_path do %>PARAMÈTRES<% end %>
+      <%= link_to destroy_user_session_path, method: :delete do %>Déconnexion<% end %>
     </div>
     <div class="row permanent-search-navbar">
       <%= search_form_for @search, url: sources_search_path do |f| %>

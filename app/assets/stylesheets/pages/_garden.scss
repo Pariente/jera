@@ -1,26 +1,3 @@
-.garden-flex,
-.plant-tree-flex {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin: auto;
-  margin-top: 70px;
-  margin-bottom: 30px;
-  max-width: 400px;
-}
-
-.garden-flex h1 {
-  margin: 0px 0px 0px 5px
-}
-
-.plant-tree-flex {
-  margin-top: 110px
-}
-
-.plant-tree-flex h1 {
-  margin: 0px 0px 0px 5px
-}
-
 .profile {
   display: flex;
   justify-content: center;
@@ -71,53 +48,6 @@
   margin-top: 12px;
   margin-right: 10px;
   padding: 5px 10px
-}
-
-.garden-colours {
-  align-items: baseline;
-  display: flex;
-  flex-direction: row;
-  font-weight: bold;
-  justify-content: flex-start;
-  margin-bottom: 25px;
-  max-height: 30px
-}
-
-.filter-colours {
-  color: $grey;
-  margin-right: 10px;
-  min-width: 65px
-}
-
-.filtered-colour {
-  cursor: pointer
-}
-
-.choose-colour {
-  background-color: $white;
-  box-shadow: 0 0 10px 0 rgba(102,102,102,0.40);
-  border-radius: 5px;
-  display: flex;
-  flex-direction: row;
-  margin-left: 5px;
-  margin-top: -10px;
-  padding: 10px;
-  z-index: 500
-}
-
-.choose-colour ul {
-  list-style-type: none;
-  margin: 0px;
-  padding: 0px
-}
-
-.choose-colour ul li {
-  padding-bottom: 5px
-}
-
-.choose-colour img {
-  cursor: pointer;
-  margin: 10px 5px 0px 10px;
 }
 
 .plant-tree-button {
@@ -207,140 +137,6 @@ a.add-to-garden {
   padding-right: 15px
 }
 
-.add-to-garden-screen {
-  align-items: center;
-  background-color: rgba(255,255,255,0.5);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 400
-}
-
-.add-to-garden-header {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: -30px;
-  max-width: 450px;
-  width: 100%;
-  z-index: 500
-}
-
-.cancel-add-to-garden {
-  align-items: center;
-  background-color: $green;
-  border-radius: 40px;
-  box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.2);
-  cursor: pointer;
-  display: flex;
-  height: 40px;
-  justify-content: center;
-  margin-right: 20px;
-  width: 40px;
-}
-
-.add-to-garden-body {
-  align-items: center;
-  background-color: $white;
-  border-radius: 5px;
-  box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.2);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 400px;
-  margin: 10px;
-  max-width: 450px;
-  padding: 20px 10px;
-  width: 100%
-}
-
-.add-to-garden-title {
-  margin: initial;
-  padding: 0px;
-  text-align: center;
-}
-
-.garden-pic {
-  border-radius: 5px;
-  box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.4);
-  display: inline-block;
-  min-width: 30px;
-  max-width: 30px;
-  height: 30px;
-  width: 30px
-}
-
-.seeds {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-top: 20px;
-  margin-bottom: 30px;
-  width: 100%
-}
-
-.seed {
-  align-items: center;
-  background-color: $white;
-  border-radius: 50px;
-  box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.4);
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  height: 50px;
-  width: 50px
-}
-
-.seed.red {
-  border: 3px solid #B33A46;
-}
-
-.seed.blue {
-  border: 3px solid $blue;
-}
-
-.seed.yellow {
-  border: 3px solid $yellow;
-}
-
-img.weed {
-  display: initial;
-  display: none;
-  margin-bottom: -70px;
-  padding-right: 30px;
-  opacity: 0
-}
-
-.earth {
-  margin-top: 20px;
-}
-
-// .new-entries {
-//   background-color: $red;
-//   border-radius: 100%;
-//   box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.4);
-//   color: $white;
-//   font-size: $small_size;
-//   padding: 5px;
-//   position: relative;
-//   right: 13px;
-//   text-align: center;
-//   top: -70px;
-//   width: 16px;
-//   z-index: 100
-// }
-
-@media screen and (max-width: 400px) {
-  .garden-flex h1,
-  .plant-tree-flex h1 {
-    margin-left: 10px;
-  }
-}
 @media screen and (max-width: 450px) {
   .profile-flex {
     max-width: 450px
@@ -351,24 +147,9 @@ img.weed {
   .profile-pic-and-title {
     margin-left: 15px
   }
-  .garden-flex,
-  .plant-tree-flex {
-    padding-left: 5px;
-    padding-right: 5px
-  }
   .tree {
     margin-left: 10px;
     margin-right: 10px
-  }
-  .add-to-garden-header,
-  .add-to-garden-body {
-    max-width: 400px
-  }
-  .garden-colours {
-    margin-left: 10px;
-  }
-  .choose-colour ul li {
-    padding-bottom: 10px
   }
 }
 
@@ -385,33 +166,11 @@ img.weed {
   .tree-name {
     font-size: $normal_size
   }
-  .tree-footer-add a.red,
-  .tree-footer-add a.blue,
-  .tree-footer-add a.yellow {
-    width: 50px
-  }
-  .garden-colours a {
-    width: 80px
-  }
-  .add-to-garden-header,
-  .add-to-garden-body {
-    max-width: 330px
-  }
 }
 
 @media screen and (max-width: 350px) {
   .tree-name {
     font-size: $small_size;
     font-weight: 700
-  }
-  .garden-colours {
-    font-size: $smaller_size
-  }
-  .garden-colours a {
-    width: 70px
-  }
-  .add-to-garden-header,
-  .add-to-garden-body {
-    max-width: 300px
   }
 }

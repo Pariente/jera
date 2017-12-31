@@ -1,4 +1,7 @@
 module ApplicationHelper
+
+  require 'open-uri'
+  
   def title(text)
     content_for :title, "Jera - #{text}"
   end
@@ -14,6 +17,15 @@ module ApplicationHelper
     end
 
     return @load_more_count
+  end
+
+  def uri?(string)
+    uri = URI.parse(string)
+    %w( http https ).include?(uri.scheme)
+  rescue URI::BadURIError
+    false
+  rescue URI::InvalidURIError
+    false
   end
 
 end

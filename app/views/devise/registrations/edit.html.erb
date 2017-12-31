@@ -1,7 +1,6 @@
 <% title "Modifier mon profil" %>
 <%= render partial: 'shared/navbar' %>
 <div class="content-flex">
-  <%= link_to destroy_user_session_path, method: :delete, class: "sign-out red underline" do %>Déconnexion<% end %>
   <h1>Modifier mon profil</h1>
   <hr>
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
