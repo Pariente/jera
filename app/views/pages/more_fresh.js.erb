@@ -1,0 +1,7 @@
+$(".content").last().after("<%= escape_javascript(render partial: 'pages/more_fresh', locals: { fresh: @fresh } ) %>"); 
+if (<%= @load_more_count %> == 0) {
+  $(".load-more-fresh").addClass("hidden");
+}
+else {
+  $(".load-more-fresh").text("Voir <%= @load_more_count %> de plus");
+}

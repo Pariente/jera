@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   end
 
   get 'harvests/more' => 'harvests#more'
+  get 'pages/more' => 'pages#more'
 
   get 'contacts' => 'users#contacts'
   get 'contacts_search' => 'users#results'

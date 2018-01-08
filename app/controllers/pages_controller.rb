@@ -2,50 +2,43 @@ class PagesController < ApplicationController
 
   require 'feedjira'
   require 'open-uri'
+  include ApplicationHelper
 
   def fresh
-    # INITIATING HARVEST
-    @fresh = []
-    @new = []
+    @fresh = fresh_entries(current_user)
     @search = Source.ransack(params[:q])
+    @load_more_count = load_more_count(@fresh)
+    @fresh = @fresh.first(20)
+  end
 
-    # CURRENT USER'S SUBSCRIPTIONS
-    subscriptions = current_user.subscriptions.all
+  def more
+    @fresh = fresh_entries(current_user).drop(params[:index].to_i)
+    @load_more_count = load_more_count(@fresh)
+    @fresh = @fresh.first(20)
+    respond_to do |format|
+      format.js { render 'more_fresh.js.erb' }
+    end
+  end
 
-    # THE SOURCES TO WHICH THE USER HAS SUBSCRIBED
+  def fresh_entries(user)
+    @fresh = []
+
     sources = []
-    subscriptions.each do |sub|
+    user.subscriptions.each do |sub|
       sources.push(Source.find(sub.source_id))
     end
 
     sources.each do |s|
-      since_last_week = s.entries_since(1.week.ago)
-      if since_last_week.length > 30
-        iterator = s.last_entries(30)
-      else
-        iterator = since_last_week
-      end
+      entries_from_this_week = s.entries_since(1.week.ago)
 
-      iterator.each do |e|
+      entries_from_this_week.each do |e|
         if e.is_fresh?(current_user)
           @fresh.push(e)
         end
       end
     end
 
-    # SORTING FRESH AND NEW BY REVERSE CHRONOLOGICAL ORDER
     @fresh = @fresh.sort_by {|entry| entry.created_at}.reverse
-    @fresh = @fresh.first(30)
-
-    # PENDING FRIEND REQUESTS
-    @friend_requests = Friendship.where(friend_user_id: current_user.id, status: 'pending')
-
   end
-
-  # def contact
-  #   @user = User.find(params[:id])
-  #   @recs = current_user.recs_with(@user)
-  #   @search = ransack_params
-  # end
 
 end

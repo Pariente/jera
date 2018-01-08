@@ -20,13 +20,18 @@ function message_textarea(element) {
 
 document.addEventListener("turbolinks:load", function() {
 
+  // LOADING MORE ENTRIES IN FRESH
+  $(".load-more-fresh").unbind('click').bind('click', function(evt) {
+    var entry_count = $('.content').length;
+    $.get("pages/more/", {index: entry_count});
+  });
+
   // LOADING MORE ENTRIES (OR ENTRYACTIONS)
-  $(".load-more").unbind('click').bind('click', function(evt) {
+  $(".load-more-harvest").unbind('click').bind('click', function(evt) {
     var entry_count = $('.content').length;
     var all = true;
     if ($('.unseen').hasClass('active')) { all = false };
     $.get("harvests/more/", {index: entry_count, all: all});
-  // }
   });
 
   // DISABLING SUBMIT BUTTONS AFTER SUBMIT TO PREVENT SPAMMING

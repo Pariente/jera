@@ -32,6 +32,6 @@
         <%= render partial: 'shared/fruit_harvested', locals: {e: action.entry, response: false} %>
       <% end %>
     <% end %>
+    <a class="load-more-harvest <%= load_more %>">Voir <%= @load_more_count %> de plus</a>
   <% end %>
-  <a class="load-more">Voir <%= @load_more_count %> de plus</a>
 </div>

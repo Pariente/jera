@@ -327,7 +327,8 @@ span.date-demarcation {
   text-transform: uppercase
 }
 
-.load-more {
+.load-more-fresh,
+.load-more-harvest {
   -webkit-appearance: none;
   align-items: center;
   background-color: $green;
@@ -345,7 +346,8 @@ span.date-demarcation {
   margin-right: 10px;
 }
 
-.load-more:hover {
+.load-more-fresh:hover,
+.load-more-harvest:hover {
   color: $white;
 }
 
