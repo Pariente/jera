@@ -333,16 +333,18 @@ p {
   max-width: 500px
 }
 
+@media screen and (max-width: 400px) {
+  p {
+    padding: 10px 25px 0px
+  }
+}
+
 span.empty-message {
   font-family: 'Cormorant';
   font-size: $base_size;
   line-height: 27px;
   margin: 15px 20px;
   text-align: center
-}
-
-span.empty-message a {
-  text-decoration: underline
 }
 
 /* --- BACK --- */

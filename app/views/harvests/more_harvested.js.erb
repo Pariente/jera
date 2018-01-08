@@ -3,8 +3,22 @@ if (<%= @load_more_count %> == 0) {
   $(".load-more").addClass("hidden");
 }
 else {
-  $(".load-more-count").text("<%= @load_more_count %>");
+  $(".load-more").text("Voir <%= @load_more_count %> de plus");
 }
+
+// LOADING MORE ENTRIES (OR ENTRYACTIONS)
+$(".load-more").unbind('click').bind('click', function(evt) {
+  var entry_count = $('.content').length;
+  var all = true;
+  if ($('.unseen').hasClass('active')) { all = false };
+  $.get("harvests/more/", {index: entry_count, all: all});
+// }
+});
+
+// DISABLING SUBMIT BUTTONS AFTER SUBMIT TO PREVENT SPAMMING
+$('form').submit(function() {
+  $(this).find("button[type='submit']").prop('disabled',true);
+});
 
 // WHEN CLICKING OUTSIDE OF NAV, SHRINK SEARCHBAR AND BOTTOM NAVBAR
 $('body').click(function(event) { 
@@ -23,6 +37,7 @@ $(".profile-button").unbind('click').bind('click', function(evt) {
 $(".magnifier-button").unbind('click').bind('click', function(evt) {
   $('.nav-first-row').toggleClass('shrinked');
   $('.search-navbar').toggleClass('expanded');
+  $('.nav_search_input').focus();
 });
 
 // MASK
@@ -31,6 +46,7 @@ $(".mask").unbind('click').bind('click', function(evt) {
   $(this).parents('.content').find('.content-right-column').addClass('hidden');
   $(this).parents('.content').find('.recommendation-header').addClass('hidden');
   $(this).parents('.content').find('.content-masked').removeClass('hidden');
+
 });
 
 // UNMASK
@@ -99,25 +115,24 @@ $(".unread").unbind('click').bind('click', function() {
 
 // ADD TO GARDEN
 $(".add-to-garden").unbind('click').bind('click', function(evt) {
-  evt.preventDefault();
-  $(this).parents('.tree').find('.add-to-garden-screen').removeClass('hidden');
-  $('body').css('overflow', 'hidden');
-});
-
-// CANCEL ADD TO GARDEN
-$(".cancel-add-to-garden").unbind('click').bind('click', function(evt) {
-  evt.preventDefault();
-  $(this).parents('.add-to-garden-screen').fadeOut('slow', function() {
-    $(this).addClass('hidden')
-  });
-  $('body').css('overflow', 'initial');
+  $(this).parents('.tree').find('.add-to-garden').addClass('hidden');
+  $(this).parents('.tree').find('.delete-tree').removeClass('hidden');
 });
 
 // UNSUBSCRIBE
 $(".delete-tree").unbind('click').bind('click', function(evt) {
   $(this).parents('.tree').find('.add-to-garden').removeClass('hidden');
-  $(this).parents('.tree').find('.move-tree').addClass('hidden');
   $(this).parents('.tree').find('.delete-tree').addClass('hidden');
+});
+
+// FILTER COLOUR
+$(".filtered-colour").unbind('click').bind('click', function(evt) {
+  $(this).addClass('hidden');
+  $(this).parent().find('.choose-colour').removeClass('hidden');
+});
+$(".hide-colour-selector").unbind('click').bind('click', function(evt) {
+  $(this).parent().addClass('hidden');
+  $(this).parents('.garden-colours').find('.filtered-colour').removeClass('hidden');
 });
 
 // SEND FRIEND REQUEST

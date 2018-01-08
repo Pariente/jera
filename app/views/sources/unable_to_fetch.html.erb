@@ -11,5 +11,18 @@
     <% end %>
   </div>
   <hr>
-  <p class="helper">Hélas, cette source ne peut pas être ajoutée à Jera, car elle ne fournit pas de flux RSS.</p>
+  <p class="helper">Jera n'a pas pu ajouter automatiquement cette source, car son flux RSS est inaccessible ou inexistant.</p>
+  <h1>Ajouter une source</h1>
+  <hr>
+  <%= simple_form_for @source do |f| %>
+    <label>Titre</label>
+    <%= f.input :name, required: true, label: false %>
+    <label>Image</label>
+    <%= f.input :picture, required: true, label: false, placeholder: "http://..." %>
+    <label>URL</label>
+    <%= f.input :url, required: true, label: false, placeholder: "http://..." %>
+    <label>RSS</label>
+    <%= f.input :rss_url, required: true, label: false, placeholder: "http://..." %>
+    <%= f.button :submit, "Ajouter" %>
+  <% end %>
 </div>

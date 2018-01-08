@@ -27,8 +27,6 @@ class Source < ActiveRecord::Base
 
       # CHECKING IF ENTRIES ARE IN THE DATABASE
       if (Entry.where(media_url: e.url) == [])
-
-        p 'inside where entry media url'
         # RETRIEVING ENTRY THUMBNAIL
         image = ""
         if e.try(:media_thumbnail_url) != nil
@@ -36,18 +34,15 @@ class Source < ActiveRecord::Base
         elsif e.try(:image) != nil
           image = e.image
         elsif !Nokogiri::HTML(open(e.url)).css("meta[property='og:image']").blank?
-          p 'inside elsif'
           photo_url = Nokogiri::HTML(open(e.url)).css("meta[property='og:image']").first.attributes["content"]
           image = URI.parse(photo_url)
         end
-          # user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.854.0 Safari/535.2"
-          # doc = Nokogiri::HTML(open(e.url.to_s, 'User-Agent' => user_agent, 'read_timeout' => '1' ), nil, "UTF-8")
-          # p 'after doc nokogiri'
-          # unless doc.at('meta[property="og:image"]') == nil
-          #   p 'inside unless'
-          #   image = doc.at('meta[property="og:image"]')['content'].to_s
-          # end
-        p 'after image retrieving'
+        
+        # user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.854.0 Safari/535.2"
+        # doc = Nokogiri::HTML(open(e.url.to_s, 'User-Agent' => user_agent, 'read_timeout' => '1' ), nil, "UTF-8")
+        # unless doc.at('meta[property="og:image"]') == nil
+        #   image = doc.at('meta[property="og:image"]')['content'].to_s
+        # end
 
         # RETRIEVING ENTRY DESCRIPTION
         content = ""
@@ -59,13 +54,9 @@ class Source < ActiveRecord::Base
           content = e.summary
         end
 
-        p 'after content retrieving'
-
         content = ActionController::Base.helpers.strip_tags(content)
         content = CGI::unescapeHTML(content)
         content = content.truncate(300)
-
-        p 'after content formating'
 
         # ADDING ENTRY TO THE DATABASE
         Entry.create(
@@ -75,8 +66,6 @@ class Source < ActiveRecord::Base
           published_date: e.published, 
           media_url: e.url,
           thumbnail_url: image)
-
-        p 'after entry creating'
       end
     end
   end

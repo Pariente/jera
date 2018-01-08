@@ -1,5 +1,4 @@
 class SourcesController < ApplicationController
-  before_action :set_source, only: [:show, :update]
   require 'open-uri'
   require 'csv'
   include ApplicationHelper
@@ -45,7 +44,7 @@ class SourcesController < ApplicationController
   end
 
   def create
-    url = source_params["url"]
+    url = source_params[:url]
 
     if uri?(url)
 
@@ -58,28 +57,40 @@ class SourcesController < ApplicationController
         doc = Nokogiri::HTML(resp.body)
       end
 
-      # FETCHING SOURCE IMAGE
-      og_image = doc.at('meta[property="og:image"]')
-      picture = ""
-      unless og_image == nil
-        picture = og_image['content']
-      end
-
-      # FETCHING SOURCE TITLE
-      og_title = doc.at('meta[property="og:title"]')
-      if og_title == nil
-        name = doc.at('title').text
+      # FETCHING PICTURE
+      if source_params[:picture] == nil
+        og_image = doc.at('meta[property="og:image"]')
+        picture = ""
+        unless og_image == nil
+          picture = og_image['content']
+        end
       else
-        name = og_title['content']
+        picture = source_params[:picture]
       end
 
-      # FETCHING RSS
-      rss_xml = doc.at('link[type="application/rss+xml"]')
-      if rss_xml == nil
-        rss_xml = doc.at('link[type="application/atom+xml"]')
-      end 
-      unless rss_xml == nil
-        rss_url = rss_xml['href']
+      # FETCHING NAME
+      if source_params[:name] == nil
+        og_title = doc.at('meta[property="og:title"]')
+        if og_title == nil
+          name = doc.at('title').text
+        else
+          name = og_title['content']
+        end
+      else
+        name = source_params[:name]
+      end
+
+      # FETCHING RSS URL
+      if source_params[:rss_url] == nil
+        rss_xml = doc.at('link[type="application/rss+xml"]')
+        if rss_xml == nil
+          rss_xml = doc.at('link[type="application/atom+xml"]')
+        end 
+        unless rss_xml == nil
+          rss_url = rss_xml['href']
+        end
+      else
+        rss_url = source_params[:rss_url]
       end
 
       # INSTANTIATING SOURCE
@@ -134,11 +145,6 @@ class SourcesController < ApplicationController
 
     def ransack_result
       @search.result(distinct: true)
-    end
-
-    # Use callbacks to share common setup or constraints between actions.
-    def set_source
-      @source = Source.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

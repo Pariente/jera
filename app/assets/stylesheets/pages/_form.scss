@@ -6,44 +6,6 @@ form {
   padding-bottom: 20px
 }
 
-form.new_source {
-  align-items: flex-end;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 0px 5px
-}
-
-form.new_source div {
-  flex-grow: 1;
-  margin-right: 20px
-}
-
-form.new_source input {
-  border: 0px;
-  border-bottom: 1px solid $grey;
-  border-radius: 0px;
-  height: 40px;
-  min-width: inherit;
-  padding: 0px 10px;
-  width: 100%
-}
-
-form.new_source input[type="submit"] {
-  background-color: $white;
-  border: 1px solid $green;
-  border-radius: 40px;
-  color: $green;
-  display: flex;
-  justify-content: center;
-  font-size: $normal_size;
-  font-weight: 400;
-  height: 30px;
-  margin: 0px;
-  min-width: inherit;
-  padding: 0px 20px;
-  width: auto
-}
-
 .form-inputs,
 .form-actions {
   margin: auto;
@@ -97,10 +59,4 @@ input[type="submit"] {
 
 input[type="submit"][disabled] {
   cursor: default
-}
-
-@media screen and (max-width: 400px) {
-  p {
-    padding: 10px 25px 0px
-  }
 }

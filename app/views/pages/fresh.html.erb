@@ -11,7 +11,7 @@
   <hr>
   <% if @fresh == [] %>
     <span class="empty-message">Vous êtes parfaitement à jour. 😌</span>
-    <span class="empty-message">Pourquoi ne pas <%= link_to harvest_path do %>consulter votre récolte<% end %> si vous en avez le temps ? 👩‍🌾</span>
+    <span class="empty-message">Pourquoi ne pas <%= link_to harvest_path, class: 'underline' do %>consulter votre récolte<% end %> si vous en avez le temps ? 👩‍🌾</span>
   <% else %>
     <% @fresh.each do |e| %>
       <% cache "entry-#{e.id}" do %>

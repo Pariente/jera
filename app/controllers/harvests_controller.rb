@@ -49,8 +49,9 @@ class HarvestsController < ApplicationController
       @harvested = EntryAction.where(user_id: current_user.id, harvested: true, read: false)
     end
     @harvested = @harvested.to_a.sort_by {|p| p.created_at}.reverse
-    @harvested = @harvested.drop(params[:index].to_i).first(20)
+    @harvested = @harvested.drop(params[:index].to_i)
     @load_more_count = load_more_count(@harvested)
+    @harvested = @harvested.first(20)
     respond_to do |format|
       format.js { render 'more_harvested.js.erb' }
     end
