@@ -18,6 +18,6 @@
 //= require_self
 //= require_tree .
 
-$(document).ready(function() {
+document.addEventListener("turbolinks:load", function() {
   $.fn.ButtonFunction();
 });
