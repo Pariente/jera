@@ -12,7 +12,7 @@ $.fn.ButtonFunction = function() {
     var entry_count = 0;
     if ($('.unseen').hasClass('active')) { 
       all = false;
-      entry_count = $('.content:not(.hidden)').length; 
+      entry_count = $('.content:not(.hidden):not(.seen)').length; 
     } else {
       entry_count = $('.content:not(.hidden)').length;
     }
