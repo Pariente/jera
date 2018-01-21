@@ -1,36 +1,21 @@
-function recommendation_textarea(element) {
-  element.style.height = "80px";
-  element.style.height = (element.scrollHeight)+"px";
-  if (element.value.length >= 10 && $(element).parent().find('.recommend-to-friend').hasClass('not-active')) {
-    $(element).parent().find('.recommend-to-friend').removeClass('not-active');
-  } else if (element.value.length <= 10 && !$(element).parent().find('.recommend-to-friend').hasClass('not-active')) {
-    $(element).parent().find('.recommend-to-friend').addClass('not-active');
-  }
-}
+$.fn.ButtonFunction = function() {
 
-function message_textarea(element) {
-  element.style.height = "25px";
-  element.style.height = (element.scrollHeight)+"px";
-  if (element.value.length >= 1 && $(element).parent().find('.message-response-button').hasClass('not-active')) {
-    $(element).parent().find('.message-response-button').removeClass('not-active');
-  } else if (element.value.length <= 1 && !$(element).parent().find('.message-response-button').hasClass('not-active')) {
-    $(element).parent().find('.message-response-button').addClass('not-active');
-  }
-}
-
-document.addEventListener("turbolinks:load", function() {
-
-  // LOADING MORE ENTRIES IN FRESH
+  // LOADING MORE ENTRIES (OR ENTRYACTIONS)
   $(".load-more-fresh").unbind('click').bind('click', function(evt) {
-    var entry_count = $('.content').length;
+    var entry_count = $('.content:not(.harvested):not(.masked)').length;
     $.get("pages/more/", {index: entry_count});
   });
 
-  // LOADING MORE ENTRIES (OR ENTRYACTIONS)
+  // LOADING MORE HARVESTED
   $(".load-more-harvest").unbind('click').bind('click', function(evt) {
-    var entry_count = $('.content').length;
     var all = true;
-    if ($('.unseen').hasClass('active')) { all = false };
+    var entry_count = 0;
+    if ($('.unseen').hasClass('active')) { 
+      all = false;
+      entry_count = $('.content:not(.hidden)').length; 
+    } else {
+      entry_count = $('.content:not(.hidden)').length;
+    }
     $.get("harvests/more/", {index: entry_count, all: all});
   });
 
@@ -61,6 +46,7 @@ document.addEventListener("turbolinks:load", function() {
 
   // MASK
   $(".mask").unbind('click').bind('click', function(evt) {
+    $(this).parents('.content').addClass('masked');
     $(this).parents('.content').find('.content-left-column').addClass('hidden');
     $(this).parents('.content').find('.content-right-column').addClass('hidden');
     $(this).parents('.content').find('.recommendation-header').addClass('hidden');
@@ -78,6 +64,7 @@ document.addEventListener("turbolinks:load", function() {
 
   // HARVEST
   $(".harvest").unbind('click').bind('click', function(evt) {
+    $(this).parents('.content').addClass('harvested');
     $(this).parents('.content').find('.content-left-column').addClass('hidden');
     $(this).parents('.content').find('.content-right-column').addClass('hidden');
     $(this).parents('.content').find('.recommendation-header').addClass('hidden');
@@ -110,6 +97,7 @@ document.addEventListener("turbolinks:load", function() {
     var id = $(this).data("entry");
     $.post("/entries/" + id + "/read", { _method: 'get' });
     if ( $(this).find('.read-sign').hasClass('hidden') ) {
+      $(this).parents('.content').addClass('seen');
       $(this).find('.read-sign').removeClass('hidden');
       $(this).find('img').addClass('low-opacity');
       $(this).siblings('.fruit-footer').find('.unread').removeClass('hidden');
@@ -118,6 +106,7 @@ document.addEventListener("turbolinks:load", function() {
   });
 
   $(".read").unbind('click').bind('click', function() {
+    $(this).parents('.content').addClass('seen');
     $(this).parents('.content-box').find('.read-sign').removeClass('hidden');
     $(this).parents('.content-box').find('img').addClass('low-opacity');
     $(this).siblings('.unread').removeClass('hidden');
@@ -126,6 +115,7 @@ document.addEventListener("turbolinks:load", function() {
 
   // UNREAD
   $(".unread").unbind('click').bind('click', function() {
+    $(this).parents('.content').removeClass('seen');
     $(this).parents('.content-box').find('.read-sign').addClass('hidden');
     $(this).parents('.content-box').find('img').removeClass('low-opacity');
     $(this).siblings('.read').removeClass('hidden');
@@ -204,4 +194,24 @@ document.addEventListener("turbolinks:load", function() {
     $(this).parents('.fruit-footer').find('.messages').find('.hidden').first().removeClass('hidden');
     $(this).parents('.write-response').find('textarea').val('');
   });
-});
+}
+
+function recommendation_textarea(element) {
+  element.style.height = "80px";
+  element.style.height = (element.scrollHeight)+"px";
+  if (element.value.length >= 10 && $(element).parent().find('.recommend-to-friend').hasClass('not-active')) {
+    $(element).parent().find('.recommend-to-friend').removeClass('not-active');
+  } else if (element.value.length <= 10 && !$(element).parent().find('.recommend-to-friend').hasClass('not-active')) {
+    $(element).parent().find('.recommend-to-friend').addClass('not-active');
+  }
+}
+
+function message_textarea(element) {
+  element.style.height = "25px";
+  element.style.height = (element.scrollHeight)+"px";
+  if (element.value.length >= 1 && $(element).parent().find('.message-response-button').hasClass('not-active')) {
+    $(element).parent().find('.message-response-button').removeClass('not-active');
+  } else if (element.value.length <= 1 && !$(element).parent().find('.message-response-button').hasClass('not-active')) {
+    $(element).parent().find('.message-response-button').addClass('not-active');
+  }
+}
