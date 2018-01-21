@@ -51,7 +51,7 @@ $.fn.ButtonFunction = function() {
     $(this).parents('.content').find('.content-right-column').addClass('hidden');
     $(this).parents('.content').find('.recommendation-header').addClass('hidden');
     $(this).parents('.content').find('.content-masked').removeClass('hidden');
-
+    scrollToParentContent($(this));
   });
 
   // UNMASK
@@ -60,6 +60,7 @@ $.fn.ButtonFunction = function() {
     $(this).parents('.content').find('.content-right-column').removeClass('hidden');
     $(this).parents('.content').find('.recommendation-header').removeClass('hidden');
     $(this).parents('.content-masked').addClass('hidden');
+    scrollToParentContent($(this));
   });
 
   // HARVEST
@@ -69,6 +70,7 @@ $.fn.ButtonFunction = function() {
     $(this).parents('.content').find('.content-right-column').addClass('hidden');
     $(this).parents('.content').find('.recommendation-header').addClass('hidden');
     $(this).parents('.content').find('.content-harvested').removeClass('hidden');
+    scrollToParentContent($(this));
     $('.harvest-count').html(parseInt($('.harvest-count').html(), 10)+1)
     if (parseInt($('.harvest-count').html(), 10) == 1) {
       $('.added-to-harvest').fadeTo('slow', 1, function() {});
@@ -81,6 +83,7 @@ $.fn.ButtonFunction = function() {
     $(this).parents('.content').find('.content-right-column').removeClass('hidden');
     $(this).parents('.content').find('.recommendation-header').removeClass('hidden');
     $(this).parents('.content').find('.content-harvested').addClass('hidden');
+    scrollToParentContent($(this));
     $('.harvest-count').html(parseInt($('.harvest-count').html(), 10)-1)
     if (parseInt($('.harvest-count').html(), 10) == 0) {
       $('.added-to-harvest').fadeTo('slow', 0, function() {});
@@ -134,16 +137,6 @@ $.fn.ButtonFunction = function() {
     $(this).parents('.tree').find('.delete-tree').addClass('hidden');
   });
 
-  // FILTER COLOUR
-  $(".filtered-colour").unbind('click').bind('click', function(evt) {
-    $(this).addClass('hidden');
-    $(this).parent().find('.choose-colour').removeClass('hidden');
-  });
-  $(".hide-colour-selector").unbind('click').bind('click', function(evt) {
-    $(this).parent().addClass('hidden');
-    $(this).parents('.garden-colours').find('.filtered-colour').removeClass('hidden');
-  });
-
   // SEND FRIEND REQUEST
   $(".send-friend-request").unbind('click').bind('click', function(evt) {
     $(this).addClass('hidden');
@@ -194,6 +187,10 @@ $.fn.ButtonFunction = function() {
     $(this).parents('.fruit-footer').find('.messages').find('.hidden').first().removeClass('hidden');
     $(this).parents('.write-response').find('textarea').val('');
   });
+}
+
+function scrollToParentContent(element) {
+  $('html, body').animate({ scrollTop: element.parents('.content').offset().top - 80}, 'slow')
 }
 
 function recommendation_textarea(element) {
