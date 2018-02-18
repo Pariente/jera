@@ -190,7 +190,7 @@ $.fn.ButtonFunction = function() {
 }
 
 function scrollToParentContent(element) {
-  $('html, body').animate({ scrollTop: element.parents('.content').offset().top - 80}, 'slow')
+  $('html, body').animate({ scrollTop: element.parents('.content').offset().top + 50 }, 'fast')
 }
 
 function recommendation_textarea(element) {
