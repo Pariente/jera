@@ -60,7 +60,7 @@ $.fn.ButtonFunction = function() {
     $(this).parents('.content').find('.content-right-column').removeClass('hidden');
     $(this).parents('.content').find('.recommendation-header').removeClass('hidden');
     $(this).parents('.content-masked').addClass('hidden');
-    scrollToParentContent($(this));
+    scrollBackToParentContent($(this));
   });
 
   // HARVEST
@@ -83,7 +83,7 @@ $.fn.ButtonFunction = function() {
     $(this).parents('.content').find('.content-right-column').removeClass('hidden');
     $(this).parents('.content').find('.recommendation-header').removeClass('hidden');
     $(this).parents('.content').find('.content-harvested').addClass('hidden');
-    scrollToParentContent($(this));
+    scrollBackToParentContent($(this));
     $('.harvest-count').html(parseInt($('.harvest-count').html(), 10)-1)
     if (parseInt($('.harvest-count').html(), 10) == 0) {
       $('.added-to-harvest').fadeTo('slow', 0, function() {});
@@ -191,6 +191,10 @@ $.fn.ButtonFunction = function() {
 
 function scrollToParentContent(element) {
   $('html, body').animate({ scrollTop: element.parents('.content').offset().top + 50 }, 'fast')
+}
+
+function scrollBackToParentContent(element) {
+  $('html, body').animate({ scrollTop: element.parents('.content').offset().top + -65 }, 'fast')
 }
 
 function recommendation_textarea(element) {
