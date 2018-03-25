@@ -29,11 +29,7 @@ class SourcesController < ApplicationController
     @entries = []
 
     if @filter == 'harvested'
-      harvested = current_user.entry_actions.where(source_id: @source.id, harvested: true)
-      harvested = harvested.sort_by {|p| p.created_at}.reverse
-      harvested.each do |h|
-        @entries.push(h.entry)
-      end
+      @entries = Entry.joins(:entry_actions).where(entry_actions: {user_id: current_user.id, source_id: @source.id, harvested: true}).reverse_order.limit(20).to_a
     else
       @entries = @source.last_entries(30).sort_by {|p| p.created_at}.reverse
     end

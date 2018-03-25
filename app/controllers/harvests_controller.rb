@@ -8,12 +8,13 @@ class HarvestsController < ApplicationController
     @filter = params[:filter]
     @query = params[:q]
 
-    where_params = {user_id: current_user.id, harvested: true}
-    where_params[:read] = 'false' if @filter != 'all'
-
-    @search = EntryAction.where(where_params).order(:created_at).reverse_order.ransack(@query)
+    if @filter != 'all'
+      @search = current_user.entry_actions.harvested.unread.order(:created_at).reverse_order.ransack(@query)
+    else
+      @search = current_user.entry_actions.harvested.order(:created_at).reverse_order.ransack(@query)
+    end
     @unread_count = EntryAction.where(user_id: current_user.id, harvested: true, read: false).count
-    @harvested = @search.result(distinct: true).includes(:entry).limit(20)
+    @harvested = @search.result.includes(:entry).limit(20)
     @load_more_count = load_more_count(@search.result)
 
     render :harvest
@@ -21,8 +22,8 @@ class HarvestsController < ApplicationController
 
   def results
     @query = params[:q]
-    @search = EntryAction.where(user_id: current_user.id, harvested: true).order(:created_at).reverse_order.ransack(@query)
-    @harvested = @search.result(distinct: true).includes(:entry).limit(20)
+    @search = current_user.entry_actions.harvested.order(:created_at).reverse_order.ransack(@query)
+    @harvested = @search.result.includes(:entry).limit(20)
     @load_more_count = load_more_count(@search.result)
 
     render :results
@@ -31,12 +32,10 @@ class HarvestsController < ApplicationController
   def more
     @harvested = []
     if params[:all] == 'true'
-      @harvested = EntryAction.where(user_id: current_user.id, harvested: true)
+      @harvested = current_user.entry_actions.harvested.order(:created_at).reverse_order.drop(params[:index].to_i)
     else
-      @harvested = EntryAction.where(user_id: current_user.id, harvested: true, read: false)
+      @harvested = current_user.entry_actions.harvested.unread.order(:created_at).reverse_order.drop(params[:index].to_i)
     end
-    @harvested = @harvested.to_a.sort_by {|p| p.created_at}.reverse
-    @harvested = @harvested.drop(params[:index].to_i)
     @load_more_count = load_more_count(@harvested)
     @harvested = @harvested.first(20)
     respond_to do |format|
