@@ -7,38 +7,25 @@ class HarvestsController < ApplicationController
   def harvest
     @filter = params[:filter]
     @query = params[:q]
-    @search = EntryAction.where(user_id: current_user.id, harvested: true).ransack(@query)
-    @harvested = @search.result(distinct: true).includes(:entry)
-    @unread_count = 0
 
-    unread = []
+    where_params = {user_id: current_user.id, harvested: true}
+    where_params[:read] = 'false' if @filter != 'all'
 
+    @search = EntryAction.where(where_params).order(:created_at).reverse_order.ransack(@query)
+    @unread_count = EntryAction.where(user_id: current_user.id, harvested: true, read: false).count
+    @harvested = @search.result(distinct: true).includes(:entry).limit(20)
+    @load_more_count = load_more_count(@search.result)
 
-    # ALL HARVESTED ENTRIES BY USER
-    @harvested = @harvested.sort_by {|p| p.created_at}.reverse
+    render :harvest
+  end
 
-    # ALL HARVESTED ENTRIES THE USER HAS NOT READ YET
-    @harvested.each do |h|
-      unless h.read
-        unread.push(h)
-      end
-    end
+  def results
+    @query = params[:q]
+    @search = EntryAction.where(user_id: current_user.id, harvested: true).order(:created_at).reverse_order.ransack(@query)
+    @harvested = @search.result(distinct: true).includes(:entry).limit(20)
+    @load_more_count = load_more_count(@search.result)
 
-    # NUMBER OF HARVESTED ENTRIES THE USER HAS NOT READ YET
-    @unread_count = unread.count
-
-    # RENDERING NORMAL HARVEST VIEW, OR RESULTS VIEW IF USER MADE A SEARCH
-    if @query == nil
-      # FILTERING RESULTS
-      if @filter != 'all'
-        @harvested = unread
-      end
-      @load_more_count = load_more_count(@harvested)
-      @harvested = @harvested.first(20)
-      render :harvest
-    else
-      render :results
-    end
+    render :results
   end
 
   def more

@@ -27,7 +27,7 @@
         </div>
         <div class="row search-navbar">
           <% if harvest == 'active' %>
-            <%= search_form_for @search, url: harvest_path(filter: params[:filter]) do |f| %>
+            <%= search_form_for @search, url: results_path(filter: params[:filter]) do |f| %>
               <%= f.search_field :entry_title_cont, class: 'nav_search_input', placeholder: 'Chercher dans votre récolte...' %>
             <% end %>
           <% else %>

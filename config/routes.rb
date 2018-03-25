@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#fresh'
   get 'garden' => 'subscriptions#index'
   get 'harvest' => 'harvests#harvest'
+  get 'results' => 'harvests#results'
   get 'sources' => 'sources#index', as: :sources
   get 'sources_search' => 'sources#results'
   get 'unable_to_fetch' => 'sources#unable_to_fetch'
