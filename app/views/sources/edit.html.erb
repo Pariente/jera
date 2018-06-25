@@ -1,0 +1,15 @@
+<% title @source.name %>
+<%= render partial: 'shared/navbar' %>
+<div class="content-flex">
+  <% sub = @source.in_garden_of_user(current_user) %>
+  <%= render partial: 'shared/tree', locals: {sub: sub, source: @source} %>
+  <h1>Éditer la source</h1>
+  <hr>
+  <%= simple_form_for(@source, url: source_edit_path(@source)) do |f| %>
+    <%= f.input :name, label: 'Titre' %>
+    <%= f.input :url, label: 'URL' %>
+    <%= f.input :rss_url, label: 'RSS' %>
+    <%= f.input :picture, label: 'Photo' %>
+    <%= f.button :submit, 'Sauvegarder' %>
+  <% end %>
+</div>

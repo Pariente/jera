@@ -14,6 +14,9 @@
       <% else %>
         <% subscribe = "hidden" %>
       <% end %>
+      <%= link_to source_edit_path(source), class: "tree-button" do %>
+        <span>Modifier</span>
+      <% end %>
       <%= link_to source_subscribe_path(source), class: "add-to-garden #{subscribe}", remote: :true do %>
         <span>Abonner</span>
       <% end %>

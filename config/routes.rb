@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'sources_search' => 'sources#results'
   get 'unable_to_fetch' => 'sources#unable_to_fetch'
   get 'source/:id' => 'sources#show', as: :source_show
+  get 'source/:id/edit' => 'sources#edit', as: :source_edit
+  patch 'source/:id/edit' => 'sources#update'
   get 'sources/index' => 'sources#index'
 
   resources :sources do

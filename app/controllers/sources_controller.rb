@@ -13,6 +13,10 @@ class SourcesController < ApplicationController
     end
   end
 
+  def edit
+    @source = Source.find(params[:id])
+  end
+
   def results
     @search = ransack_params
     @sources = ransack_result
@@ -123,6 +127,7 @@ class SourcesController < ApplicationController
   end
 
   def update
+    @source = Source.find(params[:id])
     respond_to do |format|
       if @source.update(source_params)
         format.html { redirect_to @source, notice: 'Source was successfully updated.' }

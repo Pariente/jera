@@ -113,6 +113,13 @@
   width: 100%
 }
 
+a.tree-button {
+  color: $grey;
+  line-height: 25px;
+  margin-right: 10px;
+  text-decoration: underline
+}
+
 a.add-to-garden {
   align-items: center;
   background-color: $green;
