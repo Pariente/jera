@@ -20,7 +20,7 @@ h3 {
 
 h1 {
   font-family: 'Cormorant';
-  font-weight: 700;
+  font-weight: 600;
   margin: 0px;
   padding: 0px;
   text-align: left
@@ -169,7 +169,6 @@ header > h1 {
 img.profile-button {
   background-color: $white;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px 0px rgba(102, 102, 102, 0.4);
   cursor: pointer;
   display: flex;
   height: 30px;
@@ -340,9 +339,8 @@ p {
 }
 
 span.empty-message {
-  font-family: 'Cormorant';
-  font-size: $base_size;
-  line-height: 27px;
+  font-size: $h2_size;
+  font-weight: 300;
   margin: 15px 20px;
   text-align: center
 }
