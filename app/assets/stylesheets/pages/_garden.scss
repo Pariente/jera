@@ -137,13 +137,6 @@ a.add-to-garden {
   padding-right: 5px
 }
 
-.tree-footer-add a.move-tree,
-.tree-footer-add a.delete-tree, {
-  color: $grey;
-  padding-left: 15px;
-  padding-right: 15px
-}
-
 @media screen and (max-width: 450px) {
   .profile-flex {
     max-width: 450px
