@@ -1,0 +1,17 @@
+<% title "Ajouter une nouvelle source" %>
+<%= render partial: 'shared/navbar' %>
+<div class="content-flex">
+  <%= link_to sources_path, class: 'back' do %>
+    Retour à la liste
+  <% end %>
+  <h1>Ajouter une source</h1>
+  <hr>
+  <p class="helper">Jera n'a pas pu ajouter automatiquement cette source, car son flux RSS est inaccessible ou inexistant.</p>
+  <%= simple_form_for @source do |f| %>
+    <%= f.input :name, label: 'Titre' %>
+    <%= f.input :url, label: 'URL' %>
+    <%= f.input :rss_url, label: 'RSS' %>
+    <%= f.input :picture, label: 'Photo' %>
+    <%= f.button :submit, 'Ajouter' %>
+  <% end %>
+</div>

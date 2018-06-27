@@ -41,7 +41,8 @@ p {
 
 p.helper {
   font-family: 'Cormorant';
-  font-weight: 400
+  font-weight: 400;
+  margin: 0px 10px 10px
 }
 
 /* --- HR --- */
@@ -346,62 +347,14 @@ span.empty-message {
 
 /* --- BACK --- */
 
-a.back-button {
+a.back {
   color: $green;
-  font-size: $small_size;
-  font-weight: 800;
-  margin-bottom: 10px 
+  font-size: $normal_size;
+  margin: 0px 5px;
 }
 
-.back-button img {
-  height: 10px
-}
-
-.back {
-  color: $white;
-  display: flex;
-  flex-wrap: wrap;
-  height: 60px;
-  justify-content: center;
-  margin: 0px;
-  position: fixed;
-  top: 0px;
-  width: 100%;
-  z-index: 200
-}
-
-.back img {
-  padding-right: 10px
-}
-
-.back a,
-.back a:hover,
-.back a:active,
-.back a:visited {
-  align-items: center;
-  background-image: linear-gradient(-180deg, #47B869 3%, #2F7A43 99%);
-  border-radius: 0px 0px 5px 5px;
-  box-sizing: border-box;
-  color: $white;
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-  justify-content: flex-start;
-  max-width: 600px;
-  padding-left: 20px
-}
-
-@media screen and (max-width: 350px) {
-  .back {
-    font-size: $normal_size
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .back a:first-of-type,
-  .back a:last-of-type {
-    border-radius: 0px
-  }
+a.back:before {
+  content: '←';
 }
 
 /* --- SUB MENU --- */

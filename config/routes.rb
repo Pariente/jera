@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'results' => 'harvests#results'
   get 'sources' => 'sources#index', as: :sources
   get 'sources_search' => 'sources#results'
+  get 'source/new' => 'sources#new', as: :source_new
   get 'unable_to_fetch' => 'sources#unable_to_fetch'
   get 'source/:id' => 'sources#show', as: :source_show
   get 'source/:id/edit' => 'sources#edit', as: :source_edit

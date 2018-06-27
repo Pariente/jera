@@ -40,6 +40,7 @@ class SourcesController < ApplicationController
   end
 
   def new
+    @search = ransack_params
     @source = Source.new
   end
 
@@ -108,22 +109,17 @@ class SourcesController < ApplicationController
             original_source = Source.find_by(url: @source.url)
             format.html { redirect_to source_show_path(original_source), notice: 'Source already existing. Redirecting to it.' }
           else
-            format.html { redirect_to unable_to_fetch_path }
+            format.html { redirect_to source_new_path }
             format.json { render json: @source.errors, status: :unprocessable_entity }
           end
         end
       end
     else
       respond_to do |format|
-        format.html { redirect_to unable_to_fetch_path }
+        format.html { redirect_to source_new_path }
         format.json { render json: @source.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def unable_to_fetch
-    @search = ransack_params
-    @source = Source.new
   end
 
   def update
