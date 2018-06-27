@@ -50,7 +50,7 @@
   padding: 5px 10px
 }
 
-.plant-tree-button {
+.add-button {
   align-items: center;
   background-color: $white;
   border: 0px;
@@ -66,7 +66,7 @@
   padding: 5px 10px
 }
 
-.plant-tree-button span {
+.add-button span {
   padding-left: 10px
 }
 
@@ -148,6 +148,10 @@ a.add-to-garden {
     margin-left: 15px
   }
   .tree {
+    margin-left: 10px;
+    margin-right: 10px
+  }
+  .add-button {
     margin-left: 10px;
     margin-right: 10px
   }

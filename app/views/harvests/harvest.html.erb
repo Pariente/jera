@@ -18,6 +18,12 @@
     <%= link_to harvest_path(filter: 'all'), class: "all #{all}" do %>TOUS<% end %>
   </div>
   <hr>
+  <%= link_to sources_path do %>
+    <div class="add-button">
+      <%= image_tag("round_plus_button.svg") %>
+      <span>Ajouter un élément à votre récolte</span>
+    </div>
+  <% end %>
   <% if @harvested == [] %>
     <% if params[:filter] == 'all' %>
       <span class="empty-message">Récoltez les articles ou vidéos qui vous intéressent parmi les dernières publications de vos abonnements. 👩‍🌾</span>
