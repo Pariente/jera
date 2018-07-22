@@ -1,9 +1,5 @@
 <div class="nav">
   <div class="nav-flex">
-    <% if current_user.notification.new_from_contacts %>
-      <% new_from_contacts = 'red' %>
-      <% notification = 'full-opacity' %>
-    <% end %>
     <% if current_page?(controller: 'pages', action: 'fresh') %>
       <% fresh = 'active' %>
       <% harvest = '' %>
@@ -14,7 +10,6 @@
     <div class="row top-navbar">
       <div class="row nav-first-row">
         <%= image_tag(current_user.picture, class: 'profile-button') %>
-        <div class="notification-bullet <%= notification %>">&nbsp;</div>
         <%= link_to root_path, class: fresh do %>
           NOUVEAUTÉS
         <% end %>

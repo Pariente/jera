@@ -1,13 +1,8 @@
 <div class="nav">
   <div class="nav-flex">
-    <% if current_user.notification.new_from_contacts %>
-      <% new_from_contacts = 'red' %>
-      <% notification = 'full-opacity' %>
-    <% end %>
     <div class="row top-navbar">
       <div class="row nav-first-row">
         <%= image_tag(current_user.picture, class: 'profile-button') %>
-        <div class="notification-bullet <%= notification %>">&nbsp;</div>
         <%= link_to root_path do %>
           NOUVEAUTÉS
         <% end %>
@@ -18,8 +13,6 @@
       </div>
     </div>
     <div class="row bottom-navbar">
-      <a href="#">VILLAGES</a>
-      <%= link_to contacts_path, class: new_from_contacts do %>CONTACTS<% end %>
       <%= link_to garden_path do %>ABONNEMENTS<% end %>
       <%= link_to edit_user_registration_path do %>PARAMÈTRES<% end %>
     </div>

@@ -8,7 +8,6 @@
     <div class="row top-navbar">
       <div class="row nav-first-row">
         <%= image_tag(current_user.picture, class: 'profile-button') %>
-        <div class="notification-bullet <%= notification %>">&nbsp;</div>
         <%= link_to root_path, class: fresh do %>
           NOUVEAUTÉS
         <% end %>
