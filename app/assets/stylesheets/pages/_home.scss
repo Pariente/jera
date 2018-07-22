@@ -135,6 +135,10 @@ header > h1 {
   margin-right: 20px
 }
 
+.top-navbar a:first-of-type {
+  margin-left: 20px
+}
+
 .top-navbar a.active {
   color: $green;
 }
