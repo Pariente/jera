@@ -1,9 +1,5 @@
 <div class="nav">
   <div class="nav-flex">
-    <% if current_user.notification.new_from_contacts %>
-      <% new_from_contacts = 'red' %>
-      <% notification = 'full-opacity' %>
-    <% end %>
     <% if current_page?(controller: 'pages', action: 'fresh') %>
       <% fresh = 'active' %>
       <% harvest = '' %>

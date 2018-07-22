@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   get 'harvests/more' => 'harvests#more'
   get 'pages/more' => 'pages#more'
 
+  get 'harvests/add' => 'entry_actions#new'
+
   get 'contacts' => 'users#contacts'
   get 'contacts_search' => 'users#results'
   get 'befriend/:id' => 'friendships#ask', as: :befriend

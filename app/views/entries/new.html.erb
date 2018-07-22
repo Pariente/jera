@@ -1,0 +1,14 @@
+<% title "Ajouter un élément à votre récolte" %>
+<%= render partial: 'shared/navbar' %>
+<div class="content-flex">
+  <%= link_to harvests_path, class: 'back' do %>
+    Retour à la récolte
+  <% end %>
+  <h1>Ajouter un élément</h1>
+  <hr>
+  <p class="helper">Collez l'adresse du lien que vous souhaitez ajouter à votre récolte.</p>
+  <%= simple_form_for @entry do |f| %>
+    <%= f.input :url, required: true, label: false, placeholder: "http://..." %>
+    <%= f.button :submit, "Ajouter" %>
+  <% end %>
+</div>
