@@ -50,6 +50,7 @@ $.fn.ButtonFunction = function() {
     $(this).parents('.content').find('.content-left-column').addClass('hidden');
     $(this).parents('.content').find('.content-right-column').addClass('hidden');
     $(this).parents('.content').find('.recommendation-header').addClass('hidden');
+    $(this).parents('.content').prevAll('.content').addClass('hidden');
     $(this).parents('.content').find('.content-masked').removeClass('hidden');
     scrollToParentContent($(this));
   });
@@ -59,6 +60,7 @@ $.fn.ButtonFunction = function() {
     $(this).parents('.content').find('.content-left-column').removeClass('hidden');
     $(this).parents('.content').find('.content-right-column').removeClass('hidden');
     $(this).parents('.content').find('.recommendation-header').removeClass('hidden');
+    $(this).parents('.content').prev('.content').removeClass('hidden');
     $(this).parents('.content-masked').addClass('hidden');
     scrollBackToParentContent($(this));
   });
@@ -69,6 +71,7 @@ $.fn.ButtonFunction = function() {
     $(this).parents('.content').find('.content-left-column').addClass('hidden');
     $(this).parents('.content').find('.content-right-column').addClass('hidden');
     $(this).parents('.content').find('.recommendation-header').addClass('hidden');
+    $(this).parents('.content').prevAll('.content').addClass('hidden');
     $(this).parents('.content').find('.content-harvested').removeClass('hidden');
     scrollToParentContent($(this));
     $('.harvest-count').html(parseInt($('.harvest-count').html(), 10)+1)
@@ -82,6 +85,7 @@ $.fn.ButtonFunction = function() {
     $(this).parents('.content').find('.content-left-column').removeClass('hidden');
     $(this).parents('.content').find('.content-right-column').removeClass('hidden');
     $(this).parents('.content').find('.recommendation-header').removeClass('hidden');
+    $(this).parents('.content').prev('.content').removeClass('hidden');
     $(this).parents('.content').find('.content-harvested').addClass('hidden');
     scrollBackToParentContent($(this));
     $('.harvest-count').html(parseInt($('.harvest-count').html(), 10)-1)
@@ -190,11 +194,11 @@ $.fn.ButtonFunction = function() {
 }
 
 function scrollToParentContent(element) {
-  $('html, body').animate({ scrollTop: element.parents('.content').offset().top + 50 }, 'fast')
+  $('html, body').animate({ scrollTop: element.parents('.content').offset().top - 65 }, 'fast')
 }
 
 function scrollBackToParentContent(element) {
-  $('html, body').animate({ scrollTop: element.parents('.content').offset().top + -65 }, 'fast')
+  $('html, body').animate({ scrollTop: element.parents('.content').offset().top - 115 }, 'fast')
 }
 
 function recommendation_textarea(element) {

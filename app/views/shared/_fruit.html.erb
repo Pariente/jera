@@ -19,13 +19,13 @@
     </div>
   </div>
   <div class="content-masked hidden">
-    <span>Contenu masqué.</span>
+    <span>« <b><%= e.title.truncate(20) %></b> » a été masqué.</span>
     <%= link_to entry_unmask_path(e, recommendation_id: nil), class: 'unmask', remote: :true do %>
       Annuler
     <% end %>
   </div>
   <div class="content-harvested hidden">
-    <span>Ajouté à votre récolte.</span>
+    <span>« <b><%= e.title.truncate(20) %></b> » a été récolté.</span>
     <%= link_to entry_unharvest_path(e, recommendation_id: nil), class: 'cancel-harvest', remote: :true do %>
       Annuler
     <% end %>
