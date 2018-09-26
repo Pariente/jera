@@ -15,6 +15,9 @@
         <%= render partial: 'shared/fruit', locals: {e: e} %>
       <% end %>
     <% end %>
-    <a class="load-more-fresh <%= load_more %>">Voir <%= @load_more_count %> de plus</a>
+    <a class="load-more-fresh <%= load_more %>">
+      <p class="text">Voir <%= @load_more_count %> de plus</p>
+      <p class="loading hidden">Chargement<span>.</span><span>.</span><span>.</span></p>
+    </a>
   <% end %>
 </div>

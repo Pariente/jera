@@ -3,6 +3,8 @@ $.fn.ButtonFunction = function() {
   // LOADING MORE ENTRIES (OR ENTRYACTIONS)
   $(".load-more-fresh").unbind('click').bind('click', function(evt) {
     var entry_count = $('.content:not(.harvested):not(.masked)').length;
+    $(this).children('p').first().addClass('hidden');
+    $(this).children('p.loading').removeClass('hidden');
     $.get("pages/more/", {index: entry_count});
   });
 
@@ -16,6 +18,8 @@ $.fn.ButtonFunction = function() {
     } else {
       entry_count = $('.content:not(.hidden)').length;
     }
+    $(this).children('p').first().addClass('hidden');
+    $(this).children('p.loading').removeClass('hidden');
     $.get("harvests/more/", {index: entry_count, all: all});
   });
 
