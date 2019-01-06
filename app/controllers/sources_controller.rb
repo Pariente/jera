@@ -15,6 +15,7 @@ class SourcesController < ApplicationController
 
   def edit
     @source = Source.find(params[:id])
+    redirect_to source_show_path(@source), warning: "You are not authorized" unless current_user.admin?
   end
 
   def results
@@ -124,6 +125,7 @@ class SourcesController < ApplicationController
 
   def update
     @source = Source.find(params[:id])
+    redirect_to source_show_path(@source), warning: "You are not authorized" unless current_user.admin?
     respond_to do |format|
       if @source.update(source_params)
         format.html { redirect_to @source, notice: 'Source was successfully updated.' }

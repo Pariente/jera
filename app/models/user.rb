@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  enum role: [:admin, :regular]
   has_one :notification
   has_many :subscriptions
   has_many :entry_actions
