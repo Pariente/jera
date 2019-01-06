@@ -112,6 +112,8 @@ header > h1 {
 }
 
 .nav-first-row {
+  color: $grey;
+  font-weight: 300;
   opacity: 1;
   -webkit-transition: opacity .5s, width 1s;
   transition: opacity .5s, width 1s;
@@ -141,6 +143,7 @@ header > h1 {
 
 .top-navbar a.active {
   color: $green;
+  font-weight: 700
 }
 
 .bottom-navbar {
