@@ -1,6 +1,6 @@
 body {
-  background-color: $white;
-  color: $dark_brown;
+  background-color: $background_primary;
+  color: $text_secondary;
   font-family: $base_font;
   font-size: $base_size;
   font-weight: 400;
@@ -10,6 +10,7 @@ body {
 h1,
 h2,
 h3 {
+  color: $text_primary;
   font-size: $h1_size;
   font-weight: 400;
   letter-spacing: 1px;
@@ -27,7 +28,7 @@ h1 {
 }
 
 h3 {
-  color: $grey;
+  color: $text_secondary;
   font-family: 'Cormorant';
   font-size: $normal_size;
   margin: 0px 0px 0px 5px;
@@ -48,7 +49,7 @@ p.helper {
 /* --- HR --- */
 
 hr {
-  background-color: $light_grey;
+  background-color: $separator_line;
   border: 0px;
   height: 1px;
   margin: 0px 10px 20px 0px
@@ -79,7 +80,7 @@ header > h1 {
 /* --- NAV --- */
 
 .nav {
-  background-color: $white;
+  background-color: transparent;
   display: flex;
   justify-content: center;
   position: fixed;
@@ -90,8 +91,10 @@ header > h1 {
 
 .nav-flex {
   align-items: center;
+  backdrop-filter: blur(8px);
+  background-color: rgba(28, 28, 30, 0.8);
   border-radius: 0px 0px 5px 5px;
-  box-shadow: 2px 2px 4px 0px rgba(102, 102, 102, 0.2);
+  // box-shadow: 2px 2px 4px 0px rgba(102, 102, 102, 0.2);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -241,6 +244,11 @@ img.profile-button {
   transition: width 1s
 }
 
+.row.search-navbar input {
+  background-color: transparent;
+  color: $text_primary
+}
+
 .row.permanent-search-navbar {
   justify-content: flex-start;
   margin-bottom: 0px;
@@ -323,7 +331,7 @@ a,
 a:active,
 a:hover,
 a:visited {
-  color: $dark_brown;
+  color: $text_primary;
   text-decoration: none
 }
 

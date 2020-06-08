@@ -45,8 +45,8 @@ span.date-demarcation {
 }
 
 .content-left-column {
-  background-color: $white;
-  border: 4px solid $white;
+  background-color: $background_primary;
+  border: 4px solid $background_primary;
   border-bottom-right-radius: 5px;
   height: 55px;
   left: 0;
@@ -91,9 +91,10 @@ span.date-demarcation {
 }
 
 .content-box {
+  background-color: $background_secondary;
   border-radius: 5px;
-  border: 1px solid $light_grey;
-  box-shadow: 2px 2px 4px 0px rgba(102, 102, 102, 0.2);
+  border: 1px solid $separator_line;
+  // box-shadow: 2px 2px 4px 0px rgba(102, 102, 102, 0.2);
   overflow: hidden
 }
 
@@ -165,12 +166,11 @@ span.date-demarcation {
 }
 
 .fruit-footer-buttons {
-  border-top: 1px solid $light_grey;
-  border-bottom: 1px solid $light_grey;
+  border-top: 1px solid $separator_line;
   display: flex
 }
 .fruit-footer-buttons a {
-  color: $grey;
+  color: $text_secondary;
   flex-grow: 1;
   font-size: $small_size;
   padding-bottom: 10px;
@@ -179,16 +179,16 @@ span.date-demarcation {
 }
 
 .fruit-footer .mask {
-  border-right: 1px solid $light_grey
+  border-right: 1px solid $separator_line
 }
 
 .fruit-footer .read,
 .fruit-footer .unread, {
-  border-left: 1px solid $light_grey
+  border-left: 1px solid $separator_line
 }
 
 .fruit-footer .recommend {
-  border-left: 1px solid $light_grey;
+  border-left: 1px solid $separator_line;
   color: $green
 }
 
@@ -202,7 +202,7 @@ span.date-demarcation {
 
 .fruit-footer .harvested {
   background-color: $green;
-  color: $white
+  color: $text_secondary
 }
 
 .content.masked,
@@ -212,7 +212,7 @@ span.date-demarcation {
 
 .content-masked,
 .content-harvested {
-  border: 1px solid $lighter_grey;
+  border: 1px solid $separator_line;
   border-radius: 5px;
   box-shadow: 2px 2px 4px 0px rgba(102, 102, 102, 0.2);
   color: $grey;
