@@ -1,4 +1,4 @@
-class CreateEntryAction < ActiveRecord::Migration
+class CreateEntryAction < ActiveRecord::Migration[5.1]
   def change
     create_table :entry_actions do |t|
       t.belongs_to :user

@@ -1,4 +1,4 @@
-class AddMemberships < ActiveRecord::Migration
+class AddMemberships < ActiveRecord::Migration[5.1]
   def change
     create_table :memberships do |t|
       t.belongs_to :team, index: true
