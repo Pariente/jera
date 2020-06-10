@@ -21,7 +21,8 @@ class Source < ActiveRecord::Base
   def refresh
 
     # FETCHING FEED
-    feed = Feedjira::Feed.fetch_and_parse self.rss_url
+    xml = HTTParty.get(self.rss_url).body
+    feed = Feedjira.parse(xml)
 
     feed.entries.each do |e|
 
@@ -35,7 +36,8 @@ class Source < ActiveRecord::Base
           image = e.image
         elsif !Nokogiri::HTML(open(e.url)).css("meta[property='og:image']").blank?
           photo_url = Nokogiri::HTML(open(e.url)).css("meta[property='og:image']").first.attributes["content"]
-          image = URI.parse(URI.escape(photo_url))
+          # image = URI.parse(URI.escape(photo_url))
+          image = photo_url
         end
         
         # user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.854.0 Safari/535.2"
